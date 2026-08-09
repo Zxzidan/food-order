@@ -20,15 +20,17 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 
     <div class="min-h-full">
-        <x-navbar />
-        <x-header>{{ $title }}</x-header>
-
-        <main>
-            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                <!-- Your content -->
-                {{ $slot }}
-            </div>
-        </main>
+       <x-sidebar />
+       
+       <div class="sm:ml-64">
+           <x-header>{{ $title }}</x-header>
+           <main>
+               <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                   <!-- Your content -->
+                   {{ $slot }}
+               </div>
+           </main>
+       </div>
     </div>
 
 </body>

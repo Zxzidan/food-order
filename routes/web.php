@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home', ['nama' => 'Dandi Azaidane', 'title' => 'Home']);
+    return view('dashboard', ['nama' => 'Dandi Azaidane', 'title' => 'Dashboard']);
 });
 
 Route::get('/menu', function () {
