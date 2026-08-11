@@ -29,10 +29,10 @@
     <div class="min-h-full">
        <x-sidebar />
        
-       <div class="sm:ml-64">
+       <div id="main-content" class="sm:ml-64 transition-all duration-300">
            <x-header>{{ $title }}</x-header>
            <main>
-               <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+               <div class="w-full px-4 py-6 sm:px-6 lg:px-8">
                    <!-- Your content -->
                    {{ $slot }}
                </div>
@@ -77,6 +77,25 @@
                         document.documentElement.classList.add('dark');
                         localStorage.setItem('color-theme', 'dark');
                     }
+                }
+            });
+        }
+
+        // Sidebar toggle logic
+        var sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
+        var sidebar = document.getElementById('top-bar-sidebar');
+        var mainContent = document.getElementById('main-content');
+
+        if (sidebarToggleBtn && sidebar && mainContent) {
+            sidebarToggleBtn.addEventListener('click', function(e) {
+                if (window.innerWidth >= 640) {
+                    // Desktop
+                    sidebar.classList.toggle('sm:translate-x-0');
+                    sidebar.classList.toggle('sm:-translate-x-full');
+                    mainContent.classList.toggle('sm:ml-64');
+                } else {
+                    // Mobile
+                    sidebar.classList.toggle('-translate-x-full');
                 }
             });
         }
