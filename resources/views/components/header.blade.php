@@ -1,5 +1,5 @@
 <header class="relative bg-white dark:bg-gray-800 shadow-sm z-30">
-    <div class="w-full px-4 py-6 sm:px-6 lg:px-8 flex justify-between items-center">
+    <div class="px-3 py-3 sm:px-3 lg:px-6 flex justify-between items-center">
         <div class="flex items-center">
             <button id="sidebar-toggle-btn" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 mr-3">
                 <span class="sr-only">Open sidebar</span>
@@ -7,7 +7,7 @@
                    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                 </svg>
             </button>
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $slot }}</h1>
+            <h1 class="text-3xl font-bold tracking-tight text-gray-800 dark:text-white">{{ $slot }}</h1>
         </div>
         <div class="flex items-center space-x-3">
             <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">

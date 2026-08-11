@@ -32,7 +32,7 @@
        <div id="main-content" class="sm:ml-64 transition-all duration-300">
            <x-header>{{ $title }}</x-header>
            <main>
-               <div class="w-full px-4 py-6 sm:px-6 lg:px-8">
+               <div class="px-4 py-6 sm:px-6 lg:px-8">
                    <!-- Your content -->
                    {{ $slot }}
                </div>

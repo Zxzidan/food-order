@@ -14,7 +14,7 @@
     </div>
 
     <!-- Stats Row -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-7">
         <!-- Customer Stat -->
         <div
             class="bg-white dark:bg-gray-800 p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm"
@@ -144,22 +144,25 @@
         >
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-lg font-bold text-gray-900 dark:text-white">
-                    Statistik Penjualan (Minggu Ini)
+                    Statistik Penjualan
                 </h2>
-                <button
+                <a
+                    href="/reports"
                     class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                 >
                     View Report
-                </button>
+                </a>
             </div>
             <!-- Simple CSS Chart Representation -->
-            <div class="h-64 flex items-end justify-between space-x-2 pt-4">
+            <div
+                class="h-64 flex items-end justify-between space-x-2 pt-4 mt-20"
+            >
                 <div class="w-full flex flex-col items-center group">
                     <div
                         class="w-full bg-blue-100 dark:bg-blue-900/40 rounded-t-md h-32 relative group-hover:bg-blue-200 dark:group-hover:bg-blue-800/60 transition"
                     >
                         <div
-                            class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
+                            class="absolute top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
                         >
                             Rp1.2M
                         </div>
@@ -271,9 +274,15 @@
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <div
-                            class="w-12 h-12 rounded-lg bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-xl shadow-sm"
+                            class="w-16 h-14 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-xl shadow-sm"
                         >
-                            🍜
+                            <img
+                                src="{{
+                                    asset('build/assets/img/mie ayam.webp')
+                                }}"
+                                alt="Mie Ayam"
+                                class="w-full h-full object-cover rounded-lg"
+                            />
                         </div>
                         <div class="ml-4">
                             <h4
@@ -286,40 +295,20 @@
                             </p>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <p
-                            class="text-sm font-bold text-gray-900 dark:text-white"
-                        >
-                            Rp 25.000
-                        </p>
-                        <p
-                            class="text-xs text-green-500 dark:text-green-400 flex items-center justify-end"
-                        >
-                            <svg
-                                class="w-3 h-3 mr-1"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M5 10l7-7m0 0l7 7m-7-7v18"
-                                ></path>
-                            </svg>
-                            12%
-                        </p>
-                    </div>
                 </div>
 
                 <!-- Menu Item 2 -->
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <div
-                            class="w-12 h-12 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-xl shadow-sm"
+                            class="w-16 h-14 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-xl shadow-sm"
                         >
-                            🍚
+                            <img
+                                src="{{
+                                    asset('build/assets/img/nasi goreng.png')
+                                }}"
+                                alt="Nasi Goreng"
+                            />
                         </div>
                         <div class="ml-4">
                             <h4
@@ -332,40 +321,20 @@
                             </p>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <p
-                            class="text-sm font-bold text-gray-900 dark:text-white"
-                        >
-                            Rp 22.000
-                        </p>
-                        <p
-                            class="text-xs text-green-500 dark:text-green-400 flex items-center justify-end"
-                        >
-                            <svg
-                                class="w-3 h-3 mr-1"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M5 10l7-7m0 0l7 7m-7-7v18"
-                                ></path>
-                            </svg>
-                            8%
-                        </p>
-                    </div>
                 </div>
 
                 <!-- Menu Item 3 -->
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <div
-                            class="w-12 h-12 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center text-xl shadow-sm"
+                            class="w-16 h-14 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center text-xl shadow-sm"
                         >
-                            🍹
+                            <img
+                                src="{{
+                                    asset('build/assets/img/es jeruk.png')
+                                }}"
+                                alt="Es Jeruk Segar"
+                            />
                         </div>
                         <div class="ml-4">
                             <h4
@@ -378,40 +347,15 @@
                             </p>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <p
-                            class="text-sm font-bold text-gray-900 dark:text-white"
-                        >
-                            Rp 10.000
-                        </p>
-                        <p
-                            class="text-xs text-green-500 dark:text-green-400 flex items-center justify-end"
-                        >
-                            <svg
-                                class="w-3 h-3 mr-1"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M5 10l7-7m0 0l7 7m-7-7v18"
-                                ></path>
-                            </svg>
-                            5%
-                        </p>
-                    </div>
                 </div>
 
                 <!-- Menu Item 4 -->
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <div
-                            class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-xl shadow-sm"
+                            class="w-16 h-14 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-xl shadow-sm"
                         >
-                            🥗
+                            <img src="{{ asset('build/assets/img/gado gado.png') }}" alt="Gado-Gado">
                         </div>
                         <div class="ml-4">
                             <h4
@@ -424,31 +368,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <p
-                            class="text-sm font-bold text-gray-900 dark:text-white"
-                        >
-                            Rp 18.000
-                        </p>
-                        <p
-                            class="text-xs text-gray-400 dark:text-gray-500 flex items-center justify-end"
-                        >
-                            <svg
-                                class="w-3 h-3 mr-1"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M20 12H4"
-                                ></path>
-                            </svg>
-                            0%
-                        </p>
-                    </div>
+                   
                 </div>
             </div>
 
