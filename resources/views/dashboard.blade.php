@@ -4,4 +4,5 @@
     </x-slot:title>
 
     <p>Welcome, {{ $nama }}!</p>
+    
 </x-layout>
