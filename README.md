@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/build/assets/img/LOGO.png" alt="SIPEMMA Logo" width="180"/>
+<img src="{{ asset('build/assets/img/LOGO.png') }}" alt="SIPEMMA Logo" width="180"/>
 
 # SIPEMMA
 
