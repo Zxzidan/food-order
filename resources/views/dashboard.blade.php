@@ -278,7 +278,7 @@
                         >
                             <img
                                 src="{{
-                                    asset('build/assets/img/mie ayam.webp')
+                                    asset('build/assets/img/MIE AYAM.jpeg')
                                 }}"
                                 alt="Mie Ayam"
                                 class="w-full h-full object-cover rounded-lg"
@@ -305,9 +305,10 @@
                         >
                             <img
                                 src="{{
-                                    asset('build/assets/img/nasi goreng.png')
+                                    asset('build/assets/img/NASI GORENG AYAM.jpg')
                                 }}"
                                 alt="Nasi Goreng"
+                                class="w-full h-full object-cover rounded-lg"
                             />
                         </div>
                         <div class="ml-4">
@@ -331,9 +332,10 @@
                         >
                             <img
                                 src="{{
-                                    asset('build/assets/img/es jeruk.png')
+                                    asset('build/assets/img/ES JERUK.jpg')
                                 }}"
                                 alt="Es Jeruk Segar"
+                                class="w-full h-full object-cover rounded-lg"
                             />
                         </div>
                         <div class="ml-4">
@@ -355,7 +357,13 @@
                         <div
                             class="w-16 h-14 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-xl shadow-sm"
                         >
-                            <img src="{{ asset('build/assets/img/gado gado.png') }}" alt="Gado-Gado">
+                            <img
+                                src="{{
+                                    asset('build/assets/img/GADO GADO.jpg')
+                                }}"
+                                alt="Gado-Gado"
+                                class="w-full h-full object-cover rounded-lg"
+                            />
                         </div>
                         <div class="ml-4">
                             <h4
@@ -368,7 +376,6 @@
                             </p>
                         </div>
                     </div>
-                   
                 </div>
             </div>
 

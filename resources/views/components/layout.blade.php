@@ -19,34 +19,37 @@
     <title>@yield('title', 'Sistem Pemesanan Makanan')</title>
 </head>
 
-<body class="h-full dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+<body class="h-full dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 
     @yield('content')
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 
-    <div class="min-h-full">
-       <x-sidebar />
-       
-       <div id="main-content" class="sm:ml-64 transition-all duration-300">
-           <x-header>{{ $title }}</x-header>
-           <main>
-               <div class="px-4 py-6 sm:px-6 lg:px-8">
-                   <!-- Your content -->
-                   {{ $slot }}
-               </div>
-           </main>
-       </div>
+    <div class="min-h-full flex flex-col">
+        <!-- Sidebar Backdrop for Mobile -->
+        <div id="sidebar-backdrop" class="fixed inset-0 z-35 bg-black/50 backdrop-blur-xs hidden transition-opacity duration-300 sm:hidden"></div>
+
+        <x-sidebar />
+        
+        <div id="main-content" class="flex-1 flex flex-col sm:ml-64 transition-all duration-300 min-w-0">
+            <x-header>{{ $title }}</x-header>
+            <main class="flex-1">
+                <div class="px-3 py-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+                    <!-- Your content -->
+                    {{ $slot }}
+                </div>
+            </main>
+        </div>
     </div>
 
     <script>
+        // Theme Toggle Logic
         var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
         var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
         var themeToggleBtn = document.getElementById('theme-toggle');
 
         if (themeToggleDarkIcon && themeToggleLightIcon && themeToggleBtn) {
-            // Change the icons inside the button based on previous settings
             if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 themeToggleLightIcon.classList.remove('hidden');
             } else {
@@ -54,11 +57,9 @@
             }
 
             themeToggleBtn.addEventListener('click', function() {
-                // toggle icons inside button
                 themeToggleDarkIcon.classList.toggle('hidden');
                 themeToggleLightIcon.classList.toggle('hidden');
 
-                // if set via local storage previously
                 if (localStorage.getItem('color-theme')) {
                     if (localStorage.getItem('color-theme') === 'light') {
                         document.documentElement.classList.add('dark');
@@ -67,8 +68,6 @@
                         document.documentElement.classList.remove('dark');
                         localStorage.setItem('color-theme', 'light');
                     }
-
-                // if NOT set via local storage previously
                 } else {
                     if (document.documentElement.classList.contains('dark')) {
                         document.documentElement.classList.remove('dark');
@@ -81,22 +80,40 @@
             });
         }
 
-        // Sidebar toggle logic
+        // Sidebar toggle logic (Responsive Mobile & Desktop)
         var sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
         var sidebar = document.getElementById('top-bar-sidebar');
         var mainContent = document.getElementById('main-content');
+        var sidebarBackdrop = document.getElementById('sidebar-backdrop');
 
-        if (sidebarToggleBtn && sidebar && mainContent) {
-            sidebarToggleBtn.addEventListener('click', function(e) {
-                if (window.innerWidth >= 640) {
-                    // Desktop
-                    sidebar.classList.toggle('sm:translate-x-0');
-                    sidebar.classList.toggle('sm:-translate-x-full');
-                    mainContent.classList.toggle('sm:ml-64');
+        function toggleSidebar() {
+            if (!sidebar) return;
+            if (window.innerWidth >= 640) {
+                // Desktop
+                sidebar.classList.toggle('sm:translate-x-0');
+                sidebar.classList.toggle('sm:-translate-x-full');
+                if (mainContent) mainContent.classList.toggle('sm:ml-64');
+            } else {
+                // Mobile
+                const isClosed = sidebar.classList.contains('-translate-x-full');
+                if (isClosed) {
+                    sidebar.classList.remove('-translate-x-full');
+                    if (sidebarBackdrop) sidebarBackdrop.classList.remove('hidden');
                 } else {
-                    // Mobile
-                    sidebar.classList.toggle('-translate-x-full');
+                    sidebar.classList.add('-translate-x-full');
+                    if (sidebarBackdrop) sidebarBackdrop.classList.add('hidden');
                 }
+            }
+        }
+
+        if (sidebarToggleBtn) {
+            sidebarToggleBtn.addEventListener('click', toggleSidebar);
+        }
+
+        if (sidebarBackdrop) {
+            sidebarBackdrop.addEventListener('click', function() {
+                if (sidebar) sidebar.classList.add('-translate-x-full');
+                sidebarBackdrop.classList.add('hidden');
             });
         }
     </script>
