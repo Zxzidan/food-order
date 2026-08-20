@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Zxzidan/food-order/main/public/build/assets/img/LOGO.png" alt="SIPEMMA Logo" width="180"/>
+<img src="public/build/assets/img/LOGO.png" alt="SIPEMMA Logo" width="180"/>
 
 # SIPEMMA
 
