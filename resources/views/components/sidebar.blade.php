@@ -1,7 +1,7 @@
 <aside id="top-bar-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
    <div class="h-full px-3 py-4 overflow-y-auto bg-neutral-primary-soft dark:bg-gray-800 border-e border-default dark:border-gray-700">
       <a href="/" class="flex items-center ps-2.5 mb-5">
-         <img src="{{ asset('build/assets/img/LOGO.png') }}" class="h-13 me-3 dark:brightness-0 dark:invert" alt="Logo" />
+         <img src="{{ asset('assets/img/LOGO.png') }}" class="h-13 me-3 dark:brightness-0 dark:invert" alt="Logo" />
          <span class="self-center text-2xl text-heading dark:text-white font-semibold whitespace-nowrap">SIPEMMA</span>
       </a>
       <ul class="space-y-2 font-medium">

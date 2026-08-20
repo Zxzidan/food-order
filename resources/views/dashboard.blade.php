@@ -278,7 +278,7 @@
                         >
                             <img
                                 src="{{
-                                    asset('build/assets/img/MIE AYAM.jpeg')
+                                    asset('assets/img/MIE AYAM.jpeg')
                                 }}"
                                 alt="Mie Ayam"
                                 class="w-full h-full object-cover rounded-lg"
@@ -305,7 +305,7 @@
                         >
                             <img
                                 src="{{
-                                    asset('build/assets/img/NASI GORENG AYAM.jpg')
+                                    asset('assets/img/NASI GORENG AYAM.jpg')
                                 }}"
                                 alt="Nasi Goreng"
                                 class="w-full h-full object-cover rounded-lg"
@@ -332,7 +332,7 @@
                         >
                             <img
                                 src="{{
-                                    asset('build/assets/img/ES JERUK.jpg')
+                                    asset('assets/img/ES JERUK.jpg')
                                 }}"
                                 alt="Es Jeruk Segar"
                                 class="w-full h-full object-cover rounded-lg"
@@ -359,7 +359,7 @@
                         >
                             <img
                                 src="{{
-                                    asset('build/assets/img/GADO GADO.jpg')
+                                    asset('assets/img/GADO GADO.jpg')
                                 }}"
                                 alt="Gado-Gado"
                                 class="w-full h-full object-cover rounded-lg"

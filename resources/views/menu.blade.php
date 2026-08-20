@@ -96,7 +96,7 @@
                 :price="35000"
                 :stock="25"
                 description="Nasi goreng dengan telur, ayam suwir, udang, dan bumbu spesial."
-                :image="asset('build/assets/img/NASI GORENG AYAM.jpg')"
+                :image="asset('assets/img/NASI GORENG AYAM.jpg')"
                 sold="98"
             />
 
@@ -108,7 +108,7 @@
                 :price="40000"
                 :stock="18"
                 description="Mie goreng lezat dengan isian ayam cincang, sawi, pangsit dan bumbu rahasia."
-                :image="asset('build/assets/img/MIE AYAM.jpeg')"
+                :image="asset('assets/img/MIE AYAM.jpeg')"
                 sold="124"
             />
 
@@ -120,7 +120,7 @@
                 :price="12000"
                 :stock="40"
                 description="Perasan buah jeruk segar asli murni dengan es batu yang menyegarkan dahaga."
-                :image="asset('build/assets/img/ES JERUK.jpg')"
+                :image="asset('assets/img/ES JERUK.jpg')"
                 sold="85"
             />
 
@@ -132,7 +132,7 @@
                 :price="25000"
                 :stock="15"
                 description="Sayuran segar dengan bumbu kacang gurih khas resep tradisional dan kerupuk."
-                :image="asset('build/assets/img/GADO GADO.jpg')"
+                :image="asset('assets/img/GADO GADO.jpg')"
                 sold="64"
             />
 

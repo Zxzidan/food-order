@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Zxzidan/food-order/main/public/build/assets/img/LOGO.png" alt="SIPEMMA Logo" width="180"/>
+<img src="public/assets/img/LOGO.png" alt="SIPEMMA Logo" width="180"/>
 
 # SIPEMMA
 
@@ -195,8 +195,9 @@ food-order/
 │   └── console.php                          # Route CLI / artisan
 │
 ├── 📂 public/                               # Folder publik web server
-│   ├── 📂 build/
-│   │   └── 📂 assets/img/                  # Gambar aset (LOGO, menu, dll)
+│   ├── 📂 assets/
+│   │   └── 📂 img/                          # Gambar aset (LOGO, menu, dll)
+│   ├── 📂 build/                            # Hasil compile Vite (css, js)
 │   ├── index.php                            # Entry point aplikasi
 │   └── .htaccess                            # Konfigurasi Apache
 │
