@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/build/assets/img/LOGO.png" alt="SIPEMMA Logo" width="180"/>
+<img src="https://raw.githubusercontent.com/username/repo/branch/public/build/assets/img/LOGO.png" alt="SIPEMMA Logo" width="180"/>
 
 # SIPEMMA
 
