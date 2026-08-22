@@ -36,6 +36,13 @@
                <span class="flex-1 ms-3 whitespace-nowrap">History</span>
             </a>
          </li>
+         <li>
+            <button type="button" onclick="toggleAIChat()" class="w-full flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary dark:hover:bg-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-white group cursor-pointer text-left">
+               <svg class="shrink-0 w-5 h-5 text-purple-600 dark:text-purple-400 transition duration-75 group-hover:scale-110" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+               <span class="flex-1 ms-3 whitespace-nowrap font-semibold text-indigo-600 dark:text-indigo-400">AI Assistant</span>
+               <span class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-2xs">PRO</span>
+            </button>
+         </li>
          
          <li>
             <a href="#" class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary dark:hover:bg-gray-700 hover:text-fg-brand dark:text-gray-300 dark:hover:text-white group">

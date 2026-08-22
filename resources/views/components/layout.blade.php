@@ -43,6 +43,9 @@
         </div>
     </div>
 
+    <!-- Global SIPEMMA AI Restaurant Assistant Chatbot -->
+    <x-ai-chatbot />
+
     <script>
         // Theme Toggle Logic
         var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
