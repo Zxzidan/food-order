@@ -1,3 +1,12 @@
+@props(['kpi' => []])
+
+@php
+    $totalRevenue = $kpi['total_revenue'] ?? 0;
+    $totalTransactions = $kpi['total_transactions'] ?? 0;
+    $totalItemsSold = $kpi['total_items_sold'] ?? 0;
+    $aov = $kpi['aov'] ?? 0;
+@endphp
+
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
     
     <!-- KPI 1: Total Revenue -->
@@ -5,7 +14,7 @@
         <div class="flex items-start justify-between">
             <div>
                 <p class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Total Pendapatan</p>
-                <h3 id="stat-revenue" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5">Rp 28.450.000</h3>
+                <h3 id="stat-revenue" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h3>
             </div>
             <div class="p-3 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-2xl shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -18,9 +27,9 @@
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
                 </svg>
-                +14.8%
+                Realtime Data
             </span>
-            <span class="text-gray-400 dark:text-gray-500">vs periode lalu</span>
+            <span class="text-gray-400 dark:text-gray-500">Database</span>
         </div>
     </div>
 
@@ -29,7 +38,7 @@
         <div class="flex items-start justify-between">
             <div>
                 <p class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Total Transaksi</p>
-                <h3 id="stat-transactions" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5">924</h3>
+                <h3 id="stat-transactions" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5">{{ number_format($totalTransactions) }}</h3>
             </div>
             <div class="p-3 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-2xl shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,9 +51,9 @@
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
                 </svg>
-                +8.2%
+                Terverifikasi
             </span>
-            <span class="text-gray-400 dark:text-gray-500">vs periode lalu</span>
+            <span class="text-gray-400 dark:text-gray-500">POS System</span>
         </div>
     </div>
 
@@ -53,11 +62,11 @@
         <div class="flex items-start justify-between">
             <div>
                 <p class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Porsi Terjual</p>
-                <h3 id="stat-items" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5">1.842</h3>
+                <h3 id="stat-items" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5">{{ number_format($totalItemsSold) }}</h3>
             </div>
             <div class="p-3 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-2xl shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                 </svg>
             </div>
         </div>
@@ -66,9 +75,9 @@
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
                 </svg>
-                +11.5%
+                Item Terdaftar
             </span>
-            <span class="text-gray-400 dark:text-gray-500">vs periode lalu</span>
+            <span class="text-gray-400 dark:text-gray-500">Order Items</span>
         </div>
     </div>
 
@@ -77,7 +86,7 @@
         <div class="flex items-start justify-between">
             <div>
                 <p class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Rata-rata Order (AOV)</p>
-                <h3 id="stat-aov" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5">Rp 30.790</h3>
+                <h3 id="stat-aov" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5">Rp {{ number_format($aov, 0, ',', '.') }}</h3>
             </div>
             <div class="p-3 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-2xl shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,9 +99,9 @@
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
                 </svg>
-                +4.2%
+                Per Transaksi
             </span>
-            <span class="text-gray-400 dark:text-gray-500">vs periode lalu</span>
+            <span class="text-gray-400 dark:text-gray-500">Rata-rata</span>
         </div>
     </div>
 

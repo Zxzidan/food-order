@@ -28,22 +28,12 @@
                         <button type="button" onclick="filterCategory('all', 'Semua Kategori')"
                             class="w-full text-left p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition">Semua Kategori</button>
                     </li>
+                    @foreach($categories as $category)
                     <li>
-                        <button type="button" onclick="filterCategory('Makanan', 'Makanan')"
-                            class="w-full text-left p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition">Makanan</button>
+                        <button type="button" onclick="filterCategory('{{ $category->name }}', '{{ $category->name }}')"
+                            class="w-full text-left p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition">{{ $category->name }}</button>
                     </li>
-                    <li>
-                        <button type="button" onclick="filterCategory('Minuman', 'Minuman')"
-                            class="w-full text-left p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition">Minuman</button>
-                    </li>
-                    <li>
-                        <button type="button" onclick="filterCategory('Snack', 'Snack')"
-                            class="w-full text-left p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition">Snack</button>
-                    </li>
-                    <li>
-                        <button type="button" onclick="filterCategory('Dessert', 'Dessert')"
-                            class="w-full text-left p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer transition">Dessert</button>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
 
@@ -81,60 +71,27 @@
                 <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5">Kelola daftar menu, harga, deskripsi, dan sisa stok yang tersedia</p>
             </div>
             <span id="menu-counter" class="self-start sm:self-auto text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-300 bg-white dark:bg-gray-800 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 shadow-2xs">
-                Total: 4 Menu
+                Total: {{ count($menus) }} Menu
             </span>
         </div>
 
         <!-- Grid Container Menu Cards (Responsive: 1 col on mobile, 2 on tablet, 3 on laptop, 4 on desktop) -->
         <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             
-            <!-- Menu 1 -->
-            <x-menu.card
-                id="menu-1"
-                name="Nasi Goreng Ayam"
-                category="Makanan"
-                :price="35000"
-                :stock="25"
-                description="Nasi goreng dengan telur, ayam suwir, udang, dan bumbu spesial."
-                :image="asset('assets/img/NASI GORENG AYAM.jpg')"
-                sold="98"
-            />
-
-            <!-- Menu 2 -->
-            <x-menu.card
-                id="menu-2"
-                name="Mie Goreng Spesial"
-                category="Makanan"
-                :price="40000"
-                :stock="18"
-                description="Mie goreng lezat dengan isian ayam cincang, sawi, pangsit dan bumbu rahasia."
-                :image="asset('assets/img/MIE AYAM.jpeg')"
-                sold="124"
-            />
-
-            <!-- Menu 3 -->
-            <x-menu.card
-                id="menu-3"
-                name="Es Jeruk Segar"
-                category="Minuman"
-                :price="12000"
-                :stock="40"
-                description="Perasan buah jeruk segar asli murni dengan es batu yang menyegarkan dahaga."
-                :image="asset('assets/img/ES JERUK.jpg')"
-                sold="85"
-            />
-
-            <!-- Menu 4 -->
-            <x-menu.card
-                id="menu-4"
-                name="Gado-Gado"
-                category="Makanan"
-                :price="25000"
-                :stock="15"
-                description="Sayuran segar dengan bumbu kacang gurih khas resep tradisional dan kerupuk."
-                :image="asset('assets/img/GADO GADO.jpg')"
-                sold="64"
-            />
+            @forelse($menus as $menu)
+                <x-menu.card
+                    :id="'menu-' . $menu->id"
+                    :name="$menu->name"
+                    :category="$menu->category ? $menu->category->name : 'Makanan'"
+                    :price="$menu->price"
+                    :stock="$menu->stock"
+                    :description="$menu->description ?? ''"
+                    :image="$menu->image ? (str_starts_with($menu->image, 'http') ? $menu->image : asset($menu->image)) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'"
+                    :sold="$menu->sold"
+                />
+            @empty
+                <div class="col-span-full text-center py-12 text-gray-500">Belum ada menu di database.</div>
+            @endforelse
 
         </div>
 

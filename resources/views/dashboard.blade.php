@@ -30,7 +30,7 @@
                     <h3
                         class="text-3xl font-bold text-gray-900 dark:text-white mt-2"
                     >
-                        500
+                        {{ number_format($totalCustomers ?? 500) }}
                     </h3>
                 </div>
 
@@ -70,7 +70,7 @@
                         <h3
                             class="text-3xl font-bold text-gray-900 dark:text-white mt-2"
                         >
-                            1000
+                            {{ number_format($totalOrders ?? 0) }}
                         </h3>
                     </div>
 
@@ -110,7 +110,7 @@
                         <h3
                             class="text-3xl font-bold text-gray-900 dark:text-white mt-2"
                         >
-                            24
+                            {{ number_format($menusAvailable ?? 0) }}
                         </h3>
                     </div>
 
@@ -270,17 +270,15 @@
             </div>
 
             <div class="space-y-5">
-                <!-- Menu Item 1 -->
+                @forelse($bestSellingMenus as $bestMenu)
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
                         <div
-                            class="w-16 h-14 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-xl shadow-sm"
+                            class="w-16 h-14 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-xl shadow-sm overflow-hidden"
                         >
                             <img
-                                src="{{
-                                    asset('assets/img/MIE AYAM.jpeg')
-                                }}"
-                                alt="Mie Ayam"
+                                src="{{ $bestMenu->image ? (str_starts_with($bestMenu->image, 'http') ? $bestMenu->image : asset($bestMenu->image)) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200' }}"
+                                alt="{{ $bestMenu->name }}"
                                 class="w-full h-full object-cover rounded-lg"
                             />
                         </div>
@@ -288,102 +286,25 @@
                             <h4
                                 class="text-sm font-bold text-gray-900 dark:text-white"
                             >
-                                Mie Goreng Spesial
+                                {{ $bestMenu->name }}
                             </h4>
                             <p class="text-xs text-gray-500 dark:text-gray-400">
-                                124 pesanan
+                                {{ $bestMenu->sold }} pesanan
                             </p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Menu Item 2 -->
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <div
-                            class="w-16 h-14 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-xl shadow-sm"
-                        >
-                            <img
-                                src="{{
-                                    asset('assets/img/NASI GORENG AYAM.jpg')
-                                }}"
-                                alt="Nasi Goreng"
-                                class="w-full h-full object-cover rounded-lg"
-                            />
-                        </div>
-                        <div class="ml-4">
-                            <h4
-                                class="text-sm font-bold text-gray-900 dark:text-white"
-                            >
-                                Nasi Goreng Ayam
-                            </h4>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">
-                                98 pesanan
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Menu Item 3 -->
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <div
-                            class="w-16 h-14 rounded-lg bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center text-xl shadow-sm"
-                        >
-                            <img
-                                src="{{
-                                    asset('assets/img/ES JERUK.jpg')
-                                }}"
-                                alt="Es Jeruk Segar"
-                                class="w-full h-full object-cover rounded-lg"
-                            />
-                        </div>
-                        <div class="ml-4">
-                            <h4
-                                class="text-sm font-bold text-gray-900 dark:text-white"
-                            >
-                                Es Jeruk Segar
-                            </h4>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">
-                                85 pesanan
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Menu Item 4 -->
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <div
-                            class="w-16 h-14 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-xl shadow-sm"
-                        >
-                            <img
-                                src="{{
-                                    asset('assets/img/GADO GADO.jpg')
-                                }}"
-                                alt="Gado-Gado"
-                                class="w-full h-full object-cover rounded-lg"
-                            />
-                        </div>
-                        <div class="ml-4">
-                            <h4
-                                class="text-sm font-bold text-gray-900 dark:text-white"
-                            >
-                                Gado-Gado
-                            </h4>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">
-                                64 pesanan
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                <p class="text-xs text-gray-400 text-center py-4">Belum ada data menu terlaris</p>
+                @endforelse
             </div>
 
-            <button
-                class="w-full mt-6 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+            <a
+                href="/menu"
+                class="block text-center w-full mt-6 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition"
             >
                 Lihat Semua Menu
-            </button>
+            </a>
         </div>
     </div>
 </x-layout>

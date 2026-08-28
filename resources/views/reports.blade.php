@@ -38,16 +38,16 @@
         <x-reports.filter-bar />
 
         <!-- 3. KPI Metric Cards Component -->
-        <x-reports.kpi-cards />
+        <x-reports.kpi-cards :kpi="$kpi ?? []" />
 
         <!-- 4. Interactive Charts Component -->
         <x-reports.charts />
 
         <!-- 5. Top Selling Menu & Peak Hours Component -->
-        <x-reports.top-items />
+        <x-reports.top-items :topSelling="$topSelling ?? []" />
 
         <!-- 6. Filterable Transaction Table Component -->
-        <x-reports.transaction-table />
+        <x-reports.transaction-table :orders="$orders ?? []" />
     </div>
 
     <!-- 7. Receipt Detail Modal Component -->

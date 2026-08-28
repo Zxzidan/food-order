@@ -8,16 +8,16 @@
         <x-history.header />
 
         <!-- 2. Summary Metric Stats Cards Component -->
-        <x-history.stats />
+        <x-history.stats :stats="$stats ?? []" />
 
         <!-- 3. Filter & Search Toolbar Component -->
         <x-history.filter-bar />
 
         <!-- 4. Table View Component (Default) -->
-        <x-history.table-view />
+        <x-history.table-view :orders="$orders ?? []" />
 
         <!-- 5. Cards View Component (Toggled on Demand) -->
-        <x-history.cards-view />
+        <x-history.cards-view :orders="$orders ?? []" />
 
         <!-- Empty State (Hidden when items found) -->
         <div id="history-empty-state" class="hidden bg-white dark:bg-gray-800 p-12 rounded-2xl border border-gray-100 dark:border-gray-700 text-center space-y-3">

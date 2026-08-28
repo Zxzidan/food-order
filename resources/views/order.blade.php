@@ -63,67 +63,31 @@
                         class="order-cat-btn px-4 py-2 rounded-xl transition cursor-pointer bg-green-600 text-white shadow-xs shrink-0">
                         Semua
                     </button>
-                    <button type="button" onclick="selectOrderCategory('Makanan', this)"
+                    @foreach($categories as $cat)
+                    <button type="button" onclick="selectOrderCategory('{{ $cat->name }}', this)"
                         class="order-cat-btn px-4 py-2 rounded-xl transition cursor-pointer bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 shrink-0">
-                        Makanan
+                        {{ $cat->name }}
                     </button>
-                    <button type="button" onclick="selectOrderCategory('Minuman', this)"
-                        class="order-cat-btn px-4 py-2 rounded-xl transition cursor-pointer bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 shrink-0">
-                        Minuman
-                    </button>
-                    <button type="button" onclick="selectOrderCategory('Snack', this)"
-                        class="order-cat-btn px-4 py-2 rounded-xl transition cursor-pointer bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 shrink-0">
-                        Snack
-                    </button>
-                    <button type="button" onclick="selectOrderCategory('Dessert', this)"
-                        class="order-cat-btn px-4 py-2 rounded-xl transition cursor-pointer bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 shrink-0">
-                        Dessert
-                    </button>
+                    @endforeach
                 </div>
             </div>
 
             <!-- Products Grid Container -->
             <div id="order-product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-3.5 sm:gap-4 py-4">
                 
+                @forelse($menus as $menu)
                 <x-order.card
-                    id="menu-1"
-                    name="Nasi Goreng Ayam"
-                    category="Makanan"
-                    :price="35000"
-                    :stock="25"
-                    description="Nasi goreng dengan telur, ayam suwir, udang, dan bumbu spesial."
-                    :image="asset('assets/img/NASI GORENG AYAM.jpg')"
+                    :id="'menu-' . $menu->id"
+                    :name="$menu->name"
+                    :category="$menu->category ? $menu->category->name : 'Makanan'"
+                    :price="$menu->price"
+                    :stock="$menu->stock"
+                    :description="$menu->description ?? ''"
+                    :image="$menu->image ? (str_starts_with($menu->image, 'http') ? $menu->image : asset($menu->image)) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'"
                 />
-
-                <x-order.card
-                    id="menu-2"
-                    name="Mie Goreng Spesial"
-                    category="Makanan"
-                    :price="40000"
-                    :stock="18"
-                    description="Mie goreng lezat dengan isian ayam cincang, sawi, pangsit dan bumbu rahasia."
-                    :image="asset('assets/img/MIE AYAM.jpeg')"
-                />
-
-                <x-order.card
-                    id="menu-3"
-                    name="Es Jeruk Segar"
-                    category="Minuman"
-                    :price="12000"
-                    :stock="40"
-                    description="Perasan buah jeruk segar asli murni dengan es batu yang menyegarkan dahaga."
-                    :image="asset('assets/img/ES JERUK.jpg')"
-                />
-
-                <x-order.card
-                    id="menu-4"
-                    name="Gado-Gado"
-                    category="Makanan"
-                    :price="25000"
-                    :stock="15"
-                    description="Sayuran segar dengan bumbu kacang gurih khas resep tradisional dan kerupuk."
-                    :image="asset('assets/img/GADO GADO.jpg')"
-                />
+                @empty
+                <div class="col-span-full text-center py-12 text-gray-500">Belum ada menu tersedia.</div>
+                @endforelse
 
             </div>
 
