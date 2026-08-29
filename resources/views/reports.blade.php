@@ -171,35 +171,46 @@
                 series: [54, 32, 14],
                 chart: {
                     type: 'donut',
-                    height: 220,
+                    height: 240, // Slightly taller to accommodate legends
                     fontFamily: 'InterVariable, sans-serif'
                 },
-                labels: ['QRIS (54%)', 'Tunai (32%)', 'Transfer / Debit (14%)'],
+                labels: ['QRIS', 'Tunai', 'Transfer / Debit'],
                 colors: ['#2563eb', '#10b981', '#f59e0b'],
                 legend: {
                     position: 'bottom',
                     labels: { colors: textColor },
                     fontSize: '11px',
-                    itemMargin: { horizontal: 6, vertical: 4 }
+                    itemMargin: { horizontal: 6, vertical: 4 },
+                    formatter: function(seriesName, opts) {
+                        return seriesName + " (" + opts.w.globals.seriesTotals[opts.seriesIndex] + "%)";
+                    }
                 },
                 dataLabels: { enabled: false },
                 plotOptions: {
                     pie: {
                         donut: {
-                            size: '72%',
+                            size: '80%',
                             labels: {
                                 show: true,
-                                name: { show: true, fontSize: '12px', color: textColor },
+                                name: { 
+                                    show: true, 
+                                    fontSize: '11px', 
+                                    fontWeight: 500,
+                                    color: textColor,
+                                    offsetY: -5
+                                },
                                 value: {
                                     show: true,
-                                    fontSize: '18px',
+                                    fontSize: '20px',
                                     fontWeight: 'bold',
                                     color: dark ? '#ffffff' : '#111827',
+                                    offsetY: 5,
                                     formatter: function(val) { return val + '%'; }
                                 },
                                 total: {
                                     show: true,
                                     label: 'Total Transaksi',
+                                    fontSize: '10px',
                                     color: textColor,
                                     formatter: function() { return '924'; }
                                 }

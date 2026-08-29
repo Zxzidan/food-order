@@ -48,7 +48,7 @@
         <!-- Search Input (5 Cols) -->
         <div class="lg:col-span-5 relative">
             <input type="search" id="history-search-input" onkeyup="applyHistoryFilters()"
-                placeholder="Cari No. Order, Pelanggan, Meja..."
+                placeholder=""
                 class="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-blue-500 placeholder:text-gray-400" />
             <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

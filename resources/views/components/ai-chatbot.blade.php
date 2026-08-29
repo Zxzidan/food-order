@@ -76,7 +76,7 @@
             </div>
             <div class="flex-1 space-y-2">
                 <div class="bg-white dark:bg-gray-800 p-3.5 rounded-2xl rounded-tl-none border border-gray-100 dark:border-gray-700 shadow-2xs text-gray-800 dark:text-gray-200 space-y-1.5">
-                    <p class="font-semibold text-gray-900 dark:text-white">Halo! Saya SIPEMMA AI Assistant 🤖</p>
+                    <p class="font-semibold text-gray-900 dark:text-white">Halo! Saya SIPEMMA AI Assistant</p>
                     <p class="leading-relaxed">Saya siap membantu menganalisis laporan omzet, performa kasir, rekomendasi menu favorit terlaris, hingga prediksi jam ramai restoran Anda.</p>
                     <p class="text-[11px] text-gray-500 dark:text-gray-400 pt-1">Pilih pertanyaan cepat di bawah atau ketik langsung pertanyaan Anda:</p>
                 </div>
@@ -89,23 +89,23 @@
     <div class="px-4 py-2 bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700/80 overflow-x-auto no-scrollbar flex items-center gap-1.5">
         <button type="button" onclick="sendQuickPrompt('Analisis performa penjualan hari ini')"
             class="shrink-0 px-2.5 py-1.5 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-xl text-[11px] font-semibold transition cursor-pointer">
-            📊 Omzet Hari Ini
+            Omzet Hari Ini
         </button>
         <button type="button" onclick="sendQuickPrompt('Apa menu paling laris dan favorit pelanggan?')"
             class="shrink-0 px-2.5 py-1.5 bg-purple-50 dark:bg-purple-900/30 hover:bg-purple-100 dark:hover:bg-purple-900/50 text-purple-600 dark:text-purple-400 rounded-xl text-[11px] font-semibold transition cursor-pointer">
-            🔥 Menu Terlaris
+            Menu Terlaris
         </button>
         <button type="button" onclick="sendQuickPrompt('Kapan jam paling ramai di resto dan rekomendasinya?')"
             class="shrink-0 px-2.5 py-1.5 bg-amber-50 dark:bg-amber-900/30 hover:bg-amber-100 dark:hover:bg-amber-900/50 text-amber-600 dark:text-amber-400 rounded-xl text-[11px] font-semibold transition cursor-pointer">
-            ⏰ Jam Sibuk Resto
+            Jam Sibuk Resto
         </button>
         <button type="button" onclick="sendQuickPrompt('Beri rekomendasi promo paket bundling menu')"
             class="shrink-0 px-2.5 py-1.5 bg-emerald-50 dark:bg-emerald-900/30 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-xl text-[11px] font-semibold transition cursor-pointer">
-            💡 Ide Promo Bundling
+            Ide Promo Bundling
         </button>
         <button type="button" onclick="sendQuickPrompt('Metode pembayaran apa yang paling dominan?')"
             class="shrink-0 px-2.5 py-1.5 bg-indigo-50 dark:bg-indigo-900/30 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 rounded-xl text-[11px] font-semibold transition cursor-pointer">
-            💳 Metode Bayar
+            Metode Bayar
         </button>
     </div>
 
@@ -176,7 +176,7 @@
                     <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center shrink-0 shadow-xs text-xs font-bold mt-0.5">AI</div>
                     <div class="flex-1 space-y-2">
                         <div class="bg-white dark:bg-gray-800 p-3.5 rounded-2xl rounded-tl-none border border-gray-100 dark:border-gray-700 shadow-2xs text-gray-800 dark:text-gray-200">
-                            <p class="font-semibold text-gray-900 dark:text-white">Riwayat percakapan telah dibersihkan ✨</p>
+                            <p class="font-semibold text-gray-900 dark:text-white">Riwayat percakapan telah dibersihkan</p>
                             <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Silakan ajukan pertanyaan baru mengenai penjualan atau menu restoran.</p>
                         </div>
                     </div>
@@ -259,8 +259,7 @@
         if (query.includes('omzet') || query.includes('penjualan') || query.includes('pendapatan') || query.includes('performa') || query.includes('laporan')) {
             return `
                 <div class="space-y-2">
-                    <p class="font-bold text-gray-900 dark:text-white flex items-center gap-1.5">
-                        <span class="text-base">📊</span> Ringkasan Performa Penjualan
+                        Ringkasan Performa Penjualan
                     </p>
                     <div class="p-2.5 bg-blue-50 dark:bg-blue-900/30 rounded-xl space-y-1.5 text-[11px]">
                         <div class="flex justify-between font-semibold text-blue-900 dark:text-blue-200">
@@ -281,7 +280,7 @@
                         </div>
                     </div>
                     <p class="text-[11px] text-gray-600 dark:text-gray-300">
-                        📈 <strong>Tren Positif:</strong> Terjadi kenaikan omzet <strong>+14.8%</strong> dibandingkan bulan lalu, dengan kontributor terbesar dari kategori makanan berat saat jam makan siang.
+                        <strong>Tren Positif:</strong> Terjadi kenaikan omzet <strong>+14.8%</strong> dibandingkan bulan lalu, dengan kontributor terbesar dari kategori makanan berat saat jam makan siang.
                     </p>
                     <a href="/reports" class="inline-flex items-center gap-1 text-[11px] text-blue-600 dark:text-blue-400 font-semibold hover:underline">
                         Lihat Grafik Lengkap di Menu Reports &rarr;
@@ -294,8 +293,7 @@
         if (query.includes('laris') || query.includes('favorit') || query.includes('favorite') || query.includes('menu') || query.includes('terbanyak') || query.includes('paling')) {
             return `
                 <div class="space-y-2">
-                    <p class="font-bold text-gray-900 dark:text-white flex items-center gap-1.5">
-                        <span class="text-base">🏆</span> Top Menu Terlaris & Favorit Resto
+                        Top Menu Terlaris & Favorit Resto
                     </p>
                     <div class="space-y-1.5">
                         <div class="p-2 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-800/50 flex items-center justify-between text-[11px]">
@@ -321,7 +319,7 @@
                         </div>
                     </div>
                     <p class="text-[11px] text-gray-600 dark:text-gray-300">
-                        💡 <strong>Tips AI:</strong> Sebanyak <strong>68%</strong> pembeli Mie Ayam juga memesan Es Jeruk Segar. Anda bisa membuat paket bundling langsung di kasir POS.
+                        <strong>Tips AI:</strong> Sebanyak <strong>68%</strong> pembeli Mie Ayam juga memesan Es Jeruk Segar. Anda bisa membuat paket bundling langsung di kasir POS.
                     </p>
                 </div>
             `;
@@ -331,21 +329,20 @@
         if (query.includes('jam') || query.includes('ramai') || query.includes('sibuk') || query.includes('operasional') || query.includes('kapan')) {
             return `
                 <div class="space-y-2">
-                    <p class="font-bold text-gray-900 dark:text-white flex items-center gap-1.5">
-                        <span class="text-base">⏰</span> Analisis Jam Sibuk (*Rush Hours*)
+                        Analisis Jam Sibuk (*Rush Hours*)
                     </p>
                     <div class="p-2.5 bg-gray-50 dark:bg-gray-700/60 rounded-xl space-y-2 text-[11px]">
                         <div class="flex items-center justify-between">
-                            <span class="font-semibold text-red-600 dark:text-red-400">🔥 Peak 1 (Makan Siang):</span>
+                            <span class="font-semibold text-red-600 dark:text-red-400">Peak 1 (Makan Siang):</span>
                             <span class="font-bold">12:00 - 13:30 (142 order/jam)</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="font-semibold text-blue-600 dark:text-blue-400">🌙 Peak 2 (Makan Malam):</span>
+                            <span class="font-semibold text-blue-600 dark:text-blue-400">Peak 2 (Makan Malam):</span>
                             <span class="font-bold">18:30 - 20:30 (130 order/jam)</span>
                         </div>
                     </div>
                     <div class="p-2 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-xl text-[11px] space-y-1">
-                        <p class="font-semibold">💡 Rekomendasi Operasional AI:</p>
+                        <p class="font-semibold">Rekomendasi Operasional AI:</p>
                         <p>1. Lakukan persiapan bahan setengah matang sebelum pk 11:30.</p>
                         <p>2. Siapkan 2 kasir aktif saat jam makan siang untuk mengurangi antrean pembayaran.</p>
                     </div>
@@ -357,16 +354,15 @@
         if (query.includes('promo') || query.includes('diskon') || query.includes('bundling') || query.includes('saran') || query.includes('ide') || query.includes('rekomendasi')) {
             return `
                 <div class="space-y-2">
-                    <p class="font-bold text-gray-900 dark:text-white flex items-center gap-1.5">
-                        <span class="text-base">💡</span> Rekomendasi Promo & Paket Bundling
+                        Rekomendasi Promo & Paket Bundling
                     </p>
                     <div class="space-y-1.5 text-[11px]">
                         <div class="p-2 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl border border-emerald-200 dark:border-emerald-800">
-                            <span class="font-bold text-emerald-800 dark:text-emerald-300">📦 Paket Kenyang Siang (Hemat 15%):</span>
+                            <span class="font-bold text-emerald-800 dark:text-emerald-300">Paket Kenyang Siang (Hemat 15%):</span>
                             <p class="text-gray-600 dark:text-gray-300 mt-0.5">Mie Ayam Spesial + Es Jeruk Segar = <span class="font-bold text-emerald-600">Rp 22.000</span> (Normal Rp 25.000)</p>
                         </div>
                         <div class="p-2 bg-purple-50 dark:bg-purple-900/30 rounded-xl border border-purple-200 dark:border-purple-800">
-                            <span class="font-bold text-purple-800 dark:text-purple-300">📦 Paket Sehat (Dongkrak Penjualan Gado-Gado):</span>
+                            <span class="font-bold text-purple-800 dark:text-purple-300">Paket Sehat (Dongkrak Penjualan Gado-Gado):</span>
                             <p class="text-gray-600 dark:text-gray-300 mt-0.5">Gado-Gado + Es Jeruk = <span class="font-bold text-purple-600">Rp 20.000</span></p>
                         </div>
                     </div>
@@ -381,8 +377,7 @@
         if (query.includes('bayar') || query.includes('qris') || query.includes('tunai') || query.includes('debit') || query.includes('transfer') || query.includes('metode')) {
             return `
                 <div class="space-y-2">
-                    <p class="font-bold text-gray-900 dark:text-white flex items-center gap-1.5">
-                        <span class="text-base">💳</span> Distribusi Metode Pembayaran
+                        Distribusi Metode Pembayaran
                     </p>
                     <div class="space-y-1 text-[11px]">
                         <div class="flex justify-between">
@@ -408,7 +403,7 @@
         // 6. Generic Default Intelligent Response
         return `
             <div class="space-y-2">
-                <p class="font-bold text-gray-900 dark:text-white">Saya memahami pertanyaan Anda tentang <em>"${escapeHtml(userText)}"</em> 💡</p>
+                <p class="font-bold text-gray-900 dark:text-white">Saya memahami pertanyaan Anda tentang <em>"${escapeHtml(userText)}"</em></p>
                 <p class="leading-relaxed">Berikut beberapa hal yang dapat saya bantu analisis secara instan:</p>
                 <ul class="list-disc list-inside space-y-1 text-[11px] text-gray-700 dark:text-gray-300">
                     <li>Ketik <strong>"omzet hari ini"</strong> untuk melihat pemasukan terkini.</li>

@@ -6,7 +6,7 @@
     <div class="lg:col-span-7 bg-white dark:bg-gray-800 p-5 sm:p-6 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-2xs">
         <div class="flex items-center justify-between mb-5">
             <div>
-                <h2 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Top 5 Menu Paling Laris 🔥</h2>
+                <h2 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Top 5 Menu Paling Laris</h2>
                 <p class="text-xs text-gray-500 dark:text-gray-400">Kontributor volume penjualan tertinggi periode ini</p>
             </div>
             <span class="text-xs font-semibold px-2.5 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-lg">Bulan Ini</span>
@@ -55,7 +55,7 @@
         <div>
             <div class="flex items-center justify-between mb-4">
                 <div>
-                    <h2 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Jam Sibuk Restoran ⏰</h2>
+                    <h2 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">Jam Sibuk Restoran</h2>
                     <p class="text-xs text-gray-500 dark:text-gray-400">Distribusi rata-rata kunjungan & transaksi per jam</p>
                 </div>
             </div>

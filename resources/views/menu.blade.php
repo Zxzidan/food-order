@@ -41,7 +41,7 @@
             <div class="relative w-full">
                 <input type="search" id="search-input" onkeyup="filterMenu()"
                     class="p-2.5 w-full text-xs sm:text-sm text-gray-900 dark:text-white bg-transparent border-0 focus:ring-0 focus:outline-none placeholder-gray-400 dark:placeholder-gray-500"
-                    placeholder="Cari menu makanan atau minuman..." />
+                    placeholder="" />
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />

@@ -14,7 +14,7 @@
             <!-- Search Input -->
             <div class="relative min-w-[200px]">
                 <input type="search" id="report-search-table" onkeyup="filterReportTable()"
-                    placeholder="Cari No. Order / Pelanggan..."
+                    placeholder=""
                     class="w-full pl-9 pr-3 py-2 bg-gray-50 dark:bg-gray-700/80 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs rounded-xl focus:ring-2 focus:ring-blue-500" />
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -26,7 +26,9 @@
             <div class="relative">
               <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 cursor-pointer" aria-expanded="false" data-dropdown-toggle="dropdown-user" data-dropdown-placement="bottom-end">
                 <span class="sr-only">Buka menu pengguna</span>
-                <img class="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover ring-2 ring-gray-200 dark:ring-gray-700" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Foto Profil">
+                <div class="relative w-10 h-10 sm:w-11 sm:h-11 overflow-hidden bg-gray-200 rounded-full dark:bg-gray-600 ring-2 ring-gray-200 dark:ring-gray-700">
+                  <svg class="absolute w-12 h-12 text-gray-400 -left-1 top-0 sm:top-0.5 sm:-left-0.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                </div>
               </button>
             </div>
             <div class="z-50 hidden bg-white dark:bg-gray-800 divide-y divide-gray-100 dark:divide-gray-700 border border-gray-100 dark:border-gray-700 rounded-2xl shadow-xl w-56" id="dropdown-user">
