@@ -41,7 +41,6 @@
             <div>
                 <div class="flex items-center gap-1.5">
                     <h3 class="text-sm font-bold text-white tracking-wide">SIPEMMA AI Assistant</h3>
-                    <span class="px-1.5 py-0.2 bg-white/25 text-[10px] font-semibold rounded-md text-white backdrop-blur-xs">PRO</span>
                 </div>
                 <p class="text-[11px] text-blue-100">Analisis Penjualan & Rekomendasi Menu</p>
             </div>
