@@ -7,7 +7,8 @@
                 <tr>
                     <th scope="col" class="px-5 py-3.5">No. Order & Waktu</th>
                     <th scope="col" class="px-5 py-3.5">Pelanggan</th>
-                    <th scope="col" class="px-5 py-3.5">Tipe & Meja</th>
+                    <th scope="col" class="px-5 py-3.5">Tipe Pesanan</th>
+                    <th scope="col" class="px-5 py-3.5">No. Meja</th>
                     <th scope="col" class="px-5 py-3.5">Detail Pesanan</th>
                     <th scope="col" class="px-5 py-3.5">Metode Bayar</th>
                     <th scope="col" class="px-5 py-3.5 text-right">Total Tagihan</th>
@@ -47,12 +48,21 @@
                     <td class="px-5 py-4">
                         @if($order->order_type === 'Dine In')
                         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                            Dine In ({{ $order->table_number ?? 'Meja -' }})
+                            Dine In
                         </span>
                         @else
                         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
                             Take Away
                         </span>
+                        @endif
+                    </td>
+                    <td class="px-5 py-4 font-semibold text-gray-700 dark:text-gray-300">
+                        @if($order->order_type === 'Dine In')
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700/60 text-xs text-gray-800 dark:text-gray-200">
+                                {{ $order->table_number ?? '-' }}
+                            </span>
+                        @else
+                            <span class="text-gray-400 dark:text-gray-500 font-normal text-xs">-</span>
                         @endif
                     </td>
                     <td class="px-5 py-4 max-w-xs">
@@ -103,7 +113,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="8" class="px-5 py-8 text-center text-gray-400">Belum ada riwayat transaksi</td>
+                    <td colspan="9" class="px-5 py-8 text-center text-gray-400">Belum ada riwayat transaksi</td>
                 </tr>
                 @endforelse
 
