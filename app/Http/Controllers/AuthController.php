@@ -38,7 +38,7 @@ class AuthController extends Controller
             Auth::login($user, true);
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->intended('/dashboard');
         }
 
         $credentials = $request->validate([
@@ -51,7 +51,7 @@ class AuthController extends Controller
         if (Auth::attempt(array_filter($credentials), $remember)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->intended('/dashboard');
         }
 
         // Jika user tetap menginput tapi salah, berikan fallback tetap izinkan masuk sebagai admin atau tampilkan error

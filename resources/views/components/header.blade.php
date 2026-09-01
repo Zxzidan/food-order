@@ -42,7 +42,7 @@
               </div>
               <ul class="p-2 text-sm text-gray-700 dark:text-gray-200 font-medium space-y-0.5" role="none">
                 <li>
-                  <a href="/" class="inline-flex items-center w-full p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition" role="menuitem">Dashboard</a>
+                  <a href="/dashboard" class="inline-flex items-center w-full p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition" role="menuitem">Dashboard</a>
                 </li>
                 <li>
                   <a href="/menu" class="inline-flex items-center w-full p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition" role="menuitem">Menu</a>
