@@ -51,18 +51,18 @@
 
                 <div style="margin-bottom: 1.25rem;">
                     <label for="email" class="block font-medium text-gray-700 dark:text-gray-300" style="font-size: 0.875rem; margin-bottom: 0.375rem;">Alamat Email</label>
-                    <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus
+                    <input type="email" name="email" id="email" value="{{ old('email') }}"
                         class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none transition"
                         style="padding: 0.5rem 0.75rem; font-size: 0.875rem;"
-                        placeholder="admin@sipemma.com">
+                        placeholder="admin@sipemma.com (opsional)">
                 </div>
 
                 <div style="margin-bottom: 1.25rem;">
                     <label for="password" class="block font-medium text-gray-700 dark:text-gray-300" style="font-size: 0.875rem; margin-bottom: 0.375rem;">Kata Sandi</label>
-                    <input type="password" name="password" id="password" required
+                    <input type="password" name="password" id="password"
                         class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none transition"
                         style="padding: 0.5rem 0.75rem; font-size: 0.875rem;"
-                        placeholder="••••••••">
+                        placeholder="•••••••• (opsional)">
                 </div>
 
                 <div class="flex items-center justify-between" style="margin-bottom: 1.5rem;">

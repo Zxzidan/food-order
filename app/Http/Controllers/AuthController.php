@@ -20,19 +20,41 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-        $remember = $request->has('remember');
+        // Jika form dikosongkan, otomatis masuk sebagai user admin
+        if (empty($email) && empty($password)) {
+            $user = \App\Models\User::first();
+            if (! $user) {
+                $user = \App\Models\User::create([
+                    'name' => 'Admin Resto',
+                    'email' => 'admin@sipemma.com',
+                    'password' => \Illuminate\Support\Facades\Hash::make('password'),
+                    'role' => 'admin',
+                ]);
+            }
 
-        if (Auth::attempt($credentials, $remember)) {
+            Auth::login($user, true);
             $request->session()->regenerate();
 
             return redirect()->intended('/');
         }
 
+        $credentials = $request->validate([
+            'email' => ['nullable', 'email'],
+            'password' => ['nullable'],
+        ]);
+
+        $remember = $request->has('remember');
+
+        if (Auth::attempt(array_filter($credentials), $remember)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('/');
+        }
+
+        // Jika user tetap menginput tapi salah, berikan fallback tetap izinkan masuk sebagai admin atau tampilkan error
         return back()->withErrors([
             'email' => 'Email atau kata sandi tidak cocok dengan data kami.',
         ])->onlyInput('email');
