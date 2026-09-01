@@ -17,11 +17,16 @@ Route::get('/', function () {
 // Authentication Routes
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register')->middleware('guest');
+Route::post('/register', [AuthController::class, 'register'])->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Protected Routes
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+    Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
     Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
     Route::post('/menu', [MenuController::class, 'store'])->name('menu.store');

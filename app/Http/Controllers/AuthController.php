@@ -16,6 +16,38 @@ class AuthController extends Controller
     }
 
     /**
+     * Tampilkan halaman registrasi.
+     */
+    public function showRegister()
+    {
+        return view('auth.register');
+    }
+
+    /**
+     * Proses pendaftaran akun baru.
+     */
+    public function register(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = \App\Models\User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => \Illuminate\Support\Facades\Hash::make($validated['password']),
+            'role' => 'kasir', // Default role untuk pendaftar baru
+        ]);
+
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        return redirect()->intended('/dashboard');
+    }
+
+    /**
      * Proses autentikasi login.
      */
     public function login(Request $request)
