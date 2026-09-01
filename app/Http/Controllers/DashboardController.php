@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 
 class DashboardController extends Controller
 {
@@ -16,8 +14,10 @@ class DashboardController extends Controller
         $nama = $admin ? $admin->name : 'Dandi Azaidane';
 
         $totalCustomers = Order::distinct('customer_name')->count('customer_name');
-        if ($totalCustomers === 0) $totalCustomers = 500; // fallback aesthetic number
-        
+        if ($totalCustomers === 0) {
+            $totalCustomers = 500;
+        } // fallback aesthetic number
+
         $totalOrders = Order::count();
         $menusAvailable = Menu::where('is_available', true)->count();
 

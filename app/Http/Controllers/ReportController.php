@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\OrderItem;
-use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {

@@ -11,6 +11,7 @@ class Order extends Model
 
     protected $fillable = [
         'order_number',
+        'invoice_number',
         'user_id',
         'customer_name',
         'order_type',
@@ -25,6 +26,8 @@ class Order extends Model
         'change_amount',
         'status',
         'notes',
+        'midtrans_transaction_id',
+        'midtrans_status',
     ];
 
     protected function casts(): array
@@ -60,7 +63,7 @@ class Order extends Model
      */
     public function getFormattedTotalAttribute(): string
     {
-        return 'Rp ' . number_format($this->total_amount, 0, ',', '.');
+        return 'Rp '.number_format($this->total_amount, 0, ',', '.');
     }
 
     /**
@@ -68,7 +71,7 @@ class Order extends Model
      */
     public function getFormattedSubtotalAttribute(): string
     {
-        return 'Rp ' . number_format($this->subtotal, 0, ',', '.');
+        return 'Rp '.number_format($this->subtotal, 0, ',', '.');
     }
 
     /**
@@ -76,7 +79,7 @@ class Order extends Model
      */
     public function getFormattedTaxAttribute(): string
     {
-        return 'Rp ' . number_format($this->tax, 0, ',', '.');
+        return 'Rp '.number_format($this->tax, 0, ',', '.');
     }
 
     /**

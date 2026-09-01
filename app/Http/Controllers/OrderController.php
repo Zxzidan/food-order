@@ -31,25 +31,57 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'customer_name' => 'nullable|string|max:255',
-            'order_type' => 'required|in:Dine In,Take Away',
-            'table_number' => 'nullable|string|max:50',
+            'order_id' => 'required|exists:orders,id',
             'payment_method' => 'required|in:Tunai,QRIS,Debit,Transfer',
             'cash_received' => 'nullable|numeric',
             'change_amount' => 'nullable|numeric',
-            'items' => 'required|array|min:1',
-            'items.*.menu_id' => 'nullable',
-            'items.*.name' => 'required|string',
-            'items.*.price' => 'required|numeric|min:0',
-            'items.*.quantity' => 'required|integer|min:1',
-            'items.*.notes' => 'nullable|string',
         ]);
 
-        return DB::transaction(function () use ($validated, $request) {
-            $user = User::first();
-            $subtotal = 0;
+        return DB::transaction(function () use ($validated) {
+            $order = Order::findOrFail($validated['order_id']);
 
-            foreach ($validated['items'] as $item) {
+            // Update order with payment details
+            $order->update([
+                'payment_method' => $validated['payment_method'],
+                'payment_status' => 'Lunas',
+                'cash_received' => $validated['cash_received'] ?? null,
+                'change_amount' => $validated['change_amount'] ?? null,
+                'status' => 'Selesai',
+            ]);
+
+            // Decrement menu stock
+            foreach ($order->items as $item) {
+                if ($item->menu_id) {
+                    $menu = Menu::find($item->menu_id);
+                    if ($menu) {
+                        $menu->decrement('stock', $item->quantity);
+                        $menu->increment('sold', $item->quantity);
+                        if ($menu->stock <= 0) {
+                            $menu->update(['is_available' => false]);
+                        }
+                    }
+                }
+            }
+
+            return redirect()->route('history.index')->with('success', 'Pesanan berhasil diproses!');
+        });
+    }
+
+    public function initiateCheckout(Request $request)
+    {
+        $validated = $request->validate([
+            'customer_name' => 'nullable|string|max:255',
+            'order_type' => 'required|in:Dine In,Take Away',
+            'table_number' => 'nullable|string|max:50',
+            'items' => 'required|json',
+        ]);
+
+        return DB::transaction(function () use ($validated) {
+            $user = User::first();
+            $items = json_decode($validated['items'], true);
+
+            $subtotal = 0;
+            foreach ($items as $item) {
                 $subtotal += ($item['price'] * $item['quantity']);
             }
 
@@ -58,37 +90,32 @@ class OrderController extends Controller
 
             // Generate order number like #ORD-YYYYMMDD-XXX
             $todayCount = Order::whereDate('created_at', Carbon::today())->count() + 1;
-            $orderNumber = '#ORD-' . date('Ymd') . '-' . str_pad((string) $todayCount, 3, '0', STR_PAD_LEFT);
+            $orderNumber = '#ORD-'.date('Ymd').'-'.str_pad((string) $todayCount, 3, '0', STR_PAD_LEFT);
 
+            // Create order (status pending checkout)
             $order = Order::create([
                 'order_number' => $orderNumber,
                 'user_id' => $user?->id,
-                'customer_name' => !empty($validated['customer_name']) ? $validated['customer_name'] : 'Umum',
+                'customer_name' => ! empty($validated['customer_name']) ? $validated['customer_name'] : 'Umum',
                 'order_type' => $validated['order_type'],
                 'table_number' => ($validated['order_type'] === 'Dine In') ? ($validated['table_number'] ?? 'Meja 01') : null,
                 'subtotal' => $subtotal,
                 'tax' => $tax,
                 'discount' => 0,
                 'total_amount' => $totalAmount,
-                'payment_method' => $validated['payment_method'],
-                'payment_status' => 'Lunas',
-                'cash_received' => $validated['cash_received'] ?? null,
-                'change_amount' => $validated['change_amount'] ?? null,
-                'status' => 'Selesai',
+                'payment_method' => null,
+                'payment_status' => 'Belum Lunas',
+                'status' => 'Diproses',
             ]);
 
-            foreach ($validated['items'] as $item) {
+            // Create order items
+            foreach ($items as $item) {
                 $menuId = null;
-                if (!empty($item['menu_id'])) {
+                if (! empty($item['menu_id'])) {
                     $cleanId = str_replace('menu-', '', (string) $item['menu_id']);
                     $menu = Menu::find($cleanId) ?? Menu::where('name', $item['name'])->first();
                     if ($menu) {
                         $menuId = $menu->id;
-                        $menu->decrement('stock', $item['quantity']);
-                        $menu->increment('sold', $item['quantity']);
-                        if ($menu->stock <= 0) {
-                            $menu->update(['is_available' => false]);
-                        }
                     }
                 }
 
@@ -103,14 +130,17 @@ class OrderController extends Controller
                 ]);
             }
 
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'success' => true,
-                    'order' => $order->load('items'),
-                ]);
-            }
-
-            return redirect()->route('history.index')->with('success', 'Pesanan berhasil diproses!');
+            return redirect()->route('order.checkout', ['order_number' => $orderNumber]);
         });
+    }
+
+    public function checkout($order_number)
+    {
+        $order = Order::where('order_number', $order_number)->firstOrFail();
+
+        return view('checkout', [
+            'title' => 'Pembayaran',
+            'order' => $order->load('items'),
+        ]);
     }
 }

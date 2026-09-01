@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class MenuController extends Controller
 {
@@ -33,7 +34,7 @@ class MenuController extends Controller
 
         $category = Category::firstOrCreate(
             ['name' => $validated['category']],
-            ['slug' => \Illuminate\Support\Str::slug($validated['category'])]
+            ['slug' => Str::slug($validated['category'])]
         );
 
         $menu = Menu::create([
@@ -66,7 +67,7 @@ class MenuController extends Controller
 
         $category = Category::firstOrCreate(
             ['name' => $validated['category']],
-            ['slug' => \Illuminate\Support\Str::slug($validated['category'])]
+            ['slug' => Str::slug($validated['category'])]
         );
 
         $menu->update([
