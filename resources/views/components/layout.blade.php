@@ -103,19 +103,20 @@
                     sidebar.classList.remove('-translate-x-full');
                     if (sidebarBackdrop) {
                         sidebarBackdrop.classList.remove('hidden');
-                        // Delay tipis agar display block aktif dulu, baru opacity naik
-                        setTimeout(() => {
-                            sidebarBackdrop.style.opacity = '1';
-                        }, 10);
+                        // Pastikan browser me-render display block dulu
+                        requestAnimationFrame(() => {
+                            requestAnimationFrame(() => {
+                                sidebarBackdrop.style.opacity = '1';
+                            });
+                        });
                     }
                 } else {
                     sidebar.classList.add('-translate-x-full');
                     if (sidebarBackdrop) {
                         sidebarBackdrop.style.opacity = '0';
-                        // Tunggu animasi transisi selesai baru disembunyikan
                         setTimeout(() => {
                             sidebarBackdrop.classList.add('hidden');
-                        }, 400); // 400ms disesuaikan dengan durasi transisi
+                        }, 400); 
                     }
                 }
             }
@@ -128,7 +129,10 @@
         if (sidebarBackdrop) {
             sidebarBackdrop.addEventListener('click', function() {
                 if (sidebar) sidebar.classList.add('-translate-x-full');
-                sidebarBackdrop.classList.add('hidden');
+                sidebarBackdrop.style.opacity = '0';
+                setTimeout(() => {
+                    sidebarBackdrop.classList.add('hidden');
+                }, 400);
             });
         }
     </script>
