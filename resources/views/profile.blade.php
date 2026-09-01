@@ -79,7 +79,7 @@
                             <h3 class="text-sm font-semibold text-gray-900 dark:text-white mb-1">Ganti Kata Sandi</h3>
                             <p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Biarkan kosong jika Anda tidak ingin menggantinya.</p>
                             
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-4">
                                 <div>
                                     <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Kata Sandi Baru</label>
                                     <input type="password" name="password" id="password"

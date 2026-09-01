@@ -41,7 +41,7 @@
         <div class="absolute bottom-10 right-10 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30"></div>
     </div>
 
-    <div class="w-full bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden relative z-10 transition-all hover:shadow-2xl hover:shadow-primary-600/10" style="max-w: 420px;">
+    <div class="w-full max-w-[420px] mx-auto bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden relative z-10 transition-all hover:shadow-2xl hover:shadow-primary-600/10">
         
         <div class="p-8 sm:p-10">
             
