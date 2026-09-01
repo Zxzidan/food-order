@@ -22,7 +22,7 @@ class AiChatController extends Controller
             ], 500);
         }
 
-        $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=' . $apiKey;
+        $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' . $apiKey;
 
         $payload = [
             'systemInstruction' => [
