@@ -34,10 +34,10 @@
             <div class="z-50 hidden bg-white dark:bg-gray-800 divide-y divide-gray-100 dark:divide-gray-700 border border-gray-100 dark:border-gray-700 rounded-2xl shadow-xl w-56" id="dropdown-user">
               <div class="px-4 py-3" role="none">
                 <p class="text-sm font-semibold text-gray-900 dark:text-white" role="none">
-                  Admin Resto
+                  {{ Auth::user()->name }}
                 </p>
                 <p class="text-xs text-gray-500 dark:text-gray-400 truncate" role="none">
-                  admin@sipemma.com
+                  {{ Auth::user()->email }}
                 </p>
               </div>
               <ul class="p-2 text-sm text-gray-700 dark:text-gray-200 font-medium space-y-0.5" role="none">
@@ -51,7 +51,10 @@
                   <a href="/order" class="inline-flex items-center w-full p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition" role="menuitem">Order</a>
                 </li>
                 <li>
-                  <a href="#" class="inline-flex items-center w-full p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition" role="menuitem">Keluar</a>
+                  <form method="POST" action="{{ route('logout') }}" class="m-0 p-0">
+                    @csrf
+                    <button type="submit" class="inline-flex items-center w-full text-left p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition cursor-pointer" role="menuitem">Keluar</button>
+                  </form>
                 </li>
               </ul>
             </div>
