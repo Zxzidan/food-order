@@ -11,12 +11,12 @@
         </div>
         <div class="flex items-center space-x-2 sm:space-x-3">
             <!-- AI Assistant Header Shortcut Button -->
-            <button type="button" onclick="toggleAIChat()" title="Buka SIPEMMA AI Assistant"
-                class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold bg-gradient-to-r from-blue-600/10 via-indigo-600/10 to-purple-600/10 dark:from-blue-900/40 dark:via-indigo-900/40 dark:to-purple-900/40 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-700/50 hover:bg-indigo-50 dark:hover:bg-indigo-900/60 rounded-xl transition cursor-pointer">
-                <svg class="w-4 h-4 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            <button type="button" onclick="toggleAIChat()" title="Buka SIPEMMA Assistant"
+                class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-xl transition cursor-pointer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                 </svg>
-                <span class="hidden sm:inline">Tanya AI</span>
+                <span class="hidden sm:inline">Assistant</span>
             </button>
 
             <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-xl p-2.5 sm:p-3 transition cursor-pointer">
