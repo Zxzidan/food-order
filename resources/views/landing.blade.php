@@ -6,6 +6,8 @@
     <title>SIPEMMA - Aplikasi Kasir & Manajemen Restoran Terbaik</title>
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -69,7 +71,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
                 <!-- Text Content -->
-                <div class="max-w-2xl">
+                <div class="max-w-2xl" data-aos="fade-right">
                     <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-50 border border-primary-100 text-primary-700 text-xs font-bold uppercase tracking-wider mb-6">
                         <span class="flex h-2 w-2 rounded-full bg-primary-600"></span>
                         Aplikasi POS Restoran #1
@@ -92,7 +94,7 @@
                 </div>
 
                 <!-- Hero Image/Mockup -->
-                <div class="relative mx-auto w-full max-w-lg lg:max-w-none group">
+                <div class="relative mx-auto w-full max-w-lg lg:max-w-none group" data-aos="fade-left" data-aos-delay="200">
                     <!-- Decorational Blob -->
                     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-primary-100 to-orange-50 rounded-full blur-3xl opacity-50 -z-10"></div>
                     
@@ -115,7 +117,7 @@
     </section>
 
     <!-- Social Proof Section -->
-    <section class="py-10 border-y border-gray-100 bg-white">
+    <section class="py-10 border-y border-gray-100 bg-white" data-aos="fade-up">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6">Dipercaya oleh ribuan bisnis kuliner di Indonesia</p>
             <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
@@ -130,7 +132,7 @@
     <!-- Features Section -->
     <section id="fitur" class="py-20 lg:py-28 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
                 <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Pantau Usaha dengan Sat-set!</h2>
                 <p class="text-lg text-gray-500">
                     Bisnis yang menggunakan SIPEMMA terbukti lebih sehat secara operasional dan finansial. Kelola pesanan, lacak stok, hingga laporan analitik semua dalam satu genggaman.
@@ -139,7 +141,7 @@
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="bg-slate-50 rounded-2xl p-8 border border-gray-100 hover:border-primary-200 hover:shadow-lg hover:shadow-primary-100/50 transition-all group">
+                <div class="bg-slate-50 rounded-2xl p-8 border border-gray-100 hover:border-primary-200 hover:shadow-lg hover:shadow-primary-100/50 transition-all group" data-aos="fade-up" data-aos-delay="100">
                     <div class="w-14 h-14 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary-50 transition-all text-primary-600">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                     </div>
@@ -150,7 +152,7 @@
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="bg-slate-50 rounded-2xl p-8 border border-gray-100 hover:border-primary-200 hover:shadow-lg hover:shadow-primary-100/50 transition-all group">
+                <div class="bg-slate-50 rounded-2xl p-8 border border-gray-100 hover:border-primary-200 hover:shadow-lg hover:shadow-primary-100/50 transition-all group" data-aos="fade-up" data-aos-delay="200">
                     <div class="w-14 h-14 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary-50 transition-all text-primary-600">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
@@ -161,7 +163,7 @@
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="bg-slate-50 rounded-2xl p-8 border border-gray-100 hover:border-primary-200 hover:shadow-lg hover:shadow-primary-100/50 transition-all group">
+                <div class="bg-slate-50 rounded-2xl p-8 border border-gray-100 hover:border-primary-200 hover:shadow-lg hover:shadow-primary-100/50 transition-all group" data-aos="fade-up" data-aos-delay="300">
                     <div class="w-14 h-14 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary-50 transition-all text-primary-600">
                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
                     </div>
@@ -178,11 +180,11 @@
     <section class="py-20 bg-slate-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="order-2 lg:order-1 relative">
+                <div class="order-2 lg:order-1 relative" data-aos="fade-right">
                     <div class="absolute -inset-4 bg-primary-100 rounded-[3rem] transform -rotate-3 z-0"></div>
                     <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" alt="Restoran operasional" class="relative z-10 rounded-2xl shadow-xl border-4 border-white object-cover aspect-[4/3] w-full">
                 </div>
-                <div class="order-1 lg:order-2 lg:pl-10">
+                <div class="order-1 lg:order-2 lg:pl-10" data-aos="fade-left">
                     <h2 class="text-3xl md:text-4xl font-bold text-dark mb-6">Semua fitur dalam satu ekosistem yang terintegrasi.</h2>
                     <ul class="space-y-6">
                         <li class="flex items-start gap-4">
@@ -215,7 +217,7 @@
     <!-- Bottom CTA Banner -->
     <section class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-primary-600 rounded-3xl p-10 md:p-16 text-center text-white relative overflow-hidden">
+            <div class="bg-primary-600 rounded-3xl p-10 md:p-16 text-center text-white relative overflow-hidden" data-aos="zoom-in">
                 <!-- Abstract BG patterns -->
                 <div class="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 rounded-full bg-white opacity-10"></div>
                 <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-56 h-56 rounded-full bg-black opacity-10"></div>
@@ -298,5 +300,16 @@
             </div>
         </div>
     </footer>
+
+    <!-- AOS Animation Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+    </script>
 </body>
 </html>
