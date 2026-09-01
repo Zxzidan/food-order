@@ -78,7 +78,13 @@
                     </td>
                     <td class="px-5 py-4 whitespace-nowrap text-center">
                         <span class="font-bold text-gray-900 dark:text-white text-sm">{{ $order->formatted_total }}</span>
-                        <span class="text-[11px] text-emerald-600 dark:text-emerald-400 block font-medium">{{ $order->payment_status }}</span>
+                        @if($order->payment_status === 'paid' || $order->payment_status === 'Lunas')
+                            <span class="text-[11px] text-emerald-600 dark:text-emerald-400 block font-medium">Lunas</span>
+                        @elseif($order->payment_status === 'pending' || $order->payment_status === 'Belum Lunas')
+                            <span class="text-[11px] text-orange-600 dark:text-orange-400 block font-medium">Pending</span>
+                        @else
+                            <span class="text-[11px] text-red-600 dark:text-red-400 block font-medium">{{ ucfirst($order->payment_status) }}</span>
+                        @endif
                     </td>
                     <td class="px-5 py-4 whitespace-nowrap text-center">
                         @if($order->status === 'Selesai')

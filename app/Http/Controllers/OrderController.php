@@ -43,7 +43,7 @@ class OrderController extends Controller
             // Update order with payment details
             $order->update([
                 'payment_method' => $validated['payment_method'],
-                'payment_status' => 'Lunas',
+                'payment_status' => 'paid',
                 'cash_received' => $validated['cash_received'] ?? null,
                 'change_amount' => $validated['change_amount'] ?? null,
                 'status' => 'Selesai',
@@ -104,7 +104,7 @@ class OrderController extends Controller
                 'discount' => 0,
                 'total_amount' => $totalAmount,
                 'payment_method' => null,
-                'payment_status' => 'Belum Lunas',
+                'payment_status' => 'pending',
                 'status' => 'Diproses',
             ]);
 

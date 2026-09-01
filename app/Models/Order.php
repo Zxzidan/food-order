@@ -28,6 +28,9 @@ class Order extends Model
         'notes',
         'midtrans_transaction_id',
         'midtrans_status',
+        'midtrans_payment_type',
+        'midtrans_transaction_time',
+        'midtrans_settlement_time',
     ];
 
     protected function casts(): array
@@ -39,6 +42,8 @@ class Order extends Model
             'total_amount' => 'integer',
             'cash_received' => 'integer',
             'change_amount' => 'integer',
+            'midtrans_transaction_time' => 'datetime',
+            'midtrans_settlement_time' => 'datetime',
         ];
     }
 
