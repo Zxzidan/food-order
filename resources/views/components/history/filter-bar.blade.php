@@ -58,25 +58,35 @@
         </div>
 
         <!-- Metode Pembayaran Dropdown (2 Cols) -->
-        <div class="lg:col-span-2">
+        <div class="lg:col-span-2 relative">
             <select id="history-payment-filter" onchange="applyHistoryFilters()"
-                class="w-full px-3 py-2.5 bg-gray-50 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-blue-500">
+                class="w-full appearance-none pl-3 pr-8 py-2.5 bg-gray-50 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-blue-500 cursor-pointer">
                 <option value="">Semua Metode</option>
                 <option value="QRIS">QRIS</option>
                 <option value="Tunai">Tunai</option>
                 <option value="Transfer">Transfer / Debit</option>
             </select>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                </svg>
+            </div>
         </div>
 
         <!-- Tipe Pesanan Dropdown (2 Cols) -->
-        <div class="lg:col-span-2">
+        <div class="lg:col-span-2 relative">
             <select id="history-type-filter" onchange="applyHistoryFilters()"
-                class="w-full px-3 py-2.5 bg-gray-50 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-blue-500">
+                class="w-full appearance-none pl-3 pr-8 py-2.5 bg-gray-50 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs sm:text-sm rounded-xl focus:ring-2 focus:ring-blue-500 cursor-pointer">
                 <option value="">Semua Tipe</option>
                 <option value="Dine In">Dine In (Makan Sini)</option>
                 <option value="Take Away">Take Away (Bungkus)</option>
                 <option value="Delivery">Delivery</option>
             </select>
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                </svg>
+            </div>
         </div>
 
         <!-- Tanggal Picker (3 Cols) -->

@@ -2,18 +2,18 @@
 
 <div id="history-table-container" class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-2xs overflow-hidden">
     <div class="overflow-x-auto">
-        <table class="w-full text-xs text-left text-gray-600 dark:text-gray-300">
+        <table class="w-full min-w-[1050px] text-xs text-left text-gray-600 dark:text-gray-300">
             <thead class="text-xs uppercase tracking-wider bg-gray-50/80 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 border-b border-gray-100 dark:border-gray-700 font-semibold">
                 <tr>
-                    <th scope="col" class="px-5 py-3.5">No. Order & Waktu</th>
-                    <th scope="col" class="px-5 py-3.5">Pelanggan</th>
-                    <th scope="col" class="px-5 py-3.5">Tipe Pesanan</th>
-                    <th scope="col" class="px-5 py-3.5">No. Meja</th>
-                    <th scope="col" class="px-5 py-3.5">Detail Pesanan</th>
-                    <th scope="col" class="px-5 py-3.5">Metode Bayar</th>
-                    <th scope="col" class="px-5 py-3.5 text-right">Total Tagihan</th>
-                    <th scope="col" class="px-5 py-3.5 text-center">Status</th>
-                    <th scope="col" class="px-5 py-3.5 text-center">Aksi</th>
+                    <th scope="col" class="px-5 py-3.5 whitespace-nowrap text-center">No. Order & Waktu</th>
+                    <th scope="col" class="px-5 py-3.5 whitespace-nowrap text-center">Pelanggan</th>
+                    <th scope="col" class="px-5 py-3.5 whitespace-nowrap text-center">Tipe Pesanan</th>
+                    <th scope="col" class="px-5 py-3.5 whitespace-nowrap text-center">No. Meja</th>
+                    <th scope="col" class="px-5 py-3.5 whitespace-nowrap text-center">Detail Pesanan</th>
+                    <th scope="col" class="px-5 py-3.5 whitespace-nowrap text-center">Metode Bayar</th>
+                    <th scope="col" class="px-5 py-3.5 whitespace-nowrap text-center">Total Tagihan</th>
+                    <th scope="col" class="px-5 py-3.5 whitespace-nowrap text-center">Status</th>
+                    <th scope="col" class="px-5 py-3.5 whitespace-nowrap text-center">Aksi</th>
                 </tr>
             </thead>
             <tbody id="history-table-body" class="divide-y divide-gray-100 dark:divide-gray-700 font-medium">
@@ -34,18 +34,20 @@
                 @endphp
                 <tr class="history-item-row hover:bg-gray-50/80 dark:hover:bg-gray-700/40 transition"
                     data-id="{{ $order->order_number }}" data-customer="{{ $order->customer_name }}" data-type="{{ $order->order_type }}" data-payment="{{ $order->payment_method }}" data-status="{{ $order->status }}">
-                    <td class="px-5 py-4">
-                        <span class="font-bold text-gray-900 dark:text-white block text-sm">{{ $order->order_number }}</span>
-                        <span class="text-[11px] text-gray-400 flex items-center gap-1 mt-0.5">
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <td class="px-5 py-4 whitespace-nowrap text-center">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-xs font-mono font-bold bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800 tracking-wide shadow-2xs" title="No. Order Lengkap: {{ $order->order_number }}">
+                            {{ $order->short_order_number }}
+                        </span>
+                        <span class="text-[11px] text-gray-400 flex items-center justify-center gap-1 mt-1 font-normal">
+                            <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             {{ $order->created_at->translatedFormat('d M Y, H:i') }}
                         </span>
                     </td>
-                    <td class="px-5 py-4">
+                    <td class="px-5 py-4 whitespace-nowrap text-center">
                         <span class="font-semibold text-gray-800 dark:text-gray-200 block">{{ $order->customer_name }}</span>
                         <span class="text-[11px] text-gray-400">Kasir: {{ $order->user ? $order->user->name : 'Admin' }}</span>
                     </td>
-                    <td class="px-5 py-4">
+                    <td class="px-5 py-4 whitespace-nowrap text-center">
                         @if($order->order_type === 'Dine In')
                         <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
                             Dine In
@@ -56,7 +58,7 @@
                         </span>
                         @endif
                     </td>
-                    <td class="px-5 py-4 font-semibold text-gray-700 dark:text-gray-300">
+                    <td class="px-5 py-4 whitespace-nowrap font-semibold text-gray-700 dark:text-gray-300 text-center">
                         @if($order->order_type === 'Dine In')
                             <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-gray-100 dark:bg-gray-700/60 text-xs text-gray-800 dark:text-gray-200">
                                 {{ $order->table_number ?? '-' }}
@@ -65,20 +67,20 @@
                             <span class="text-gray-400 dark:text-gray-500 font-normal text-xs">-</span>
                         @endif
                     </td>
-                    <td class="px-5 py-4 max-w-xs">
+                    <td class="px-5 py-4 max-w-xs text-center">
                         <p class="truncate text-gray-700 dark:text-gray-300">{{ $itemsSummary ?: 'Item' }}</p>
                         <span class="text-[11px] text-gray-400">Total {{ $totalItems }} item</span>
                     </td>
-                    <td class="px-5 py-4">
+                    <td class="px-5 py-4 whitespace-nowrap text-center">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs font-medium">
                             <span class="w-2 h-2 rounded-full {{ $order->payment_method === 'QRIS' ? 'bg-blue-500' : ($order->payment_method === 'Tunai' ? 'bg-emerald-500' : 'bg-purple-500') }}"></span> {{ $order->payment_method }}
                         </span>
                     </td>
-                    <td class="px-5 py-4 text-right">
+                    <td class="px-5 py-4 whitespace-nowrap text-center">
                         <span class="font-bold text-gray-900 dark:text-white text-sm">{{ $order->formatted_total }}</span>
                         <span class="text-[11px] text-emerald-600 dark:text-emerald-400 block font-medium">{{ $order->payment_status }}</span>
                     </td>
-                    <td class="px-5 py-4 text-center">
+                    <td class="px-5 py-4 whitespace-nowrap text-center">
                         @if($order->status === 'Selesai')
                         <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Selesai
@@ -93,7 +95,7 @@
                         </span>
                         @endif
                     </td>
-                    <td class="px-5 py-4 text-center">
+                    <td class="px-5 py-4 whitespace-nowrap text-center">
                         <div class="flex items-center justify-center gap-1.5">
                             <button type="button" title="Lihat Struk" onclick="openHistoryReceiptModal('{{ $order->order_number }}', '{{ addslashes($order->customer_name) }}', '{{ $order->order_type === 'Dine In' ? 'Dine In (' . ($order->table_number ?? 'Meja -') . ')' : 'Take Away' }}', '{{ $order->payment_method }}', '{{ $order->created_at->translatedFormat('d M Y, H:i') }}', {{ $order->subtotal }}, {{ $order->tax }}, {{ $order->total_amount }}, {{ $itemsJson }})"
                                 class="p-1.5 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition cursor-pointer">

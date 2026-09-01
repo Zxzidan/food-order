@@ -15,8 +15,10 @@
     <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-2xs space-y-4 hover:shadow-md transition">
         <div class="flex items-start justify-between">
             <div>
-                <span class="text-sm font-bold text-gray-900 dark:text-white block">{{ $order->order_number }}</span>
-                <span class="text-xs text-gray-400">{{ $order->created_at->translatedFormat('d M Y, H:i') }}</span>
+                <span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-mono font-bold bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800 tracking-wide" title="No. Order Lengkap: {{ $order->order_number }}">
+                    {{ $order->short_order_number }}
+                </span>
+                <span class="text-xs text-gray-400 block mt-1">{{ $order->created_at->translatedFormat('d M Y, H:i') }}</span>
             </div>
             @if($order->status === 'Selesai')
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">

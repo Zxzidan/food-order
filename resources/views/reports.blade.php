@@ -340,7 +340,7 @@
 
             const rows = document.querySelectorAll('#report-table-body tr');
             rows.forEach(row => {
-                const text = row.innerText.toLowerCase();
+                const text = (row.innerText + ' ' + (row.getAttribute('data-order') || '')).toLowerCase();
                 const matchesQuery = text.includes(query);
                 const matchesPayment = !paymentFilter || text.includes(paymentFilter);
                 const matchesType = !typeFilter || text.includes(typeFilter);

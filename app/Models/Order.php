@@ -78,4 +78,21 @@ class Order extends Model
     {
         return 'Rp ' . number_format($this->tax, 0, ',', '.');
     }
+
+    /**
+     * Accessor nomor order yang disingkat agar tabel terlihat rapi (misal: #ORD-045)
+     */
+    public function getShortOrderNumberAttribute(): string
+    {
+        if (empty($this->order_number)) {
+            return '-';
+        }
+
+        // Jika nomor order berformat seperti #ORD-20260822-045, ambil bagian akhir (#ORD-045)
+        if (preg_match('/-(\d+)$/', $this->order_number, $matches)) {
+            return '#ORD-' . $matches[1];
+        }
+
+        return \Illuminate\Support\Str::limit($this->order_number, 10);
+    }
 }
