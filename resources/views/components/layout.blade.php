@@ -28,7 +28,7 @@
 
     <div class="min-h-full flex flex-col">
         <!-- Sidebar Backdrop for Mobile -->
-        <div id="sidebar-backdrop" class="fixed inset-0 z-35 bg-black/50 backdrop-blur-xs hidden transition-opacity duration-300 sm:hidden"></div>
+        <div id="sidebar-backdrop" class="fixed inset-0 z-35 bg-black/50 backdrop-blur-sm hidden sm:hidden" style="opacity: 0; transition: opacity 0.4s ease-in-out;"></div>
 
         <x-sidebar />
         
@@ -101,10 +101,22 @@
                 const isClosed = sidebar.classList.contains('-translate-x-full');
                 if (isClosed) {
                     sidebar.classList.remove('-translate-x-full');
-                    if (sidebarBackdrop) sidebarBackdrop.classList.remove('hidden');
+                    if (sidebarBackdrop) {
+                        sidebarBackdrop.classList.remove('hidden');
+                        // Delay tipis agar display block aktif dulu, baru opacity naik
+                        setTimeout(() => {
+                            sidebarBackdrop.style.opacity = '1';
+                        }, 10);
+                    }
                 } else {
                     sidebar.classList.add('-translate-x-full');
-                    if (sidebarBackdrop) sidebarBackdrop.classList.add('hidden');
+                    if (sidebarBackdrop) {
+                        sidebarBackdrop.style.opacity = '0';
+                        // Tunggu animasi transisi selesai baru disembunyikan
+                        setTimeout(() => {
+                            sidebarBackdrop.classList.add('hidden');
+                        }, 400); // 400ms disesuaikan dengan durasi transisi
+                    }
                 }
             }
         }
