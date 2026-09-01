@@ -28,7 +28,7 @@
 
     <div class="min-h-full flex flex-col">
         <!-- Sidebar Backdrop for Mobile -->
-        <div id="sidebar-backdrop" class="fixed inset-0 z-35 bg-black/50 backdrop-blur-sm hidden sm:hidden" style="opacity: 0; transition: opacity 0.4s ease-in-out;"></div>
+        <div id="sidebar-backdrop" class="fixed inset-0 z-35 bg-white/30 dark:bg-gray-900/30 backdrop-blur-md hidden sm:hidden border-r border-white/20" style="opacity: 0; transition: opacity 0.4s ease-in-out;"></div>
 
         <x-sidebar />
         
