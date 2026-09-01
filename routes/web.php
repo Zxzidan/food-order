@@ -5,6 +5,7 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AiChatController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -20,3 +21,5 @@ Route::post('/order', [OrderController::class, 'store'])->name('order.store');
 Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
 
 Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+
+Route::post('/ai/chat', [AiChatController::class, 'chat'])->name('ai.chat');

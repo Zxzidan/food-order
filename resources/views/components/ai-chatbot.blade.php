@@ -250,172 +250,9 @@
             .replace(/'/g, "&#039;");
     }
 
-    // AI Natural Language Understanding & Answer Generation Engine
-    function generateAIResponse(userText) {
-        const query = userText.toLowerCase();
+    // AI Natural Language Understanding & Answer Generation Engine (Sekarang menggunakan Backend)
 
-        // 1. Sales & Revenue Analysis (Omzet, Penjualan, Pendapatan)
-        if (query.includes('omzet') || query.includes('penjualan') || query.includes('pendapatan') || query.includes('performa') || query.includes('laporan')) {
-            return `
-                <div class="space-y-2">
-                        Ringkasan Performa Penjualan
-                    </p>
-                    <div class="p-2.5 bg-blue-50 dark:bg-blue-900/30 rounded-xl space-y-1.5 text-[11px]">
-                        <div class="flex justify-between font-semibold text-blue-900 dark:text-blue-200">
-                            <span>Total Omzet Bulan Ini:</span>
-                            <span class="font-bold text-blue-700 dark:text-blue-300">Rp 28.450.000</span>
-                        </div>
-                        <div class="flex justify-between text-gray-600 dark:text-gray-300">
-                            <span>Total Pesanan (Nota):</span>
-                            <span class="font-bold">924 Transaksi (+8.2%)</span>
-                        </div>
-                        <div class="flex justify-between text-gray-600 dark:text-gray-300">
-                            <span>Total Item Terjual:</span>
-                            <span class="font-bold">1.842 Porsi</span>
-                        </div>
-                        <div class="flex justify-between text-gray-600 dark:text-gray-300">
-                            <span>Rata-rata Order (AOV):</span>
-                            <span class="font-bold text-emerald-600 dark:text-emerald-400">Rp 30.790</span>
-                        </div>
-                    </div>
-                    <p class="text-[11px] text-gray-600 dark:text-gray-300">
-                        <strong>Tren Positif:</strong> Terjadi kenaikan omzet <strong>+14.8%</strong> dibandingkan bulan lalu, dengan kontributor terbesar dari kategori makanan berat saat jam makan siang.
-                    </p>
-                    <a href="/reports" class="inline-flex items-center gap-1 text-[11px] text-blue-600 dark:text-blue-400 font-semibold hover:underline">
-                        Lihat Grafik Lengkap di Menu Reports &rarr;
-                    </a>
-                </div>
-            `;
-        }
-
-        // 2. Best-Selling Menu & Customer Favorites (Menu Laris, Favorit, Makanan)
-        if (query.includes('laris') || query.includes('favorit') || query.includes('favorite') || query.includes('menu') || query.includes('terbanyak') || query.includes('paling')) {
-            return `
-                <div class="space-y-2">
-                        Top Menu Terlaris & Favorit Resto
-                    </p>
-                    <div class="space-y-1.5">
-                        <div class="p-2 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-200 dark:border-amber-800/50 flex items-center justify-between text-[11px]">
-                            <div class="flex items-center gap-2">
-                                <span class="w-5 h-5 rounded-full bg-amber-500 text-white font-bold flex items-center justify-center text-[10px]">1</span>
-                                <span class="font-bold text-gray-900 dark:text-white">Mie Ayam Spesial</span>
-                            </div>
-                            <span class="font-bold text-amber-700 dark:text-amber-300">380 Porsi (Rp 6.8M)</span>
-                        </div>
-                        <div class="p-2 bg-gray-50 dark:bg-gray-700/50 rounded-xl flex items-center justify-between text-[11px]">
-                            <div class="flex items-center gap-2">
-                                <span class="w-5 h-5 rounded-full bg-gray-400 text-white font-bold flex items-center justify-center text-[10px]">2</span>
-                                <span class="font-semibold text-gray-800 dark:text-gray-200">Nasi Goreng Ayam</span>
-                            </div>
-                            <span class="font-semibold">296 Porsi (Rp 5.9M)</span>
-                        </div>
-                        <div class="p-2 bg-gray-50 dark:bg-gray-700/50 rounded-xl flex items-center justify-between text-[11px]">
-                            <div class="flex items-center gap-2">
-                                <span class="w-5 h-5 rounded-full bg-amber-700 text-white font-bold flex items-center justify-center text-[10px]">3</span>
-                                <span class="font-semibold text-gray-800 dark:text-gray-200">Es Jeruk Segar</span>
-                            </div>
-                            <span class="font-semibold">350 Gelas (Rp 2.4M)</span>
-                        </div>
-                    </div>
-                    <p class="text-[11px] text-gray-600 dark:text-gray-300">
-                        <strong>Tips AI:</strong> Sebanyak <strong>68%</strong> pembeli Mie Ayam juga memesan Es Jeruk Segar. Anda bisa membuat paket bundling langsung di kasir POS.
-                    </p>
-                </div>
-            `;
-        }
-
-        // 3. Peak Operational Hours (Jam Sibuk, Ramai, Dapur, Kasir)
-        if (query.includes('jam') || query.includes('ramai') || query.includes('sibuk') || query.includes('operasional') || query.includes('kapan')) {
-            return `
-                <div class="space-y-2">
-                        Analisis Jam Sibuk (*Rush Hours*)
-                    </p>
-                    <div class="p-2.5 bg-gray-50 dark:bg-gray-700/60 rounded-xl space-y-2 text-[11px]">
-                        <div class="flex items-center justify-between">
-                            <span class="font-semibold text-red-600 dark:text-red-400">Peak 1 (Makan Siang):</span>
-                            <span class="font-bold">12:00 - 13:30 (142 order/jam)</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="font-semibold text-blue-600 dark:text-blue-400">Peak 2 (Makan Malam):</span>
-                            <span class="font-bold">18:30 - 20:30 (130 order/jam)</span>
-                        </div>
-                    </div>
-                    <div class="p-2 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-xl text-[11px] space-y-1">
-                        <p class="font-semibold">Rekomendasi Operasional AI:</p>
-                        <p>1. Lakukan persiapan bahan setengah matang sebelum pk 11:30.</p>
-                        <p>2. Siapkan 2 kasir aktif saat jam makan siang untuk mengurangi antrean pembayaran.</p>
-                    </div>
-                </div>
-            `;
-        }
-
-        // 4. Promo & Bundling Recommendations (Promo, Diskon, Bundling, Saran)
-        if (query.includes('promo') || query.includes('diskon') || query.includes('bundling') || query.includes('saran') || query.includes('ide') || query.includes('rekomendasi')) {
-            return `
-                <div class="space-y-2">
-                        Rekomendasi Promo & Paket Bundling
-                    </p>
-                    <div class="space-y-1.5 text-[11px]">
-                        <div class="p-2 bg-emerald-50 dark:bg-emerald-900/30 rounded-xl border border-emerald-200 dark:border-emerald-800">
-                            <span class="font-bold text-emerald-800 dark:text-emerald-300">Paket Kenyang Siang (Hemat 15%):</span>
-                            <p class="text-gray-600 dark:text-gray-300 mt-0.5">Mie Ayam Spesial + Es Jeruk Segar = <span class="font-bold text-emerald-600">Rp 22.000</span> (Normal Rp 25.000)</p>
-                        </div>
-                        <div class="p-2 bg-purple-50 dark:bg-purple-900/30 rounded-xl border border-purple-200 dark:border-purple-800">
-                            <span class="font-bold text-purple-800 dark:text-purple-300">Paket Sehat (Dongkrak Penjualan Gado-Gado):</span>
-                            <p class="text-gray-600 dark:text-gray-300 mt-0.5">Gado-Gado + Es Jeruk = <span class="font-bold text-purple-600">Rp 20.000</span></p>
-                        </div>
-                    </div>
-                    <p class="text-[11px] text-gray-500 dark:text-gray-400">
-                        Strategi ini diprediksi dapat meningkatkan <em>Average Order Value</em> sebesar <strong>+12%</strong>!
-                    </p>
-                </div>
-            `;
-        }
-
-        // 5. Payment Methods (Metode Bayar, QRIS, Tunai, Kasir)
-        if (query.includes('bayar') || query.includes('qris') || query.includes('tunai') || query.includes('debit') || query.includes('transfer') || query.includes('metode')) {
-            return `
-                <div class="space-y-2">
-                        Distribusi Metode Pembayaran
-                    </p>
-                    <div class="space-y-1 text-[11px]">
-                        <div class="flex justify-between">
-                            <span>1. QRIS (QR Pay):</span>
-                            <span class="font-bold text-blue-600 dark:text-blue-400">54% (498 transaksi)</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>2. Tunai (Cash):</span>
-                            <span class="font-bold text-emerald-600 dark:text-emerald-400">32% (295 transaksi)</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>3. Transfer / Debit:</span>
-                            <span class="font-bold text-amber-600 dark:text-amber-400">14% (131 transaksi)</span>
-                        </div>
-                    </div>
-                    <p class="text-[11px] text-gray-600 dark:text-gray-300 pt-1">
-                        Mayoritas pelanggan lebih memilih pembayaran non-tunai (QRIS). Pastikan koneksi internet kasir dan standing banner QRIS selalu siap di meja kasir.
-                    </p>
-                </div>
-            `;
-        }
-
-        // 6. Generic Default Intelligent Response
-        return `
-            <div class="space-y-2">
-                <p class="font-bold text-gray-900 dark:text-white">Saya memahami pertanyaan Anda tentang <em>"${escapeHtml(userText)}"</em></p>
-                <p class="leading-relaxed">Berikut beberapa hal yang dapat saya bantu analisis secara instan:</p>
-                <ul class="list-disc list-inside space-y-1 text-[11px] text-gray-700 dark:text-gray-300">
-                    <li>Ketik <strong>"omzet hari ini"</strong> untuk melihat pemasukan terkini.</li>
-                    <li>Ketik <strong>"menu terlaris"</strong> untuk ranking makanan & minuman.</li>
-                    <li>Ketik <strong>"jam sibuk"</strong> untuk prediksi waktu teramai.</li>
-                    <li>Ketik <strong>"rekomendasi promo"</strong> untuk ide strategi bundling harga.</li>
-                </ul>
-                <p class="text-[11px] text-blue-600 dark:text-blue-400 font-medium">Ada hal spesifik lain yang ingin Anda ketahui tentang performa resto?</p>
-            </div>
-        `;
-    }
-
-    function handleAIChatSubmit(event) {
+    async function handleAIChatSubmit(event) {
         event.preventDefault();
         const input = document.getElementById('ai-chat-input');
         if (!input) return;
@@ -430,11 +267,29 @@
         // 2. Show loading animation
         appendBotLoading();
 
-        // 3. Simulate thinking delay (400 - 800ms)
-        setTimeout(() => {
+        // 3. Connect to Backend Gemini API
+        try {
+            const response = await fetch('{{ route("ai.chat") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ message: text })
+            });
+
+            const data = await response.json();
             removeBotLoading();
-            const responseHtml = generateAIResponse(text);
-            appendBotMessage(responseHtml);
-        }, 600);
+
+            if (response.ok) {
+                appendBotMessage(data.response);
+            } else {
+                appendBotMessage(`<div class="text-red-500 font-semibold p-2 bg-red-50 dark:bg-red-900/30 rounded">Error: ${data.error || 'Terjadi kesalahan sistem.'}</div>`);
+            }
+        } catch (error) {
+            removeBotLoading();
+            appendBotMessage('<div class="text-red-500 font-semibold p-2 bg-red-50 dark:bg-red-900/30 rounded">Gagal terhubung ke server AI. Periksa koneksi internet Anda.</div>');
+        }
     }
 </script>
