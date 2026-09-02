@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -34,10 +36,10 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        $user = \App\Models\User::create([
+        $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => \Illuminate\Support\Facades\Hash::make($validated['password']),
+            'password' => Hash::make($validated['password']),
             'role' => 'kasir', // Default role untuk pendaftar baru
         ]);
 
@@ -57,12 +59,12 @@ class AuthController extends Controller
 
         // Jika form dikosongkan, otomatis masuk sebagai user admin
         if (empty($email) && empty($password)) {
-            $user = \App\Models\User::first();
+            $user = User::first();
             if (! $user) {
-                $user = \App\Models\User::create([
+                $user = User::create([
                     'name' => 'Admin Resto',
                     'email' => 'admin@sipemma.com',
-                    'password' => \Illuminate\Support\Facades\Hash::make('password'),
+                    'password' => Hash::make('password'),
                     'role' => 'admin',
                 ]);
             }

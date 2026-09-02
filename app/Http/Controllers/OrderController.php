@@ -61,12 +61,12 @@ class OrderController extends Controller
 
                 $menu = Menu::find($cleanId) ?? Menu::where('name', $item['name'])->first();
 
-                if (!$menu) {
+                if (! $menu) {
                     throw new \Exception("Menu {$item['name']} tidak ditemukan di database.");
                 }
 
                 $price = $menu->price;
-                $quantity = (int) $item['quantity']; // from cart item.qty, frontend might send it as quantity or qty depending on how it's mapped. The prompt says item.qty in js, but mapping might send 'quantity' or 'qty'. Let's check how the frontend currently sends it. Actually frontend JS is `qty`. But old initiateCheckout used `$item['quantity']`. We should ensure frontend sends `quantity`. 
+                $quantity = (int) $item['quantity']; // from cart item.qty, frontend might send it as quantity or qty depending on how it's mapped. The prompt says item.qty in js, but mapping might send 'quantity' or 'qty'. Let's check how the frontend currently sends it. Actually frontend JS is `qty`. But old initiateCheckout used `$item['quantity']`. We should ensure frontend sends `quantity`.
                 // Let's use what the old logic used: $item['quantity'] but wait, old JS didn't submit anything, I need to check the old JS for checkout to see what it sends. Ah, old JS didn't have an AJAX checkout yet.
                 $itemSubtotal = $price * $quantity;
                 $subtotal += $itemSubtotal;
@@ -101,7 +101,7 @@ class OrderController extends Controller
                 'total_amount' => $totalAmount,
                 'payment_method' => null,
                 'payment_status' => 'pending',
-                'status' => 'Diproses',
+                'status' => 'Menunggu Pembayaran',
             ]);
 
             // Create order items

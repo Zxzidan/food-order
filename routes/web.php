@@ -1,13 +1,19 @@
 <?php
 
+use App\Http\Controllers\AiChatController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\AiChatController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MidtransNotificationController;
 use Illuminate\Support\Facades\Route;
+
+// Midtrans Webhook (No CSRF, No Auth)
+Route::post('/midtrans/notification', [MidtransNotificationController::class, 'handle'])->name('midtrans.notification');
 
 // Landing Page Route
 Route::get('/', function () {
@@ -25,8 +31,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
-    Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
     Route::post('/menu', [MenuController::class, 'store'])->name('menu.store');
@@ -36,8 +42,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/order', [OrderController::class, 'index'])->name('order.index');
     Route::post('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
 
-    Route::get('/payment/{order_number}', [App\Http\Controllers\PaymentController::class, 'show'])->name('payment.show');
-    Route::post('/payment/{order_number}/cash', [App\Http\Controllers\PaymentController::class, 'processCash'])->name('payment.cash');
+    Route::get('/payment/{order_number}', [PaymentController::class, 'show'])->name('payment.show');
+    Route::post('/payment/{order_number}/cash', [PaymentController::class, 'processCash'])->name('payment.cash');
+    Route::post('/payment/{order_number}/midtrans', [PaymentController::class, 'processMidtrans'])->name('payment.midtrans');
+    Route::post('/payment/{order_number}/midtrans/callback', [PaymentController::class, 'callbackMidtrans'])->name('payment.midtrans.callback');
 
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
 

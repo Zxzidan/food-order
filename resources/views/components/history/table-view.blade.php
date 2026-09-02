@@ -95,6 +95,10 @@
                         <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
                             <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Diproses
                         </span>
+                        @elseif($order->status === 'Menunggu Pembayaran')
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-yellow-50 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400">
+                            <span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span> Menunggu Pembayaran
+                        </span>
                         @else
                         <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400">
                             <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> Batal

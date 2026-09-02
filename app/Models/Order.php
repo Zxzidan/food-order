@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Order extends Model
 {
@@ -97,9 +98,9 @@ class Order extends Model
 
         // Jika nomor order berformat seperti #ORD-20260822-045, ambil bagian akhir (#ORD-045)
         if (preg_match('/-(\d+)$/', $this->order_number, $matches)) {
-            return '#ORD-' . $matches[1];
+            return '#ORD-'.$matches[1];
         }
 
-        return \Illuminate\Support\Str::limit($this->order_number, 10);
+        return Str::limit($this->order_number, 10);
     }
 }
