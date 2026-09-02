@@ -34,7 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/menu/{menu}', [MenuController::class, 'destroy'])->name('menu.destroy');
 
     Route::get('/order', [OrderController::class, 'index'])->name('order.index');
-    Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+    Route::post('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
+
+    Route::get('/payment/{order_number}', [App\Http\Controllers\PaymentController::class, 'show'])->name('payment.show');
+    Route::post('/payment/{order_number}/cash', [App\Http\Controllers\PaymentController::class, 'processCash'])->name('payment.cash');
 
     Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
 

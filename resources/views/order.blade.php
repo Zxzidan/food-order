@@ -208,70 +208,22 @@
                     </div>
                 </div>
 
-                <!-- Payment Method Tabs -->
-                <div>
-                    <label class="block text-[11px] font-semibold text-gray-500 dark:text-gray-400 mb-1.5">Metode Pembayaran</label>
-                    <div class="grid grid-cols-3 gap-2 py-3">
-                        <button type="button" onclick="selectPaymentMethod('Tunai', this)"
-                            class="payment-method-btn flex flex-col items-center justify-center py-2 px-1 rounded-xl border-2 border-green-500 bg-green-50/50 dark:bg-green-950/30 text-green-700 dark:text-green-300 text-xs font-bold transition cursor-pointer">
-                            <span>Tunai</span>
-                        </button>
-                        <button type="button" onclick="selectPaymentMethod('QRIS', this)"
-                            class="payment-method-btn flex flex-col items-center justify-center py-2 px-1 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-bold transition hover:border-gray-300 cursor-pointer">
-                            <span>QRIS</span>
-                        </button>
-                        <button type="button" onclick="selectPaymentMethod('Debit', this)"
-                            class="payment-method-btn flex flex-col items-center justify-center py-2 px-1 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-bold transition hover:border-gray-300 cursor-pointer">
-                            <span>Debit / CC</span>
-                        </button>
-                    </div>
-                </div>
+                <!-- Form Checkout Tersembunyi -->
+                <form id="checkout-form" action="{{ route('order.checkout') }}" method="POST" class="hidden">
+                    @csrf
+                    <input type="hidden" name="customer_name" id="hidden-customer-name">
+                    <input type="hidden" name="order_type" id="hidden-order-type">
+                    <input type="hidden" name="table_number" id="hidden-table-number">
+                    <input type="hidden" name="items" id="hidden-items">
+                </form>
 
-                <!-- Cash Quick Amount / Change Calculator (Shown when Tunai is active) -->
-                <div id="cash-calculator-panel" class="space-y-2 pt-1">
-                    <div class="flex items-center justify-between gap-2">
-                        <span class="text-[11px] font-semibold text-gray-500 dark:text-gray-400">Nominal Diterima:</span>
-                        <div class="relative w-36">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-2 text-xs font-semibold text-gray-400">Rp</span>
-                            <input type="number" id="input-cash-amount" oninput="calculateChange()"
-                                class="w-full pl-8 pr-2 py-1.5 text-xs font-bold text-right bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-1 focus:ring-green-500"
-                                placeholder="0" />
-                        </div>
-                    </div>
-
-                    <!-- Quick Cash Suggestion Chips -->
-                    <div class="flex items-center gap-1.5 py-3 overflow-x-auto pb-1 text-[10px] font-bold">
-                        <button type="button" onclick="setExactCash()"
-                            class="px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 transition cursor-pointer shrink-0">
-                            Uang Pas
-                        </button>
-                        <button type="button" onclick="setCashValue(50000)"
-                            class="px-2 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 transition cursor-pointer shrink-0">
-                            50.000
-                        </button>
-                        <button type="button" onclick="setCashValue(100000)"
-                            class="px-2 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 transition cursor-pointer shrink-0">
-                            100.000
-                        </button>
-                        <button type="button" onclick="setCashValue(200000)"
-                            class="px-2 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 transition cursor-pointer shrink-0">
-                            200.000
-                        </button>
-                    </div>
-
-                    <div class="flex justify-between items-center text-xs font-semibold text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 p-2 rounded-lg border border-gray-200 dark:border-gray-700 py-3">
-                        <span>Kembalian:</span>
-                        <span id="cash-change-amount" class="text-sm font-bold text-emerald-600 dark:text-emerald-400">Rp 0</span>
-                    </div>
-                </div>
-
-                <!-- Process Payment CTA Button -->
+                <!-- Process Checkout CTA Button -->
                 <button type="button" id="btn-process-order" onclick="processOrderCheckout()"
                     class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 text-sm font-bold text-white bg-green-600 hover:bg-green-700 active:scale-[0.99] rounded-2xl shadow-md hover:shadow-lg transition cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-                    <span>Bayar & Proses Pesanan</span>
+                    <span>Checkout Pesanan</span>
                 </button>
             </div>
         </div>
@@ -299,8 +251,7 @@
         </div>
     </div>
 
-    <!-- Receipt / Struk Modal -->
-    <x-order.receipt-modal />
+    <!-- Receipt Modal Removed (Moved to Payment Flow) -->
 
     <!-- Toast Notification -->
     <x-toast />
@@ -321,7 +272,6 @@
         // State variables
         let cart = [];
         let orderType = 'Dine In';
-        let paymentMethod = 'Tunai';
         let currentTaxRate = 0.10; // 10% PB1 Restaurant Tax
         let activeCategory = 'all';
 
@@ -408,24 +358,7 @@
             }
         }
 
-        // Set Payment Method
-        function selectPaymentMethod(method, btn) {
-            paymentMethod = method;
-            const buttons = document.querySelectorAll('.payment-method-btn');
-            buttons.forEach(b => {
-                b.className = "payment-method-btn flex flex-col items-center justify-center py-2 px-1 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-xs font-bold transition hover:border-gray-300 cursor-pointer";
-            });
-
-            btn.className = "payment-method-btn flex flex-col items-center justify-center py-2 px-1 rounded-xl border-2 border-green-500 bg-green-50/50 dark:bg-green-950/30 text-green-700 dark:text-green-300 text-xs font-bold transition cursor-pointer";
-
-            const cashCalc = document.getElementById('cash-calculator-panel');
-            if (method === 'Tunai') {
-                cashCalc.classList.remove('hidden');
-                calculateChange();
-            } else {
-                cashCalc.classList.add('hidden');
-            }
-        }
+        // Payment Method function removed
 
         // Render Cart DOM
         function renderCart() {
@@ -510,41 +443,9 @@
                     container.appendChild(itemEl);
                 });
             }
-
-            calculateChange();
         }
 
-        // Cash Calculation
-        function calculateChange() {
-            const grandTotal = getGrandTotal();
-            const cashInput = document.getElementById('input-cash-amount');
-            const changeDisplay = document.getElementById('cash-change-amount');
-            const cashVal = Number(cashInput.value) || 0;
-
-            if (cashVal >= grandTotal && grandTotal > 0) {
-                const change = cashVal - grandTotal;
-                changeDisplay.innerText = formatRupiah(change);
-                changeDisplay.className = "text-sm font-bold text-emerald-600 dark:text-emerald-400";
-            } else if (cashVal > 0 && cashVal < grandTotal) {
-                const deficit = grandTotal - cashVal;
-                changeDisplay.innerText = `Kurang ${formatRupiah(deficit)}`;
-                changeDisplay.className = "text-xs font-bold text-red-500";
-            } else {
-                changeDisplay.innerText = "Rp 0";
-                changeDisplay.className = "text-sm font-bold text-gray-400";
-            }
-        }
-
-        function setExactCash() {
-            const grandTotal = getGrandTotal();
-            document.getElementById('input-cash-amount').value = grandTotal;
-            calculateChange();
-        }
-
-        function setCashValue(val) {
-            document.getElementById('input-cash-amount').value = val;
-            calculateChange();
-        }
+        // Cash Calculation functions removed
 
         function getGrandTotal() {
             let subtotal = 0;
@@ -611,76 +512,37 @@
             }
         }
 
-        // Process Checkout & Show Receipt
+        // Process Checkout - Submit Form
         function processOrderCheckout() {
             if (cart.length === 0) {
                 showToast('Pilih setidaknya 1 menu terlebih dahulu!', 'delete');
                 return;
             }
 
-            const grandTotal = getGrandTotal();
-            const cashInput = Number(document.getElementById('input-cash-amount').value) || 0;
+            const customerName = document.getElementById('input-customer-name').value.trim();
+            const tableNumber = document.getElementById('input-table-number').value.trim();
 
-            if (paymentMethod === 'Tunai' && cashInput < grandTotal) {
-                showToast('Jumlah uang tunai yang diterima kurang!', 'delete');
-                return;
-            }
-
-            const customerName = document.getElementById('input-customer-name').value.trim() || 'Umum';
-            const tableNumber = document.getElementById('input-table-number').value.trim() || 'Meja 01';
-            const orderId = '#ORD-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.floor(100 + Math.random() * 900);
-
-            // Populate Receipt Modal
-            document.getElementById('receipt-order-id').innerText = orderId;
-            document.getElementById('receipt-date').innerText = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
-            document.getElementById('receipt-customer').innerText = customerName;
-            document.getElementById('receipt-type').innerText = orderType === 'Dine In' ? `Dine In (${tableNumber})` : 'Take Away (Bungkus)';
+            document.getElementById('hidden-customer-name').value = customerName;
+            document.getElementById('hidden-order-type').value = orderType;
+            document.getElementById('hidden-table-number').value = tableNumber;
             
-            let subtotal = 0;
-            const itemsListEl = document.getElementById('receipt-items-list');
-            itemsListEl.innerHTML = '';
+            // Format cart to match the previous structure expected by backend
+            const itemsToSubmit = cart.map(item => ({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                quantity: item.qty,
+                notes: item.note
+            }));
 
-            cart.forEach(item => {
-                const itemTotal = item.price * item.qty;
-                subtotal += itemTotal;
-                const row = document.createElement('div');
-                row.className = "flex justify-between items-start";
-                row.innerHTML = `
-                    <div class="flex-1">
-                        <span class="font-medium">${item.name}</span>
-                        <div class="text-[10px] text-gray-500">${item.qty} x ${formatRupiah(item.price)} ${item.note ? `(${item.note})` : ''}</div>
-                    </div>
-                    <span class="font-bold">${formatRupiah(itemTotal)}</span>
-                `;
-                itemsListEl.appendChild(row);
-            });
+            document.getElementById('hidden-items').value = JSON.stringify(itemsToSubmit);
+            
+            // Submit the form
+            const btn = document.getElementById('btn-process-order');
+            btn.setAttribute('disabled', 'true');
+            btn.innerHTML = `<span class="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2"></span> Memproses...`;
 
-            const tax = Math.round(subtotal * currentTaxRate);
-            const total = subtotal + tax;
-            const payAmount = (paymentMethod === 'Tunai') ? cashInput : total;
-            const change = (paymentMethod === 'Tunai') ? (cashInput - total) : 0;
-
-            document.getElementById('receipt-subtotal').innerText = formatRupiah(subtotal);
-            document.getElementById('receipt-tax').innerText = formatRupiah(tax);
-            document.getElementById('receipt-total').innerText = formatRupiah(total);
-            document.getElementById('receipt-payment-method').innerText = paymentMethod;
-            document.getElementById('receipt-pay-amount').innerText = formatRupiah(payAmount);
-            document.getElementById('receipt-change').innerText = formatRupiah(change);
-
-            // Open Modal
-            document.getElementById('receipt-modal').classList.remove('hidden');
-            toggleCartDrawer(false);
-        }
-
-        function closeReceiptModal() {
-            document.getElementById('receipt-modal').classList.add('hidden');
-            clearCart();
-            document.getElementById('input-cash-amount').value = '';
-            showToast('Pesanan selesai diproses!', 'success');
-        }
-
-        function printReceipt() {
-            window.print();
+            document.getElementById('checkout-form').submit();
         }
 
         // Helper Format Rupiah
