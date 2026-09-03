@@ -6,6 +6,7 @@ use App\Models\Menu;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class AiChatController extends Controller
 {
@@ -27,19 +28,23 @@ class AiChatController extends Controller
         // Ambil data real-time restoran dari database
         $restaurantContext = $this->buildRestaurantContext();
 
-        $systemPrompt = "Anda adalah SIPEMMA AI, asisten virtual cerdas untuk sistem manajemen restoran SIPEMMA.
-Tugas Anda adalah membantu pemilik dan staf restoran menganalisis performa penjualan, memberikan wawasan bisnis, menjawab pertanyaan menu, dan memantau stok berdasarkan data real-time restoran di bawah ini.
+        $systemPrompt = "Anda adalah SIPEMMA AI, asisten virtual cerdas untuk manajemen restoran SIPEMMA.
+Tugas Anda adalah membantu pemilik dan staf restoran menganalisis penjualan, performa menu, dan memantau stok berdasarkan data real-time restoran di bawah ini.
 
 === DATA REAL-TIME RESTORAN SIPEMMA ===
 {$restaurantContext}
 ======================================
 
-PANDUAN MENJAWAB:
-1. Gunakan data angka dan fakta riil di atas dalam setiap analisis penjualan, pendapatan, menu, atau pesanan.
-2. Jika pengguna menanyakan data hari ini dan transaksi hari ini masih 0, sampaikan secara ramah bahwa hari ini belum ada transaksi masuk, lalu tawarkan analisis berdasarkan transaksi keseluruhan atau data terbaru yang tersedia.
-3. Berikan saran promosi, strategi menu, atau langkah praktis yang relevan untuk memajukan bisnis restoran.
-4. Jawab secara ringkas, ramah, profesional, dan dalam bahasa Indonesia.
-5. Gunakan format markdown ringan seperti **bold** atau daftar poin (-) agar nyaman dibaca di tampilan chat.";
+ATURAN STRUKTUR & FORMAT TAMPILAN (SANGAT PENTING):
+1. Buat jawaban yang SANGAT RAPI, TERSTRUKTUR, dan MUDAH DIBACA:
+   - Gunakan judul bagian dengan heading '### Judul' untuk memisahkan topik.
+   - Gunakan poin daftar '-' yang rapi untuk rincian data (jangan buat teks menggumpal dalam satu paragraf panjang).
+   - Tebalkan (**bold**) angka rupiah (contoh: **Rp 120.000**), jumlah porsi, atau nama menu penting.
+   - Pisahkan setiap bab/kategori dengan baris kosong agar tidak berdempetan.
+   - Jangan membuat tabel teks ascii (|---|) yang terlalu lebar. Lebih baik sajikan data dalam bentuk daftar poin berurutan yang informatif.
+2. Gunakan data angka dan fakta nyata dari ringkasan restoran di atas.
+3. Jika transaksi hari ini masih 0, jelaskan dengan ramah bahwa belum ada transaksi baru hari ini, lalu sajikan analisis berdasarkan data penjualan keseluruhan atau transaksi terakhir.
+4. Jawab secara ringkas, ramah, profesional, dan dalam bahasa Indonesia.";
 
         $url = 'https://openrouter.ai/api/v1/chat/completions';
 
@@ -94,24 +99,17 @@ PANDUAN MENJAWAB:
     }
 
     /**
-     * Parse basic markdown for safe HTML rendering in chatbot UI
+     * Parse markdown menjadi HTML yang rapi menggunakan engine CommonMark bawaan Laravel
      */
-    private function parseSimpleMarkdown($text)
+    private function parseSimpleMarkdown(string $text): string
     {
-        // Escape HTML first to prevent XSS
-        $html = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+        // Gunakan CommonMark bawaan Laravel untuk parsing markdown lengkap (heading, bold, list, blockquote, table)
+        $html = Str::markdown($text, [
+            'html_input' => 'strip',
+            'allow_unsafe_links' => false,
+        ]);
 
-        // Bold: **text** -> <strong>text</strong>
-        $html = preg_replace('/\*\*(.*?)\*\*/', '<strong class="font-bold text-gray-900 dark:text-white">$1</strong>', $html);
-
-        // Italic: *text* -> <em>text</em>
-        $html = preg_replace('/\*([^\*]+)\*/', '<em class="italic">$1</em>', $html);
-
-        // Line breaks: \n -> <br>
-        $html = nl2br($html);
-
-        // Wrap in standard space-y-2 container
-        return '<div class="space-y-2">'.$html.'</div>';
+        return '<div class="ai-markdown-body">'.$html.'</div>';
     }
 
     /**
