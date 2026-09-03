@@ -18,6 +18,14 @@ class AuthController extends Controller
     }
 
     /**
+     * Tampilkan halaman lupa sandi.
+     */
+    public function showForgotPassword()
+    {
+        return view('auth.forgot-password');
+    }
+
+    /**
      * Tampilkan halaman registrasi.
      */
     public function showRegister()
