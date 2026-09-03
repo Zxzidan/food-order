@@ -44,7 +44,7 @@
             <!-- Logo -->
             <div class="flex items-center gap-2">
                 <a href="/" class="flex items-center gap-2">
-                    <img src="{{ asset('assets/img/LOGO.png') }}" alt="SIPEMMA Logo" class="h-8 object-contain">
+                    <img src="{{ asset('assets/img/LOGO.png') }}" alt="SIPEMMA Logo" class="h-12 sm:h-14 w-auto object-contain">
                 </a>
             </div>
 
