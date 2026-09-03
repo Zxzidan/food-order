@@ -29,7 +29,7 @@
             <h3 class="text-base font-bold text-gray-900 dark:text-white">Tidak Ada Riwayat Transaksi Ditemukan</h3>
             <p class="text-xs text-gray-500 dark:text-gray-400 max-w-sm mx-auto">Coba ubah kata kunci pencarian atau bersihkan filter yang sedang aktif</p>
             <button type="button" onclick="resetHistoryFilters()"
-                class="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold transition cursor-pointer">
+                class="inline-flex items-center gap-1.5 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl text-xs font-semibold transition cursor-pointer">
                 Reset Semua Filter
             </button>
         </div>
@@ -57,7 +57,7 @@
             document.querySelectorAll('.history-status-tab').forEach(btn => {
                 btn.className = 'history-status-tab px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition cursor-pointer';
             });
-            button.className = 'history-status-tab px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-2xs transition cursor-pointer';
+            button.className = 'history-status-tab px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-800 text-orange-600 dark:text-orange-400 shadow-2xs transition cursor-pointer';
 
             applyHistoryFilters();
         }
@@ -130,12 +130,12 @@
             if (mode === 'table') {
                 tableContainer.classList.remove('hidden');
                 cardsContainer.classList.add('hidden');
-                btnTable.className = 'p-1.5 rounded-lg bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-2xs transition cursor-pointer';
+                btnTable.className = 'p-1.5 rounded-lg bg-white dark:bg-gray-800 text-orange-600 dark:text-orange-400 shadow-2xs transition cursor-pointer';
                 btnCards.className = 'p-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition cursor-pointer';
             } else {
                 cardsContainer.classList.remove('hidden');
                 tableContainer.classList.add('hidden');
-                btnCards.className = 'p-1.5 rounded-lg bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-2xs transition cursor-pointer';
+                btnCards.className = 'p-1.5 rounded-lg bg-white dark:bg-gray-800 text-orange-600 dark:text-orange-400 shadow-2xs transition cursor-pointer';
                 btnTable.className = 'p-1.5 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition cursor-pointer';
             }
         }

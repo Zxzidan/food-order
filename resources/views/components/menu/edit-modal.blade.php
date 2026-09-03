@@ -4,7 +4,7 @@
         <!-- Modal Header -->
         <div class="flex items-center justify-between px-4 py-3.5 sm:px-6 sm:py-4 border-b border-gray-100 dark:border-gray-700 shrink-0">
             <div class="flex items-center gap-2.5">
-                <div class="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400 shrink-0">
+                <div class="p-2 bg-orange-50 dark:bg-orange-950/30 rounded-lg text-orange-600 dark:text-orange-400 shrink-0">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
                     </svg>
@@ -31,7 +31,7 @@
                     Nama Produk <span class="text-red-500">*</span>
                 </label>
                 <input type="text" id="edit-nama-produk" required
-                    class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" />
+                    class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" />
             </div>
 
             <!-- Kategori & Sisa Produk (Stok) -->
@@ -41,7 +41,7 @@
                         Kategori Produk <span class="text-red-500">*</span>
                     </label>
                     <select id="edit-kategori-produk" required
-                        class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition cursor-pointer">
+                        class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition cursor-pointer">
                         <option value="Makanan">Makanan</option>
                         <option value="Minuman">Minuman</option>
                         <option value="Snack">Snack</option>
@@ -56,7 +56,7 @@
                     </label>
                     <div class="relative">
                         <input type="number" id="edit-stok-produk" min="0" required
-                            class="w-full pl-3.5 pr-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" />
+                            class="w-full pl-3.5 pr-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" />
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                         Rp
                     </span>
                     <input type="number" id="edit-harga-produk" min="0" required
-                        class="w-full pl-11 pr-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" />
+                        class="w-full pl-11 pr-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" />
                 </div>
             </div>
 
@@ -92,8 +92,8 @@
                         <div>
                             <input type="file" id="edit-file-gambar" accept="image/*" class="sr-only" />
                             <label for="edit-file-gambar"
-                                class="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-500 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50/50 dark:hover:bg-blue-950/20 transition shadow-2xs cursor-pointer group">
-                                <svg class="w-4 h-4 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                class="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:border-orange-500 dark:hover:border-orange-500 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-200 hover:text-orange-600 dark:hover:text-orange-400 hover:bg-orange-50/50 dark:hover:bg-orange-950/20 transition shadow-2xs cursor-pointer group">
+                                <svg class="w-4 h-4 text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                                 </svg>
@@ -118,7 +118,7 @@
                                 </svg>
                             </span>
                             <input type="url" id="edit-url-gambar"
-                                class="w-full pl-8 pr-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-xs rounded-lg focus:ring-1 focus:ring-blue-500 placeholder:text-gray-400 transition"
+                                class="w-full pl-8 pr-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-xs rounded-lg focus:ring-1 focus:ring-orange-500 placeholder:text-gray-400 transition"
                                 placeholder="Ubah URL gambar..." />
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                     Deskripsi Produk
                 </label>
                 <textarea id="edit-deskripsi-produk" rows="3" required
-                    class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                    class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition"
                     placeholder="Deskripsikan menu, bahan makanan, cita rasa..."></textarea>
             </div>
 
@@ -151,7 +151,7 @@
                         Batal
                     </button>
                     <button type="submit"
-                        class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 rounded-xl shadow-md transition cursor-pointer">
+                        class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 rounded-xl shadow-md transition cursor-pointer">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                         </svg>

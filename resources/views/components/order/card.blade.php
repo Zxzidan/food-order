@@ -12,7 +12,7 @@
     $isOutOfStock = $stock <= 0;
     $categoryBadgeClass = $category === 'Minuman'
         ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300'
-        : 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300';
+        : 'bg-orange-100 text-orange-800 dark:bg-orange-950/40 dark:text-orange-300';
     $unit = ($category === 'Minuman') ? 'gelas' : 'porsi';
 @endphp
 

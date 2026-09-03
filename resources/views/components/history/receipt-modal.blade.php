@@ -36,7 +36,7 @@
                 </div>
                 <div class="flex justify-between">
                     <span class="text-gray-500 dark:text-gray-400">Tipe:</span>
-                    <span id="h-receipt-type" class="font-semibold text-blue-600 dark:text-blue-400">--</span>
+                    <span id="h-receipt-type" class="font-semibold text-orange-600 dark:text-orange-400">--</span>
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
                 Cetak Struk
             </button>
             <button type="button" onclick="closeHistoryReceiptModal()"
-                class="flex-1 inline-flex items-center justify-center px-4 py-2.5 text-xs sm:text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-sm transition cursor-pointer">
+                class="flex-1 inline-flex items-center justify-center px-4 py-2.5 text-xs sm:text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600 rounded-xl shadow-sm transition cursor-pointer">
                 Tutup
             </button>
         </div>

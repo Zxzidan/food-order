@@ -15,7 +15,7 @@
             <div class="relative min-w-[200px]">
                 <input type="search" id="report-search-table" onkeyup="filterReportTable()"
                     placeholder=""
-                    class="w-full pl-9 pr-3 py-2 bg-gray-50 dark:bg-gray-700/80 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs rounded-xl focus:ring-2 focus:ring-blue-500" />
+                    class="w-full pl-9 pr-3 py-2 bg-gray-50 dark:bg-gray-700/80 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs rounded-xl focus:ring-2 focus:ring-orange-500" />
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
@@ -26,7 +26,7 @@
             <!-- Payment Method Filter -->
             <div class="relative">
                 <select id="report-filter-payment" onchange="filterReportTable()"
-                    class="appearance-none pl-3 pr-8 py-2 bg-gray-50 dark:bg-gray-700/80 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs rounded-xl focus:ring-2 focus:ring-blue-500 cursor-pointer">
+                    class="appearance-none pl-3 pr-8 py-2 bg-gray-50 dark:bg-gray-700/80 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs rounded-xl focus:ring-2 focus:ring-orange-500 cursor-pointer">
                     <option value="">Semua Metode</option>
                     <option value="QRIS">QRIS</option>
                     <option value="Tunai">Tunai</option>
@@ -43,7 +43,7 @@
             <!-- Order Type Filter -->
             <div class="relative">
                 <select id="report-filter-type" onchange="filterReportTable()"
-                    class="appearance-none pl-3 pr-8 py-2 bg-gray-50 dark:bg-gray-700/80 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs rounded-xl focus:ring-2 focus:ring-blue-500 cursor-pointer">
+                    class="appearance-none pl-3 pr-8 py-2 bg-gray-50 dark:bg-gray-700/80 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs rounded-xl focus:ring-2 focus:ring-orange-500 cursor-pointer">
                     <option value="">Semua Tipe</option>
                     <option value="Dine In">Dine In</option>
                     <option value="Take Away">Take Away</option>
@@ -91,7 +91,7 @@
                 @endphp
                 <tr class="hover:bg-gray-50/80 dark:hover:bg-gray-700/40 transition" data-order="{{ $order->order_number }}">
                     <td class="px-5 py-4 whitespace-nowrap text-center">
-                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800 tracking-wide shadow-2xs" title="No. Order Lengkap: {{ $order->order_number }}">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-orange-50 dark:bg-orange-950/30 text-orange-700 dark:text-orange-300 border border-orange-100 dark:border-orange-800 tracking-wide shadow-2xs" title="No. Order Lengkap: {{ $order->order_number }}">
                             {{ $order->short_order_number }}
                         </span>
                     </td>
@@ -106,7 +106,7 @@
                     <td class="px-5 py-4 whitespace-nowrap font-semibold text-gray-800 dark:text-gray-200 text-center">{{ $order->customer_name }}</td>
                     <td class="px-5 py-4 whitespace-nowrap text-center">
                         @if($order->order_type === 'Dine In')
-                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-orange-50 dark:bg-orange-950/30 text-orange-600 dark:text-orange-400">
                             Dine In
                         </span>
                         @else
@@ -126,7 +126,7 @@
                     </td>
                     <td class="px-5 py-4 whitespace-nowrap font-medium text-gray-700 dark:text-gray-300 text-center">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gray-50 dark:bg-gray-700/60 border border-gray-200/60 dark:border-gray-600/40 text-xs">
-                            <span class="w-1.5 h-1.5 rounded-full {{ $order->payment_method === 'QRIS' ? 'bg-blue-500' : ($order->payment_method === 'Tunai' ? 'bg-emerald-500' : 'bg-purple-500') }}"></span>
+                            <span class="w-1.5 h-1.5 rounded-full {{ $order->payment_method === 'QRIS' ? 'bg-orange-500' : ($order->payment_method === 'Tunai' ? 'bg-emerald-500' : 'bg-purple-500') }}"></span>
                             {{ $order->payment_method }}
                         </span>
                     </td>
@@ -142,7 +142,7 @@
                     </td>
                     <td class="px-5 py-4 whitespace-nowrap text-center no-print">
                         <button type="button" onclick="showReceiptDetail('{{ $order->order_number }}', '{{ addslashes($order->customer_name) }}', '{{ $order->order_type === 'Dine In' ? 'Dine In (' . ($order->table_number ?? 'Meja -') . ')' : 'Take Away' }}', '{{ $order->payment_method }}', '{{ $order->created_at->translatedFormat('d M Y, H:i') }}', {{ $order->subtotal }}, {{ $order->tax }}, {{ $order->total_amount }}, {{ $itemsJson }})"
-                            class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-semibold px-2.5 py-1.5 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 transition cursor-pointer">
+                            class="inline-flex items-center gap-1 text-xs text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-semibold px-2.5 py-1.5 rounded-lg hover:bg-orange-50 dark:hover:bg-orange-950/30 transition cursor-pointer">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />

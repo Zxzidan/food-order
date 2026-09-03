@@ -36,7 +36,7 @@
 
                 <!-- Ikon -->
                 <div
-                    class="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-2xl text-blue-600 dark:text-blue-400 shrink-0"
+                    class="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-2xl text-orange-600 dark:text-orange-400 shrink-0"
                 >
                     <svg
                         class="w-6 h-6"
@@ -76,7 +76,7 @@
 
                     <!-- Ikon -->
                     <div
-                        class="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-2xl text-blue-600 dark:text-blue-400 shrink-0"
+                        class="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-2xl text-orange-600 dark:text-orange-400 shrink-0"
                     >
                         <svg
                             class="w-6 h-6"
@@ -85,10 +85,11 @@
                             viewBox="0 0 24 24"
                         >
                             <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-                            />
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                            ></path>
                         </svg>
                     </div>
                 </div>
@@ -116,7 +117,7 @@
 
                     <!-- Ikon -->
                     <div
-                        class="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-2xl text-blue-600 dark:text-blue-400 shrink-0"
+                        class="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-2xl text-orange-600 dark:text-orange-400 shrink-0"
                     >
                         <svg
                             class="w-6 h-6"
@@ -148,7 +149,7 @@
                 </h2>
                 <a
                     href="/reports"
-                    class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                    class="text-sm font-medium text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300"
                 >
                     View Report
                 </a>
@@ -159,7 +160,7 @@
             >
                 <div class="w-full flex flex-col items-center group">
                     <div
-                        class="w-full bg-blue-100 dark:bg-blue-900/40 rounded-t-md h-32 relative group-hover:bg-blue-200 dark:group-hover:bg-blue-800/60 transition"
+                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-32 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
                     >
                         <div
                             class="absolute top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
@@ -173,7 +174,7 @@
                 </div>
                 <div class="w-full flex flex-col items-center group">
                     <div
-                        class="w-full bg-blue-500 dark:bg-blue-600 rounded-t-md h-48 relative group-hover:bg-blue-600 dark:group-hover:bg-blue-500 transition"
+                        class="w-full bg-orange-500 dark:bg-orange-600 rounded-t-md h-48 relative group-hover:bg-orange-600 dark:group-hover:bg-orange-500 transition"
                     >
                         <div
                             class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
@@ -188,7 +189,7 @@
                 </div>
                 <div class="w-full flex flex-col items-center group">
                     <div
-                        class="w-full bg-blue-100 dark:bg-blue-900/40 rounded-t-md h-24 relative group-hover:bg-blue-200 dark:group-hover:bg-blue-800/60 transition"
+                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-24 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
                     >
                         <div
                             class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
@@ -202,7 +203,7 @@
                 </div>
                 <div class="w-full flex flex-col items-center group">
                     <div
-                        class="w-full bg-blue-100 dark:bg-blue-900/40 rounded-t-md h-36 relative group-hover:bg-blue-200 dark:group-hover:bg-blue-800/60 transition"
+                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-36 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
                     >
                         <div
                             class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
@@ -216,7 +217,7 @@
                 </div>
                 <div class="w-full flex flex-col items-center group">
                     <div
-                        class="w-full bg-blue-100 dark:bg-blue-900/40 rounded-t-md h-56 relative group-hover:bg-blue-200 dark:group-hover:bg-blue-800/60 transition"
+                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-56 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
                     >
                         <div
                             class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
@@ -230,7 +231,7 @@
                 </div>
                 <div class="w-full flex flex-col items-center group">
                     <div
-                        class="w-full bg-blue-100 dark:bg-blue-900/40 rounded-t-md h-64 relative group-hover:bg-blue-200 dark:group-hover:bg-blue-800/60 transition"
+                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-64 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
                     >
                         <div
                             class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
@@ -244,7 +245,7 @@
                 </div>
                 <div class="w-full flex flex-col items-center group">
                     <div
-                        class="w-full bg-blue-100 dark:bg-blue-900/40 rounded-t-md h-40 relative group-hover:bg-blue-200 dark:group-hover:bg-blue-800/60 transition"
+                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-40 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
                     >
                         <div
                             class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"

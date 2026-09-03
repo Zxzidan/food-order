@@ -35,7 +35,7 @@
                 <tr class="history-item-row hover:bg-gray-50/80 dark:hover:bg-gray-700/40 transition"
                     data-id="{{ $order->order_number }}" data-customer="{{ $order->customer_name }}" data-type="{{ $order->order_type }}" data-payment="{{ $order->payment_method }}" data-status="{{ $order->status }}">
                     <td class="px-5 py-4 whitespace-nowrap text-center">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-xs font-mono font-bold bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800 tracking-wide shadow-2xs" title="No. Order Lengkap: {{ $order->order_number }}">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-lg text-xs font-mono font-bold bg-orange-50 dark:bg-orange-950/30 text-orange-700 dark:text-orange-300 border border-orange-100 dark:border-orange-800 tracking-wide shadow-2xs" title="No. Order Lengkap: {{ $order->order_number }}">
                             {{ $order->short_order_number }}
                         </span>
                         <span class="text-[11px] text-gray-400 flex items-center justify-center gap-1 mt-1 font-normal">
@@ -49,7 +49,7 @@
                     </td>
                     <td class="px-5 py-4 whitespace-nowrap text-center">
                         @if($order->order_type === 'Dine In')
-                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-orange-50 dark:bg-orange-950/30 text-orange-600 dark:text-orange-400">
                             Dine In
                         </span>
                         @else
@@ -73,7 +73,7 @@
                     </td>
                     <td class="px-5 py-4 whitespace-nowrap text-center">
                         <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-xs font-medium">
-                            <span class="w-2 h-2 rounded-full {{ $order->payment_method === 'QRIS' ? 'bg-blue-500' : ($order->payment_method === 'Tunai' ? 'bg-emerald-500' : 'bg-purple-500') }}"></span> {{ $order->payment_method }}
+                            <span class="w-2 h-2 rounded-full {{ $order->payment_method === 'QRIS' ? 'bg-orange-500' : ($order->payment_method === 'Tunai' ? 'bg-emerald-500' : 'bg-purple-500') }}"></span> {{ $order->payment_method }}
                         </span>
                     </td>
                     <td class="px-5 py-4 whitespace-nowrap text-center">
@@ -92,8 +92,8 @@
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Selesai
                         </span>
                         @elseif($order->status === 'Diproses')
-                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
-                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> Diproses
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-orange-50 dark:bg-orange-950/30 text-orange-600 dark:text-orange-400">
+                            <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Diproses
                         </span>
                         @elseif($order->status === 'Menunggu Pembayaran')
                         <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-yellow-50 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400">
@@ -108,7 +108,7 @@
                     <td class="px-5 py-4 whitespace-nowrap text-center">
                         <div class="flex items-center justify-center gap-1.5">
                             <button type="button" title="Lihat Struk" onclick="openHistoryReceiptModal('{{ $order->order_number }}', '{{ addslashes($order->customer_name) }}', '{{ $order->order_type === 'Dine In' ? 'Dine In (' . ($order->table_number ?? 'Meja -') . ')' : 'Take Away' }}', '{{ $order->payment_method }}', '{{ $order->created_at->translatedFormat('d M Y, H:i') }}', {{ $order->subtotal }}, {{ $order->tax }}, {{ $order->total_amount }}, {{ $itemsJson }})"
-                                class="p-1.5 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition cursor-pointer">
+                                class="p-1.5 text-orange-600 dark:text-orange-400 hover:bg-orange-50 dark:hover:bg-orange-950/30 rounded-lg transition cursor-pointer">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />

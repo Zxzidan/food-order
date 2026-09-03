@@ -18,7 +18,7 @@
             <h3 id="stat-total-orders" class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{{ $totalOrders }} Pesanan</h3>
             <p class="text-[11px] text-gray-400 mt-1">Semua jenis pesanan</p>
         </div>
-        <div class="p-3 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-2xl shrink-0">
+        <div class="p-3 bg-orange-50 dark:bg-orange-950/30 text-orange-600 dark:text-orange-400 rounded-2xl shrink-0">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
             </svg>
@@ -58,7 +58,7 @@
         <div>
             <p class="text-xs font-medium text-gray-500 dark:text-gray-400">Total Pemasukan</p>
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mt-1">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h3>
-            <p class="text-[11px] text-blue-600 dark:text-blue-400 mt-1">Rata-rata: Rp {{ number_format($averageOrder, 0, ',', '.') }} / nota</p>
+            <p class="text-[11px] text-orange-600 dark:text-orange-400 mt-1">Rata-rata: Rp {{ number_format($averageOrder, 0, ',', '.') }} / nota</p>
         </div>
         <div class="p-3 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-2xl shrink-0">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

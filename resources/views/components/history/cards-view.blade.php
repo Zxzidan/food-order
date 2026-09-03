@@ -15,7 +15,7 @@
     <div class="bg-white dark:bg-gray-800 p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-2xs space-y-4 hover:shadow-md transition">
         <div class="flex items-start justify-between">
             <div>
-                <span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-mono font-bold bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800 tracking-wide" title="No. Order Lengkap: {{ $order->order_number }}">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-mono font-bold bg-orange-50 dark:bg-orange-950/30 text-orange-700 dark:text-orange-300 border border-orange-100 dark:border-orange-800 tracking-wide" title="No. Order Lengkap: {{ $order->order_number }}">
                     {{ $order->short_order_number }}
                 </span>
                 <span class="text-xs text-gray-400 block mt-1">{{ $order->created_at->translatedFormat('d M Y, H:i') }}</span>
@@ -25,7 +25,7 @@
                 Selesai
             </span>
             @elseif($order->status === 'Diproses')
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-orange-50 dark:bg-orange-950/30 text-orange-600 dark:text-orange-400">
                 Diproses
             </span>
             @else
@@ -41,7 +41,7 @@
             </div>
             <div class="flex justify-between">
                 <span class="text-gray-500">Tipe:</span>
-                <span class="font-medium {{ $order->order_type === 'Dine In' ? 'text-blue-600 dark:text-blue-400' : 'text-purple-600 dark:text-purple-400' }}">
+                <span class="font-medium {{ $order->order_type === 'Dine In' ? 'text-orange-600 dark:text-orange-400' : 'text-purple-600 dark:text-purple-400' }}">
                     {{ $order->order_type === 'Dine In' ? 'Dine In (' . ($order->table_number ?? 'Meja -') . ')' : 'Take Away' }}
                 </span>
             </div>
@@ -62,7 +62,7 @@
                 <span class="text-base font-bold text-gray-900 dark:text-white">{{ $order->formatted_total }}</span>
             </div>
             <button type="button" onclick="openHistoryReceiptModal('{{ $order->order_number }}', '{{ addslashes($order->customer_name) }}', '{{ $order->order_type === 'Dine In' ? 'Dine In (' . ($order->table_number ?? 'Meja -') . ')' : 'Take Away' }}', '{{ $order->payment_method }}', '{{ $order->created_at->translatedFormat('d M Y, H:i') }}', {{ $order->subtotal }}, {{ $order->tax }}, {{ $order->total_amount }}, {{ $itemsJson }})"
-                class="px-3 py-1.5 text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 rounded-xl hover:bg-blue-100 transition cursor-pointer">
+                class="px-3 py-1.5 text-xs font-semibold text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-950/30 rounded-xl hover:bg-orange-100 transition cursor-pointer">
                 Lihat Struk
             </button>
         </div>

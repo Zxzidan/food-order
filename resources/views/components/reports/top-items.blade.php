@@ -16,13 +16,13 @@
             @php
                 $maxSold = count($topSelling) > 0 ? max($topSelling->pluck('sold')->toArray()) : 1;
                 if ($maxSold <= 0) $maxSold = 1;
-                $colors = ['bg-amber-500', 'bg-gray-400', 'bg-amber-700', 'bg-blue-500', 'bg-emerald-500'];
+                $colors = ['bg-amber-500', 'bg-gray-400', 'bg-amber-700', 'bg-orange-500', 'bg-emerald-500'];
             @endphp
             
             @forelse($topSelling as $index => $item)
             @php
                 $percentage = min(100, round(($item->sold / $maxSold) * 100));
-                $badgeColor = $colors[$index] ?? 'bg-blue-600';
+                $badgeColor = $colors[$index] ?? 'bg-orange-600';
                 $totalEstimated = $item->sold * $item->price;
             @endphp
             <div class="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition">
@@ -31,7 +31,7 @@
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center justify-between gap-2">
                         <h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">{{ $item->name }}</h4>
-                        <span class="text-sm font-bold text-blue-600 dark:text-blue-400">Rp {{ number_format($totalEstimated, 0, ',', '.') }}</span>
+                        <span class="text-sm font-bold text-orange-600 dark:text-orange-400">Rp {{ number_format($totalEstimated, 0, ',', '.') }}</span>
                     </div>
                     <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
                         <span>{{ $item->sold }} Porsi Terjual</span>
@@ -39,7 +39,7 @@
                     </div>
                     <!-- Progress Bar -->
                     <div class="w-full bg-gray-100 dark:bg-gray-700 h-1.5 rounded-full mt-1.5 overflow-hidden">
-                        <div class="bg-blue-600 h-1.5 rounded-full" style="width: {{ $percentage }}%"></div>
+                        <div class="bg-orange-500 h-1.5 rounded-full" style="width: {{ $percentage }}%"></div>
                     </div>
                 </div>
             </div>
@@ -72,11 +72,11 @@
             </div>
             <div class="flex items-center justify-between text-xs">
                 <span class="text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span> Jam Ramai Malam:
+                    <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span> Jam Ramai Malam:
                 </span>
                 <span class="font-bold text-gray-900 dark:text-white">18:30 - 20:30 (Makan Malam)</span>
             </div>
-            <div class="p-2.5 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-xl text-xs flex items-center gap-2">
+            <div class="p-2.5 bg-orange-50 dark:bg-orange-950/20 text-orange-700 dark:text-orange-300 rounded-xl text-xs flex items-center gap-2">
                 <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>

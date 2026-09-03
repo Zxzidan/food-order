@@ -53,7 +53,7 @@
     padding-left: 0.15rem;
 }
 .ai-markdown-body li::marker {
-    color: #3b82f6;
+    color: #f97316;
 }
 .ai-markdown-body strong {
     font-weight: 600;
@@ -63,16 +63,16 @@
     color: #f3f4f6;
 }
 .ai-markdown-body blockquote {
-    border-left: 3px solid #3b82f6;
+    border-left: 3px solid #f97316;
     padding: 0.4rem 0.65rem;
     margin: 0.5rem 0;
-    background-color: rgba(59, 130, 246, 0.06);
+    background-color: rgba(249, 115, 22, 0.06);
     border-radius: 0 0.5rem 0.5rem 0;
     color: #4b5563;
     font-style: normal;
 }
 .dark .ai-markdown-body blockquote {
-    background-color: rgba(59, 130, 246, 0.12);
+    background-color: rgba(249, 115, 22, 0.12);
     color: #9ca3af;
 }
 .ai-markdown-body table {
@@ -122,11 +122,11 @@
     border-radius: 0.25rem;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.72rem;
-    color: #2563eb;
+    color: #ea580c;
 }
 .dark .ai-markdown-body code {
     background: #1e293b;
-    color: #60a5fa;
+    color: #fb923c;
 }
 .ai-markdown-body hr {
     border: 0;
@@ -148,7 +148,7 @@
 
     <!-- Main Floating Button -->
     <button type="button" id="ai-chat-open-btn" onclick="toggleAIChat()"
-        class="relative flex items-center justify-center w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer">
+        class="relative flex items-center justify-center w-14 h-14 rounded-full bg-orange-500 hover:bg-orange-600 text-white shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer">
         <!-- Clean Sparkle / Chat Icon -->
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
@@ -162,7 +162,7 @@
     <!-- Top Header Bar -->
     <div class="px-5 py-4 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between shadow-sm">
         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-gray-700 flex items-center justify-center text-blue-600 dark:text-blue-400">
+            <div class="w-10 h-10 rounded-2xl bg-orange-50 dark:bg-orange-950/40 flex items-center justify-center text-orange-600 dark:text-orange-400">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -185,7 +185,7 @@
             <!-- Close Chat Window -->
             <button type="button" onclick="toggleAIChat()" title="Tutup Chat"
                 class="p-1.5 hover:text-gray-900 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 rounded-xl transition cursor-pointer">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
@@ -197,7 +197,7 @@
         
         <!-- Welcome Initial Message from AI -->
         <div class="flex items-start gap-2.5">
-            <div class="w-8 h-8 rounded-full bg-blue-50 dark:bg-gray-800 border border-blue-100 dark:border-gray-700 flex items-center justify-center shrink-0 text-blue-600 dark:text-blue-400 mt-0.5 shadow-sm">
+            <div class="w-8 h-8 rounded-full bg-orange-50 dark:bg-gray-800 border border-orange-100 dark:border-gray-700 flex items-center justify-center shrink-0 text-orange-600 dark:text-orange-400 mt-0.5 shadow-sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -237,10 +237,10 @@
             <input type="text" id="ai-chat-input"
                 placeholder="Ketik pesan Anda..."
                 autocomplete="off"
-                class="flex-1 px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs sm:text-sm rounded-full focus:ring-2 focus:ring-blue-500 placeholder:text-gray-400 transition" />
+                class="flex-1 px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs sm:text-sm rounded-full focus:ring-2 focus:ring-orange-500 placeholder:text-gray-400 transition" />
             
             <button type="submit" id="ai-send-btn"
-                class="inline-flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-sm transition cursor-pointer shrink-0">
+                class="inline-flex items-center justify-center w-10 h-10 bg-orange-500 hover:bg-orange-600 text-white rounded-full shadow-sm transition cursor-pointer shrink-0">
                 <svg class="w-4 h-4 transform rotate-90" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
                 </svg>
@@ -290,7 +290,7 @@
         if (container) {
             container.innerHTML = `
                 <div class="flex items-start gap-2.5">
-                    <div class="w-8 h-8 rounded-full bg-blue-50 dark:bg-gray-800 border border-blue-100 dark:border-gray-700 flex items-center justify-center shrink-0 text-blue-600 dark:text-blue-400 mt-0.5 shadow-sm">
+                    <div class="w-8 h-8 rounded-full bg-orange-50 dark:bg-gray-800 border border-orange-100 dark:border-gray-700 flex items-center justify-center shrink-0 text-orange-600 dark:text-orange-400 mt-0.5 shadow-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                     </div>
                     <div class="flex-1 space-y-2">
@@ -308,7 +308,7 @@
         const msgEl = document.createElement('div');
         msgEl.className = 'flex items-start justify-end gap-2.5';
         msgEl.innerHTML = `
-            <div class="max-w-[85%] bg-blue-600 text-white p-3.5 rounded-2xl rounded-tr-none shadow-sm text-xs leading-relaxed">
+            <div class="max-w-[85%] bg-orange-500 text-white p-3.5 rounded-2xl rounded-tr-none shadow-sm text-xs leading-relaxed">
                 ${escapeHtml(text)}
             </div>
         `;
@@ -322,7 +322,7 @@
         loadingEl.id = 'ai-typing-indicator';
         loadingEl.className = 'flex items-start gap-2.5';
         loadingEl.innerHTML = `
-            <div class="w-8 h-8 rounded-full bg-blue-50 dark:bg-gray-800 border border-blue-100 dark:border-gray-700 flex items-center justify-center shrink-0 text-blue-600 dark:text-blue-400 mt-0.5 shadow-sm">
+            <div class="w-8 h-8 rounded-full bg-orange-50 dark:bg-gray-800 border border-orange-100 dark:border-gray-700 flex items-center justify-center shrink-0 text-orange-600 dark:text-orange-400 mt-0.5 shadow-sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
             </div>
             <div class="bg-white dark:bg-gray-800 p-3.5 rounded-2xl rounded-tl-none border border-gray-100 dark:border-gray-700 shadow-sm flex items-center gap-1.5 h-[42px] px-4">
@@ -345,7 +345,7 @@
         const msgEl = document.createElement('div');
         msgEl.className = 'flex items-start gap-2.5';
         msgEl.innerHTML = `
-            <div class="w-8 h-8 rounded-full bg-blue-50 dark:bg-gray-800 border border-blue-100 dark:border-gray-700 flex items-center justify-center shrink-0 text-blue-600 dark:text-blue-400 mt-0.5 shadow-sm">
+            <div class="w-8 h-8 rounded-full bg-orange-50 dark:bg-gray-800 border border-orange-100 dark:border-gray-700 flex items-center justify-center shrink-0 text-orange-600 dark:text-orange-400 mt-0.5 shadow-sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
             </div>
             <div class="flex-1 max-w-[90%] bg-white dark:bg-gray-800 p-4 rounded-2xl rounded-tl-none border border-gray-100 dark:border-gray-700 shadow-sm text-gray-800 dark:text-gray-200 text-xs leading-relaxed overflow-x-auto">
@@ -355,6 +355,7 @@
         container.appendChild(msgEl);
         container.scrollTop = container.scrollHeight;
     }
+
 
     function escapeHtml(text) {
         return text

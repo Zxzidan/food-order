@@ -40,14 +40,14 @@
                 <p class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Total Transaksi</p>
                 <h3 id="stat-transactions" class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5">{{ number_format($totalTransactions) }}</h3>
             </div>
-            <div class="p-3 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-2xl shrink-0">
+            <div class="p-3 bg-orange-50 dark:bg-orange-950/30 text-orange-600 dark:text-orange-400 rounded-2xl shrink-0">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                 </svg>
             </div>
         </div>
         <div class="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700/60 flex items-center justify-between text-xs">
-            <span class="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold gap-1">
+            <span class="inline-flex items-center text-orange-600 dark:text-orange-400 font-semibold gap-1">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
                 </svg>

@@ -102,7 +102,7 @@
                     zoom: { enabled: false },
                     fontFamily: 'InterVariable, sans-serif'
                 },
-                colors: ['#2563eb', '#10b981'],
+                colors: ['#ea580c', '#10b981'],
                 dataLabels: { enabled: false },
                 stroke: {
                     curve: 'smooth',
@@ -175,7 +175,7 @@
                     fontFamily: 'InterVariable, sans-serif'
                 },
                 labels: ['QRIS', 'Tunai', 'Transfer / Debit'],
-                colors: ['#2563eb', '#10b981', '#f59e0b'],
+                colors: ['#ea580c', '#10b981', '#f59e0b'],
                 legend: {
                     position: 'bottom',
                     labels: { colors: textColor },
@@ -240,7 +240,7 @@
                     toolbar: { show: false },
                     fontFamily: 'InterVariable, sans-serif'
                 },
-                colors: ['#3b82f6'],
+                colors: ['#ea580c'],
                 plotOptions: {
                     bar: {
                         borderRadius: 6,
@@ -296,7 +296,7 @@
             document.querySelectorAll('.period-filter-btn').forEach(btn => {
                 btn.className = 'period-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition cursor-pointer';
             });
-            button.className = 'period-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 shadow-2xs transition cursor-pointer';
+            button.className = 'period-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-800 text-orange-600 dark:text-orange-400 shadow-2xs transition cursor-pointer';
 
             // Simulate updating stats based on filter
             if (type === 'today') {

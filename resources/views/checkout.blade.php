@@ -157,7 +157,7 @@
 
                     <!-- Midtrans Payment Form -->
                     <div id="form-midtrans" class="hidden text-center py-6">
-                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-500 mb-4">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-orange-50 dark:bg-orange-950/20 text-orange-500 mb-4">
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
                         </div>
                         <h4 class="font-bold text-gray-900 dark:text-white mb-2">Pembayaran via Midtrans</h4>
@@ -166,7 +166,7 @@
                         </p>
                         
                         <button type="button" id="btn-pay-now-midtrans"
-                            class="w-full flex justify-center items-center gap-2 py-3.5 px-4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg transition">
+                            class="w-full flex justify-center items-center gap-2 py-3.5 px-4 bg-orange-500 hover:bg-orange-600 text-white text-sm font-bold rounded-xl shadow-md hover:shadow-lg transition">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                             Bayar Sekarang
                         </button>
@@ -200,7 +200,7 @@
                 calculateChange();
             } else {
                 // Style Active
-                btnMidtrans.className = "flex flex-col items-center justify-center py-4 px-2 rounded-xl border-2 border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 font-bold transition cursor-pointer";
+                btnMidtrans.className = "flex flex-col items-center justify-center py-4 px-2 rounded-xl border-2 border-orange-500 bg-orange-50 dark:bg-orange-950/20 text-orange-700 dark:text-orange-400 font-bold transition cursor-pointer";
                 btnCash.className = "flex flex-col items-center justify-center py-4 px-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 font-bold transition cursor-pointer";
                 
                 formCash.classList.add('hidden');

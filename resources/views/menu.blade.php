@@ -323,7 +323,7 @@
             if (category === 'Minuman') {
                 categoryBadge.className = "category-badge bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0";
             } else {
-                categoryBadge.className = "category-badge bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0";
+                categoryBadge.className = "category-badge bg-orange-100 text-orange-800 dark:bg-orange-950/40 dark:text-orange-300 text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0";
             }
 
             closeEditModal();
@@ -387,7 +387,7 @@
             const imageSrc = currentAddImageSrc || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
             const categoryBadgeClass = kategori === 'Minuman' 
                 ? 'category-badge bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300' 
-                : 'category-badge bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300';
+                : 'category-badge bg-orange-100 text-orange-800 dark:bg-orange-950/40 dark:text-orange-300';
             
             const unit = (kategori === 'Minuman') ? 'gelas' : 'porsi';
             const newId = 'menu-' + Date.now();
@@ -433,7 +433,7 @@
                     <div class="flex items-center justify-between mt-auto pt-1">
                         <span class="menu-item-price text-base sm:text-lg font-bold text-gray-900 dark:text-white">${formatRupiah(harga)}</span>
                         <button type="button" onclick="openEditModal(this)"
-                            class="inline-flex items-center gap-1 text-blue-600 hover:text-white bg-blue-50 hover:bg-blue-600 dark:bg-blue-900/30 dark:hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs px-3.5 py-1.5 text-center transition cursor-pointer">
+                            class="inline-flex items-center gap-1 text-orange-600 hover:text-white bg-orange-50 hover:bg-orange-600 dark:bg-orange-950/30 dark:hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-xs px-3.5 py-1.5 text-center transition cursor-pointer">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
                             </svg>
