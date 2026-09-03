@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers;
@@ -26,6 +27,9 @@ class AiChatController extends Controller
 
         $payload = [
             'model' => $model,
+            'provider' => [
+                'ignore' => ['Nvidia'],
+            ],
             'messages' => [
                 [
                     'role' => 'system',
@@ -40,7 +44,7 @@ class AiChatController extends Controller
 
         try {
             $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . $apiKey,
+                'Authorization' => 'Bearer '.$apiKey,
             ])->post($url, $payload);
 
             if ($response->successful()) {
