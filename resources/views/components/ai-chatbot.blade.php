@@ -2,6 +2,143 @@
 <!-- SIPEMMA AI Restaurant Assistant Chatbot Component -->
 <!-- ========================================================= -->
 
+<style>
+/* AI Chatbot Markdown Formatting */
+.ai-markdown-body {
+    font-size: 0.785rem;
+    line-height: 1.65;
+    color: inherit;
+    word-break: break-word;
+}
+.ai-markdown-body p {
+    margin-bottom: 0.65rem;
+}
+.ai-markdown-body p:last-child {
+    margin-bottom: 0;
+}
+.ai-markdown-body h1,
+.ai-markdown-body h2,
+.ai-markdown-body h3,
+.ai-markdown-body h4 {
+    font-weight: 700;
+    margin-top: 0.85rem;
+    margin-bottom: 0.4rem;
+    color: #111827;
+}
+.dark .ai-markdown-body h1,
+.dark .ai-markdown-body h2,
+.dark .ai-markdown-body h3,
+.dark .ai-markdown-body h4 {
+    color: #f9fafb;
+}
+.ai-markdown-body h1 { font-size: 0.95rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.25rem; }
+.ai-markdown-body h2 { font-size: 0.875rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.2rem; }
+.ai-markdown-body h3 { font-size: 0.825rem; }
+.ai-markdown-body h4 { font-size: 0.785rem; }
+
+.ai-markdown-body ul {
+    list-style-type: disc !important;
+    padding-left: 1.25rem !important;
+    margin-top: 0.35rem;
+    margin-bottom: 0.65rem;
+}
+.ai-markdown-body ol {
+    list-style-type: decimal !important;
+    padding-left: 1.25rem !important;
+    margin-top: 0.35rem;
+    margin-bottom: 0.65rem;
+}
+.ai-markdown-body li {
+    margin-bottom: 0.3rem;
+    padding-left: 0.15rem;
+}
+.ai-markdown-body li::marker {
+    color: #3b82f6;
+}
+.ai-markdown-body strong {
+    font-weight: 600;
+    color: #111827;
+}
+.dark .ai-markdown-body strong {
+    color: #f3f4f6;
+}
+.ai-markdown-body blockquote {
+    border-left: 3px solid #3b82f6;
+    padding: 0.4rem 0.65rem;
+    margin: 0.5rem 0;
+    background-color: rgba(59, 130, 246, 0.06);
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: #4b5563;
+    font-style: normal;
+}
+.dark .ai-markdown-body blockquote {
+    background-color: rgba(59, 130, 246, 0.12);
+    color: #9ca3af;
+}
+.ai-markdown-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.65rem 0;
+    font-size: 0.72rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+.dark .ai-markdown-body table {
+    border-color: #374151;
+}
+.ai-markdown-body th {
+    background-color: #f3f4f6;
+    color: #374151;
+    font-weight: 600;
+    padding: 0.45rem 0.55rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+.dark .ai-markdown-body th {
+    background-color: #1f2937;
+    color: #e5e7eb;
+    border-color: #374151;
+}
+.ai-markdown-body td {
+    padding: 0.4rem 0.55rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+.dark .ai-markdown-body td {
+    border-color: #374151;
+}
+.ai-markdown-body tr:last-child td {
+    border-bottom: none;
+}
+.ai-markdown-body tr:nth-child(even) {
+    background-color: rgba(249, 250, 251, 0.5);
+}
+.dark .ai-markdown-body tr:nth-child(even) {
+    background-color: rgba(31, 41, 55, 0.4);
+}
+.ai-markdown-body code {
+    background: #f1f5f9;
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.25rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.72rem;
+    color: #2563eb;
+}
+.dark .ai-markdown-body code {
+    background: #1e293b;
+    color: #60a5fa;
+}
+.ai-markdown-body hr {
+    border: 0;
+    height: 1px;
+    background: #e5e7eb;
+    margin: 0.75rem 0;
+}
+.dark .ai-markdown-body hr {
+    background: #374151;
+}
+</style>
+
 <!-- 1. Floating AI Assistant Trigger Button (Bottom-Right) -->
 <div id="ai-chat-trigger-container" class="fixed bottom-5 right-5 z-45 flex items-center gap-2 group">
     <!-- Tooltip / Callout -->
@@ -211,7 +348,7 @@
             <div class="w-8 h-8 rounded-full bg-blue-50 dark:bg-gray-800 border border-blue-100 dark:border-gray-700 flex items-center justify-center shrink-0 text-blue-600 dark:text-blue-400 mt-0.5 shadow-sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
             </div>
-            <div class="flex-1 max-w-[90%] bg-white dark:bg-gray-800 p-3.5 rounded-2xl rounded-tl-none border border-gray-100 dark:border-gray-700 shadow-sm text-gray-800 dark:text-gray-200 text-xs leading-relaxed space-y-2">
+            <div class="flex-1 max-w-[90%] bg-white dark:bg-gray-800 p-4 rounded-2xl rounded-tl-none border border-gray-100 dark:border-gray-700 shadow-sm text-gray-800 dark:text-gray-200 text-xs leading-relaxed overflow-x-auto">
                 ${htmlContent}
             </div>
         `;
