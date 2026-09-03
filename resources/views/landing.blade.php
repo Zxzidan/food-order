@@ -120,11 +120,32 @@
     <section class="py-10 border-y border-gray-100 bg-white" data-aos="fade-up">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-6">Dipercaya oleh ribuan bisnis kuliner di Indonesia</p>
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                <svg class="h-8 text-gray-800" viewBox="0 0 100 30" fill="currentColor"><path d="M10,15 L20,15 M15,10 L15,20" stroke="currentColor" stroke-width="2"/><text x="30" y="20" font-family="sans-serif" font-weight="bold" font-size="18">Kopi Kenari</text></svg>
-                <svg class="h-8 text-gray-800" viewBox="0 0 100 30" fill="currentColor"><circle cx="15" cy="15" r="8" stroke="currentColor" stroke-width="2" fill="none"/><text x="30" y="20" font-family="sans-serif" font-weight="bold" font-size="18">Warung Kita</text></svg>
-                <svg class="h-8 text-gray-800" viewBox="0 0 100 30" fill="currentColor"><rect x="10" y="8" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"/><text x="35" y="20" font-family="sans-serif" font-weight="bold" font-size="18">Resto Raya</text></svg>
-                <svg class="h-8 text-gray-800 hidden md:block" viewBox="0 0 100 30" fill="currentColor"><polygon points="15,5 25,20 5,20" stroke="currentColor" stroke-width="2" fill="none"/><text x="35" y="20" font-family="sans-serif" font-weight="bold" font-size="18">Bistro 99</text></svg>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="flex items-center gap-2.5 text-gray-800 font-bold text-lg tracking-tight select-none">
+                    <svg class="w-5 h-5 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>Kopi Kenari</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-gray-800 font-bold text-lg tracking-tight select-none">
+                    <svg class="w-5 h-5 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="12" cy="12" r="9"></circle>
+                    </svg>
+                    <span>Warung Kita</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-gray-800 font-bold text-lg tracking-tight select-none">
+                    <svg class="w-5 h-5 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                    </svg>
+                    <span>Resto Raya</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-gray-800 font-bold text-lg tracking-tight select-none">
+                    <svg class="w-5 h-5 text-gray-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 3 22 21 2 21"></polygon>
+                    </svg>
+                    <span>Bistro 99</span>
+                </div>
             </div>
         </div>
     </section>
