@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropUnique(['invoice_number']);
-            $table->dropColumn('invoice_number');
+            $table->string('snap_token')->nullable()->after('payment_method');
         });
     }
 
@@ -23,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('invoice_number')->nullable()->after('order_number');
+            $table->dropColumn('snap_token');
         });
     }
 };

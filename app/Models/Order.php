@@ -31,6 +31,7 @@ class Order extends Model
         'midtrans_payment_type',
         'midtrans_transaction_time',
         'midtrans_settlement_time',
+        'snap_token',
     ];
 
     protected function casts(): array

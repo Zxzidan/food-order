@@ -41,4 +41,9 @@ return [
         'is_production' => env('MIDTRANS_IS_PRODUCTION', false) == true || env('MIDTRANS_IS_PRODUCTION') === 'true',
     ],
 
+    'openrouter' => [
+        'key' => env('OPENROUTER_API_KEY'),
+        'model' => env('OPENROUTER_MODEL', 'openrouter/free'),
+    ],
+
 ];

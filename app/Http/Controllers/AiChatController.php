@@ -13,46 +13,45 @@ class AiChatController extends Controller
             'message' => 'required|string|max:1000',
         ]);
 
-        $apiKey = config('services.gemini.key', env('GEMINI_API_KEY'));
+        $apiKey = config('services.openrouter.key', env('OPENROUTER_API_KEY'));
+        $model = config('services.openrouter.model', env('OPENROUTER_MODEL', 'openrouter/free'));
 
         if (empty($apiKey)) {
             return response()->json([
-                'error' => 'API Key Gemini belum dikonfigurasi. Silakan tambahkan GEMINI_API_KEY di file .env Anda.',
+                'error' => 'API Key OpenRouter belum dikonfigurasi. Silakan tambahkan OPENROUTER_API_KEY di file .env Anda.',
             ], 500);
         }
 
-        // Menggunakan gemini-3.6-flash karena telah teruji (kuota 3.5 sudah habis)
-        $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key='.$apiKey;
+        $url = 'https://openrouter.ai/api/v1/chat/completions';
 
         $payload = [
-            'systemInstruction' => [
-                'parts' => [
-                    [
-                        'text' => 'Anda adalah SIPEMMA AI, asisten virtual cerdas untuk restoran. Tugas Anda adalah membantu pemilik restoran menganalisis penjualan, merekomendasikan promo menu, memprediksi jam sibuk, atau menjawab pertanyaan manajemen restoran lainnya. Jawab secara ringkas, ramah, profesional, dan dalam bahasa Indonesia. Anda dapat menggunakan format markdown ringan seperti **bold** atau list jika dibutuhkan.',
-                    ],
+            'model' => $model,
+            'messages' => [
+                [
+                    'role' => 'system',
+                    'content' => 'Anda adalah SIPEMMA AI, asisten virtual cerdas untuk restoran. Tugas Anda adalah membantu pemilik restoran menganalisis penjualan, merekomendasikan promo menu, memprediksi jam sibuk, atau menjawab pertanyaan manajemen restoran lainnya. Jawab secara ringkas, ramah, profesional, dan dalam bahasa Indonesia. Anda dapat menggunakan format markdown ringan seperti **bold** atau list jika dibutuhkan.',
                 ],
-            ],
-            'contents' => [
                 [
                     'role' => 'user',
-                    'parts' => [
-                        ['text' => $request->message],
-                    ],
+                    'content' => $request->message,
                 ],
             ],
         ];
 
         try {
-            $response = Http::post($url, $payload);
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer '.$apiKey,
+                'HTTP-Referer' => config('app.url', 'http://localhost'),
+                'X-Title' => 'SIPEMMA Food Order',
+            ])->timeout(30)->post($url, $payload);
 
             if ($response->successful()) {
                 $data = $response->json();
 
-                if (isset($data['candidates'][0]['content']['parts'][0]['text'])) {
-                    $aiText = $data['candidates'][0]['content']['parts'][0]['text'];
+                if (isset($data['choices'][0]['message']['content'])) {
+                    $aiText = $data['choices'][0]['message']['content'];
 
-                    // Simple markdown to HTML conversion for basic things since the frontend renders HTML directly
-                    // To handle basic bold and list markdown
+                    // Simple markdown to HTML conversion for safe and styled rendering
                     $aiTextHtml = $this->parseSimpleMarkdown($aiText);
 
                     return response()->json([
@@ -61,14 +60,17 @@ class AiChatController extends Controller
                 }
             }
 
+            $errorData = $response->json();
+            $errorMessage = $errorData['error']['message'] ?? 'Gagal mendapatkan respons yang valid dari server AI OpenRouter.';
+
             return response()->json([
-                'error' => 'Gagal mendapatkan respons yang valid dari server AI.',
+                'error' => $errorMessage,
                 'details' => $response->body(),
             ], 500);
 
         } catch (\Exception $e) {
             return response()->json([
-                'error' => 'Terjadi kesalahan sistem saat menghubungi AI.',
+                'error' => 'Terjadi kesalahan sistem saat menghubungi AI: '.$e->getMessage(),
             ], 500);
         }
     }
