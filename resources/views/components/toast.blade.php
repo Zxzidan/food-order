@@ -11,3 +11,40 @@
     </div>
     <div class="ml-3 text-sm font-semibold" id="toast-message">Aksi berhasil dilakukan!</div>
 </div>
+
+<script>
+    if (typeof window.showToast !== 'function') {
+        window.showToast = function(message, type = 'success') {
+            const toast = document.getElementById('toast-success');
+            if (!toast) return;
+            const toastMsg = document.getElementById('toast-message');
+            const iconSuccess = document.getElementById('toast-icon-success');
+            const iconDelete = document.getElementById('toast-icon-delete');
+            const iconContainer = document.getElementById('toast-icon-container');
+
+            if (toastMsg) toastMsg.innerText = message;
+
+            if (type === 'delete' || type === 'error') {
+                if (iconSuccess) iconSuccess.classList.add('hidden');
+                if (iconDelete) iconDelete.classList.remove('hidden');
+                if (iconContainer) iconContainer.className = "inline-flex items-center justify-center shrink-0 w-9 h-9 text-red-500 bg-red-100 dark:bg-red-900/50 rounded-xl";
+            } else {
+                if (iconDelete) iconDelete.classList.add('hidden');
+                if (iconSuccess) iconSuccess.classList.remove('hidden');
+                if (iconContainer) iconContainer.className = "inline-flex items-center justify-center shrink-0 w-9 h-9 text-emerald-500 bg-emerald-100 dark:bg-emerald-900/50 rounded-xl";
+            }
+
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300);
+            }, 3000);
+        };
+    }
+</script>
