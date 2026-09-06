@@ -278,11 +278,11 @@
                             }
                             
                             alert("Pembayaran berhasil diproses oleh Midtrans!");
-                            window.location.href = '{{ route('history.index') }}';
+                            window.location.href = '{{ route('reports.index') }}';
                         },
                         onPending: function(result){
                             alert("Menunggu pembayaran Anda!");
-                            window.location.href = '{{ route('history.index') }}';
+                            window.location.href = '{{ route('reports.index') }}';
                         },
                         onError: function(result){
                             alert("Pembayaran gagal!");

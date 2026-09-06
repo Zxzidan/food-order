@@ -3,10 +3,10 @@
 use App\Http\Controllers\AiChatController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\MidtransNotificationController;
@@ -43,12 +43,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/order', [OrderController::class, 'index'])->name('order.index');
     Route::post('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
 
+    Route::get('/riwayat-pesanan', [OrderHistoryController::class, 'index'])->name('riwayat.pesanan');
+
     Route::get('/payment/{order_number}', [PaymentController::class, 'show'])->name('payment.show');
     Route::post('/payment/{order_number}/cash', [PaymentController::class, 'processCash'])->name('payment.cash');
     Route::post('/payment/{order_number}/midtrans', [PaymentController::class, 'processMidtrans'])->name('payment.midtrans');
     Route::post('/payment/{order_number}/midtrans/callback', [PaymentController::class, 'callbackMidtrans'])->name('payment.midtrans.callback');
 
-    Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
 
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 

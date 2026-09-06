@@ -158,105 +158,32 @@
             <div
                 class="h-64 flex items-end justify-between space-x-2 pt-4 mt-20"
             >
+                @php
+                    $maxTotal = count($weeklySales) > 0 ? max(array_column($weeklySales, 'total')) : 0;
+                @endphp
+                
+                @foreach($weeklySales as $sale)
+                @php
+                    // Calculate height percentage relative to max, min 10%, max 100%
+                    $heightPercent = $maxTotal > 0 ? max(10, round(($sale['total'] / $maxTotal) * 100)) : 10;
+                    $isToday = $sale['day'] === \Illuminate\Support\Carbon::today()->translatedFormat('D');
+                @endphp
                 <div class="w-full flex flex-col items-center group">
                     <div
-                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-32 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
+                        class="w-full {{ $isToday ? 'bg-orange-500 dark:bg-orange-600 group-hover:bg-orange-600 dark:group-hover:bg-orange-500' : 'bg-orange-100 dark:bg-orange-950/40 group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60' }} rounded-t-md relative transition"
+                        style="height: {{ $heightPercent }}%; min-height: 24px;"
                     >
                         <div
-                            class="absolute top-10 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
+                            class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap z-10"
                         >
-                            Rp1.2M
+                            {{ $sale['raw_formatted'] }}
                         </div>
                     </div>
-                    <span class="text-xs text-gray-500 dark:text-gray-400 mt-2"
-                        >Sen</span
+                    <span class="text-xs {{ $isToday ? 'font-bold text-gray-800 dark:text-gray-200' : 'text-gray-500 dark:text-gray-400' }} mt-2"
+                        >{{ $sale['day'] }}</span
                     >
                 </div>
-                <div class="w-full flex flex-col items-center group">
-                    <div
-                        class="w-full bg-orange-500 dark:bg-orange-600 rounded-t-md h-48 relative group-hover:bg-orange-600 dark:group-hover:bg-orange-500 transition"
-                    >
-                        <div
-                            class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
-                        >
-                            Rp1.8M
-                        </div>
-                    </div>
-                    <span
-                        class="text-xs font-bold text-gray-800 dark:text-gray-200 mt-2"
-                        >Sel</span
-                    >
-                </div>
-                <div class="w-full flex flex-col items-center group">
-                    <div
-                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-24 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
-                    >
-                        <div
-                            class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
-                        >
-                            Rp0.9M
-                        </div>
-                    </div>
-                    <span class="text-xs text-gray-500 dark:text-gray-400 mt-2"
-                        >Rab</span
-                    >
-                </div>
-                <div class="w-full flex flex-col items-center group">
-                    <div
-                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-36 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
-                    >
-                        <div
-                            class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
-                        >
-                            Rp1.4M
-                        </div>
-                    </div>
-                    <span class="text-xs text-gray-500 dark:text-gray-400 mt-2"
-                        >Kam</span
-                    >
-                </div>
-                <div class="w-full flex flex-col items-center group">
-                    <div
-                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-56 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
-                    >
-                        <div
-                            class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
-                        >
-                            Rp2.1M
-                        </div>
-                    </div>
-                    <span class="text-xs text-gray-500 dark:text-gray-400 mt-2"
-                        >Jum</span
-                    >
-                </div>
-                <div class="w-full flex flex-col items-center group">
-                    <div
-                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-64 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
-                    >
-                        <div
-                            class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
-                        >
-                            Rp2.5M
-                        </div>
-                    </div>
-                    <span class="text-xs text-gray-500 dark:text-gray-400 mt-2"
-                        >Sab</span
-                    >
-                </div>
-                <div class="w-full flex flex-col items-center group">
-                    <div
-                        class="w-full bg-orange-100 dark:bg-orange-950/40 rounded-t-md h-40 relative group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60 transition"
-                    >
-                        <div
-                            class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none"
-                        >
-                            Rp1.5M
-                        </div>
-                    </div>
-                    <span class="text-xs text-gray-500 dark:text-gray-400 mt-2"
-                        >Min</span
-                    >
-                </div>
+                @endforeach
             </div>
         </div>
 

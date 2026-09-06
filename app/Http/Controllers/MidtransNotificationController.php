@@ -55,11 +55,11 @@ class MidtransNotificationController extends Controller
         if ($transactionStatus == 'capture') {
             if ($fraudStatus == 'accept') {
                 $paymentStatus = 'paid';
-                $orderStatus = 'Diproses'; // Sesuai aturan: berubah menjadi Diproses setelah sukses
+                $orderStatus = 'Selesai'; // Sesuai permintaan pengguna
             }
         } elseif ($transactionStatus == 'settlement') {
             $paymentStatus = 'paid';
-            $orderStatus = 'Diproses';
+            $orderStatus = 'Selesai';
         } elseif ($transactionStatus == 'cancel' || $transactionStatus == 'deny' || $transactionStatus == 'expire') {
             $paymentStatus = $transactionStatus == 'deny' ? 'failed' : ($transactionStatus == 'expire' ? 'expired' : 'cancelled');
             $orderStatus = 'Dibatalkan'; // Opsional, bisa disesuaikan

@@ -24,6 +24,19 @@ class DashboardController extends Controller
         // Top 4 Best Selling Menus
         $bestSellingMenus = Menu::orderByDesc('sold')->take(4)->get();
 
+        // Calculate sales for the current week (Monday to Sunday)
+        $weeklySales = [];
+        for ($i = 0; $i < 7; $i++) {
+            $date = \Illuminate\Support\Carbon::now()->startOfWeek()->addDays($i);
+            $dailyTotal = Order::where('status', 'Selesai')->whereDate('created_at', $date)->sum('total_amount');
+            $weeklySales[] = [
+                'day' => $date->translatedFormat('D'),
+                'total' => (int) $dailyTotal,
+                'formatted' => 'Rp' . number_format($dailyTotal / 1000000, 1, ',', '') . 'M', // Short format like Rp1.2M
+                'raw_formatted' => 'Rp ' . number_format($dailyTotal, 0, ',', '.')
+            ];
+        }
+
         return view('dashboard', [
             'title' => 'Dashboard',
             'nama' => $nama,
@@ -31,6 +44,7 @@ class DashboardController extends Controller
             'totalOrders' => $totalOrders,
             'menusAvailable' => $menusAvailable,
             'bestSellingMenus' => $bestSellingMenus,
+            'weeklySales' => $weeklySales,
         ]);
     }
 }

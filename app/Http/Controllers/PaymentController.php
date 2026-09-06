@@ -29,7 +29,7 @@ class PaymentController extends Controller
             $order = Order::where('order_number', $order_number)->with('items')->lockForUpdate()->firstOrFail();
 
             if ($order->payment_status === 'paid') {
-                return redirect()->route('history.index')->with('error', 'Pesanan ini sudah dibayar.');
+                return redirect()->route('riwayat.pesanan')->with('error', 'Pesanan ini sudah dibayar.');
             }
 
             if ($validated['cash_received'] < $order->total_amount) {
@@ -65,7 +65,7 @@ class PaymentController extends Controller
                 }
             }
 
-            return redirect()->route('history.index')->with('success', 'Pembayaran berhasil diproses!');
+            return redirect()->route('riwayat.pesanan')->with('success', 'Pembayaran berhasil diproses!');
         });
     }
 
@@ -141,7 +141,7 @@ class PaymentController extends Controller
             if ($status->transaction_status == 'settlement' || $status->transaction_status == 'capture') {
                 $order->update([
                     'payment_status' => 'paid',
-                    'status' => 'Diproses',
+                    'status' => 'Selesai',
                     'midtrans_transaction_id' => $status->transaction_id ?? null,
                     'midtrans_payment_type' => $status->payment_type ?? null,
                 ]);
