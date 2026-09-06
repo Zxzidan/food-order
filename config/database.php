@@ -86,17 +86,20 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL', env('DB_URL')),
-            'host' => env('DB_HOST', 'aws-0-ap-southeast-1.pooler.supabase.com'),
-            'port' => env('DB_PORT', '6543'),
-            'database' => env('DB_DATABASE', 'postgres'),
-            'username' => env('DB_USERNAME', 'postgres.oqnypwfrydekccpbghnc'),
-            'password' => env('DB_PASSWORD', ''),
+            'url' => env('DATABASE_URL', env('DB_URL', env('POSTGRES_URL'))),
+            'host' => env('DB_HOST', env('POSTGRES_HOST', 'aws-0-ap-southeast-1.pooler.supabase.com')),
+            'port' => env('DB_PORT', env('POSTGRES_PORT', '6543')),
+            'database' => env('DB_DATABASE', env('POSTGRES_DATABASE', 'postgres')),
+            'username' => env('DB_USERNAME', env('POSTGRES_USER', 'postgres.oqnypwfrydekccpbghnc')),
+            'password' => env('DB_PASSWORD', env('POSTGRES_PASSWORD', '')),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => env('DB_SSLMODE', 'require'),
+            'options' => extension_loaded('pdo_pgsql') ? [
+                PDO::ATTR_EMULATE_PREPARES => true,
+            ] : [],
         ],
 
         'sqlsrv' => [
