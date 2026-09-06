@@ -52,6 +52,9 @@
         "DB_PORT": "6543",
         "DB_DATABASE": "postgres",
         "DB_USERNAME": "postgres.oqnypwfrydekccpbghnc",
-        "DB_SSLMODE": "require"
+        "DB_SSLMODE": "require",
+        "APP_URL": "https://sipemma.vercel.app",
+        "OPENROUTER_MODEL": "openrouter/free",
+        "MIDTRANS_IS_PRODUCTION": "false"
     }
 }
