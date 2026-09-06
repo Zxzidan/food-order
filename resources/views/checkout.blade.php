@@ -248,11 +248,17 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Accept': 'application/json',
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     }
                 });
                 
-                const data = await response.json();
+                let data;
+                try {
+                    data = await response.json();
+                } catch (jsonErr) {
+                    throw new Error('Gagal memproses respons dari server');
+                }
                 
                 if (data.snap_token) {
                     window.snap.pay(data.snap_token, {
@@ -263,6 +269,7 @@
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json',
+                                        'Accept': 'application/json',
                                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                                     }
                                 });

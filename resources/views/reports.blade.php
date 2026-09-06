@@ -100,7 +100,7 @@
                     type: 'line',
                     toolbar: { show: false },
                     zoom: { enabled: false },
-                    fontFamily: 'InterVariable, sans-serif'
+                    fontFamily: '"SF Pro", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                 },
                 colors: ['#ea580c', '#10b981'],
                 dataLabels: { enabled: false },
@@ -172,7 +172,7 @@
                 chart: {
                     type: 'donut',
                     height: 240, // Slightly taller to accommodate legends
-                    fontFamily: 'InterVariable, sans-serif'
+                    fontFamily: '"SF Pro", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                 },
                 labels: ['QRIS', 'Tunai', 'Transfer / Debit'],
                 colors: ['#ea580c', '#10b981', '#f59e0b'],
@@ -238,7 +238,7 @@
                     type: 'bar',
                     height: 180,
                     toolbar: { show: false },
-                    fontFamily: 'InterVariable, sans-serif'
+                    fontFamily: '"SF Pro", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
                 },
                 colors: ['#ea580c'],
                 plotOptions: {

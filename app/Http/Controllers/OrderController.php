@@ -38,7 +38,7 @@ class OrderController extends Controller
         ]);
 
         return DB::transaction(function () use ($validated) {
-            $user = User::first(); // Assuming logic to get current user/cashier
+            $user = auth()->user() ?? User::first();
             $items = json_decode($validated['items'], true);
 
             if (empty($items)) {
@@ -66,8 +66,7 @@ class OrderController extends Controller
                 }
 
                 $price = $menu->price;
-                $quantity = (int) $item['quantity']; // from cart item.qty, frontend might send it as quantity or qty depending on how it's mapped. The prompt says item.qty in js, but mapping might send 'quantity' or 'qty'. Let's check how the frontend currently sends it. Actually frontend JS is `qty`. But old initiateCheckout used `$item['quantity']`. We should ensure frontend sends `quantity`.
-                // Let's use what the old logic used: $item['quantity'] but wait, old JS didn't submit anything, I need to check the old JS for checkout to see what it sends. Ah, old JS didn't have an AJAX checkout yet.
+                $quantity = (int) ($item['quantity'] ?? $item['qty'] ?? 1);
                 $itemSubtotal = $price * $quantity;
                 $subtotal += $itemSubtotal;
 

@@ -1,0 +1,165 @@
+/* ==========================================================================
+   SF Pro (Apple San Francisco) Webfont Definitions
+   Comprehensive weight mappings from 100 to 900
+   ========================================================================== */
+
+/* 100 - Ultralight */
+@font-face {
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: local('SF Pro Ultralight'), local('SF Pro Display Ultralight'), local('SF Pro Text Ultralight'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff2') format('woff2');
+}
+
+/* 200 - Thin */
+@font-face {
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: local('SF Pro Thin'), local('SF Pro Display Thin'), local('SF Pro Text Thin'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff2') format('woff2');
+}
+
+/* 300 - Light */
+@font-face {
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: local('SF Pro Light'), local('SF Pro Display Light'), local('SF Pro Text Light'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-light-webfont.woff2') format('woff2');
+}
+
+/* 400 - Regular / Normal */
+@font-face {
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('SF Pro Regular'), local('SF Pro Display Regular'), local('SF Pro Text Regular'), local('SF Pro'), local('SF Pro Display'), local('-apple-system'), local('BlinkMacSystemFont'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff2') format('woff2');
+}
+
+/* 500 - Medium */
+@font-face {
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: local('SF Pro Medium'), local('SF Pro Display Medium'), local('SF Pro Text Medium'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2') format('woff2');
+}
+
+/* 600 - Semibold */
+@font-face {
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local('SF Pro Semibold'), local('SF Pro Display Semibold'), local('SF Pro Text Semibold'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff2') format('woff2');
+}
+
+/* 700 - Bold */
+@font-face {
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('SF Pro Bold'), local('SF Pro Display Bold'), local('SF Pro Text Bold'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2') format('woff2');
+}
+
+/* 800 - Heavy / Extrabold */
+@font-face {
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: local('SF Pro Heavy'), local('SF Pro Display Heavy'), local('SF Pro Text Heavy'), local('SF Pro Extrabold'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-heavy-webfont.woff2') format('woff2');
+}
+
+/* 900 - Black */
+@font-face {
+    font-family: 'SF Pro';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: local('SF Pro Black'), local('SF Pro Display Black'), local('SF Pro Text Black'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-black-webfont.woff2') format('woff2');
+}
+
+/* Also alias 'SF Pro Display' for direct compatibility */
+@font-face {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('SF Pro Display Regular'), local('SF Pro Display'), local('SF Pro'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: local('SF Pro Display Medium'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local('SF Pro Display Semibold'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('SF Pro Display Bold'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: local('SF Pro Display Heavy'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-heavy-webfont.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: local('SF Pro Display Black'),
+         url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-black-webfont.woff2') format('woff2');
+}
+
+/* Global Root & Typography Overrides */
+:root {
+    --font-sf-pro: 'SF Pro', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body, input, select, textarea, button {
+    font-family: var(--font-sf-pro);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Preserve monospace for raw code & technical elements */
+code, kbd, samp, pre, .font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+}
