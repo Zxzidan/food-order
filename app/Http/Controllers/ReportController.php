@@ -14,16 +14,16 @@ class ReportController extends Controller
     {
         // Auto-cancel orders older than 15 minutes that haven't been paid
         Order::where('status', 'Menunggu Pembayaran')
-             ->where('created_at', '<', now()->subMinutes(15))
-             ->update([
-                 'status' => 'Batal',
-                 'payment_status' => 'expired'
-             ]);
+            ->where('created_at', '<', now()->subMinutes(15))
+            ->update([
+                'status' => 'Batal',
+                'payment_status' => 'expired',
+            ]);
 
         // "buat semua pesanan yang sukses dibayar hanya pada halaman report saja."
         // We fetch only 'Selesai' orders for the table.
         $orders = Order::with('items')->where('status', 'Selesai')->latest()->get();
-        
+
         $totalRevenue = $orders->sum('total_amount');
         $totalTransactions = $orders->count();
         $totalItemsSold = OrderItem::whereHas('order', function ($query) {
@@ -44,11 +44,11 @@ class ReportController extends Controller
         $trendDates = [];
         $trendRevenue = [];
         $trendOrders = [];
-        
+
         for ($i = 11; $i >= 0; $i--) {
             $date = Carbon::today()->subDays($i);
             $trendDates[] = $date->translatedFormat('j M');
-            
+
             $dayOrders = Order::where('status', 'Selesai')->whereDate('created_at', $date);
             $trendRevenue[] = (int) $dayOrders->sum('total_amount');
             $trendOrders[] = $dayOrders->count();
@@ -60,25 +60,35 @@ class ReportController extends Controller
             ->groupBy('payment_method')
             ->pluck('total', 'payment_method')
             ->toArray();
-            
+
         $qrisCount = $paymentMethods['QRIS'] ?? 0;
         $tunaiCount = $paymentMethods['Tunai'] ?? 0;
         $transferCount = ($paymentMethods['Transfer'] ?? 0) + ($paymentMethods['Midtrans'] ?? 0);
-        
+
         $paymentChart = [
             'labels' => ['QRIS', 'Tunai', 'Transfer / Lainnya'],
             'series' => [$qrisCount, $tunaiCount, $transferCount],
-            'total' => $totalTransactions
+            'total' => $totalTransactions,
         ];
 
         // 3. Peak Operational Hours Bar Chart
-        $peakHoursData = Order::where('status', 'Selesai')
-            ->select(DB::raw('HOUR(created_at) as hour'), DB::raw('count(*) as total'))
-            ->groupBy('hour')
-            ->orderBy('hour')
-            ->pluck('total', 'hour')
-            ->toArray();
-            
+        $hourExpression = match (DB::connection()->getDriverName()) {
+            'pgsql' => 'EXTRACT(HOUR FROM created_at)::integer',
+            'sqlite' => "CAST(strftime('%H', created_at) AS INTEGER)",
+            default => 'HOUR(created_at)',
+        };
+
+        try {
+            $peakHoursData = Order::where('status', 'Selesai')
+                ->select(DB::raw("{$hourExpression} as hour"), DB::raw('count(*) as total'))
+                ->groupBy(DB::raw($hourExpression))
+                ->orderBy('hour')
+                ->pluck('total', 'hour')
+                ->toArray();
+        } catch (\Throwable) {
+            $peakHoursData = [];
+        }
+
         $hoursLabels = [];
         $hoursSeries = [];
         // Show hours from 10:00 to 22:00 for example, or dynamically based on data
@@ -86,7 +96,7 @@ class ReportController extends Controller
         $startHour = 8;
         $endHour = 22;
         for ($h = $startHour; $h <= $endHour; $h++) {
-            $hoursLabels[] = str_pad($h, 2, '0', STR_PAD_LEFT) . ':00';
+            $hoursLabels[] = str_pad($h, 2, '0', STR_PAD_LEFT).':00';
             $hoursSeries[] = $peakHoursData[$h] ?? 0;
         }
 
@@ -100,7 +110,7 @@ class ReportController extends Controller
             'peak' => [
                 'categories' => $hoursLabels,
                 'data' => $hoursSeries,
-            ]
+            ],
         ];
 
         return view('reports', [
@@ -108,7 +118,7 @@ class ReportController extends Controller
             'orders' => $orders,
             'kpi' => $kpi,
             'topSelling' => $topSelling,
-            'chartsData' => $chartsData
+            'chartsData' => $chartsData,
         ]);
     }
 }
