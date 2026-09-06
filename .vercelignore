@@ -3,3 +3,4 @@
 .env
 .env.example
 .git
+public/index.php
