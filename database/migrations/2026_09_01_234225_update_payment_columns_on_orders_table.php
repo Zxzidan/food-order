@@ -11,6 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (DB::getDriverName() === 'pgsql') {
+            DB::statement('ALTER TABLE orders DROP CONSTRAINT IF EXISTS orders_payment_status_check');
+            DB::statement('ALTER TABLE orders DROP CONSTRAINT IF EXISTS orders_payment_method_check');
+        }
+
         Schema::table('orders', function (Blueprint $table) {
             // Change enum to string for flexibility
             $table->string('payment_status', 50)->default('pending')->change();
