@@ -34,6 +34,7 @@
         }
     ],
     "env": {
+        "APP_KEY": "base64:6lXyPb7pt9x81hpqMs6koXCNf0DfjDHEu5Kr+g4WO+8=",
         "APP_ENV": "production",
         "APP_DEBUG": "true",
         "APP_MAINTENANCE_DRIVER": "file",
@@ -45,6 +46,12 @@
         "VIEW_COMPILED_PATH": "/tmp/storage/framework/views",
         "CACHE_STORE": "array",
         "SESSION_DRIVER": "cookie",
-        "LOG_CHANNEL": "stderr"
+        "LOG_CHANNEL": "stderr",
+        "DB_CONNECTION": "pgsql",
+        "DB_HOST": "aws-0-ap-southeast-1.pooler.supabase.com",
+        "DB_PORT": "6543",
+        "DB_DATABASE": "postgres",
+        "DB_USERNAME": "postgres.oqnypwfrydekccpbghnc",
+        "DB_SSLMODE": "require"
     }
 }

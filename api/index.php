@@ -5,6 +5,13 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+// Pastikan APP_KEY selalu tersedia
+if (empty($_ENV['APP_KEY']) || empty(getenv('APP_KEY'))) {
+    putenv('APP_KEY=base64:6lXyPb7pt9x81hpqMs6koXCNf0DfjDHEu5Kr+g4WO+8=');
+    $_ENV['APP_KEY'] = 'base64:6lXyPb7pt9x81hpqMs6koXCNf0DfjDHEu5Kr+g4WO+8=';
+    $_SERVER['APP_KEY'] = 'base64:6lXyPb7pt9x81hpqMs6koXCNf0DfjDHEu5Kr+g4WO+8=';
+}
+
 // Setup temporary writable storage directories on Vercel
 $storageDirs = [
     '/tmp/storage/framework/views',
@@ -14,7 +21,7 @@ $storageDirs = [
 ];
 
 foreach ($storageDirs as $dir) {
-    if (!is_dir($dir)) {
+    if (! is_dir($dir)) {
         @mkdir($dir, 0755, true);
     }
 }
