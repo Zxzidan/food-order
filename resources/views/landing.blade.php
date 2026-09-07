@@ -847,13 +847,13 @@
     <!-- Impact Stats & Testimonials Section -->
     <section id="testimoni" class="scroll-mt-24 py-24 lg:py-32 bg-white border-t border-gray-100 relative bg-dots overflow-hidden">
         <!-- Section Header -->
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16" data-aos="fade-up">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16" data-aos="fade-up">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-white border border-gray-200 text-primary-700 text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 shadow-2xs">
                 <svg class="w-4 h-4 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                 Ulasan & Dampak Nyata
             </div>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-                Dipercaya oleh Pengusaha Restoran & Kafe
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-4 md:whitespace-nowrap">
+                Dipercaya oleh Pengusaha <span class="whitespace-nowrap">Restoran &amp; Kafe</span>
             </h2>
             <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 Lihat bagaimana SIPEMMA mentransformasi operasional kasir meja, pembayaran otomatis, dan analisis bisnis kuliner harian.
