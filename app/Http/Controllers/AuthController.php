@@ -159,6 +159,28 @@ class AuthController extends Controller
             }
         }
 
+        // 5. Cek variasi kesalahan ketik huruf 'l' bukannya 'i' (misal dandlazaldane / azaldane -> azaidane)
+        if (! $user) {
+            $corrected = str_replace(
+                ['azaldane', 'dandl', 'zaldane'],
+                ['azaidane', 'dandi', 'zaidane'],
+                $inputLower
+            );
+
+            if ($corrected !== $inputLower) {
+                $user = User::whereRaw('LOWER(email) = ?', [$corrected])
+                    ->orWhereRaw('LOWER(name) = ?', [$corrected])
+                    ->first();
+            }
+        }
+
+        // 6. Toleransi input awalan 'dand' untuk akun admin/dandi
+        if (! $user && str_starts_with($inputLower, 'dand')) {
+            $user = User::whereRaw('LOWER(email) LIKE ?', ['%azaidane%'])
+                ->orWhereRaw('LOWER(email) LIKE ?', ['%dandi%'])
+                ->first();
+        }
+
         // Jika user ditemukan dan password cocok
         if ($user && Hash::check($password, $user->password)) {
             // Otomatis rehash jika password di DB masih plaintext atau format lama

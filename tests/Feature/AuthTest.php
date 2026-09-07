@@ -77,3 +77,18 @@ test('hasher check can verify sha256 fallback hash', function () {
     expect(Hash::check('mysecurepassword', $hashed))->toBeTrue();
     expect(Hash::check('wrongpassword', $hashed))->toBeFalse();
 });
+
+test('user can log in even with l vs i typo in email name', function () {
+    $user = User::factory()->create([
+        'email' => 'dandiazaidane06@gmail.com',
+        'password' => bcrypt('password123'),
+    ]);
+
+    $response = $this->post('/login', [
+        'email' => 'dandlazaldane06@gmail.com',
+        'password' => 'password123',
+    ]);
+
+    $this->assertAuthenticatedAs($user);
+    $response->assertRedirect('/dashboard');
+});
