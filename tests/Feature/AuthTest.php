@@ -69,3 +69,11 @@ test('new user can register and password is encrypted properly', function () {
     expect($user)->not->toBeNull();
     expect(Hash::check('secret12345', $user->password))->toBeTrue();
 });
+
+test('hasher check can verify sha256 fallback hash', function () {
+    $salt = bin2hex(random_bytes(16));
+    $hashed = '$sha256$'.$salt.'$'.hash('sha256', $salt.'mysecurepassword');
+
+    expect(Hash::check('mysecurepassword', $hashed))->toBeTrue();
+    expect(Hash::check('wrongpassword', $hashed))->toBeFalse();
+});
