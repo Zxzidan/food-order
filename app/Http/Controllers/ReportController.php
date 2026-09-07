@@ -13,7 +13,8 @@ class ReportController extends Controller
     public function index()
     {
         // Auto-cancel orders older than 15 minutes that haven't been paid
-        Order::where('status', 'Menunggu Pembayaran')
+        Order::where('user_id', auth()->id())
+            ->where('status', 'Menunggu Pembayaran')
             ->where('created_at', '<', now()->subMinutes(15))
             ->update([
                 'status' => 'Batal',
@@ -22,12 +23,12 @@ class ReportController extends Controller
 
         // "buat semua pesanan yang sukses dibayar hanya pada halaman report saja."
         // We fetch only 'Selesai' orders for the table.
-        $orders = Order::with('items')->where('status', 'Selesai')->latest()->get();
+        $orders = Order::where('user_id', auth()->id())->with('items')->where('status', 'Selesai')->latest()->get();
 
         $totalRevenue = $orders->sum('total_amount');
         $totalTransactions = $orders->count();
         $totalItemsSold = OrderItem::whereHas('order', function ($query) {
-            $query->where('status', 'Selesai');
+            $query->where('user_id', auth()->id())->where('status', 'Selesai');
         })->sum('quantity');
         $aov = $totalTransactions > 0 ? (int) round($totalRevenue / $totalTransactions) : 0;
 
@@ -49,13 +50,13 @@ class ReportController extends Controller
             $date = Carbon::today()->subDays($i);
             $trendDates[] = $date->translatedFormat('j M');
 
-            $dayOrders = Order::where('status', 'Selesai')->whereDate('created_at', $date);
+            $dayOrders = Order::where('user_id', auth()->id())->where('status', 'Selesai')->whereDate('created_at', $date);
             $trendRevenue[] = (int) $dayOrders->sum('total_amount');
             $trendOrders[] = $dayOrders->count();
         }
 
         // 2. Payment Methods Donut Chart
-        $paymentMethods = Order::where('status', 'Selesai')
+        $paymentMethods = Order::where('user_id', auth()->id())->where('status', 'Selesai')
             ->select('payment_method', DB::raw('count(*) as total'))
             ->groupBy('payment_method')
             ->pluck('total', 'payment_method')
@@ -79,7 +80,7 @@ class ReportController extends Controller
         };
 
         try {
-            $peakHoursData = Order::where('status', 'Selesai')
+            $peakHoursData = Order::where('user_id', auth()->id())->where('status', 'Selesai')
                 ->select(DB::raw("{$hourExpression} as hour"), DB::raw('count(*) as total'))
                 ->groupBy(DB::raw($hourExpression))
                 ->orderBy('hour')
