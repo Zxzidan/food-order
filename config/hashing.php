@@ -1,16 +1,5 @@
 <?php
 
-$defaultDriver = env('HASH_DRIVER');
-
-if (! $defaultDriver) {
-    try {
-        password_hash('test', PASSWORD_BCRYPT);
-        $defaultDriver = 'bcrypt';
-    } catch (Throwable) {
-        $defaultDriver = defined('PASSWORD_ARGON2ID') ? 'argon2id' : 'bcrypt';
-    }
-}
-
 return [
 
     /*
@@ -26,7 +15,7 @@ return [
     |
     */
 
-    'driver' => $defaultDriver,
+    'driver' => env('HASH_DRIVER', 'bcrypt'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +30,7 @@ return [
 
     'bcrypt' => [
         'rounds' => env('BCRYPT_ROUNDS', 12),
-        'verify' => env('HASH_VERIFY', true),
+        'verify' => env('HASH_VERIFY', false),
         'limit' => env('BCRYPT_LIMIT', null),
     ],
 
@@ -60,7 +49,7 @@ return [
         'memory' => env('ARGON_MEMORY', 65536),
         'threads' => env('ARGON_THREADS', 1),
         'time' => env('ARGON_TIME', 4),
-        'verify' => env('HASH_VERIFY', true),
+        'verify' => env('HASH_VERIFY', false),
     ],
 
     /*
