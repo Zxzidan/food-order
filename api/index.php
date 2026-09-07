@@ -5,11 +5,23 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
-// Pastikan APP_KEY selalu tersedia
+// Pastikan APP_KEY, APP_NAME, dan SESSION_COOKIE selalu tersedia
 if (empty($_ENV['APP_KEY']) || empty(getenv('APP_KEY'))) {
     putenv('APP_KEY=base64:6lXyPb7pt9x81hpqMs6koXCNf0DfjDHEu5Kr+g4WO+8=');
     $_ENV['APP_KEY'] = 'base64:6lXyPb7pt9x81hpqMs6koXCNf0DfjDHEu5Kr+g4WO+8=';
     $_SERVER['APP_KEY'] = 'base64:6lXyPb7pt9x81hpqMs6koXCNf0DfjDHEu5Kr+g4WO+8=';
+}
+
+if (empty($_ENV['APP_NAME']) || empty(getenv('APP_NAME'))) {
+    putenv('APP_NAME=SIPEMMA');
+    $_ENV['APP_NAME'] = 'SIPEMMA';
+    $_SERVER['APP_NAME'] = 'SIPEMMA';
+}
+
+if (empty($_ENV['SESSION_COOKIE']) || empty(getenv('SESSION_COOKIE'))) {
+    putenv('SESSION_COOKIE=sipemma_session');
+    $_ENV['SESSION_COOKIE'] = 'sipemma_session';
+    $_SERVER['SESSION_COOKIE'] = 'sipemma_session';
 }
 
 // Setup temporary writable storage directories on Vercel
