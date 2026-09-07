@@ -24,6 +24,9 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
 Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request')->middleware('guest');
+Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('password.email')->middleware('guest');
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset')->middleware('guest');
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update')->middleware('guest');
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register')->middleware('guest');
 Route::post('/register', [AuthController::class, 'register'])->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');

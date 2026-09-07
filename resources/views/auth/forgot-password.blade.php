@@ -53,14 +53,30 @@
                 <p class="text-xs font-medium text-gray-500">Masukkan email Anda untuk menerima tautan reset kata sandi</p>
             </div>
 
-            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Tautan reset kata sandi telah dikirim ke email Anda. (Mockup)');">
+            @if (session('status'))
+                <div class="bg-green-50 border border-green-100 rounded-xl text-green-600 font-semibold p-2.5 text-[11px] mb-4 shadow-sm text-center">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="bg-red-50 border border-red-100 rounded-xl text-red-600 font-semibold p-2.5 text-[11px] mb-4 shadow-sm text-left">
+                    <ul class="list-disc pl-4 space-y-1">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('password.email') }}" method="POST">
                 @csrf
 
                 <div class="mb-6">
                     <label for="email" class="block font-bold text-ink text-[10px] mb-1.5 uppercase tracking-wider">Email</label>
                     <input type="email" name="email" id="email" required autofocus
                         class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2.5 px-3 text-sm font-medium shadow-sm hover:border-gray-300"
-                        placeholder="admin@sipemma.com">
+                        placeholder="admin@gmail.com">
                 </div>
 
                 <button type="submit" class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-xl font-display font-bold text-white bg-accent hover:bg-accentHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent transition-all transform hover:-translate-y-0.5 shadow-lg shadow-accent/30 cursor-pointer text-sm">
