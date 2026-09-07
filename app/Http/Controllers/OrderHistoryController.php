@@ -9,15 +9,16 @@ class OrderHistoryController extends Controller
 {
     public function index()
     {
-        // Auto-cancel orders older than 15 minutes that haven't been paid
-        Order::where('status', 'Menunggu Pembayaran')
+        // Auto-cancel orders older than 15 minutes that haven't been paid for this user
+        Order::where('user_id', auth()->id())
+             ->where('status', 'Menunggu Pembayaran')
              ->where('created_at', '<', now()->subMinutes(15))
              ->update([
                  'status' => 'Batal',
                  'payment_status' => 'expired'
              ]);
 
-        $orders = Order::with('items')->latest()->get();
+        $orders = Order::where('user_id', auth()->id())->with('items')->latest()->get();
 
         return view('riwayat-pesanan', [
             'title' => 'Riwayat Pesanan',

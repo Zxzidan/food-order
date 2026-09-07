@@ -126,14 +126,14 @@ ATURAN STRUKTUR & FORMAT TAMPILAN (SANGAT PENTING):
             $today = now()->format('Y-m-d');
 
             // 1. Data Hari Ini
-            $todayOrders = Order::whereDate('created_at', today())->get();
+            $todayOrders = Order::where('user_id', auth()->id())->whereDate('created_at', today())->get();
             $todayRevenue = $todayOrders->where('payment_status', 'paid')->sum('total_amount');
             $todayCount = $todayOrders->count();
             $todayCompletedCount = $todayOrders->where('status', 'Selesai')->count();
             $todayPendingCount = $todayOrders->where('status', 'Diproses')->count();
 
             // 2. Data Keseluruhan / Akumulasi
-            $allOrders = Order::all();
+            $allOrders = Order::where('user_id', auth()->id())->get();
             $totalRevenue = $allOrders->where('payment_status', 'paid')->sum('total_amount');
             $totalOrdersCount = $allOrders->count();
             $totalCompleted = $allOrders->where('status', 'Selesai')->count();
@@ -153,7 +153,7 @@ ATURAN STRUKTUR & FORMAT TAMPILAN (SANGAT PENTING):
                 : '- Semua stok menu dalam kondisi aman.';
 
             // 5. 5 Transaksi Terakhir
-            $recentOrders = Order::with('items')->latest()->take(5)->get();
+            $recentOrders = Order::where('user_id', auth()->id())->with('items')->latest()->take(5)->get();
             $recentOrdersList = $recentOrders->isNotEmpty()
                 ? $recentOrders->map(function ($o) {
                     $itemsSummary = $o->items->map(fn ($i) => "{$i->menu_name} ({$i->quantity}x)")->implode(', ');

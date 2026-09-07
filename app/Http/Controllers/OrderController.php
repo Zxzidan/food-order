@@ -38,7 +38,7 @@ class OrderController extends Controller
         ]);
 
         return DB::transaction(function () use ($validated) {
-            $user = auth()->user() ?? User::first();
+            $user = auth()->user();
             $items = json_decode($validated['items'], true);
 
             if (empty($items)) {

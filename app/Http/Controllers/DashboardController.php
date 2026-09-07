@@ -11,11 +11,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $admin = User::first();
+        $admin = auth()->user();
         $nama = $admin ? $admin->name : 'Dandi Azaidane';
 
         try {
-            $totalCustomers = Order::distinct('customer_name')->count('customer_name');
+            $totalCustomers = Order::where('user_id', auth()->id())->distinct('customer_name')->count('customer_name');
         } catch (\Throwable) {
             $totalCustomers = 0;
         }
@@ -24,17 +24,18 @@ class DashboardController extends Controller
             $totalCustomers = 500;
         } // fallback aesthetic number
 
-        $totalOrders = Order::count();
+        $totalOrders = Order::where('user_id', auth()->id())->count();
         $menusAvailable = Menu::where('is_available', true)->count();
 
         // Top 4 Best Selling Menus
+        // Consider if menu sales should be global or per user? The instructions say: "Jika sebuah data memang bersifat global untuk seluruh admin, jangan dipaksa menjadi per-user... Menu, AI/progress jika ada...". Menu sales might be global since menus are shared. So keep Menu global.
         $bestSellingMenus = Menu::orderByDesc('sold')->take(4)->get();
 
         // Calculate sales for the current week (Monday to Sunday)
         $weeklySales = [];
         for ($i = 0; $i < 7; $i++) {
             $date = Carbon::now()->startOfWeek()->addDays($i);
-            $dailyTotal = Order::where('status', 'Selesai')->whereDate('created_at', $date)->sum('total_amount');
+            $dailyTotal = Order::where('user_id', auth()->id())->where('status', 'Selesai')->whereDate('created_at', $date)->sum('total_amount');
             $weeklySales[] = [
                 'day' => $date->translatedFormat('D'),
                 'total' => (int) $dailyTotal,

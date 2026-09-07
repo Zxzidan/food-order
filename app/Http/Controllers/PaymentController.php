@@ -14,7 +14,7 @@ class PaymentController extends Controller
 {
     public function show($order_number)
     {
-        $order = Order::where('order_number', $order_number)->with('items')->firstOrFail();
+        $order = Order::where('user_id', auth()->id())->where('order_number', $order_number)->with('items')->firstOrFail();
 
         return view('checkout', [
             'title' => 'Pembayaran',
@@ -35,7 +35,7 @@ class PaymentController extends Controller
         ]);
 
         return DB::transaction(function () use ($validated, $order_number) {
-            $order = Order::where('order_number', $order_number)->with('items')->lockForUpdate()->firstOrFail();
+            $order = Order::where('user_id', auth()->id())->where('order_number', $order_number)->with('items')->lockForUpdate()->firstOrFail();
 
             if ($order->payment_status === 'paid') {
                 return redirect()->route('riwayat.pesanan')->with('error', 'Pesanan ini sudah dibayar.');
@@ -80,7 +80,7 @@ class PaymentController extends Controller
 
     public function processMidtrans($order_number)
     {
-        $order = Order::where('order_number', $order_number)->firstOrFail();
+        $order = Order::where('user_id', auth()->id())->where('order_number', $order_number)->firstOrFail();
 
         if ($order->payment_status === 'paid' || $order->status === 'Selesai') {
             return response()->json(['error' => 'Pesanan ini sudah dibayar.'], 400);
@@ -132,7 +132,7 @@ class PaymentController extends Controller
 
     public function callbackMidtrans($order_number)
     {
-        $order = Order::where('order_number', $order_number)->firstOrFail();
+        $order = Order::where('user_id', auth()->id())->where('order_number', $order_number)->firstOrFail();
 
         // Configure Midtrans
         Config::$serverKey = config('services.midtrans.server_key') ?? config('midtrans.server_key');

@@ -48,7 +48,7 @@ class AuthController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
-            'role' => 'kasir', // Default role untuk pendaftar baru
+            'role' => 'admin', // Role diset menjadi admin sesuai instruksi
         ]);
 
         Auth::login($user);
@@ -65,27 +65,9 @@ class AuthController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        // Jika form dikosongkan, otomatis masuk sebagai user admin
-        if (empty($email) && empty($password)) {
-            $user = User::first();
-            if (! $user) {
-                $user = User::create([
-                    'name' => 'Admin Resto',
-                    'email' => 'admin@sipemma.com',
-                    'password' => Hash::make('password'),
-                    'role' => 'admin',
-                ]);
-            }
-
-            Auth::login($user, true);
-            $request->session()->regenerate();
-
-            return redirect()->intended('/dashboard');
-        }
-
         $credentials = $request->validate([
-            'email' => ['nullable', 'email'],
-            'password' => ['nullable'],
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
         $remember = $request->has('remember');
