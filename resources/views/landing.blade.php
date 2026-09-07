@@ -205,7 +205,10 @@
 
     <!-- Preloader -->
     <div id="preloader" class="fixed inset-0 bg-white z-[9999] flex flex-col items-center justify-center transition-all duration-700 ease-in-out">
-        <img src="{{ asset('assets/img/LOGO.png') }}" alt="Loading SIPEMMA..." class="h-16 md:h-20 object-contain animate-pulse mb-6">
+        <div class="flex items-center gap-3 mb-6 animate-pulse">
+            <img src="{{ asset('assets/img/LOGO.png') }}" alt="Loading SIPEMMA..." class="h-14 sm:h-16 w-auto object-contain">
+            <span class="text-2xl sm:text-3xl font-black tracking-tight text-gray-900">SIP<span class="text-primary-600">EMMA</span></span>
+        </div>
         <div class="w-48 h-1 bg-gray-100 rounded-full overflow-hidden relative">
             <div class="h-full bg-primary-600 rounded-full animate-loader absolute top-0 left-0"></div>
         </div>
@@ -215,8 +218,11 @@
     <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 py-3 sm:py-5">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             <div class="bg-white/95 backdrop-blur-xl border border-white/40 shadow-lg rounded-full px-4 sm:px-8 h-14 sm:h-18 flex items-center justify-between">
-                <a href="/" class="flex items-center gap-2 shrink-0">
-                    <img src="{{ asset('assets/img/LOGO.png') }}" alt="SIPEMMA Logo" class="h-8 sm:h-10 w-auto object-contain" id="navLogo">
+                <a href="/" class="flex items-center gap-2.5 shrink-0 group">
+                    <img src="{{ asset('assets/img/LOGO.png') }}" alt="SIPEMMA Logo" class="h-8 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105" id="navLogo">
+                    <span class="text-xl sm:text-2xl font-black tracking-tight text-gray-900 flex items-center">
+                        SIP<span class="text-primary-600">EMMA</span>
+                    </span>
                 </a>
 
                 <!-- Desktop Menu -->
@@ -313,12 +319,12 @@
                     </div>
                 </div>
 
-                <!-- Right Visual: Rounded Framed Container matching User Screenshot -->
+                <!-- Right Visual: POS Ecosystem Hardware Mockup -->
                 <div class="lg:col-span-5 flex justify-center lg:justify-end items-center relative mt-6 lg:mt-0">
                     <div class="relative w-full max-w-sm sm:max-w-lg lg:max-w-none mx-auto">
                         <!-- Structural outer rounded card frame -->
                         <div class="relative rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] bg-white/10 border border-white/20 backdrop-blur-xs p-4 sm:p-6 lg:p-8 shadow-2xl flex items-center justify-center">
-                            <img src="{{ asset('assets/img/tablet-polosan.png') }}" alt="Tablet POS SIPEMMA" class="w-full h-auto object-contain realistic-shadow float-tablet select-none pointer-events-none transition-transform duration-500">
+                            <img src="{{ asset('assets/img/hero-mockup-1.png') }}" alt="Ekosistem Hardware POS SIPEMMA" class="w-full h-auto object-contain realistic-shadow float-tablet select-none pointer-events-none transition-transform duration-500">
                         </div>
                     </div>
                 </div>
@@ -505,8 +511,8 @@
                 <!-- Visual Container (Hardware & Dashboard double-bezel) -->
                 <div class="lg:col-span-6 order-2 lg:order-1 mt-6 lg:mt-0" data-aos="fade-right">
                     <div class="relative p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-gray-50 border border-gray-200/90 shadow-lg">
-                        <div class="rounded-xl sm:rounded-2xl overflow-hidden shadow-inner">
-                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" alt="Dashboard Backoffice" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
+                        <div class="rounded-xl sm:rounded-2xl overflow-hidden shadow-inner aspect-[4/3]">
+                            <img src="{{ asset('assets/img/cafe-features.png') }}" alt="Operasional Restoran & Kafe SIPEMMA" class="w-full h-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800';">
                         </div>
                     </div>
                 </div>
@@ -583,8 +589,8 @@
 
                 <div class="lg:col-span-6 mt-6 lg:mt-0" data-aos="fade-left">
                     <div class="p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-white border border-gray-200 shadow-xl">
-                        <div class="rounded-xl sm:rounded-2xl overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&q=80&w=800" alt="Kasir Offline" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
+                        <div class="rounded-xl sm:rounded-2xl overflow-hidden aspect-[4/3] flex items-center justify-center bg-gray-50 p-3">
+                            <img src="{{ asset('assets/img/tablet-polosan.png') }}" alt="Terminal Kasir POS SIPEMMA" class="w-full h-full object-contain select-none pointer-events-none hover:scale-102 transition-transform duration-700" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&q=80&w=800';">
                         </div>
                     </div>
                 </div>
@@ -1270,7 +1276,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12 sm:mb-16">
                 <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-2">
-                    <img src="{{ asset('assets/img/LOGO.png') }}" alt="SIPEMMA Logo" class="h-10 sm:h-14 mb-4 sm:mb-6 object-contain filter brightness-0 invert">
+                    <a href="/" class="inline-flex items-center gap-3 mb-4 sm:mb-6 group">
+                        <img src="{{ asset('assets/img/LOGO.png') }}" alt="SIPEMMA Logo" class="h-10 sm:h-12 w-auto object-contain filter brightness-0 invert transition-transform group-hover:scale-105">
+                        <span class="text-2xl font-black tracking-tight text-white">SIP<span class="text-primary-500">EMMA</span></span>
+                    </a>
                     <div class="flex gap-3 mb-2 lg:mb-0">
                         <a href="#" class="w-9 h-9 rounded-xl bg-slate-800/80 flex items-center justify-center text-gray-400 hover:text-white hover:bg-slate-700 transition-all">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg>
@@ -1418,18 +1427,18 @@
             });
         });
 
-        // Preloader Logic
-        window.addEventListener('load', () => {
+        // Preloader Logic with safety fallback
+        const hidePreloader = () => {
             const preloader = document.getElementById('preloader');
-            if (preloader) {
+            if (preloader && preloader.style.display !== 'none') {
+                preloader.style.opacity = '0';
                 setTimeout(() => {
-                    preloader.style.opacity = '0';
-                    setTimeout(() => {
-                        preloader.style.display = 'none';
-                    }, 700);
-                }, 400);
+                    preloader.style.display = 'none';
+                }, 700);
             }
-        });
+        };
+        window.addEventListener('load', () => setTimeout(hidePreloader, 300));
+        setTimeout(hidePreloader, 1500); // Safety fallback so page is never blocked
     </script>
 </body>
 </html>
