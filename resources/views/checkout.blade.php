@@ -125,15 +125,17 @@
                     </div>
 
                     <!-- Cash Payment Form -->
-                    <form action="{{ route('payment.cash', $order->order_number) }}" method="POST" id="form-cash" class="space-y-4">
+                    <form action="{{ route('payment.cash', $order->order_number) }}" method="POST" id="form-cash" onsubmit="return validateCashForm()" class="space-y-4">
                         @csrf
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Uang Diterima</label>
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500 font-bold">Rp</span>
-                                <input type="number" name="cash_received" id="cash_received" required min="{{ $order->total_amount }}" oninput="calculateChange()"
+                                <input type="text" inputmode="numeric" id="cash_received_display" required
+                                    oninput="handleCashInput(this)"
                                     class="w-full pl-10 pr-4 py-2.5 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white font-bold text-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                                    placeholder="0" value="{{ $order->total_amount }}" />
+                                    placeholder="0" value="{{ number_format($order->total_amount, 0, ',', '.') }}" autocomplete="off" />
+                                <input type="hidden" name="cash_received" id="cash_received" value="{{ $order->total_amount }}">
                             </div>
                         </div>
 
@@ -212,6 +214,33 @@
             return 'Rp ' + Number(amount).toLocaleString('id-ID');
         }
 
+        function formatNumber(num) {
+            if (!num && num !== 0) return '';
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function handleCashInput(input) {
+            const cursor = input.selectionStart;
+            const prevLength = input.value.length;
+
+            let cleanVal = input.value.replace(/\D/g, '');
+            if (cleanVal.length > 1) {
+                cleanVal = cleanVal.replace(/^0+/, '');
+            }
+
+            const num = cleanVal ? parseInt(cleanVal, 10) : 0;
+            document.getElementById('cash_received').value = cleanVal ? num : '';
+
+            const formatted = cleanVal ? formatNumber(num) : '';
+            input.value = formatted;
+
+            const diff = formatted.length - prevLength;
+            const newCursor = Math.max(0, cursor + diff);
+            input.setSelectionRange(newCursor, newCursor);
+
+            calculateChange();
+        }
+
         function calculateChange() {
             const input = document.getElementById('cash_received');
             const display = document.getElementById('change_amount');
@@ -228,8 +257,40 @@
         }
 
         function setCash(amount) {
-            document.getElementById('cash_received').value = amount;
+            const num = Number(amount) || 0;
+            document.getElementById('cash_received').value = num;
+            const displayInput = document.getElementById('cash_received_display');
+            if (displayInput) {
+                displayInput.value = formatNumber(num);
+            }
             calculateChange();
+        }
+
+        function validateCashForm() {
+            const rawVal = Number(document.getElementById('cash_received').value) || 0;
+            if (rawVal < totalAmount) {
+                alert('Uang yang diterima kurang dari total tagihan (' + formatRupiah(totalAmount) + ')');
+                const displayInput = document.getElementById('cash_received_display');
+                if (displayInput) displayInput.focus();
+                return false;
+            }
+            return true;
+        }
+
+        const cashDisplayInput = document.getElementById('cash_received_display');
+        if (cashDisplayInput) {
+            cashDisplayInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.selectionStart === this.selectionEnd) {
+                    if (this.value[this.selectionStart - 1] === '.') {
+                        e.preventDefault();
+                        const pos = this.selectionStart;
+                        const val = this.value.slice(0, pos - 2) + this.value.slice(pos - 1);
+                        this.value = val;
+                        this.setSelectionRange(pos - 2, pos - 2);
+                        handleCashInput(this);
+                    }
+                }
+            });
         }
 
         // Initialize
