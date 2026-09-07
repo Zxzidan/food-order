@@ -127,32 +127,62 @@ class AuthController extends Controller
         ]);
 
         $remember = $request->has('remember');
+        $inputLower = strtolower($input);
 
-        // Deteksi apakah input berupa email atau nama/username
-        $isEmail = filter_var($input, FILTER_VALIDATE_EMAIL);
-        $field = $isEmail ? 'email' : 'name';
+        // 1. Cari user secara fleksibel & case-insensitive (kompatibel penuh dengan PostgreSQL Supabase dan MySQL)
+        $user = User::whereRaw('LOWER(email) = ?', [$inputLower])
+            ->orWhereRaw('LOWER(name) = ?', [$inputLower])
+            ->first();
 
-        $credentials = [$field => $input, 'password' => $password];
-
-        if (Auth::attempt($credentials, $remember)) {
-            $request->session()->regenerate();
-
-            return redirect()->route('dashboard');
+        // 2. Jika input adalah kata kunci 'admin' atau 'administrator', temukan akun admin
+        if (! $user && in_array($inputLower, ['admin', 'administrator'])) {
+            $user = User::where('role', 'admin')->first();
         }
 
-        // Cek alternatif jika pengguna memasukkan admin@gmail.com atau admin@sipemma.com
-        if ($isEmail) {
-            $altEmail = match (strtolower($input)) {
+        // 3. Jika input adalah kata kunci 'kasir' atau 'cashier', temukan akun kasir
+        if (! $user && in_array($inputLower, ['kasir', 'cashier'])) {
+            $user = User::whereIn('role', ['cashier', 'kasir'])
+                ->orWhereRaw('LOWER(name) LIKE ?', ['%kasir%'])
+                ->first();
+        }
+
+        // 4. Cek variasi email umum jika belum ketemu (misal admin@sipemma.com <-> admin@gmail.com)
+        if (! $user && filter_var($input, FILTER_VALIDATE_EMAIL)) {
+            $altEmail = match ($inputLower) {
                 'admin@gmail.com' => 'admin@sipemma.com',
                 'admin@sipemma.com' => 'admin@gmail.com',
                 default => null,
             };
 
-            if ($altEmail && Auth::attempt(['email' => $altEmail, 'password' => $password], $remember)) {
-                $request->session()->regenerate();
-
-                return redirect()->route('dashboard');
+            if ($altEmail) {
+                $user = User::whereRaw('LOWER(email) = ?', [$altEmail])->first();
             }
+        }
+
+        // Jika user ditemukan dan password cocok
+        if ($user && Hash::check($password, $user->password)) {
+            // Otomatis rehash jika password di DB masih plaintext atau format lama
+            if (Hash::needsRehash($user->password) || $user->password === $password) {
+                try {
+                    $user->password = Hash::make($password);
+                    $user->save();
+                } catch (\Throwable) {
+                }
+            }
+
+            Auth::login($user, $remember);
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('dashboard'));
+        }
+
+        // Fallback standar Auth::attempt
+        $isEmail = filter_var($input, FILTER_VALIDATE_EMAIL);
+        $field = $isEmail ? 'email' : 'name';
+        if (Auth::attempt([$field => $input, 'password' => $password], $remember)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('dashboard'));
         }
 
         return back()->withErrors([

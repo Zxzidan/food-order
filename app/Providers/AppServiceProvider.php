@@ -62,6 +62,12 @@ class AppServiceProvider extends ServiceProvider
                         return false;
                     }
 
+                    // 1. Cek langsung jika password di database berupa plaintext
+                    if ($hashedValue === $value || hash_equals((string) $hashedValue, (string) $value)) {
+                        return true;
+                    }
+
+                    // 2. Cek format custom salted sha256
                     if (str_starts_with($hashedValue, '$sha256$')) {
                         $parts = explode('$', substr($hashedValue, 8));
                         if (count($parts) === 2) {
@@ -71,11 +77,37 @@ class AppServiceProvider extends ServiceProvider
                         }
                     }
 
+                    // 3. Cek standard PHP password_verify (Bcrypt, Argon2)
                     try {
-                        return password_verify($value, $hashedValue);
+                        if (@password_verify($value, $hashedValue)) {
+                            return true;
+                        }
                     } catch (Throwable) {
-                        return false;
                     }
+
+                    // 4. Fallback crypt() untuk hash UNIX
+                    if (function_exists('crypt')) {
+                        try {
+                            $cryptHash = @crypt($value, $hashedValue);
+                            if ($cryptHash && hash_equals((string) $hashedValue, (string) $cryptHash)) {
+                                return true;
+                            }
+                        } catch (Throwable) {
+                        }
+                    }
+
+                    // 5. Fallback hash umum (MD5, SHA256 hex, SHA1)
+                    if (hash_equals((string) $hashedValue, md5($value))) {
+                        return true;
+                    }
+                    if (hash_equals((string) $hashedValue, hash('sha256', $value))) {
+                        return true;
+                    }
+                    if (hash_equals((string) $hashedValue, sha1($value))) {
+                        return true;
+                    }
+
+                    return false;
                 }
 
                 public function info($hashedValue): array
