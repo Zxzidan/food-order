@@ -75,7 +75,7 @@
                     <label for="email" class="block font-bold text-ink text-[10px] mb-1 uppercase tracking-wider">Email</label>
                     <input type="email" name="email" id="email" value="{{ old('email') }}" required
                         class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2 px-3 text-[13px] font-medium shadow-sm hover:border-gray-300"
-                        placeholder="john@example.com">
+                        placeholder="namaanda@gmail.com">
                 </div>
 
                 <div class="mb-3.5">
