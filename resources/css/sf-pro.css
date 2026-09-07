@@ -1,6 +1,6 @@
 /* ==========================================================================
    SF Pro (Apple San Francisco) Webfont Definitions
-   Comprehensive weight mappings from 100 to 900
+   iPhone / macOS Native System Font with WOFF2 Fallbacks
    ========================================================================== */
 
 /* 100 - Ultralight */
@@ -93,7 +93,7 @@
          url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-black-webfont.woff2') format('woff2');
 }
 
-/* Also alias 'SF Pro Display' for direct compatibility */
+/* 'SF Pro Display' aliases for direct CSS compatibility */
 @font-face {
     font-family: 'SF Pro Display';
     font-style: normal;
@@ -154,7 +154,7 @@
 }
 
 html, body, input, select, textarea, button {
-    font-family: var(--font-sf-pro);
+    font-family: var(--font-sf-pro) !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

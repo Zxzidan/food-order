@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Google Sans Webfont Definitions
+   Weights: 400 (Regular), 500 (Medium), 600 (SemiBold), 700 (Bold)
+   ========================================================================== */
+
+/* 400 - Regular */
+@font-face {
+    font-family: 'Google Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Google Sans Regular'), local('Google Sans'), local('Product Sans Regular'), local('Product Sans'),
+         url('https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2') format('woff2');
+}
+
+/* 500 - Medium */
+@font-face {
+    font-family: 'Google Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: local('Google Sans Medium'), local('Product Sans Medium'),
+         url('https://fonts.gstatic.com/s/productsans/v5/HYvDP2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2') format('woff2');
+}
+
+/* 600 - SemiBold */
+@font-face {
+    font-family: 'Google Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local('Google Sans SemiBold'), local('Product Sans SemiBold'),
+         url('https://fonts.gstatic.com/s/productsans/v5/HYvDP2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2') format('woff2');
+}
+
+/* 700 - Bold */
+@font-face {
+    font-family: 'Google Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Google Sans Bold'), local('Product Sans Bold'),
+         url('https://fonts.gstatic.com/s/productsans/v5/HYvDP2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2') format('woff2');
+}
+
+/* Global Root & Typography Overrides: Exactly ONE font across entire site */
+:root {
+    --font-google-sans: 'Google Sans', sans-serif;
+}
+
+*, *::before, *::after {
+    font-family: 'Google Sans', sans-serif;
+}
+
+html, body, input, select, textarea, button, optgroup, option {
+    font-family: 'Google Sans', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Monospace exception only for raw code tags if any */
+code, kbd, samp, pre, .font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+}
