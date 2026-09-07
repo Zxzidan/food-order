@@ -77,6 +77,41 @@ class AppServiceProvider extends ServiceProvider
                         return false;
                     }
                 }
+
+                public function info($hashedValue): array
+                {
+                    if (str_starts_with($hashedValue, '$sha256$')) {
+                        return [
+                            'algo' => 'sha256',
+                            'algoName' => 'sha256',
+                            'options' => [],
+                        ];
+                    }
+
+                    $info = parent::info($hashedValue);
+
+                    if (empty($info['algo']) || ($info['algoName'] ?? '') === 'unknown') {
+                        if (preg_match('/^\$(2[ayb]|argon2i[d]?)\$/', (string) $hashedValue)) {
+                            return [
+                                'algo' => 'bcrypt',
+                                'algoName' => 'bcrypt',
+                                'options' => ['cost' => 12],
+                            ];
+                        }
+                    }
+
+                    return $info;
+                }
+
+                public function verifyConfiguration($value): bool
+                {
+                    return true;
+                }
+
+                public function needsRehash($hashedValue, array $options = []): bool
+                {
+                    return false;
+                }
             };
         });
     }
