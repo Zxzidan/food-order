@@ -13,10 +13,17 @@
     
     <!-- CSS Custom -->
     <style>
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'SF Pro', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            position: relative;
+            width: 100%;
         }
 
         /* Animated Parallax Water Waves */
@@ -206,10 +213,10 @@
 
     <!-- Architectural Floating Navbar (Matching Screenshot Pill) -->
     <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 py-3 sm:py-5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white/95 backdrop-blur-xl border border-white/40 shadow-lg rounded-full px-6 sm:px-8 h-16 sm:h-18 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="bg-white/95 backdrop-blur-xl border border-white/40 shadow-lg rounded-full px-4 sm:px-8 h-14 sm:h-18 flex items-center justify-between">
                 <a href="/" class="flex items-center gap-2 shrink-0">
-                    <img src="{{ asset('assets/img/LOGO.png') }}" alt="SIPEMMA Logo" class="h-9 sm:h-10 w-auto object-contain" id="navLogo">
+                    <img src="{{ asset('assets/img/LOGO.png') }}" alt="SIPEMMA Logo" class="h-8 sm:h-10 w-auto object-contain" id="navLogo">
                 </a>
 
                 <!-- Desktop Menu -->
@@ -238,8 +245,8 @@
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobileMenu" class="hidden lg:hidden max-w-7xl mx-auto px-4 sm:px-6 pt-2">
-            <div class="bg-white/95 backdrop-blur-xl border border-gray-200 rounded-3xl p-6 shadow-xl transition-all duration-300">
+        <div id="mobileMenu" class="hidden lg:hidden max-w-7xl mx-auto px-3 sm:px-6 pt-2">
+            <div class="bg-white/95 backdrop-blur-xl border border-gray-200 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-xl transition-all duration-300">
                 <nav class="flex flex-col gap-4 text-base font-medium text-gray-800">
                     <a href="#fitur" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Fitur</a>
                     <a href="#keunggulan" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Keunggulan</a>
@@ -257,7 +264,7 @@
     </header>
 
     <!-- Hero Section (Rich Orange Grid + Translucent Frame + Upgraded Curved Bottom Divider) -->
-    <section class="relative bg-primary-600 pt-28 sm:pt-36 pb-24 sm:pb-32 lg:pt-40 lg:pb-36 overflow-hidden">
+    <section class="relative bg-primary-600 pt-24 sm:pt-36 pb-20 sm:pb-32 lg:pt-40 lg:pb-36 overflow-hidden">
         <!-- Architectural Grid Overlay -->
         <div class="absolute inset-0 bg-grid-hero pointer-events-none opacity-40"></div>
         <div class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-primary-700/30 to-transparent pointer-events-none"></div>
@@ -266,33 +273,33 @@
             <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
                 <!-- Left Content -->
                 <div class="lg:col-span-7 text-white pt-4 lg:pt-0">
-                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-lg bg-white/15 border border-white/25 text-white text-xs sm:text-sm font-bold uppercase tracking-wider mb-6 backdrop-blur-xs">
-                        <span>Sistem POS &amp; Manajemen Restoran Terpadu</span>
+                    <div class="inline-flex max-w-full items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-lg bg-white/15 border border-white/25 text-white text-[11px] sm:text-sm font-bold uppercase tracking-wider mb-5 sm:mb-6 backdrop-blur-xs">
+                        <span class="truncate sm:whitespace-normal">Sistem POS &amp; Manajemen Restoran Terpadu</span>
                     </div>
 
-                    <div class="min-h-[140px] sm:min-h-[160px] lg:min-h-[190px] flex flex-col justify-center">
-                        <h1 id="heroTitle" class="text-4xl sm:text-5xl lg:text-[60px] font-extrabold leading-[1.08] tracking-tight text-white mb-6">
+                    <div class="min-h-[110px] sm:min-h-[160px] lg:min-h-[190px] flex flex-col justify-center">
+                        <h1 id="heroTitle" class="text-3xl sm:text-5xl lg:text-[60px] font-extrabold leading-[1.12] sm:leading-[1.08] tracking-tight text-white mb-4 sm:mb-6">
                             Laporan Keuangan<br>Real-Time &amp;<br>Otomatis
                         </h1>
                     </div>
 
                     <!-- Action Buttons -->
-                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-6 sm:mt-8">
-                        <a href="{{ route('register') }}" class="group inline-flex items-center justify-center gap-3 bg-white hover:bg-orange-50 text-primary-600 text-base font-bold py-3.5 px-8 rounded-full shadow-lg hover:shadow-xl transition-all">
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mt-6 sm:mt-8">
+                        <a href="{{ route('register') }}" class="group inline-flex items-center justify-center gap-2.5 sm:gap-3 bg-white hover:bg-orange-50 text-primary-600 text-sm sm:text-base font-bold py-3 sm:py-3.5 px-6 sm:px-8 rounded-full shadow-lg hover:shadow-xl transition-all text-center">
                             <span>Jadwalkan Demo</span>
-                            <svg class="w-4 h-4 text-primary-600 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            <svg class="w-4 h-4 text-primary-600 group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
-                        <a href="#fitur" class="inline-flex items-center justify-center bg-white/15 hover:bg-white/25 border border-white/30 text-white text-base font-bold py-3.5 px-8 rounded-full backdrop-blur-xs transition-all text-center">
+                        <a href="#fitur" class="inline-flex items-center justify-center bg-white/15 hover:bg-white/25 border border-white/30 text-white text-sm sm:text-base font-bold py-3 sm:py-3.5 px-6 sm:px-8 rounded-full backdrop-blur-xs transition-all text-center">
                             <span>Chat WhatsApp</span>
                         </a>
                     </div>
                 </div>
 
                 <!-- Right Visual: Rounded Framed Container matching User Screenshot -->
-                <div class="lg:col-span-5 flex justify-center lg:justify-end items-center relative">
-                    <div class="relative w-full max-w-lg lg:max-w-none">
+                <div class="lg:col-span-5 flex justify-center lg:justify-end items-center relative mt-6 lg:mt-0">
+                    <div class="relative w-full max-w-sm sm:max-w-lg lg:max-w-none mx-auto">
                         <!-- Structural outer rounded card frame -->
-                        <div class="relative rounded-3xl lg:rounded-[2.5rem] bg-white/10 border border-white/20 backdrop-blur-xs p-6 lg:p-8 shadow-2xl flex items-center justify-center">
+                        <div class="relative rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] bg-white/10 border border-white/20 backdrop-blur-xs p-4 sm:p-6 lg:p-8 shadow-2xl flex items-center justify-center">
                             <img src="{{ asset('assets/img/tablet-polosan.png') }}" alt="Tablet POS SIPEMMA" class="w-full h-auto object-contain realistic-shadow float-tablet select-none pointer-events-none transition-transform duration-500">
                         </div>
                     </div>
@@ -302,7 +309,7 @@
 
         <!-- Animated Continuous Water Waves Bottom Divider -->
         <div class="waves-container absolute -bottom-1 left-0 right-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
-            <svg class="waves block w-full h-12 sm:h-16 md:h-20 lg:h-24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <svg class="waves block w-full h-10 sm:h-16 md:h-20 lg:h-24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
                 <defs>
                     <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
                 </defs>
@@ -317,39 +324,39 @@
     </section>
 
     <!-- Executive Metrics & Ecosystem Section (Clean, Professional, No Emojis) -->
-    <section class="relative bg-[#FAF8F5] border-b border-gray-200/70 py-12 lg:py-16 overflow-hidden">
+    <section class="relative bg-[#FAF8F5] border-b border-gray-200/70 py-10 sm:py-12 lg:py-16 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- 4 Column Structured Stat Matrix -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
-                <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow" data-aos="fade-up" data-aos-delay="0">
-                    <div class="text-3xl sm:text-4xl font-extrabold text-primary-600 tracking-tight">10.000+</div>
-                    <div class="text-sm font-bold text-gray-800 mt-1.5">Merchant Aktif</div>
-                    <div class="text-xs text-gray-500 mt-0.5">Tergabung dalam ekosistem</div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-10 sm:mb-12">
+                <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-center" data-aos="fade-up" data-aos-delay="0">
+                    <div class="text-2xl sm:text-4xl font-extrabold text-primary-600 tracking-tight">10.000+</div>
+                    <div class="text-xs sm:text-sm font-bold text-gray-800 mt-1 sm:mt-1.5">Merchant Aktif</div>
+                    <div class="text-[11px] sm:text-xs text-gray-500 mt-0.5 leading-snug">Tergabung dalam ekosistem</div>
                 </div>
-                <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">&lt; 2 Detik</div>
-                    <div class="text-sm font-bold text-gray-800 mt-1.5">Kecepatan Kasir</div>
-                    <div class="text-xs text-gray-500 mt-0.5">Proses cetak struk &amp; bayar</div>
+                <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">&lt; 2 Detik</div>
+                    <div class="text-xs sm:text-sm font-bold text-gray-800 mt-1 sm:mt-1.5">Kecepatan Kasir</div>
+                    <div class="text-[11px] sm:text-xs text-gray-500 mt-0.5 leading-snug">Proses cetak struk &amp; bayar</div>
                 </div>
-                <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">99.9%</div>
-                    <div class="text-sm font-bold text-gray-800 mt-1.5">Uptime Cloud POS</div>
-                    <div class="text-xs text-gray-500 mt-0.5">Konektivitas stabil harian</div>
+                <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">99.9%</div>
+                    <div class="text-xs sm:text-sm font-bold text-gray-800 mt-1 sm:mt-1.5">Uptime Cloud POS</div>
+                    <div class="text-[11px] sm:text-xs text-gray-500 mt-0.5 leading-snug">Konektivitas stabil harian</div>
                 </div>
-                <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">24/7</div>
-                    <div class="text-sm font-bold text-gray-800 mt-1.5">Dukungan Teknis</div>
-                    <div class="text-xs text-gray-500 mt-0.5">Pendampingan operasional</div>
+                <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">24/7</div>
+                    <div class="text-xs sm:text-sm font-bold text-gray-800 mt-1 sm:mt-1.5">Dukungan Teknis</div>
+                    <div class="text-[11px] sm:text-xs text-gray-500 mt-0.5 leading-snug">Pendampingan operasional</div>
                 </div>
             </div>
 
             <!-- Sleek Brand Divider Label -->
-            <div class="flex items-center justify-center gap-4 max-w-3xl mx-auto mb-8" data-aos="fade-up">
-                <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-gray-300 flex-1"></div>
-                <p class="text-xs sm:text-[13px] font-bold tracking-widest text-gray-500 uppercase shrink-0">
+            <div class="flex items-center justify-center gap-2 sm:gap-4 max-w-3xl mx-auto mb-6 sm:mb-8 px-2" data-aos="fade-up">
+                <div class="hidden sm:block h-px bg-gradient-to-r from-transparent via-gray-300 to-gray-300 flex-1"></div>
+                <p class="text-[11px] sm:text-[13px] font-bold tracking-wider sm:tracking-widest text-gray-500 uppercase text-center leading-normal">
                     Dipercaya oleh Berbagai Usaha Kuliner &amp; Restoran Mitra
                 </p>
-                <div class="h-px bg-gradient-to-l from-transparent via-gray-300 to-gray-300 flex-1"></div>
+                <div class="hidden sm:block h-px bg-gradient-to-l from-transparent via-gray-300 to-gray-300 flex-1"></div>
             </div>
         </div>
 
@@ -474,13 +481,13 @@
     </section>
 
     <!-- Feature Chapter 1: Real-time Restaurant Operations -->
-    <section id="fitur" class="scroll-mt-24 py-24 lg:py-32 bg-white overflow-hidden">
+    <section id="fitur" class="scroll-mt-24 py-16 sm:py-24 lg:py-32 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
                 <!-- Visual Container (Hardware & Dashboard double-bezel) -->
-                <div class="lg:col-span-6 order-2 lg:order-1" data-aos="fade-right">
-                    <div class="relative p-3 rounded-3xl bg-gray-50 border border-gray-200/90 shadow-lg">
-                        <div class="rounded-2xl overflow-hidden shadow-inner">
+                <div class="lg:col-span-6 order-2 lg:order-1 mt-6 lg:mt-0" data-aos="fade-right">
+                    <div class="relative p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-gray-50 border border-gray-200/90 shadow-lg">
+                        <div class="rounded-xl sm:rounded-2xl overflow-hidden shadow-inner">
                             <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" alt="Dashboard Backoffice" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
                         </div>
                     </div>
@@ -489,37 +496,37 @@
                 <!-- Content Column -->
                 <div class="lg:col-span-6 order-1 lg:order-2" data-aos="fade-left">
                     <div class="max-w-xl">
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 leading-[1.15] tracking-tight">
+                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6 leading-[1.15] tracking-tight">
                             Pantau Bisnis Lebih Cepat
                         </h2>
-                        <p class="text-base sm:text-lg text-gray-600 mb-10 leading-relaxed font-normal">
+                        <p class="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-10 leading-relaxed font-normal">
                             Kelola operasional dan pantau performa finansial usaha Anda secara real-time dari satu sistem.
                         </p>
 
                         <!-- Structured Feature List (Eliminating repetitive round bubbles) -->
-                        <div class="space-y-6">
-                            <div class="flex gap-4 items-start p-4 rounded-2xl bg-orange-50/40 border border-orange-100/80">
-                                <div class="w-1.5 h-10 rounded-full bg-primary-600 shrink-0"></div>
+                        <div class="space-y-4 sm:space-y-6">
+                            <div class="flex gap-3 sm:gap-4 items-start p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-orange-50/40 border border-orange-100/80">
+                                <div class="w-1.5 h-8 sm:h-10 rounded-full bg-primary-600 shrink-0 mt-0.5 sm:mt-0"></div>
                                 <div>
-                                    <h3 class="text-base sm:text-lg font-bold text-gray-900 leading-snug">
+                                    <h3 class="text-sm sm:text-lg font-bold text-gray-900 leading-snug">
                                         Kelola pesanan dine-in, takeaway, dan online terpadu.
                                     </h3>
                                 </div>
                             </div>
 
-                            <div class="flex gap-4 items-start p-4 rounded-2xl bg-gray-50 border border-gray-100">
-                                <div class="w-1.5 h-10 rounded-full bg-gray-400 shrink-0"></div>
+                            <div class="flex gap-3 sm:gap-4 items-start p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-gray-50 border border-gray-100">
+                                <div class="w-1.5 h-8 sm:h-10 rounded-full bg-gray-400 shrink-0 mt-0.5 sm:mt-0"></div>
                                 <div>
-                                    <h3 class="text-base sm:text-lg font-bold text-gray-900 leading-snug">
+                                    <h3 class="text-sm sm:text-lg font-bold text-gray-900 leading-snug">
                                         Atur menu, meja, dan operasional toko dengan mudah.
                                     </h3>
                                 </div>
                             </div>
 
-                            <div class="flex gap-4 items-start p-4 rounded-2xl bg-gray-50 border border-gray-100">
-                                <div class="w-1.5 h-10 rounded-full bg-primary-500 shrink-0"></div>
+                            <div class="flex gap-3 sm:gap-4 items-start p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-gray-50 border border-gray-100">
+                                <div class="w-1.5 h-8 sm:h-10 rounded-full bg-primary-500 shrink-0 mt-0.5 sm:mt-0"></div>
                                 <div>
-                                    <h3 class="text-base sm:text-lg font-bold text-gray-900 leading-snug">
+                                    <h3 class="text-sm sm:text-lg font-bold text-gray-900 leading-snug">
                                         Analisis tren penjualan cerdas berbasis AI Assistant.
                                     </h3>
                                 </div>
@@ -532,33 +539,33 @@
     </section>
 
     <!-- Feature Chapter 2: Point of Sale Experience (Architectural Split with Subtle Grid) -->
-    <section class="py-24 lg:py-32 bg-[#F8F9FA] border-y border-gray-200/70 overflow-hidden bg-grid-subtle">
+    <section class="py-16 sm:py-24 lg:py-32 bg-[#F8F9FA] border-y border-gray-200/70 overflow-hidden bg-grid-subtle">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
                 <div class="lg:col-span-6" data-aos="fade-right">
                     <div class="max-w-xl">
-                        <div class="inline-block text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-100/70 px-3 py-1 rounded-md mb-4">
+                        <div class="inline-block text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-100/70 px-3 py-1 rounded-md mb-3 sm:mb-4">
                             SIPEMMA Point of Sale
                         </div>
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 leading-[1.15] tracking-tight">
+                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6 leading-[1.15] tracking-tight">
                             Kasir Cepat & Praktis untuk Toko Anda
                         </h2>
-                        <p class="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
+                        <p class="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
                             Catat transaksi dalam hitungan detik, terima aneka metode pembayaran, dan pantau stok barang otomatis tanpa khawatir selisih.
                         </p>
 
-                        <a href="#fitur" class="group inline-flex items-center gap-3 text-primary-600 font-extrabold text-base hover:text-primary-700 transition-colors">
+                        <a href="#fitur" class="group inline-flex items-center gap-2.5 sm:gap-3 text-primary-600 font-extrabold text-sm sm:text-base hover:text-primary-700 transition-colors">
                             <span>Pelajari Fitur</span>
-                            <span class="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 group-hover:translate-x-1 transition-transform">
+                            <span class="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 group-hover:translate-x-1 transition-transform shrink-0">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                             </span>
                         </a>
                     </div>
                 </div>
 
-                <div class="lg:col-span-6" data-aos="fade-left">
-                    <div class="p-3 rounded-3xl bg-white border border-gray-200 shadow-xl">
-                        <div class="rounded-2xl overflow-hidden">
+                <div class="lg:col-span-6 mt-6 lg:mt-0" data-aos="fade-left">
+                    <div class="p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-white border border-gray-200 shadow-xl">
+                        <div class="rounded-xl sm:rounded-2xl overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&q=80&w=800" alt="Kasir Offline" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
                         </div>
                     </div>
@@ -568,12 +575,12 @@
     </section>
 
     <!-- Feature Chapter 3: Integrated Financial Intelligence -->
-    <section class="py-24 lg:py-32 bg-white overflow-hidden">
+    <section class="py-16 sm:py-24 lg:py-32 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-                <div class="lg:col-span-6 order-2 lg:order-1" data-aos="fade-right">
-                    <div class="p-3 rounded-3xl bg-orange-50/60 border border-orange-100 shadow-xl">
-                        <div class="rounded-2xl overflow-hidden">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                <div class="lg:col-span-6 order-2 lg:order-1 mt-6 lg:mt-0" data-aos="fade-right">
+                    <div class="p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-orange-50/60 border border-orange-100 shadow-xl">
+                        <div class="rounded-xl sm:rounded-2xl overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&q=80&w=800" alt="Laporan Penjualan" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
                         </div>
                     </div>
@@ -581,19 +588,19 @@
 
                 <div class="lg:col-span-6 order-1 lg:order-2" data-aos="fade-left">
                     <div class="max-w-xl">
-                        <div class="inline-block text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-100/70 px-3 py-1 rounded-md mb-4">
+                        <div class="inline-block text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-100/70 px-3 py-1 rounded-md mb-3 sm:mb-4">
                             SIPEMMA Manajemen Terpadu
                         </div>
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 leading-[1.15] tracking-tight">
+                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6 leading-[1.15] tracking-tight">
                             Laporan Penjualan & Laba Real-Time
                         </h2>
-                        <p class="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
+                        <p class="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
                             Tanpa rekap manual yang melelahkan. Pantau laba rugi, omzet harian, dan mutasi barang otomatis dari perangkat apa pun kapan saja.
                         </p>
 
-                        <a href="#fitur" class="group inline-flex items-center gap-3 text-primary-600 font-extrabold text-base hover:text-primary-700 transition-colors">
+                        <a href="#fitur" class="group inline-flex items-center gap-2.5 sm:gap-3 text-primary-600 font-extrabold text-sm sm:text-base hover:text-primary-700 transition-colors">
                             <span>Lihat Selengkapnya</span>
-                            <span class="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 group-hover:translate-x-1 transition-transform">
+                            <span class="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 group-hover:translate-x-1 transition-transform shrink-0">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                             </span>
                         </a>
@@ -604,17 +611,17 @@
     </section>
 
     <!-- Comparison Matrix (Clean, Architectural, Highly Legible) -->
-    <section id="keunggulan" class="scroll-mt-24 py-24 lg:py-32 bg-[#F8F9FA] border-t border-gray-200/70">
+    <section id="keunggulan" class="scroll-mt-24 py-16 sm:py-24 lg:py-32 bg-[#F8F9FA] border-t border-gray-200/70 overflow-hidden">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-white border border-gray-200 text-primary-700 text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 shadow-2xs">
+            <div class="text-center mb-10 sm:mb-16" data-aos="fade-up">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-white border border-gray-200 text-primary-700 text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4 shadow-2xs">
                     <svg class="w-4 h-4 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                     Komparasi Fitur Unggulan
                 </div>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-3 sm:mb-4">
                     Kenapa Memilih SIPEMMA?
                 </h2>
-                <p class="text-base sm:text-lg text-gray-600 font-normal max-w-2xl mx-auto">
+                <p class="text-sm sm:text-lg text-gray-600 font-normal max-w-2xl mx-auto">
                     Bandingkan langsung kelengkapan fungsi operasional kasir SIPEMMA dengan sistem kasir konvensional lainnya.
                 </p>
             </div>
@@ -622,18 +629,18 @@
             <!-- Comparison Table Enclosure -->
             <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-aos="fade-up" data-aos-delay="100">
                 <!-- Table Header -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-5 border-b border-gray-200 bg-gray-50/70">
-                    <div class="col-span-7 sm:col-span-8">
-                        <span class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-gray-500">Fitur & Kemampuan</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 border-b border-gray-200 bg-gray-50/70">
+                    <div class="col-span-6 sm:col-span-8">
+                        <span class="text-[11px] sm:text-sm font-extrabold uppercase tracking-wider text-gray-500">Fitur &amp; Kemampuan</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 text-center text-xs sm:text-sm font-bold text-gray-500">
+                    <div class="col-span-3 sm:col-span-2 text-center text-[11px] sm:text-sm font-bold text-gray-500 leading-tight">
                         Sistem Kasir Lain
                     </div>
                     <div class="col-span-3 sm:col-span-2 text-center flex flex-col items-center justify-center">
                         <span class="hidden sm:inline-block px-2 py-0.5 rounded bg-primary-600 text-white text-[10px] font-extrabold uppercase tracking-wider mb-0.5">
                             Terlengkap
                         </span>
-                        <span class="text-sm sm:text-base font-extrabold text-primary-600 tracking-tight">
+                        <span class="text-xs sm:text-base font-extrabold text-primary-600 tracking-tight">
                             SIPEMMA
                         </span>
                     </div>
@@ -641,202 +648,202 @@
 
                 <!-- Comparison Rows -->
                 <!-- Row 1 -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-4 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
-                    <div class="col-span-7 sm:col-span-8 pr-4">
-                        <span class="text-sm sm:text-base font-bold text-gray-900 block">Kasir Dine In & Take Away dengan Nomor Meja</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
+                    <div class="col-span-6 sm:col-span-8 pr-2 sm:pr-4">
+                        <span class="text-xs sm:text-base font-bold text-gray-900 block leading-snug">Kasir Dine In &amp; Take Away dengan Nomor Meja</span>
                         <span class="text-xs text-gray-500 mt-0.5 leading-relaxed hidden sm:block">Pilih tipe pesanan makan di tempat dengan nomor meja atau bungkus, hitung pajak PB1 10% otomatis, dan cetak struk kasir instan.</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <div class="col-span-3 sm:col-span-2 flex justify-center">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </div>
                     </div>
                     <div class="col-span-3 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Row 2 -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-4 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
-                    <div class="col-span-7 sm:col-span-8 pr-4">
-                        <span class="text-sm sm:text-base font-bold text-gray-900 block">Pembayaran Digital Otomatis (Midtrans Gateway)</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
+                    <div class="col-span-6 sm:col-span-8 pr-2 sm:pr-4">
+                        <span class="text-xs sm:text-base font-bold text-gray-900 block leading-snug">Pembayaran Digital Otomatis (Midtrans Gateway)</span>
                         <span class="text-xs text-gray-500 mt-0.5 leading-relaxed hidden sm:block">Terintegrasi langsung dengan Midtrans untuk pembayaran QRIS dinamis, Virtual Account Bank (BCA, Mandiri, BNI, BRI), dan E-Wallet tanpa cek mutasi manual.</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <div class="col-span-3 sm:col-span-2 flex justify-center">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </div>
                     </div>
                     <div class="col-span-3 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Row 3 -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-4 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
-                    <div class="col-span-7 sm:col-span-8 pr-4">
-                        <span class="text-sm sm:text-base font-bold text-gray-900 block">Kalkulator Kasir Tunai & Hitung Kembalian Otomatis</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
+                    <div class="col-span-6 sm:col-span-8 pr-2 sm:pr-4">
+                        <span class="text-xs sm:text-base font-bold text-gray-900 block leading-snug">Kalkulator Kasir Tunai &amp; Hitung Kembalian Otomatis</span>
                         <span class="text-xs text-gray-500 mt-0.5 leading-relaxed hidden sm:block">Input nominal uang tunai yang diterima dengan kalkulator kembalian otomatis di layar pembayaran untuk mencegah salah hitung saat jam sibuk.</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <div class="col-span-3 sm:col-span-2 flex justify-center">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </div>
                     </div>
                     <div class="col-span-3 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Row 4 -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-4 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
-                    <div class="col-span-7 sm:col-span-8 pr-4">
-                        <span class="text-sm sm:text-base font-bold text-gray-900 block">Manajemen Menu & Stok Berkurang Otomatis</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
+                    <div class="col-span-6 sm:col-span-8 pr-2 sm:pr-4">
+                        <span class="text-xs sm:text-base font-bold text-gray-900 block leading-snug">Manajemen Menu &amp; Stok Berkurang Otomatis</span>
                         <span class="text-xs text-gray-500 mt-0.5 leading-relaxed hidden sm:block">Stok berkurang otomatis tiap pesanan sukses dibayar, counter menu terjual bertambah, dan otomatis nonaktif (out of stock) jika stok mencapai 0.</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <div class="col-span-3 sm:col-span-2 flex justify-center">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </div>
                     </div>
                     <div class="col-span-3 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Row 5 -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-4 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
-                    <div class="col-span-7 sm:col-span-8 pr-4">
-                        <span class="text-sm sm:text-base font-bold text-gray-900 flex items-center gap-2">
-                            SIPEMMA AI Restaurant Assistant (Chatbot Pintar)
-                            <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-700 text-[11px] font-bold">AI Pintar</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
+                    <div class="col-span-6 sm:col-span-8 pr-2 sm:pr-4">
+                        <span class="text-xs sm:text-base font-bold text-gray-900 flex flex-wrap items-center gap-1.5 sm:gap-2 leading-snug">
+                            <span>SIPEMMA AI Restaurant Assistant (Chatbot Pintar)</span>
+                            <span class="px-1.5 py-0.5 rounded bg-purple-100 text-purple-700 text-[10px] sm:text-[11px] font-bold shrink-0">AI Pintar</span>
                         </span>
                         <span class="text-xs text-gray-500 mt-0.5 leading-relaxed hidden sm:block">Asisten AI terintegrasi yang membaca data riil restoran secara live (omzet harian, menu terlaris, ketersediaan stok) dan memberikan saran strategi bisnis.</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <div class="col-span-3 sm:col-span-2 flex justify-center">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </div>
                     </div>
                     <div class="col-span-3 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Row 6 -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-4 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
-                    <div class="col-span-7 sm:col-span-8 pr-4">
-                        <span class="text-sm sm:text-base font-bold text-gray-900 block">Dashboard KPI & Laporan Omzet Real-Time</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
+                    <div class="col-span-6 sm:col-span-8 pr-2 sm:pr-4">
+                        <span class="text-xs sm:text-base font-bold text-gray-900 block leading-snug">Dashboard KPI &amp; Laporan Omzet Real-Time</span>
                         <span class="text-xs text-gray-500 mt-0.5 leading-relaxed hidden sm:block">Ringkasan Total Pendapatan, Total Transaksi, Total Item Terjual, dan Average Order Value (AOV) otomatis tanpa rekap manual saat tutup toko.</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <div class="col-span-3 sm:col-span-2 flex justify-center">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </div>
                     </div>
                     <div class="col-span-3 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Row 7 -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-4 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
-                    <div class="col-span-7 sm:col-span-8 pr-4">
-                        <span class="text-sm sm:text-base font-bold text-gray-900 block">Grafik Analisis Jam Sibuk Operasional (Peak Hours)</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
+                    <div class="col-span-6 sm:col-span-8 pr-2 sm:pr-4">
+                        <span class="text-xs sm:text-base font-bold text-gray-900 block leading-snug">Grafik Analisis Jam Sibuk Operasional (Peak Hours)</span>
                         <span class="text-xs text-gray-500 mt-0.5 leading-relaxed hidden sm:block">Visualisasi jam operasional paling ramai (08:00 - 22:00) untuk efisiensi penugasan shift staf dan persiapan stok bahan baku di dapur.</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <div class="col-span-3 sm:col-span-2 flex justify-center">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </div>
                     </div>
                     <div class="col-span-3 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Row 8 -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-4 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
-                    <div class="col-span-7 sm:col-span-8 pr-4">
-                        <span class="text-sm sm:text-base font-bold text-gray-900 block">Grafik Tren Penjualan & Donut Chart Metode Pembayaran</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
+                    <div class="col-span-6 sm:col-span-8 pr-2 sm:pr-4">
+                        <span class="text-xs sm:text-base font-bold text-gray-900 block leading-snug">Grafik Tren Penjualan &amp; Donut Chart Metode Pembayaran</span>
                         <span class="text-xs text-gray-500 mt-0.5 leading-relaxed hidden sm:block">Area Chart tren omzet 12 hari terakhir serta Donut Chart komposisi transaksi Tunai, QRIS, dan Transfer yang interaktif dan mudah dibaca.</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <div class="col-span-3 sm:col-span-2 flex justify-center">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </div>
                     </div>
                     <div class="col-span-3 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Row 9 -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-4 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
-                    <div class="col-span-7 sm:col-span-8 pr-4">
-                        <span class="text-sm sm:text-base font-bold text-gray-900 block">Pelacakan Riwayat Pesanan & Auto-Cancel 15 Menit</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
+                    <div class="col-span-6 sm:col-span-8 pr-2 sm:pr-4">
+                        <span class="text-xs sm:text-base font-bold text-gray-900 block leading-snug">Pelacakan Riwayat Pesanan &amp; Auto-Cancel 15 Menit</span>
                         <span class="text-xs text-gray-500 mt-0.5 leading-relaxed hidden sm:block">Pelacakan status transaksi real-time dan proteksi pembatalan otomatis untuk pesanan belum dibayar yang melewati batas 15 menit.</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <div class="col-span-3 sm:col-span-2 flex justify-center">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </div>
                     </div>
                     <div class="col-span-3 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Row 10 -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-4 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
-                    <div class="col-span-7 sm:col-span-8 pr-4">
-                        <span class="text-sm sm:text-base font-bold text-gray-900 block">Dukungan Dark Mode & Light Mode Bawaan</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 border-b border-gray-100 hover:bg-orange-50/20 transition-colors">
+                    <div class="col-span-6 sm:col-span-8 pr-2 sm:pr-4">
+                        <span class="text-xs sm:text-base font-bold text-gray-900 block leading-snug">Dukungan Dark Mode &amp; Light Mode Bawaan</span>
                         <span class="text-xs text-gray-500 mt-0.5 leading-relaxed hidden sm:block">Beralih mode gelap dan terang secara instan untuk kenyamanan mata staf saat bertugas di kondisi pencahayaan kafe atau resto malam hari.</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <div class="col-span-3 sm:col-span-2 flex justify-center">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </div>
                     </div>
                     <div class="col-span-3 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                     </div>
                 </div>
 
                 <!-- Row 11 -->
-                <div class="grid grid-cols-12 items-center px-6 sm:px-8 py-4 sm:py-5 hover:bg-orange-50/20 transition-colors">
-                    <div class="col-span-7 sm:col-span-8 pr-4">
-                        <span class="text-sm sm:text-base font-bold text-gray-900 block">Sistem Cloud Multi-Device Bebas Beli Mesin Khusus</span>
+                <div class="grid grid-cols-12 items-center px-3.5 sm:px-8 py-3.5 sm:py-5 hover:bg-orange-50/20 transition-colors">
+                    <div class="col-span-6 sm:col-span-8 pr-2 sm:pr-4">
+                        <span class="text-xs sm:text-base font-bold text-gray-900 block leading-snug">Sistem Cloud Multi-Device Bebas Beli Mesin Khusus</span>
                         <span class="text-xs text-gray-500 mt-0.5 leading-relaxed hidden sm:block">Akses fleksibel melalui browser dari smartphone, tablet Android/iPad, laptop, hingga PC kasir tanpa kewajiban membeli hardware mahal.</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <div class="col-span-3 sm:col-span-2 flex justify-center">
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                         </div>
                     </div>
                     <div class="col-span-3 sm:col-span-2 flex justify-center">
-                        <div class="w-7 h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                        <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-primary-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                     </div>
                 </div>
@@ -845,70 +852,75 @@
     </section>
 
     <!-- Impact Stats & Testimonials Section -->
-    <section id="testimoni" class="scroll-mt-24 py-24 lg:py-32 bg-white border-t border-gray-100 relative bg-dots overflow-hidden">
+    <section id="testimoni" class="scroll-mt-24 py-16 sm:py-24 lg:py-32 bg-white border-t border-gray-100 relative bg-dots overflow-hidden">
         <!-- Section Header -->
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16" data-aos="fade-up">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-white border border-gray-200 text-primary-700 text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 shadow-2xs">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-10 sm:mb-16" data-aos="fade-up">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-white border border-gray-200 text-primary-700 text-xs sm:text-sm font-bold uppercase tracking-wider mb-3 sm:mb-4 shadow-2xs">
                 <svg class="w-4 h-4 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                Ulasan & Dampak Nyata
+                Ulasan &amp; Dampak Nyata
             </div>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-                Dipercaya oleh Pengusaha Restoran & Kafe
+            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-3 sm:mb-4">
+                Dipercaya oleh Pengusaha Restoran &amp; Kafe
             </h2>
-            <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 Lihat bagaimana SIPEMMA mentransformasi operasional kasir meja, pembayaran otomatis, dan analisis bisnis kuliner harian.
             </p>
         </div>
 
         <!-- 4 Impact Metric Strips -->
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-20">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
                 <!-- Stat 1 -->
-                <div class="bg-white rounded-2xl border border-gray-200/90 p-6 text-center shadow-xs hover:border-primary-300 transition-all group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-3xl sm:text-4xl font-extrabold text-primary-600 mb-1">3x</div>
+                <div class="bg-white rounded-xl sm:rounded-2xl border border-gray-200/90 p-4 sm:p-6 text-center shadow-xs hover:border-primary-300 transition-all group flex flex-col justify-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-2xl sm:text-4xl font-extrabold text-primary-600 mb-1">3x</div>
                     <div class="text-xs sm:text-sm font-bold text-gray-800">Lebih Cepat</div>
-                    <div class="text-[11px] sm:text-xs text-gray-500 mt-1">Alur Kasir & Meja Dine-In</div>
+                    <div class="text-[10px] sm:text-xs text-gray-500 mt-1 leading-snug">Alur Kasir &amp; Meja Dine-In</div>
                 </div>
 
                 <!-- Stat 2 -->
-                <div class="bg-white rounded-2xl border border-gray-200/90 p-6 text-center shadow-xs hover:border-primary-300 transition-all group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-1">100%</div>
+                <div class="bg-white rounded-xl sm:rounded-2xl border border-gray-200/90 p-4 sm:p-6 text-center shadow-xs hover:border-primary-300 transition-all group flex flex-col justify-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-2xl sm:text-4xl font-extrabold text-gray-900 mb-1">100%</div>
                     <div class="text-xs sm:text-sm font-bold text-gray-800">Otomatis</div>
-                    <div class="text-[11px] sm:text-xs text-gray-500 mt-1">Rekap Laporan & Pajak PB1</div>
+                    <div class="text-[10px] sm:text-xs text-gray-500 mt-1 leading-snug">Rekap Laporan &amp; Pajak PB1</div>
                 </div>
 
                 <!-- Stat 3 -->
-                <div class="bg-white rounded-2xl border border-gray-200/90 p-6 text-center shadow-xs hover:border-primary-300 transition-all group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-1">4.9/5</div>
+                <div class="bg-white rounded-xl sm:rounded-2xl border border-gray-200/90 p-4 sm:p-6 text-center shadow-xs hover:border-primary-300 transition-all group flex flex-col justify-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-2xl sm:text-4xl font-extrabold text-gray-900 mb-1">4.9/5</div>
                     <div class="text-xs sm:text-sm font-bold text-gray-800">Rating Kepuasan</div>
-                    <div class="text-[11px] sm:text-xs text-gray-500 mt-1">Berdasarkan Ulasan Kasir & Owner</div>
+                    <div class="text-[10px] sm:text-xs text-gray-500 mt-1 leading-snug">Berdasarkan Ulasan Kasir &amp; Owner</div>
                 </div>
 
                 <!-- Stat 4 -->
-                <div class="bg-white rounded-2xl border border-gray-200/90 p-6 text-center shadow-xs hover:border-primary-300 transition-all group" data-aos="fade-up" data-aos-delay="400">
-                    <div class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-1">24/7</div>
+                <div class="bg-white rounded-xl sm:rounded-2xl border border-gray-200/90 p-4 sm:p-6 text-center shadow-xs hover:border-primary-300 transition-all group flex flex-col justify-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-2xl sm:text-4xl font-extrabold text-gray-900 mb-1">24/7</div>
                     <div class="text-xs sm:text-sm font-bold text-gray-800">AI Assistant Siaga</div>
-                    <div class="text-[11px] sm:text-xs text-gray-500 mt-1">Analisis Omzet & Menu Terlaris</div>
+                    <div class="text-[10px] sm:text-xs text-gray-500 mt-1 leading-snug">Analisis Omzet &amp; Menu Terlaris</div>
                 </div>
             </div>
         </div>
 
         <!-- Testimonials Marquee Header -->
-        <div class="mb-10 text-center" data-aos="fade-up">
-            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight">
+        <div class="mb-8 sm:mb-10 text-center" data-aos="fade-up">
+            <h3 class="text-xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight">
                 Pengalaman Nyata Mitra Kuliner SIPEMMA
             </h3>
-            <p class="text-sm sm:text-base text-gray-500 mt-2 font-normal">
+            <p class="text-xs sm:text-base text-gray-500 mt-1.5 sm:mt-2 font-normal">
                 Cerita dari barista, kasir, head chef, dan pemilik restoran yang telah menggunakan SIPEMMA setiap hari.
             </p>
         </div>
 
         <!-- Testimonial Cards Marquee (Continuous non-stopping scroll) -->
-        <div class="marquee-wrapper py-4">
-            <div class="marquee-testimonials px-4">
+        <div class="relative w-full overflow-hidden py-2 sm:py-4">
+            <!-- Fade edges -->
+            <div class="absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+
+            <div class="marquee-wrapper">
+                <div class="marquee-testimonials px-2 sm:px-4">
                 <!-- Group 1 -->
                 <!-- Card 1 -->
-                <div class="w-[320px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[220px]">
+                <div class="w-[280px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-5 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[200px] sm:min-h-[220px]">
                     <div>
                         <div class="flex items-center gap-3.5 mb-3">
                             <div class="w-10 h-10 rounded-xl bg-orange-100 text-primary-700 flex items-center justify-center font-bold text-base shrink-0">
@@ -929,7 +941,7 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="w-[320px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[220px]">
+                <div class="w-[280px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-5 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[200px] sm:min-h-[220px]">
                     <div>
                         <div class="flex items-center gap-3.5 mb-3">
                             <div class="w-10 h-10 rounded-xl bg-orange-100 text-primary-700 flex items-center justify-center font-bold text-base shrink-0">
@@ -950,7 +962,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="w-[320px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[220px]">
+                <div class="w-[280px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-5 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[200px] sm:min-h-[220px]">
                     <div>
                         <div class="flex items-center gap-3.5 mb-3">
                             <div class="w-10 h-10 rounded-xl bg-orange-100 text-primary-700 flex items-center justify-center font-bold text-base shrink-0">
@@ -971,7 +983,7 @@
                 </div>
 
                 <!-- Card 4 -->
-                <div class="w-[320px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[220px]">
+                <div class="w-[280px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-5 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[200px] sm:min-h-[220px]">
                     <div>
                         <div class="flex items-center gap-3.5 mb-3">
                             <div class="w-10 h-10 rounded-xl bg-orange-100 text-primary-700 flex items-center justify-center font-bold text-base shrink-0">
@@ -992,7 +1004,7 @@
                 </div>
 
                 <!-- Card 5 -->
-                <div class="w-[320px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[220px]">
+                <div class="w-[280px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-5 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[200px] sm:min-h-[220px]">
                     <div>
                         <div class="flex items-center gap-3.5 mb-3">
                             <div class="w-10 h-10 rounded-xl bg-orange-100 text-primary-700 flex items-center justify-center font-bold text-base shrink-0">
@@ -1014,7 +1026,7 @@
 
                 <!-- Group 2 (Seamless Duplicate for Continuous Scroll) -->
                 <!-- Card 1 -->
-                <div class="w-[320px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[220px]">
+                <div class="w-[280px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-5 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[200px] sm:min-h-[220px]">
                     <div>
                         <div class="flex items-center gap-3.5 mb-3">
                             <div class="w-10 h-10 rounded-xl bg-orange-100 text-primary-700 flex items-center justify-center font-bold text-base shrink-0">
@@ -1035,7 +1047,7 @@
                 </div>
 
                 <!-- Card 2 -->
-                <div class="w-[320px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[220px]">
+                <div class="w-[280px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-5 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[200px] sm:min-h-[220px]">
                     <div>
                         <div class="flex items-center gap-3.5 mb-3">
                             <div class="w-10 h-10 rounded-xl bg-orange-100 text-primary-700 flex items-center justify-center font-bold text-base shrink-0">
@@ -1056,7 +1068,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="w-[320px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[220px]">
+                <div class="w-[280px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-5 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[200px] sm:min-h-[220px]">
                     <div>
                         <div class="flex items-center gap-3.5 mb-3">
                             <div class="w-10 h-10 rounded-xl bg-orange-100 text-primary-700 flex items-center justify-center font-bold text-base shrink-0">
@@ -1077,7 +1089,7 @@
                 </div>
 
                 <!-- Card 4 -->
-                <div class="w-[320px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[220px]">
+                <div class="w-[280px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-5 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[200px] sm:min-h-[220px]">
                     <div>
                         <div class="flex items-center gap-3.5 mb-3">
                             <div class="w-10 h-10 rounded-xl bg-orange-100 text-primary-700 flex items-center justify-center font-bold text-base shrink-0">
@@ -1098,7 +1110,7 @@
                 </div>
 
                 <!-- Card 5 -->
-                <div class="w-[320px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-6 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[220px]">
+                <div class="w-[280px] sm:w-[390px] shrink-0 bg-white rounded-2xl border border-gray-200 p-5 sm:p-7 shadow-xs hover:border-primary-400 transition-all flex flex-col justify-between text-left whitespace-normal min-h-[200px] sm:min-h-[220px]">
                     <div>
                         <div class="flex items-center gap-3.5 mb-3">
                             <div class="w-10 h-10 rounded-xl bg-orange-100 text-primary-700 flex items-center justify-center font-bold text-base shrink-0">
@@ -1117,15 +1129,16 @@
                         </p>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- About Content Section with Refined Editorial Presentation -->
-    <section id="tentang" class="scroll-mt-24 py-20 bg-gray-50/70 border-t border-gray-200/70">
+    <section id="tentang" class="scroll-mt-24 py-16 sm:py-20 bg-gray-50/70 border-t border-gray-200/70 overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
-            <div class="bg-white rounded-2xl p-8 sm:p-10 border border-gray-200 shadow-2xs">
-                <h3 class="text-xl sm:text-2xl font-extrabold text-gray-900 mb-6 text-left tracking-tight">
+            <div class="bg-white rounded-2xl p-5 sm:p-10 border border-gray-200 shadow-2xs">
+                <h3 class="text-lg sm:text-2xl font-extrabold text-gray-900 mb-4 sm:mb-6 text-left tracking-tight">
                     Tentang Aplikasi Kasir SIPEMMA
                 </h3>
                 
@@ -1150,36 +1163,36 @@
     </section>
 
     <!-- FAQ Section (Side-by-Side Editorial Split) -->
-    <section id="faq" class="scroll-mt-24 py-24 lg:py-32 bg-white border-t border-gray-200/70">
+    <section id="faq" class="scroll-mt-24 py-16 sm:py-24 lg:py-32 bg-white border-t border-gray-200/70 overflow-hidden">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
                 <!-- Left Title Column -->
                 <div class="lg:col-span-4" data-aos="fade-right">
-                    <div class="sticky top-28">
+                    <div class="lg:sticky lg:top-28">
                         <div class="inline-block text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-100/70 px-3 py-1 rounded-md mb-3">
                             Pusat Informasi
                         </div>
-                        <h2 class="text-4xl sm:text-5xl font-black text-gray-900 tracking-tight mb-4">
+                        <h2 class="text-3xl sm:text-5xl font-black text-gray-900 tracking-tight mb-3 sm:mb-4">
                             FAQ
                         </h2>
-                        <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+                        <p class="text-xs sm:text-base text-gray-600 leading-relaxed">
                             Pertanyaan umum seputar fitur kasir, integrasi pembayaran otomatis, dan cara pendaftaran SIPEMMA.
                         </p>
                     </div>
                 </div>
 
                 <!-- Right Accordion List -->
-                <div class="lg:col-span-8 space-y-4" data-aos="fade-left">
+                <div class="lg:col-span-8 space-y-3 sm:space-y-4" data-aos="fade-left">
                     <!-- FAQ Item 1 -->
                     <div class="faq-item bg-gray-50/80 border border-gray-200/80 rounded-2xl overflow-hidden transition-all">
-                        <button class="faq-button w-full flex items-center justify-between p-6 text-left text-gray-900 font-bold text-base sm:text-lg hover:text-primary-600 transition-colors focus:outline-none">
+                        <button class="faq-button w-full flex items-center justify-between p-4 sm:p-6 text-left text-gray-900 font-bold text-sm sm:text-lg hover:text-primary-600 transition-colors focus:outline-none">
                             <span>Apa itu SIPEMMA?</span>
-                            <span class="faq-icon shrink-0 ml-4 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-transform duration-300">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <span class="faq-icon shrink-0 ml-3 sm:ml-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-transform duration-300">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
                         </button>
                         <div class="faq-content max-h-0 opacity-0 transition-all duration-300 ease-in-out">
-                            <p class="px-6 pb-6 leading-relaxed text-gray-600 text-sm sm:text-base">
+                            <p class="px-4 pb-4 sm:px-6 sm:pb-6 leading-relaxed text-gray-600 text-xs sm:text-base">
                                 SIPEMMA adalah aplikasi kasir (POS) cloud terpadu untuk bisnis F&B, retail, dan jasa guna mengelola transaksi, stok inventaris, serta laporan keuangan secara otomatis.
                             </p>
                         </div>
@@ -1187,14 +1200,14 @@
                     
                     <!-- FAQ Item 2 -->
                     <div class="faq-item bg-gray-50/80 border border-gray-200/80 rounded-2xl overflow-hidden transition-all">
-                        <button class="faq-button w-full flex items-center justify-between p-6 text-left text-gray-900 font-bold text-base sm:text-lg hover:text-primary-600 transition-colors focus:outline-none">
+                        <button class="faq-button w-full flex items-center justify-between p-4 sm:p-6 text-left text-gray-900 font-bold text-sm sm:text-lg hover:text-primary-600 transition-colors focus:outline-none">
                             <span>Bagaimana cara menggunakan aplikasi kasir/POS dari SIPEMMA?</span>
-                            <span class="faq-icon shrink-0 ml-4 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-transform duration-300">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <span class="faq-icon shrink-0 ml-3 sm:ml-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-transform duration-300">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
                         </button>
                         <div class="faq-content max-h-0 opacity-0 transition-all duration-300 ease-in-out">
-                            <p class="px-6 pb-6 leading-relaxed text-gray-600 text-sm sm:text-base">
+                            <p class="px-4 pb-4 sm:px-6 sm:pb-6 leading-relaxed text-gray-600 text-xs sm:text-base">
                                 Cukup daftar akun, tambahkan daftar menu atau produk, lalu Anda siap memproses transaksi langsung dari tablet, smartphone, maupun komputer.
                             </p>
                         </div>
@@ -1202,14 +1215,14 @@
                     
                     <!-- FAQ Item 3 -->
                     <div class="faq-item bg-gray-50/80 border border-gray-200/80 rounded-2xl overflow-hidden transition-all">
-                        <button class="faq-button w-full flex items-center justify-between p-6 text-left text-gray-900 font-bold text-base sm:text-lg hover:text-primary-600 transition-colors focus:outline-none">
+                        <button class="faq-button w-full flex items-center justify-between p-4 sm:p-6 text-left text-gray-900 font-bold text-sm sm:text-lg hover:text-primary-600 transition-colors focus:outline-none">
                             <span>Berapa biaya berlangganan SIPEMMA?</span>
-                            <span class="faq-icon shrink-0 ml-4 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-transform duration-300">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <span class="faq-icon shrink-0 ml-3 sm:ml-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-transform duration-300">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
                         </button>
                         <div class="faq-content max-h-0 opacity-0 transition-all duration-300 ease-in-out">
-                            <p class="px-6 pb-6 leading-relaxed text-gray-600 text-sm sm:text-base">
+                            <p class="px-4 pb-4 sm:px-6 sm:pb-6 leading-relaxed text-gray-600 text-xs sm:text-base">
                                 Tersedia paket fleksibel sesuai skala bisnis Anda, mulai dari paket pemula hingga enterprise multi-cabang. Hubungi tim kami untuk konsultasi paket terbaik.
                             </p>
                         </div>
@@ -1217,14 +1230,14 @@
                     
                     <!-- FAQ Item 4 -->
                     <div class="faq-item bg-gray-50/80 border border-gray-200/80 rounded-2xl overflow-hidden transition-all">
-                        <button class="faq-button w-full flex items-center justify-between p-6 text-left text-gray-900 font-bold text-base sm:text-lg hover:text-primary-600 transition-colors focus:outline-none">
+                        <button class="faq-button w-full flex items-center justify-between p-4 sm:p-6 text-left text-gray-900 font-bold text-sm sm:text-lg hover:text-primary-600 transition-colors focus:outline-none">
                             <span>Bagaimana cara mendaftar SIPEMMA?</span>
-                            <span class="faq-icon shrink-0 ml-4 w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-transform duration-300">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                            <span class="faq-icon shrink-0 ml-3 sm:ml-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-500 transition-transform duration-300">
+                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
                         </button>
                         <div class="faq-content max-h-0 opacity-0 transition-all duration-300 ease-in-out">
-                            <p class="px-6 pb-6 leading-relaxed text-gray-600 text-sm sm:text-base">
+                            <p class="px-4 pb-4 sm:px-6 sm:pb-6 leading-relaxed text-gray-600 text-xs sm:text-base">
                                 Klik tombol "Jadwalkan Demo" atau "Coba gratis" di halaman ini, lengkapi formulir pendaftaran singkat, dan tim kami akan segera membantu Anda mengaktifkan akun.
                             </p>
                         </div>
@@ -1235,12 +1248,12 @@
     </section>
 
     <!-- Footer (Architectural Dark Slate Finish) -->
-    <footer id="kontak" class="scroll-mt-24 bg-[#0F172A] pt-20 pb-12 border-t border-slate-800 text-slate-400">
+    <footer id="kontak" class="scroll-mt-24 bg-[#0F172A] pt-14 sm:pt-20 pb-10 sm:pb-12 border-t border-slate-800 text-slate-400 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16">
-                <div class="col-span-2 lg:col-span-2">
-                    <img src="{{ asset('assets/img/LOGO.png') }}" alt="SIPEMMA Logo" class="h-14 mb-6 object-contain filter brightness-0 invert">
-                    <div class="flex gap-3">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12 sm:mb-16">
+                <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-2">
+                    <img src="{{ asset('assets/img/LOGO.png') }}" alt="SIPEMMA Logo" class="h-10 sm:h-14 mb-4 sm:mb-6 object-contain filter brightness-0 invert">
+                    <div class="flex gap-3 mb-2 lg:mb-0">
                         <a href="#" class="w-9 h-9 rounded-xl bg-slate-800/80 flex items-center justify-center text-gray-400 hover:text-white hover:bg-slate-700 transition-all">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg>
                         </a>
@@ -1251,8 +1264,8 @@
                 </div>
                 
                 <div>
-                    <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Produk</h4>
-                    <ul class="space-y-2.5 text-sm text-slate-400">
+                    <h4 class="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm uppercase tracking-wider">Produk</h4>
+                    <ul class="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-slate-400">
                         <li><a href="#" class="hover:text-primary-400 transition-colors">Point of Sale (POS)</a></li>
                         <li><a href="#" class="hover:text-primary-400 transition-colors">Manajemen Stok</a></li>
                         <li><a href="#" class="hover:text-primary-400 transition-colors">Laporan Penjualan</a></li>
@@ -1261,8 +1274,8 @@
                 </div>
                 
                 <div>
-                    <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Perusahaan</h4>
-                    <ul class="space-y-2.5 text-sm text-slate-400">
+                    <h4 class="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm uppercase tracking-wider">Perusahaan</h4>
+                    <ul class="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-slate-400">
                         <li><a href="#" class="hover:text-primary-400 transition-colors">Tentang Kami</a></li>
                         <li><a href="#" class="hover:text-primary-400 transition-colors">Karir</a></li>
                         <li><a href="#" class="hover:text-primary-400 transition-colors">Hubungi Kami</a></li>
@@ -1270,17 +1283,17 @@
                     </ul>
                 </div>
                 
-                <div>
-                    <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wider">Bantuan</h4>
-                    <ul class="space-y-2.5 text-sm text-slate-400">
+                <div class="col-span-2 sm:col-span-1">
+                    <h4 class="font-bold text-white mb-3 sm:mb-4 text-xs sm:text-sm uppercase tracking-wider">Bantuan</h4>
+                    <ul class="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-slate-400">
                         <li><a href="#" class="hover:text-primary-400 transition-colors">Pusat Bantuan</a></li>
-                        <li><a href="#" class="hover:text-primary-400 transition-colors">Syarat & Ketentuan</a></li>
+                        <li><a href="#" class="hover:text-primary-400 transition-colors">Syarat &amp; Ketentuan</a></li>
                         <li><a href="#" class="hover:text-primary-400 transition-colors">Kebijakan Privasi</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-slate-800/80 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="border-t border-slate-800/80 pt-6 sm:pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
                 <p class="text-xs sm:text-sm text-slate-500">
                     &copy; {{ date('Y') }} PT SIPEMMA Teknologi Indonesia. Hak Cipta Dilindungi.
                 </p>
@@ -1328,8 +1341,17 @@
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('navMobileIcon');
             if (menu) {
+                const isClosed = menu.classList.contains('hidden');
                 menu.classList.toggle('hidden');
+                if (icon) {
+                    if (isClosed) {
+                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+                    } else {
+                        icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                    }
+                }
             }
         }
 
