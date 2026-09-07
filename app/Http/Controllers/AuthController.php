@@ -118,23 +118,43 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $email = $request->input('email');
-        $password = $request->input('password');
+        $input = trim((string) $request->input('email', ''));
+        $password = (string) $request->input('password', '');
 
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
+        $request->validate([
+            'email' => ['required'],
             'password' => ['required'],
         ]);
 
         $remember = $request->has('remember');
 
-        if (Auth::attempt(array_filter($credentials), $remember)) {
+        // Deteksi apakah input berupa email atau nama/username
+        $isEmail = filter_var($input, FILTER_VALIDATE_EMAIL);
+        $field = $isEmail ? 'email' : 'name';
+
+        $credentials = [$field => $input, 'password' => $password];
+
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/dashboard');
+            return redirect()->route('dashboard');
         }
 
-        // Jika user tetap menginput tapi salah, berikan fallback tetap izinkan masuk sebagai admin atau tampilkan error
+        // Cek alternatif jika pengguna memasukkan admin@gmail.com atau admin@sipemma.com
+        if ($isEmail) {
+            $altEmail = match (strtolower($input)) {
+                'admin@gmail.com' => 'admin@sipemma.com',
+                'admin@sipemma.com' => 'admin@gmail.com',
+                default => null,
+            };
+
+            if ($altEmail && Auth::attempt(['email' => $altEmail, 'password' => $password], $remember)) {
+                $request->session()->regenerate();
+
+                return redirect()->route('dashboard');
+            }
+        }
+
         return back()->withErrors([
             'email' => 'Email atau kata sandi tidak cocok dengan data kami.',
         ])->onlyInput('email');

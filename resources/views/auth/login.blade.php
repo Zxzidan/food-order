@@ -68,10 +68,10 @@
                 @endif
 
                 <div class="mb-4">
-                    <label for="email" class="block font-bold text-ink text-[10px] mb-1.5 uppercase tracking-wider">Email</label>
-                    <input type="email" name="email" id="email" value="{{ old('email') }}" autofocus
+                    <label for="email" class="block font-bold text-ink text-[10px] mb-1.5 uppercase tracking-wider">Email atau Username</label>
+                    <input type="text" name="email" id="email" value="{{ old('email') }}" autofocus required
                         class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2.5 px-3 text-sm font-medium shadow-sm hover:border-gray-300"
-                        placeholder="admin@gmail.com">
+                        placeholder="admin@sipemma.com">
                 </div>
 
                 <div class="mb-5">

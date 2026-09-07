@@ -19,3 +19,36 @@ test('authenticated user is redirected to landing page upon logout', function ()
     $this->assertGuest();
     $response->assertRedirect('/');
 });
+
+test('user can log in with valid credentials and access dashboard', function () {
+    $user = User::factory()->create([
+        'email' => 'admin@sipemma.com',
+        'password' => bcrypt('password123'),
+    ]);
+
+    $response = $this->post('/login', [
+        'email' => 'admin@sipemma.com',
+        'password' => 'password123',
+    ]);
+
+    $this->assertAuthenticatedAs($user);
+    $response->assertRedirect('/dashboard');
+
+    $dashboardResponse = $this->get('/dashboard');
+    $dashboardResponse->assertStatus(200);
+});
+
+test('user with wrong credentials cannot log in', function () {
+    $user = User::factory()->create([
+        'email' => 'admin@sipemma.com',
+        'password' => bcrypt('password123'),
+    ]);
+
+    $response = $this->post('/login', [
+        'email' => 'admin@sipemma.com',
+        'password' => 'wrong-password',
+    ]);
+
+    $this->assertGuest();
+    $response->assertSessionHasErrors('email');
+});
