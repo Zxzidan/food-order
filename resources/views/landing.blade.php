@@ -177,7 +177,7 @@
                 <div class="max-w-7xl mx-auto px-12 sm:px-16 lg:px-20 relative h-full">
                     <div class="flex flex-col lg:flex-row items-center lg:items-end justify-between h-full gap-8 lg:gap-12">
                         <!-- Left Text (Dynamic) -->
-                        <div class="text-white w-full lg:w-1/2 pb-8 lg:pb-32 relative h-[350px] lg:h-auto flex flex-col justify-end">
+                        <div class="text-white w-full pb-8 lg:pb-32 relative h-[350px] lg:h-auto flex flex-col justify-end">
                             <div class="min-h-[200px] flex flex-col justify-end">
                                 <h1 id="heroTitle" class="text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.1] mb-8 tracking-tight min-h-[150px] lg:min-h-[220px] flex items-end">
                                     Satu Aplikasi POS<br>untuk Semua<br>Kebutuhan Bisnis
@@ -192,11 +192,6 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Right Image (Static 3D Model Render) -->
-                        <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-end relative h-full">
-                            <img src="{{ asset('assets/img/hero-mockup-new.png') }}" alt="SIPEMMA POS Ecosystem" class="w-full max-w-xl lg:max-w-[130%] lg:-mr-16 object-contain object-bottom drop-shadow-2xl select-none pointer-events-none pb-8 lg:pb-0">
                         </div>
                     </div>
                 </div>
