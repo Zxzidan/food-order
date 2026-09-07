@@ -30,7 +30,7 @@
                     <h3
                         class="text-3xl font-bold text-gray-900 dark:text-white mt-2"
                     >
-                        {{ number_format($totalCustomers ?? 500) }}
+                        {{ number_format($totalCustomers ?? 0) }}
                     </h3>
                 </div>
 
@@ -193,16 +193,18 @@
         >
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-lg font-bold text-gray-900 dark:text-white">
-                    Menu Yang Laris
+                    Top 5 Menu Paling Laris
                 </h2>
+                <span class="text-xs font-semibold px-2.5 py-1 bg-orange-50 dark:bg-orange-950/40 text-orange-600 dark:text-orange-400 rounded-lg">Terlaris</span>
             </div>
 
-            <div class="space-y-5">
-                @forelse($bestSellingMenus as $bestMenu)
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
+            <div class="space-y-4">
+                @forelse($bestSellingMenus as $index => $bestMenu)
+                <div class="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition">
+                    <div class="flex items-center min-w-0">
+                        <span class="w-5 h-5 flex items-center justify-center rounded-full bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 font-bold text-xs shrink-0 mr-2.5">{{ $index + 1 }}</span>
                         <div
-                            class="w-16 h-14 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-xl shadow-sm overflow-hidden"
+                            class="w-12 h-12 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-xl shadow-xs overflow-hidden shrink-0"
                         >
                             <img
                                 src="{{ $bestMenu->image ? (str_starts_with($bestMenu->image, 'http') ? $bestMenu->image : asset($bestMenu->image)) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200' }}"
@@ -210,16 +212,21 @@
                                 class="w-full h-full object-cover rounded-lg"
                             />
                         </div>
-                        <div class="ml-4">
+                        <div class="ml-3 min-w-0">
                             <h4
-                                class="text-sm font-bold text-gray-900 dark:text-white"
+                                class="text-sm font-bold text-gray-900 dark:text-white truncate"
                             >
                                 {{ $bestMenu->name }}
                             </h4>
                             <p class="text-xs text-gray-500 dark:text-gray-400">
-                                {{ $bestMenu->sold }} pesanan
+                                {{ $bestMenu->sold }} pesanan terjual
                             </p>
                         </div>
+                    </div>
+                    <div class="text-right shrink-0 ml-2">
+                        <span class="text-xs font-bold text-orange-600 dark:text-orange-400">
+                            Rp {{ number_format($bestMenu->price, 0, ',', '.') }}
+                        </span>
                     </div>
                 </div>
                 @empty

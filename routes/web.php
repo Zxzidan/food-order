@@ -4,12 +4,12 @@ use App\Http\Controllers\AiChatController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MidtransNotificationController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderHistoryController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\MidtransNotificationController;
 use Illuminate\Support\Facades\Route;
 
 // Midtrans Webhook (No CSRF, No Auth)
@@ -52,7 +52,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/payment/{order_number}/cash', [PaymentController::class, 'processCash'])->name('payment.cash');
     Route::post('/payment/{order_number}/midtrans', [PaymentController::class, 'processMidtrans'])->name('payment.midtrans');
     Route::post('/payment/{order_number}/midtrans/callback', [PaymentController::class, 'callbackMidtrans'])->name('payment.midtrans.callback');
-
 
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 
