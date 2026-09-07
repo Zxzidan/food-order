@@ -171,96 +171,36 @@
         <div class="absolute top-0 right-0 -mr-32 -mt-32 w-[600px] h-[600px] bg-primary-500 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
         <div class="absolute bottom-0 left-0 -ml-32 w-[500px] h-[500px] bg-primary-700 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-y-1/2"></div>
 
-        <!-- Carousel Wrapper -->
-        <div id="carouselInner" class="flex transition-transform duration-500 ease-out w-full h-full relative z-10 items-end">
-            
-            <!-- Slide 1 -->
-            <div class="w-full flex-shrink-0">
+        <!-- Hero Content Wrapper -->
+        <div class="flex w-full h-full relative z-10 items-end">
+            <div class="w-full">
                 <div class="max-w-7xl mx-auto px-12 sm:px-16 lg:px-20 relative h-full">
                     <div class="flex flex-col lg:flex-row items-center lg:items-end justify-between h-full gap-8 lg:gap-12">
-                        <!-- Left Text -->
-                        <div class="text-white w-full lg:w-1/2 pb-8 lg:pb-32">
-                            <h1 class="text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.1] mb-8 tracking-tight">
-                                Satu Aplikasi POS<br>untuk Semua<br>Kebutuhan Bisnis
-                            </h1>
-                            
-                            <div class="flex flex-col sm:flex-row items-center gap-4 mt-10">
-                                <a href="{{ route('register') }}" class="w-full sm:w-auto bg-[#00c2ff] hover:bg-[#00a8e6] text-white text-lg font-bold py-4 px-8 rounded-full shadow-lg transition-all text-center">
-                                    Jadwalkan Demo
-                                </a>
-                                <a href="#fitur" class="w-full sm:w-auto bg-transparent border-2 border-white hover:bg-white hover:text-primary-600 text-white text-lg font-bold py-4 px-8 rounded-full transition-colors text-center">
-                                    WhatsApp Kami Sekarang!
-                                </a>
+                        <!-- Left Text (Dynamic) -->
+                        <div class="text-white w-full lg:w-1/2 pb-8 lg:pb-32 relative h-[350px] lg:h-auto flex flex-col justify-end">
+                            <div class="min-h-[200px] flex flex-col justify-end">
+                                <h1 id="heroTitle" class="text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.1] mb-8 tracking-tight min-h-[150px] lg:min-h-[220px] flex items-end">
+                                    Satu Aplikasi POS<br>untuk Semua<br>Kebutuhan Bisnis
+                                </h1>
+                                
+                                <div class="flex flex-col sm:flex-row items-center gap-4 mt-4 lg:mt-10">
+                                    <a href="{{ route('register') }}" class="w-full sm:w-auto bg-primary-500 hover:bg-primary-600 text-white text-lg font-bold py-4 px-8 rounded-full shadow-lg transition-all text-center">
+                                        Jadwalkan Demo
+                                    </a>
+                                    <a href="#fitur" class="w-full sm:w-auto bg-transparent border-2 border-white hover:bg-white hover:text-primary-600 text-white text-lg font-bold py-4 px-8 rounded-full transition-colors text-center">
+                                        WhatsApp Kami Sekarang!
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Right Image (Transparent 3D PNG) -->
+                        <!-- Right Image (Static 3D Model Render) -->
                         <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-end relative h-full">
-                            <img src="{{ asset('assets/img/hero-mockup-1.png') }}" alt="SIPEMMA POS App" class="w-full max-w-xl lg:max-w-[130%] lg:-mr-16 object-contain object-bottom drop-shadow-2xl">
+                            <img src="{{ asset('assets/img/hero-mockup-new.png') }}" alt="SIPEMMA POS Ecosystem" class="w-full max-w-xl lg:max-w-[130%] lg:-mr-16 object-contain object-bottom drop-shadow-2xl select-none pointer-events-none pb-8 lg:pb-0">
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Slide 2 -->
-            <div class="w-full flex-shrink-0">
-                <div class="max-w-7xl mx-auto px-12 sm:px-16 lg:px-20 relative h-full">
-                    <div class="flex flex-col lg:flex-row items-center lg:items-end justify-between h-full gap-8 lg:gap-12">
-                        <div class="text-white w-full lg:w-1/2 pb-8 lg:pb-32">
-                            <h1 class="text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.1] mb-8 tracking-tight">
-                                Kelola Inventaris<br>Lebih Mudah<br>& Akurat
-                            </h1>
-                            
-                            <div class="flex flex-col sm:flex-row items-center gap-4 mt-10">
-                                <a href="{{ route('register') }}" class="w-full sm:w-auto bg-[#00c2ff] hover:bg-[#00a8e6] text-white text-lg font-bold py-4 px-8 rounded-full shadow-lg transition-all text-center">
-                                    Coba Gratis
-                                </a>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-end relative h-full">
-                            <!-- Placeholder -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="w-full flex-shrink-0">
-                <div class="max-w-7xl mx-auto px-12 sm:px-16 lg:px-20 relative h-full">
-                    <div class="flex flex-col lg:flex-row items-center lg:items-end justify-between h-full gap-8 lg:gap-12">
-                        <div class="text-white w-full lg:w-1/2 pb-8 lg:pb-32">
-                            <h1 class="text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.1] mb-8 tracking-tight">
-                                Pantau Laporan<br>Penjualan<br>Dari Mana Saja
-                            </h1>
-                            
-                            <div class="flex flex-col sm:flex-row items-center gap-4 mt-10">
-                                <a href="{{ route('register') }}" class="w-full sm:w-auto bg-[#00c2ff] hover:bg-[#00a8e6] text-white text-lg font-bold py-4 px-8 rounded-full shadow-lg transition-all text-center">
-                                    Daftar Sekarang
-                                </a>
-                            </div>
-                        </div>
-                        <div class="w-full lg:w-1/2 flex justify-center lg:justify-end items-end relative h-full">
-                            <!-- Placeholder -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-
-        <!-- Left/Right Buttons on absolute edges of the screen -->
-        <button onclick="prevSlide()" class="absolute left-4 sm:left-8 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white text-white hover:text-primary-600 w-12 h-12 flex items-center justify-center rounded-full shadow-lg backdrop-blur-sm transition-all z-20">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
-        </button>
-        <button onclick="nextSlide()" class="absolute right-4 sm:right-8 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white text-white hover:text-primary-600 w-12 h-12 flex items-center justify-center rounded-full shadow-lg backdrop-blur-sm transition-all z-20">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
-        </button>
-
-        <!-- Carousel Indicators -->
-        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3 z-20" id="carouselIndicators">
-            <button onclick="goToSlide(0)" class="indicator w-3 h-3 rounded-full bg-white transition-all"></button>
-            <button onclick="goToSlide(1)" class="indicator w-3 h-3 rounded-full bg-white/40 hover:bg-white/80 transition-all"></button>
-            <button onclick="goToSlide(2)" class="indicator w-3 h-3 rounded-full bg-white/40 hover:bg-white/80 transition-all"></button>
         </div>
     </section>
 
@@ -273,22 +213,48 @@
             <!-- Content duplicated for infinite scroll effect -->
             <div class="marquee-content gap-16 sm:gap-24 lg:gap-32 px-8 items-center">
                 <!-- Group 1 -->
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">KOPI KENANGAN</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">JANJI JIWA</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">BITTERSWEET</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">PAGI SORE</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">THE FOODHALL</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">XL AXIATA</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">UNILEVER</div>
+                <div class="flex items-center gap-3 text-gray-300 hover:text-gray-400 transition-all grayscale opacity-70 hover:opacity-100">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M4 19h16v2H4v-2zm16-6c0 3.31-2.69 6-6 6H10c-3.31 0-6-2.69-6-6V5h16v8zM6 7v6c0 2.21 1.79 4 4 4h4c2.21 0 4-1.79 4-4V7H6z"/></svg>
+                    <span class="font-extrabold text-2xl tracking-tight">Kopi Kenangan</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-300 hover:text-gray-400 transition-all grayscale opacity-70 hover:opacity-100">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    <span class="font-extrabold text-2xl tracking-tighter uppercase">Unilever</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-300 hover:text-gray-400 transition-all grayscale opacity-70 hover:opacity-100">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm-6-4h8v2h-8z"/></svg>
+                    <span class="font-black text-2xl uppercase italic">XL Axiata</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-300 hover:text-gray-400 transition-all grayscale opacity-70 hover:opacity-100">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                    <span class="font-semibold text-2xl tracking-widest uppercase">Foodhall</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-300 hover:text-gray-400 transition-all grayscale opacity-70 hover:opacity-100">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    <span class="font-bold text-2xl uppercase tracking-tighter">Janji Jiwa</span>
+                </div>
                 
                 <!-- Group 2 (Duplicate) -->
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">KOPI KENANGAN</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">JANJI JIWA</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">BITTERSWEET</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">PAGI SORE</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">THE FOODHALL</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">XL AXIATA</div>
-                <div class="flex items-center gap-2 font-extrabold text-2xl text-gray-300 hover:text-gray-400 transition-colors">UNILEVER</div>
+                <div class="flex items-center gap-3 text-gray-300 hover:text-gray-400 transition-all grayscale opacity-70 hover:opacity-100">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M4 19h16v2H4v-2zm16-6c0 3.31-2.69 6-6 6H10c-3.31 0-6-2.69-6-6V5h16v8zM6 7v6c0 2.21 1.79 4 4 4h4c2.21 0 4-1.79 4-4V7H6z"/></svg>
+                    <span class="font-extrabold text-2xl tracking-tight">Kopi Kenangan</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-300 hover:text-gray-400 transition-all grayscale opacity-70 hover:opacity-100">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    <span class="font-extrabold text-2xl tracking-tighter uppercase">Unilever</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-300 hover:text-gray-400 transition-all grayscale opacity-70 hover:opacity-100">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm-6-4h8v2h-8z"/></svg>
+                    <span class="font-black text-2xl uppercase italic">XL Axiata</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-300 hover:text-gray-400 transition-all grayscale opacity-70 hover:opacity-100">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+                    <span class="font-semibold text-2xl tracking-widest uppercase">Foodhall</span>
+                </div>
+                <div class="flex items-center gap-3 text-gray-300 hover:text-gray-400 transition-all grayscale opacity-70 hover:opacity-100">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                    <span class="font-bold text-2xl uppercase tracking-tighter">Janji Jiwa</span>
+                </div>
             </div>
         </div>
     </section>
@@ -298,9 +264,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="order-2 lg:order-1 relative" data-aos="fade-right">
-                    <!-- Background Decor -->
-                    <div class="absolute -inset-4 bg-blue-50 rounded-[3rem] transform -rotate-2 -z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" alt="Dashboard Backoffice" class="rounded-3xl shadow-soft w-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" alt="Dashboard Backoffice" class="rounded-3xl shadow-xl w-full object-cover select-none pointer-events-none">
                 </div>
                 
                 <div class="order-1 lg:order-2" data-aos="fade-left">
@@ -314,7 +278,7 @@
                     <div class="space-y-8">
                         <!-- Item -->
                         <div class="flex gap-4 items-start border-b border-gray-100 pb-6">
-                            <div class="shrink-0 w-12 h-12 rounded-full bg-[#1e40af] flex items-center justify-center text-white">
+                            <div class="shrink-0 w-12 h-12 rounded-full bg-primary-600 flex items-center justify-center text-white">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             </div>
                             <div>
@@ -323,7 +287,7 @@
                         </div>
                         <!-- Item -->
                         <div class="flex gap-4 items-start border-b border-gray-100 pb-6">
-                            <div class="shrink-0 w-12 h-12 rounded-full bg-[#7e22ce] flex items-center justify-center text-white">
+                            <div class="shrink-0 w-12 h-12 rounded-full bg-primary-600 flex items-center justify-center text-white">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                             </div>
                             <div>
@@ -332,7 +296,7 @@
                         </div>
                         <!-- Item -->
                         <div class="flex gap-4 items-start">
-                            <div class="shrink-0 w-12 h-12 rounded-full bg-[#0ea5e9] flex items-center justify-center text-white">
+                            <div class="shrink-0 w-12 h-12 rounded-full bg-primary-600 flex items-center justify-center text-white">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
                             </div>
                             <div>
@@ -358,14 +322,13 @@
                         Kami membantu Anda mendapatkan data-data menarik dari transaksi Anda sehingga Anda bisa menjual lebih banyak lagi. Cegah kehabisan stok dengan pemantauan inventaris yang akurat.
                     </p>
 
-                    <a href="#fitur" class="inline-flex items-center gap-2 text-[#00c2ff] font-bold text-lg hover:text-blue-500 transition-colors">
-                        Pelajari Lebih Lanjut <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <a href="#fitur" class="inline-flex items-center gap-2 text-primary-500 font-bold text-lg hover:text-primary-600 transition-colors">
+                        Pelajari Fitur Lengkap <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
 
                 <div class="relative" data-aos="fade-left">
-                    <div class="absolute -inset-4 bg-purple-100 rounded-[3rem] transform rotate-2 -z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&q=80&w=800" alt="Kasir Offline" class="rounded-3xl shadow-soft w-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&q=80&w=800" alt="Kasir Offline" class="rounded-3xl shadow-xl w-full object-cover select-none pointer-events-none">
                 </div>
             </div>
         </div>
@@ -376,8 +339,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="order-2 lg:order-1 relative" data-aos="fade-right">
-                    <div class="absolute -inset-4 bg-primary-200 rounded-[3rem] transform -rotate-2 -z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&q=80&w=800" alt="Laporan Penjualan" class="rounded-3xl shadow-soft w-full object-cover">
+                    <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&q=80&w=800" alt="Laporan Penjualan" class="rounded-3xl shadow-xl w-full object-cover select-none pointer-events-none">
                 </div>
 
                 <div class="order-1 lg:order-2" data-aos="fade-left">
@@ -430,6 +392,77 @@
                 <span>Baca banyak</span> 
                 <svg id="readMoreIcon" class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </button>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="inline-block text-primary-600 font-black text-4xl tracking-widest mb-4 uppercase">FAQ</h2>
+            </div>
+            
+            <div class="space-y-4" data-aos="fade-up" data-aos-delay="100">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item border-b border-gray-200 overflow-hidden">
+                    <button class="faq-button w-full flex items-center justify-between py-6 text-left text-gray-900 font-bold text-lg hover:text-primary-600 transition-colors focus:outline-none">
+                        Apa itu SIPEMMA?
+                        <span class="faq-icon shrink-0 transition-transform duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </button>
+                    <div class="faq-content max-h-0 opacity-0 transition-all duration-300 ease-in-out">
+                        <p class="pb-6 leading-relaxed text-gray-600 text-base">
+                            SIPEMMA adalah aplikasi Point of Sale (POS) berbasis cloud yang dirancang untuk membantu berbagai jenis bisnis, mulai dari F&B, retail, hingga layanan jasa, dalam mengelola transaksi, inventaris, dan pelanggan dengan lebih efisien.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="faq-item border-b border-gray-200 overflow-hidden">
+                    <button class="faq-button w-full flex items-center justify-between py-6 text-left text-gray-900 font-bold text-lg hover:text-primary-600 transition-colors focus:outline-none">
+                        Bagaimana cara menggunakan aplikasi kasir/POS dari SIPEMMA?
+                        <span class="faq-icon shrink-0 transition-transform duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </button>
+                    <div class="faq-content max-h-0 opacity-0 transition-all duration-300 ease-in-out">
+                        <p class="pb-6 leading-relaxed text-gray-600 text-base">
+                            Anda dapat mendaftar melalui situs web kami, lalu mengunduh aplikasi SIPEMMA di perangkat Anda. Setelah masuk, Anda bisa mulai menambahkan produk, mengatur harga, dan langsung menerima pembayaran dari pelanggan Anda.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="faq-item border-b border-gray-200 overflow-hidden">
+                    <button class="faq-button w-full flex items-center justify-between py-6 text-left text-gray-900 font-bold text-lg hover:text-primary-600 transition-colors focus:outline-none">
+                        Berapa biaya berlangganan SIPEMMA?
+                        <span class="faq-icon shrink-0 transition-transform duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </button>
+                    <div class="faq-content max-h-0 opacity-0 transition-all duration-300 ease-in-out">
+                        <p class="pb-6 leading-relaxed text-gray-600 text-base">
+                            SIPEMMA menawarkan berbagai paket berlangganan yang disesuaikan dengan ukuran bisnis Anda, mulai dari paket pemula hingga enterprise. Kunjungi halaman <a href="#harga" class="text-primary-500 hover:underline">Harga</a> untuk detail selengkapnya.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="faq-item border-b border-gray-200 overflow-hidden">
+                    <button class="faq-button w-full flex items-center justify-between py-6 text-left text-gray-900 font-bold text-lg hover:text-primary-600 transition-colors focus:outline-none">
+                        Bagaimana cara mendaftar SIPEMMA?
+                        <span class="faq-icon shrink-0 transition-transform duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </button>
+                    <div class="faq-content max-h-0 opacity-0 transition-all duration-300 ease-in-out">
+                        <p class="pb-6 leading-relaxed text-gray-600 text-base">
+                            Sangat mudah! Klik tombol "Coba Gratis" atau "Jadwalkan Demo" di halaman ini, isi formulir pendaftaran singkat, dan tim kami akan segera menghubungi Anda untuk proses selanjutnya.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -561,42 +594,59 @@
             }
         });
 
-        // Hero Carousel Logic
-        let currentSlide = 0;
-        const totalSlides = 3;
-        const carouselInner = document.getElementById('carouselInner');
-        const indicators = document.querySelectorAll('.indicator');
+        // Hero Typewriter Logic
+        const heroContents = [
+            'Satu Aplikasi POS<br>untuk Semua<br>Kebutuhan Bisnis',
+            'Kelola Inventaris<br>Lebih Mudah<br>& Akurat',
+            'Pantau Laporan<br>Penjualan<br>Dari Mana Saja'
+        ];
 
-        function updateCarousel() {
-            carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
-            indicators.forEach((indicator, index) => {
-                if(index === currentSlide) {
-                    indicator.classList.replace('bg-white/40', 'bg-white');
-                    indicator.classList.remove('hover:bg-white/80');
+        let currentContentIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const heroTitle = document.getElementById('heroTitle');
+        const typingSpeed = 50; // ms per char
+        const erasingSpeed = 30; // ms per char
+        const delayBetweenText = 2500; // ms delay before erasing
+
+        function typeWriter() {
+            const currentText = heroContents[currentContentIndex];
+            
+            if (isDeleting) {
+                // If we are deleting and hit a tag like <br>, delete the whole tag
+                if (currentText.substring(charIndex - 4, charIndex) === '<br>') {
+                    charIndex -= 4;
                 } else {
-                    indicator.classList.replace('bg-white', 'bg-white/40');
-                    indicator.classList.add('hover:bg-white/80');
+                    charIndex--;
                 }
-            });
+            } else {
+                // If we are typing and hit <, add the whole <br> tag
+                if (currentText.charAt(charIndex) === '<') {
+                    charIndex += 4;
+                } else {
+                    charIndex++;
+                }
+            }
+            
+            const displayText = currentText.substring(0, charIndex);
+            heroTitle.innerHTML = displayText + '<span class="animate-pulse border-r-4 border-white ml-1"></span>';
+            
+            let typeSpeed = isDeleting ? erasingSpeed : typingSpeed;
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = delayBetweenText;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentContentIndex = (currentContentIndex + 1) % heroContents.length;
+                typeSpeed = 500; // Pause before typing next word
+            }
+            
+            setTimeout(typeWriter, typeSpeed);
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-        }
-
-        // Auto-play carousel
-        setInterval(nextSlide, 5000);
+        // Start typewriter
+        setTimeout(typeWriter, 1000);
 
         // Read More Toggle Logic
         let isExpanded = false;
@@ -617,6 +667,33 @@
                 icon.classList.remove('rotate-180');
             }
         }
+        // FAQ Accordion Logic
+        document.querySelectorAll('.faq-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('.faq-icon');
+                
+                // Close other opened FAQs
+                document.querySelectorAll('.faq-content').forEach(otherContent => {
+                    if (otherContent !== content && otherContent.style.maxHeight) {
+                        otherContent.style.maxHeight = null;
+                        otherContent.classList.remove('opacity-100');
+                        otherContent.previousElementSibling.querySelector('.faq-icon').classList.remove('-rotate-180');
+                    }
+                });
+
+                // Toggle current FAQ
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    content.classList.remove('opacity-100');
+                    icon.classList.remove('-rotate-180');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    content.classList.add('opacity-100');
+                    icon.classList.add('-rotate-180');
+                }
+            });
+        });
 
         // Preloader Logic
         window.addEventListener('load', () => {
@@ -630,14 +707,20 @@
             }, 600);
         });
 
-        // Floating Hubungi Kami CTA
-        const floatingBtn = document.createElement('a');
-        floatingBtn.href = "#kontak";
-        floatingBtn.className = "fixed bottom-6 right-6 bg-gray-900 hover:bg-black text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center z-50 transition-transform transform hover:scale-110";
-        floatingBtn.innerHTML = `
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
-        `;
-        document.body.appendChild(floatingBtn);
+
+    </script>
+
+    <!-- AOS Animation Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                once: true,
+                offset: 50,
+                duration: 800,
+                easing: 'ease-out-cubic',
+            });
+        });
     </script>
 </body>
 </html>
