@@ -110,7 +110,7 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->intended('/dashboard');
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -195,7 +195,7 @@ class AuthController extends Controller
             Auth::login($user, $remember);
             $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard'));
+            return redirect()->route('dashboard');
         }
 
         // Fallback standar Auth::attempt
@@ -204,7 +204,7 @@ class AuthController extends Controller
         if (Auth::attempt([$field => $input, 'password' => $password], $remember)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard'));
+            return redirect()->route('dashboard');
         }
 
         return back()->withErrors([
