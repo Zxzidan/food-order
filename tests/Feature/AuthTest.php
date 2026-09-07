@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 
 uses(RefreshDatabase::class);
 
@@ -51,4 +52,20 @@ test('user with wrong credentials cannot log in', function () {
 
     $this->assertGuest();
     $response->assertSessionHasErrors('email');
+});
+
+test('new user can register and password is encrypted properly', function () {
+    $response = $this->post('/register', [
+        'name' => 'Dandi Zaidan',
+        'email' => 'dandiz@example.com',
+        'password' => 'secret12345',
+        'password_confirmation' => 'secret12345',
+    ]);
+
+    $response->assertRedirect('/dashboard');
+    $this->assertAuthenticated();
+
+    $user = User::where('email', 'dandiz@example.com')->first();
+    expect($user)->not->toBeNull();
+    expect(Hash::check('secret12345', $user->password))->toBeTrue();
 });
