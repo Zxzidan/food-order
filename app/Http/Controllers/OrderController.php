@@ -8,7 +8,6 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\RestaurantTable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -82,9 +81,21 @@ class OrderController extends Controller
             $tax = (int) round($subtotal * 0.10); // PB1 10%
             $totalAmount = $subtotal + $tax;
 
-            // Generate order number like #ORD-YYYYMMDD-XXX
-            $todayCount = Order::whereDate('created_at', Carbon::today())->count() + 1;
-            $orderNumber = 'ORD-'.date('Ymd').'-'.str_pad((string) $todayCount, 4, '0', STR_PAD_LEFT);
+            // Generate order number like ORD-YYYYMMDD-XXXX (selalu menaik melampaui nomor terakhir)
+            $todayPrefix = 'ORD-'.date('Ymd').'-';
+            $latestOrder = Order::where('order_number', 'like', $todayPrefix.'%')
+                ->orderByDesc('id')
+                ->first();
+
+            $nextSeq = 1;
+            if ($latestOrder && preg_match('/-(\d+)$/', $latestOrder->order_number, $matches)) {
+                $nextSeq = (int) $matches[1] + 1;
+            }
+
+            do {
+                $orderNumber = $todayPrefix.str_pad((string) $nextSeq, 4, '0', STR_PAD_LEFT);
+                $nextSeq++;
+            } while (Order::where('order_number', $orderNumber)->exists());
 
             // Create order
             $order = Order::create([

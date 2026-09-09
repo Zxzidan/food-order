@@ -353,6 +353,12 @@
                     throw new Error('Gagal memproses respons dari server');
                 }
                 
+                if (data.paid && data.redirect) {
+                    alert('Pesanan ini sudah berhasil dibayar!');
+                    window.location.href = data.redirect;
+                    return;
+                }
+
                 if (data.snap_token) {
                     stopMidtransPolling();
 
