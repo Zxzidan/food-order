@@ -144,6 +144,12 @@
         const btnConfirmDelete = document.getElementById('btn-confirm-delete');
         const deleteMenuTitle = document.getElementById('delete-menu-title');
 
+        // Price Input DOM & Formatters
+        const inputHargaProduk = document.getElementById('input-harga-produk');
+        const editHargaProduk = document.getElementById('edit-harga-produk');
+        setupPriceInput(inputHargaProduk);
+        setupPriceInput(editHargaProduk);
+
         // ==========================
         // Modal Handlers (Tambah Menu)
         // ==========================
@@ -226,7 +232,7 @@
 
             document.getElementById('edit-nama-produk').value = name;
             document.getElementById('edit-kategori-produk').value = category;
-            document.getElementById('edit-harga-produk').value = price;
+            document.getElementById('edit-harga-produk').value = formatNumber(price);
             document.getElementById('edit-stok-produk').value = stock;
             document.getElementById('edit-deskripsi-produk').value = description;
 
@@ -293,7 +299,8 @@
 
             const name = document.getElementById('edit-nama-produk').value.trim();
             const category = document.getElementById('edit-kategori-produk').value;
-            const price = document.getElementById('edit-harga-produk').value.trim();
+            const priceRaw = document.getElementById('edit-harga-produk').value.replace(/\D/g, '');
+            const price = priceRaw ? parseInt(priceRaw, 10) : 0;
             const stock = document.getElementById('edit-stok-produk').value.trim();
             const description = document.getElementById('edit-deskripsi-produk').value.trim();
             const image = currentEditImageSrc || activeEditCard.getAttribute('data-image');
@@ -381,7 +388,8 @@
             const nama = document.getElementById('input-nama-produk').value.trim();
             const kategori = document.getElementById('input-kategori-produk').value;
             const stok = document.getElementById('input-stok-produk').value.trim();
-            const harga = document.getElementById('input-harga-produk').value.trim();
+            const hargaRaw = document.getElementById('input-harga-produk').value.replace(/\D/g, '');
+            const harga = hargaRaw ? parseInt(hargaRaw, 10) : 0;
             const deskripsi = document.getElementById('input-deskripsi-produk').value.trim() || 'Menu pilihan spesial yang disajikan dengan bahan berkualitas terbaik.';
             
             const imageSrc = currentAddImageSrc || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
@@ -489,6 +497,48 @@
         // ==========================
         // Helper Functions
         // ==========================
+        function formatNumber(num) {
+            if (!num && num !== 0) return '';
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function handlePriceInput(input) {
+            const cursor = input.selectionStart;
+            const prevLength = input.value.length;
+
+            let cleanVal = input.value.replace(/\D/g, '');
+            cleanVal = cleanVal.replace(/^0+(?!$)/, '');
+
+            const formatted = cleanVal ? formatNumber(cleanVal) : '';
+            input.value = formatted;
+
+            const diff = formatted.length - prevLength;
+            const newCursor = Math.max(0, cursor + diff);
+            input.setSelectionRange(newCursor, newCursor);
+        }
+
+        function setupPriceInput(input) {
+            if (!input) return;
+
+            input.addEventListener('input', function() {
+                handlePriceInput(this);
+            });
+
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace') {
+                    const cursor = this.selectionStart;
+                    if (cursor === this.selectionEnd && cursor > 0 && this.value[cursor - 1] === '.') {
+                        e.preventDefault();
+                        const newVal = this.value.slice(0, cursor - 2) + this.value.slice(cursor);
+                        this.value = newVal;
+                        handlePriceInput(this);
+                        const newCursor = Math.max(0, cursor - 2);
+                        this.setSelectionRange(newCursor, newCursor);
+                    }
+                }
+            });
+        }
+
         function formatRupiah(number) {
             return 'Rp ' + Number(number).toLocaleString('id-ID');
         }

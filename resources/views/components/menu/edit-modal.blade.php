@@ -70,8 +70,9 @@
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 font-semibold text-gray-500 dark:text-gray-400 text-sm pointer-events-none">
                         Rp
                     </span>
-                    <input type="number" id="edit-harga-produk" min="0" required
-                        class="w-full pl-11 pr-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition" />
+                    <input type="text" inputmode="numeric" id="edit-harga-produk" required autocomplete="off"
+                        class="w-full pl-11 pr-3.5 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition placeholder:text-gray-400"
+                        placeholder="Contoh: 28.000" />
                 </div>
             </div>
 
