@@ -27,8 +27,8 @@
               <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 cursor-pointer" aria-expanded="false" data-dropdown-toggle="dropdown-user" data-dropdown-placement="bottom-end">
                 <span class="sr-only">Buka menu pengguna</span>
                 <div class="relative w-10 h-10 sm:w-11 sm:h-11 overflow-hidden bg-gray-200 rounded-full dark:bg-gray-600 ring-2 ring-gray-200 dark:ring-gray-700 flex items-center justify-center">
-                  @if(Auth::user()->avatar)
-                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Avatar" class="w-full h-full object-cover">
+                  @if(Auth::user()->avatar_url)
+                    <img src="{{ Auth::user()->avatar_url }}" alt="Avatar" class="w-full h-full object-cover">
                   @else
                     <svg class="w-full h-full text-gray-400 mt-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                   @endif

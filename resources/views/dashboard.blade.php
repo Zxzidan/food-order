@@ -207,9 +207,10 @@
                             class="w-12 h-12 rounded-lg bg-orange-100 dark:bg-orange-900/40 flex items-center justify-center text-xl shadow-xs overflow-hidden shrink-0"
                         >
                             <img
-                                src="{{ $bestMenu->image ? (str_starts_with($bestMenu->image, 'http') ? $bestMenu->image : asset($bestMenu->image)) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200' }}"
+                                src="{{ $bestMenu->image_url }}"
                                 alt="{{ $bestMenu->name }}"
                                 class="w-full h-full object-cover rounded-lg"
+                                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200';"
                             />
                         </div>
                         <div class="ml-3 min-w-0">

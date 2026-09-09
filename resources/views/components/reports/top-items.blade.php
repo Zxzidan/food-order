@@ -27,7 +27,7 @@
             @endphp
             <div class="flex items-center gap-3.5 p-2.5 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700/50 transition">
                 <span class="w-6 h-6 flex items-center justify-center rounded-full {{ $badgeColor }} text-white font-bold text-xs shrink-0 shadow-2xs">{{ $index + 1 }}</span>
-                <img src="{{ $item->image ? (str_starts_with($item->image, 'http') ? $item->image : asset($item->image)) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100' }}" alt="{{ $item->name }}" class="w-12 h-12 rounded-xl object-cover ring-1 ring-gray-200 dark:ring-gray-700" />
+                <img src="{{ $item->image_url }}" alt="{{ $item->name }}" class="w-12 h-12 rounded-xl object-cover ring-1 ring-gray-200 dark:ring-gray-700" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100';" />
                 <div class="flex-1 min-w-0">
                     <div class="flex items-center justify-between gap-2">
                         <h4 class="text-sm font-bold text-gray-900 dark:text-white truncate">{{ $item->name }}</h4>

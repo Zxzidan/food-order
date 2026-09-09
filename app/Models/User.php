@@ -60,4 +60,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    /**
+     * Accessor URL Avatar User (mendukung Base64, external URL, dan storage lokal)
+     */
+    public function getAvatarUrlAttribute(): ?string
+    {
+        if (empty($this->avatar)) {
+            return null;
+        }
+
+        if (str_starts_with($this->avatar, 'http') || str_starts_with($this->avatar, 'data:')) {
+            return $this->avatar;
+        }
+
+        return asset('storage/'.$this->avatar);
+    }
 }

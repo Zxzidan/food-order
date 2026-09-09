@@ -36,8 +36,8 @@
                     <div class="md:col-span-1 flex flex-col items-center">
                         <div class="relative w-32 h-32 mb-4 group">
                             <div class="w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
-                                @if(Auth::user()->avatar)
-                                    <img id="avatar-preview" src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="Avatar" class="w-full h-full object-cover">
+                                @if(Auth::user()->avatar_url)
+                                    <img id="avatar-preview" src="{{ Auth::user()->avatar_url }}" alt="Avatar" class="w-full h-full object-cover">
                                 @else
                                     <svg id="avatar-placeholder" class="w-16 h-16 text-gray-400 mt-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                     <img id="avatar-preview" src="#" alt="Avatar Preview" class="w-full h-full object-cover hidden">

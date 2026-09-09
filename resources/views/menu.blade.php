@@ -87,7 +87,7 @@
                     :price="$menu->price"
                     :stock="$menu->stock"
                     :description="$menu->description ?? ''"
-                    :image="$menu->image ? (str_starts_with($menu->image, 'http') || str_starts_with($menu->image, 'data:') ? $menu->image : asset($menu->image)) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'"
+                    :image="$menu->image_url"
                     :sold="$menu->sold"
                 />
             @empty
