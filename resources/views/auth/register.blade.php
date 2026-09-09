@@ -65,21 +65,21 @@
                 @endif
 
                 <div class="mb-3.5">
-                    <label for="name" class="block font-bold text-ink text-[10px] mb-1 uppercase tracking-wider">Nama Lengkap</label>
+                    <label for="name" class="block font-bold text-ink text-xs mb-1">Nama Lengkap</label>
                     <input type="text" name="name" id="name" value="{{ old('name') }}" required autofocus
                         class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2 px-3 text-[13px] font-medium shadow-sm hover:border-gray-300"
                         placeholder="Nama Lengkap">
                 </div>
 
                 <div class="mb-3.5">
-                    <label for="email" class="block font-bold text-ink text-[10px] mb-1 uppercase tracking-wider">Email</label>
+                    <label for="email" class="block font-bold text-ink text-xs mb-1">Email</label>
                     <input type="email" name="email" id="email" value="{{ old('email') }}" required
                         class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2 px-3 text-[13px] font-medium shadow-sm hover:border-gray-300"
                         placeholder="namaanda@gmail.com">
                 </div>
 
                 <div class="mb-3.5">
-                    <label for="password" class="block font-bold text-ink text-[10px] mb-1 uppercase tracking-wider">Kata Sandi</label>
+                    <label for="password" class="block font-bold text-ink text-xs mb-1">Kata Sandi</label>
                     <div class="relative flex items-center">
                         <input type="password" name="password" id="password" required
                             class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2 pl-3 pr-10 text-[13px] font-medium shadow-sm hover:border-gray-300"
@@ -97,7 +97,7 @@
                 </div>
 
                 <div class="mb-6">
-                    <label for="password_confirmation" class="block font-bold text-ink text-[10px] mb-1 uppercase tracking-wider">Konfirmasi Kata Sandi</label>
+                    <label for="password_confirmation" class="block font-bold text-ink text-xs mb-1">Konfirmasi Kata Sandi</label>
                     <div class="relative flex items-center">
                         <input type="password" name="password_confirmation" id="password_confirmation" required
                             class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2 pl-3 pr-10 text-[13px] font-medium shadow-sm hover:border-gray-300"

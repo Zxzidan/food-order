@@ -64,13 +64,13 @@
                 @endif
 
                 <div class="mb-4">
-                    <label for="email" class="block font-bold text-ink text-[10px] mb-1.5 uppercase tracking-wider">Email</label>
+                    <label for="email" class="block font-bold text-ink text-xs mb-1.5">Email</label>
                     <input type="email" name="email" id="email" value="{{ old('email', $request->email) }}" autofocus readonly
                         class="w-full bg-gray-100 border border-gray-200 text-gray-500 rounded-xl outline-none py-2.5 px-3 text-sm font-medium shadow-sm">
                 </div>
 
                 <div class="mb-4">
-                    <label for="password" class="block font-bold text-ink text-[10px] mb-1.5 uppercase tracking-wider">Kata Sandi Baru</label>
+                    <label for="password" class="block font-bold text-ink text-xs mb-1.5">Kata Sandi Baru</label>
                     <div class="relative flex items-center">
                         <input type="password" name="password" id="password" required
                             class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2.5 pl-3 pr-10 text-sm font-medium shadow-sm hover:border-gray-300"
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="mb-6">
-                    <label for="password_confirmation" class="block font-bold text-ink text-[10px] mb-1.5 uppercase tracking-wider">Konfirmasi Kata Sandi Baru</label>
+                    <label for="password_confirmation" class="block font-bold text-ink text-xs mb-1.5">Konfirmasi Kata Sandi Baru</label>
                     <div class="relative flex items-center">
                         <input type="password" name="password_confirmation" id="password_confirmation" required
                             class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2.5 pl-3 pr-10 text-sm font-medium shadow-sm hover:border-gray-300"
