@@ -148,3 +148,15 @@ test('sync status endpoint returns json response', function () {
         'message',
     ]);
 });
+
+test('payment finish route redirects to riwayat pesanan when authenticated', function () {
+    $user = User::factory()->create();
+
+    $response = $this->actingAs($user)->get(route('payment.finish', [
+        'order_id' => 'ORD-FINISH-0001',
+        'status_code' => 200,
+        'transaction_status' => 'settlement',
+    ]));
+
+    $response->assertRedirect(route('riwayat.pesanan'));
+});

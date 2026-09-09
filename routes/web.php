@@ -35,7 +35,8 @@ Route::get('/register', [AuthController::class, 'showRegister'])->name('register
 Route::post('/register', [AuthController::class, 'register'])->name('register.post')->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::redirect('/home', '/dashboard');
+// Payment Finish Callback from Midtrans Redirect
+Route::get('/payment/finish', [PaymentController::class, 'finishPayment'])->name('payment.finish');
 
 // Protected Routes
 Route::middleware('auth')->group(function () {

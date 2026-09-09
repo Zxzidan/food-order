@@ -132,6 +132,11 @@ class PaymentController extends Controller
                     'customer_details' => [
                         'first_name' => $order->customer_name,
                     ],
+                    'callbacks' => [
+                        'finish' => route('payment.finish'),
+                        'unfinish' => route('payment.finish'),
+                        'error' => route('payment.finish'),
+                    ],
                 ]);
                 break; // Berhasil mendapatkan token
             } catch (\Exception $e) {
@@ -171,6 +176,11 @@ class PaymentController extends Controller
                             'customer_details' => [
                                 'first_name' => $order->customer_name,
                             ],
+                            'callbacks' => [
+                                'finish' => route('payment.finish'),
+                                'unfinish' => route('payment.finish'),
+                                'error' => route('payment.finish'),
+                            ],
                         ]);
                         $order->update([
                             'midtrans_transaction_id' => $uniqueMidtransId,
@@ -204,5 +214,26 @@ class PaymentController extends Controller
         }
 
         return response()->json(['success' => false, 'message' => 'Status belum dibayar']);
+    }
+
+    public function finishPayment(Request $request)
+    {
+        $orderId = $request->query('order_id');
+        if ($orderId) {
+            $order = Order::where('order_number', $orderId)
+                ->orWhere('midtrans_transaction_id', $orderId)
+                ->orWhere('order_number', preg_replace('/-[a-zA-Z0-9]+$/', '', $orderId))
+                ->first();
+
+            if ($order) {
+                MidtransService::syncOrderStatus($order);
+            }
+        }
+
+        if (auth()->check()) {
+            return redirect()->route('riwayat.pesanan')->with('success', 'Pembayaran berhasil dikonfirmasi!');
+        }
+
+        return redirect()->route('login')->with('success', 'Pembayaran berhasil! Silakan login untuk melihat riwayat pesanan.');
     }
 }
