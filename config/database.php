@@ -97,6 +97,7 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => env('DB_SSLMODE', 'require'),
+            'timezone' => env('DB_TIMEZONE', 'Asia/Jakarta'),
             'options' => extension_loaded('pdo_pgsql') ? [
                 PDO::ATTR_EMULATE_PREPARES => true,
             ] : [],

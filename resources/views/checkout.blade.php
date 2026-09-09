@@ -54,7 +54,7 @@
                             </div>
                             <div>
                                 <span class="block text-gray-500 dark:text-gray-400 mb-1">Waktu Pesan</span>
-                                <span class="font-bold text-gray-900 dark:text-white">{{ $order->created_at->format('d M Y, H:i') }}</span>
+                                <span class="font-bold text-gray-900 dark:text-white">{{ $order->created_at->translatedFormat('d M Y, H:i') }}</span>
                             </div>
                         </div>
 
