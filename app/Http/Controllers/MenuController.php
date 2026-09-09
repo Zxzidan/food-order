@@ -30,6 +30,7 @@ class MenuController extends Controller
             'stock' => 'required|integer|min:0',
             'description' => 'nullable|string',
             'image' => 'nullable|string',
+            'image_file' => 'nullable|image|max:5120',
         ]);
 
         $category = Category::firstOrCreate(
@@ -37,18 +38,27 @@ class MenuController extends Controller
             ['slug' => Str::slug($validated['category'])]
         );
 
+        $imagePath = $validated['image'] ?? null;
+        if ($request->hasFile('image_file')) {
+            $imagePath = 'storage/'.$request->file('image_file')->store('menus', 'public');
+        }
+
+        if (empty($imagePath)) {
+            $imagePath = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
+        }
+
         $menu = Menu::create([
             'category_id' => $category->id,
             'name' => $validated['name'],
             'price' => $validated['price'],
             'stock' => $validated['stock'],
             'description' => $validated['description'] ?? null,
-            'image' => $validated['image'] ?? null,
+            'image' => $imagePath,
             'is_available' => $validated['stock'] > 0,
         ]);
 
         if ($request->wantsJson()) {
-            return response()->json(['success' => true, 'menu' => $menu]);
+            return response()->json(['success' => true, 'menu' => $menu->load('category')]);
         }
 
         return redirect()->route('menu.index')->with('success', 'Menu berhasil ditambahkan');
@@ -63,6 +73,7 @@ class MenuController extends Controller
             'stock' => 'required|integer|min:0',
             'description' => 'nullable|string',
             'image' => 'nullable|string',
+            'image_file' => 'nullable|image|max:5120',
         ]);
 
         $category = Category::firstOrCreate(
@@ -70,18 +81,23 @@ class MenuController extends Controller
             ['slug' => Str::slug($validated['category'])]
         );
 
+        $imagePath = $validated['image'] ?? $menu->image;
+        if ($request->hasFile('image_file')) {
+            $imagePath = 'storage/'.$request->file('image_file')->store('menus', 'public');
+        }
+
         $menu->update([
             'category_id' => $category->id,
             'name' => $validated['name'],
             'price' => $validated['price'],
             'stock' => $validated['stock'],
             'description' => $validated['description'] ?? $menu->description,
-            'image' => $validated['image'] ?? $menu->image,
+            'image' => $imagePath,
             'is_available' => $validated['stock'] > 0,
         ]);
 
         if ($request->wantsJson()) {
-            return response()->json(['success' => true, 'menu' => $menu]);
+            return response()->json(['success' => true, 'menu' => $menu->load('category')]);
         }
 
         return redirect()->route('menu.index')->with('success', 'Menu berhasil diperbarui');

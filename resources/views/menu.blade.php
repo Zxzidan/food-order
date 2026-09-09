@@ -81,6 +81,7 @@
             @forelse($menus as $menu)
                 <x-menu.card
                     :id="'menu-' . $menu->id"
+                    :menu-id="$menu->id"
                     :name="$menu->name"
                     :category="$menu->category ? $menu->category->name : 'Makanan'"
                     :price="$menu->price"
@@ -90,7 +91,7 @@
                     :sold="$menu->sold"
                 />
             @empty
-                <div class="col-span-full text-center py-12 text-gray-500">Belum ada menu di database.</div>
+                <div id="empty-menu-state" class="col-span-full text-center py-12 text-gray-500">Belum ada menu di database.</div>
             @endforelse
 
         </div>
@@ -293,48 +294,102 @@
         });
 
         // Handle Edit Form Submit
-        formEditMenu.addEventListener('submit', function(e) {
+        formEditMenu.addEventListener('submit', async function(e) {
             e.preventDefault();
             if (!activeEditCard) return;
 
+            const menuId = activeEditCard.getAttribute('data-menu-id') || activeEditCard.getAttribute('data-id').replace('menu-', '');
             const name = document.getElementById('edit-nama-produk').value.trim();
             const category = document.getElementById('edit-kategori-produk').value;
             const priceRaw = document.getElementById('edit-harga-produk').value.replace(/\D/g, '');
             const price = priceRaw ? parseInt(priceRaw, 10) : 0;
             const stock = document.getElementById('edit-stok-produk').value.trim();
             const description = document.getElementById('edit-deskripsi-produk').value.trim();
-            const image = currentEditImageSrc || activeEditCard.getAttribute('data-image');
-            const unit = (category === 'Minuman') ? 'gelas' : 'porsi';
+            const urlGambar = editUrlGambar.value.trim();
+            const fileGambar = editFileGambar.files[0];
 
-            // Update card data attributes
-            activeEditCard.setAttribute('data-name', name);
-            activeEditCard.setAttribute('data-category', category);
-            activeEditCard.setAttribute('data-price', price);
-            activeEditCard.setAttribute('data-stock', stock);
-            activeEditCard.setAttribute('data-unit', unit);
-            activeEditCard.setAttribute('data-description', description);
-            activeEditCard.setAttribute('data-image', image);
+            const submitBtn = formEditMenu.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Menyimpan...`;
 
-            // Update DOM inside the card
-            activeEditCard.querySelector('.menu-item-name').innerText = name;
-            activeEditCard.querySelector('.menu-item-desc').innerText = description;
-            activeEditCard.querySelector('.menu-item-price').innerText = formatRupiah(price);
-            activeEditCard.querySelector('.stock-badge').innerText = `Sisa: ${stock} ${unit}`;
-            activeEditCard.querySelector('.stock-num').innerText = stock;
-            activeEditCard.querySelector('.menu-item-img').src = image;
-            activeEditCard.querySelector('.menu-item-img').alt = name;
+            try {
+                const formData = new FormData();
+                formData.append('_method', 'PUT');
+                formData.append('name', name);
+                formData.append('category', category);
+                formData.append('price', price);
+                formData.append('stock', stock);
+                formData.append('description', description);
+                if (fileGambar) {
+                    formData.append('image_file', fileGambar);
+                } else if (urlGambar) {
+                    formData.append('image', urlGambar);
+                }
 
-            // Update category badge
-            const categoryBadge = activeEditCard.querySelector('.category-badge');
-            categoryBadge.innerText = category;
-            if (category === 'Minuman') {
-                categoryBadge.className = "category-badge bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0";
-            } else {
-                categoryBadge.className = "category-badge bg-orange-100 text-orange-800 dark:bg-orange-950/40 dark:text-orange-300 text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0";
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}';
+                const response = await fetch(`/menu/${menuId}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.message || 'Gagal memperbarui menu di database.');
+                }
+
+                const updatedMenu = data.menu;
+                const image = updatedMenu.image 
+                    ? (updatedMenu.image.startsWith('http') ? updatedMenu.image : '/' + updatedMenu.image.replace(/^\//, ''))
+                    : (currentEditImageSrc || activeEditCard.getAttribute('data-image'));
+                const unit = (category === 'Minuman') ? 'gelas' : 'porsi';
+
+                // Update card data attributes
+                activeEditCard.setAttribute('data-name', updatedMenu.name);
+                activeEditCard.setAttribute('data-category', category);
+                activeEditCard.setAttribute('data-price', updatedMenu.price);
+                activeEditCard.setAttribute('data-stock', updatedMenu.stock);
+                activeEditCard.setAttribute('data-unit', unit);
+                activeEditCard.setAttribute('data-description', updatedMenu.description || description);
+                activeEditCard.setAttribute('data-image', image);
+
+                // Update DOM inside the card
+                activeEditCard.querySelector('.menu-item-name').innerText = updatedMenu.name;
+                activeEditCard.querySelector('.menu-item-desc').innerText = updatedMenu.description || description;
+                activeEditCard.querySelector('.menu-item-price').innerText = formatRupiah(updatedMenu.price);
+                activeEditCard.querySelector('.stock-badge').innerText = `Sisa: ${updatedMenu.stock} ${unit}`;
+                activeEditCard.querySelector('.stock-num').innerText = updatedMenu.stock;
+                activeEditCard.querySelector('.menu-item-img').src = image;
+                activeEditCard.querySelector('.menu-item-img').alt = updatedMenu.name;
+
+                // Update category badge
+                const categoryBadge = activeEditCard.querySelector('.category-badge');
+                categoryBadge.innerText = category;
+                if (category === 'Minuman') {
+                    categoryBadge.className = "category-badge bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0";
+                } else {
+                    categoryBadge.className = "category-badge bg-orange-100 text-orange-800 dark:bg-orange-950/40 dark:text-orange-300 text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0";
+                }
+
+                closeEditModal();
+                showToast(`Menu "${updatedMenu.name}" berhasil diperbarui!`, 'success');
+            } catch (err) {
+                console.error(err);
+                showToast(err.message || 'Gagal memperbarui menu', 'delete');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
             }
-
-            closeEditModal();
-            showToast(`Menu "${name}" berhasil diperbarui!`, 'success');
         });
 
         // ==========================
@@ -357,32 +412,74 @@
             }
         });
 
-        btnConfirmDelete.addEventListener('click', function() {
+        btnConfirmDelete.addEventListener('click', async function() {
             if (!activeEditCard) return;
 
+            const menuId = activeEditCard.getAttribute('data-menu-id') || activeEditCard.getAttribute('data-id').replace('menu-', '');
             const name = activeEditCard.getAttribute('data-name');
-            
-            // Remove card with animation
-            activeEditCard.style.transition = "all 0.3s ease";
-            activeEditCard.style.opacity = "0";
-            activeEditCard.style.transform = "scale(0.9)";
-            
-            const cardToDelete = activeEditCard;
-            setTimeout(() => {
-                cardToDelete.remove();
-                updateMenuCounter();
-                filterMenu();
-            }, 300);
+            const originalText = btnConfirmDelete.innerHTML;
+            btnConfirmDelete.disabled = true;
+            btnConfirmDelete.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Menghapus...`;
 
-            deleteConfirmModal.classList.add('hidden');
-            closeEditModal();
-            showToast(`Menu "${name}" berhasil dihapus!`, 'delete');
+            try {
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}';
+                const response = await fetch(`/menu/${menuId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                        'Accept': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.message || 'Gagal menghapus menu dari database.');
+                }
+
+                // Remove card with animation
+                activeEditCard.style.transition = "all 0.3s ease";
+                activeEditCard.style.opacity = "0";
+                activeEditCard.style.transform = "scale(0.9)";
+                
+                const cardToDelete = activeEditCard;
+                setTimeout(() => {
+                    cardToDelete.remove();
+                    updateMenuCounter();
+                    filterMenu();
+
+                    const remainingCards = document.querySelectorAll('.menu-card');
+                    if (remainingCards.length === 0) {
+                        const menuGrid = document.getElementById('menu-grid');
+                        const emptyDiv = document.createElement('div');
+                        emptyDiv.id = 'empty-menu-state';
+                        emptyDiv.className = 'col-span-full text-center py-12 text-gray-500';
+                        emptyDiv.innerText = 'Belum ada menu di database.';
+                        menuGrid.appendChild(emptyDiv);
+                    }
+                }, 300);
+
+                deleteConfirmModal.classList.add('hidden');
+                closeEditModal();
+                showToast(`Menu "${name}" berhasil dihapus!`, 'delete');
+            } catch (err) {
+                console.error(err);
+                showToast(err.message || 'Gagal menghapus menu', 'delete');
+            } finally {
+                btnConfirmDelete.disabled = false;
+                btnConfirmDelete.innerHTML = originalText;
+            }
         });
 
         // ==========================
         // Add Menu Submission
         // ==========================
-        formTambahMenu.addEventListener('submit', function(e) {
+        formTambahMenu.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const nama = document.getElementById('input-nama-produk').value.trim();
@@ -391,72 +488,129 @@
             const hargaRaw = document.getElementById('input-harga-produk').value.replace(/\D/g, '');
             const harga = hargaRaw ? parseInt(hargaRaw, 10) : 0;
             const deskripsi = document.getElementById('input-deskripsi-produk').value.trim() || 'Menu pilihan spesial yang disajikan dengan bahan berkualitas terbaik.';
-            
-            const imageSrc = currentAddImageSrc || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
-            const categoryBadgeClass = kategori === 'Minuman' 
-                ? 'category-badge bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300' 
-                : 'category-badge bg-orange-100 text-orange-800 dark:bg-orange-950/40 dark:text-orange-300';
-            
-            const unit = (kategori === 'Minuman') ? 'gelas' : 'porsi';
-            const newId = 'menu-' + Date.now();
+            const urlGambar = inputUrlGambar.value.trim();
+            const fileGambar = inputFileGambar.files[0];
 
-            // Create new Responsive Card element
-            const card = document.createElement('div');
-            card.className = "menu-card bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden flex flex-col hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200";
-            card.setAttribute('data-id', newId);
-            card.setAttribute('data-name', nama);
-            card.setAttribute('data-category', kategori);
-            card.setAttribute('data-price', harga);
-            card.setAttribute('data-stock', stok);
-            card.setAttribute('data-unit', unit);
-            card.setAttribute('data-description', deskripsi);
-            card.setAttribute('data-image', imageSrc);
+            const submitBtn = formTambahMenu.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Menyimpan...`;
 
-            card.innerHTML = `
-                <div class="relative w-full h-44 sm:h-48 bg-gray-100 dark:bg-gray-700 overflow-hidden group">
-                    <img src="${imageSrc}" alt="${nama}"
-                        class="menu-item-img w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    <div class="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xs px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-600 dark:text-emerald-400 shadow-xs flex items-center gap-1">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                        <span class="stock-badge">Sisa: ${stok} ${unit}</span>
-                    </div>
-                </div>
-                <div class="p-4 sm:p-5 flex-1 flex flex-col">
-                    <div class="flex justify-between items-start gap-2 mb-2">
-                        <h3 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white menu-item-name leading-snug">${nama}</h3>
-                        <span class="${categoryBadgeClass} text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0">${kategori}</span>
-                    </div>
-                    <p class="menu-item-desc text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-4 flex-1 line-clamp-2">${deskripsi}</p>
-                    
-                    <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 py-2 border-t border-gray-100 dark:border-gray-700/60 mb-3">
-                        <div class="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                            </svg>
-                            <span>Tersedia: <strong class="stock-num">${stok}</strong></span>
+            try {
+                const formData = new FormData();
+                formData.append('name', nama);
+                formData.append('category', kategori);
+                formData.append('price', harga);
+                formData.append('stock', stok);
+                formData.append('description', deskripsi);
+                if (fileGambar) {
+                    formData.append('image_file', fileGambar);
+                } else if (urlGambar) {
+                    formData.append('image', urlGambar);
+                }
+
+                const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}';
+                const response = await fetch("{{ route('menu.store') }}", {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.message || 'Gagal menyimpan menu ke database.');
+                }
+
+                const createdMenu = data.menu;
+                const imageSrc = createdMenu.image 
+                    ? (createdMenu.image.startsWith('http') ? createdMenu.image : '/' + createdMenu.image.replace(/^\//, ''))
+                    : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
+                
+                const unit = (kategori === 'Minuman') ? 'gelas' : 'porsi';
+                const categoryBadgeClass = kategori === 'Minuman' 
+                    ? 'category-badge bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300' 
+                    : 'category-badge bg-orange-100 text-orange-800 dark:bg-orange-950/40 dark:text-orange-300';
+
+                // Remove empty state message if present
+                const emptyState = document.getElementById('empty-menu-state');
+                if (emptyState) {
+                    emptyState.remove();
+                }
+
+                // Create new Responsive Card element
+                const card = document.createElement('div');
+                card.className = "menu-card bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden flex flex-col hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200";
+                card.setAttribute('data-id', 'menu-' + createdMenu.id);
+                card.setAttribute('data-menu-id', createdMenu.id);
+                card.setAttribute('data-name', createdMenu.name);
+                card.setAttribute('data-category', kategori);
+                card.setAttribute('data-price', createdMenu.price);
+                card.setAttribute('data-stock', createdMenu.stock);
+                card.setAttribute('data-unit', unit);
+                card.setAttribute('data-description', createdMenu.description || deskripsi);
+                card.setAttribute('data-image', imageSrc);
+
+                card.innerHTML = `
+                    <div class="relative w-full h-44 sm:h-48 bg-gray-100 dark:bg-gray-700 overflow-hidden group">
+                        <img src="${imageSrc}" alt="${createdMenu.name}"
+                            class="menu-item-img w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xs px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-600 dark:text-emerald-400 shadow-xs flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            <span class="stock-badge">Sisa: ${createdMenu.stock} ${unit}</span>
                         </div>
-                        <span class="text-emerald-600 dark:text-emerald-400 font-medium">Menu Baru</span>
                     </div>
+                    <div class="p-4 sm:p-5 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start gap-2 mb-2">
+                            <h3 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white menu-item-name leading-snug">${createdMenu.name}</h3>
+                            <span class="${categoryBadgeClass} text-xs font-semibold px-2.5 py-0.5 rounded-full shrink-0">${kategori}</span>
+                        </div>
+                        <p class="menu-item-desc text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-4 flex-1 line-clamp-2">${createdMenu.description || deskripsi}</p>
+                        
+                        <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 py-2 border-t border-gray-100 dark:border-gray-700/60 mb-3">
+                            <div class="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                </svg>
+                                <span>Tersedia: <strong class="stock-num">${createdMenu.stock}</strong></span>
+                            </div>
+                            <span class="text-emerald-600 dark:text-emerald-400 font-medium">Menu Baru</span>
+                        </div>
 
-                    <div class="flex items-center justify-between mt-auto pt-1">
-                        <span class="menu-item-price text-base sm:text-lg font-bold text-gray-900 dark:text-white">${formatRupiah(harga)}</span>
-                        <button type="button" onclick="openEditModal(this)"
-                            class="inline-flex items-center gap-1 text-orange-600 hover:text-white bg-orange-50 hover:bg-orange-600 dark:bg-orange-950/30 dark:hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-xs px-3.5 py-1.5 text-center transition cursor-pointer">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                            </svg>
-                            Edit
-                        </button>
+                        <div class="flex items-center justify-between mt-auto pt-1">
+                            <span class="menu-item-price text-base sm:text-lg font-bold text-gray-900 dark:text-white">${formatRupiah(createdMenu.price)}</span>
+                            <button type="button" onclick="openEditModal(this)"
+                                class="inline-flex items-center gap-1 text-orange-600 hover:text-white bg-orange-50 hover:bg-orange-600 dark:bg-orange-950/30 dark:hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-xs px-3.5 py-1.5 text-center transition cursor-pointer">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                </svg>
+                                Edit
+                            </button>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
 
-            const menuGrid = document.getElementById('menu-grid');
-            menuGrid.prepend(card);
+                const menuGrid = document.getElementById('menu-grid');
+                menuGrid.prepend(card);
 
-            closeModal();
-            updateMenuCounter();
-            showToast(`Menu "${nama}" berhasil ditambahkan!`, 'success');
+                closeModal();
+                updateMenuCounter();
+                showToast(`Menu "${createdMenu.name}" berhasil ditambahkan!`, 'success');
+            } catch (err) {
+                console.error(err);
+                showToast(err.message || 'Gagal menyimpan menu', 'delete');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
         });
 
         // ==========================

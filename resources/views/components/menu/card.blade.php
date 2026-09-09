@@ -1,5 +1,6 @@
 @props([
     'id' => 'menu-' . uniqid(),
+    'menuId' => null,
     'name',
     'category' => 'Makanan',
     'price' => 0,
@@ -12,6 +13,7 @@
 
 @php
     $calculatedUnit = $unit ?? ($category === 'Minuman' ? 'gelas' : 'porsi');
+    $realMenuId = $menuId ?? str_replace('menu-', '', $id);
     $categoryBadgeClass = $category === 'Minuman'
         ? 'category-badge bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 text-xs font-semibold px-2.5 py-0.5 rounded-full'
         : 'category-badge bg-orange-100 text-orange-800 dark:bg-orange-950/40 dark:text-orange-300 text-xs font-semibold px-2.5 py-0.5 rounded-full';
@@ -19,6 +21,7 @@
 
 <div class="menu-card bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden flex flex-col hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
     data-id="{{ $id }}"
+    data-menu-id="{{ $realMenuId }}"
     data-name="{{ $name }}"
     data-category="{{ $category }}"
     data-price="{{ $price }}"
