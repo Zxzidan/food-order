@@ -68,7 +68,7 @@
                 @endif
 
                 <div class="mb-4">
-                    <label for="email" class="block font-bold text-ink text-sm mb-1.5">Email Atau Username</label>
+                    <label for="email" class="block font-bold text-ink text-sm mb-1.5">Email atau Username</label>
                     <input type="text" name="email" id="email" value="{{ old('email') }}" autofocus required
                         class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2.5 px-3 text-sm font-medium shadow-sm hover:border-gray-300"
                         placeholder="admin@sipemma.com">
