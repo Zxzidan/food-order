@@ -172,6 +172,15 @@
                 </div>
                 <div class="flex gap-2">
                     @if($order->status === 'Menunggu Pembayaran')
+                    @if($order->snap_token)
+                    <button type="button" onclick="checkOrderStatus('{{ $order->order_number }}', this)"
+                        class="inline-flex items-center justify-center gap-1.5 text-xs text-orange-600 bg-orange-50 hover:bg-orange-100 dark:text-orange-400 dark:bg-orange-950/30 font-semibold px-3 py-2 rounded-xl shadow-xs transition cursor-pointer border border-orange-200 dark:border-orange-800/40" title="Periksa status pembayaran Midtrans">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        Cek Status
+                    </button>
+                    @endif
                     <a href="{{ route('payment.show', $order->order_number) }}"
                         class="inline-flex items-center justify-center gap-1.5 text-xs text-white bg-blue-600 hover:bg-blue-700 font-semibold px-3 py-2 rounded-xl shadow-sm transition cursor-pointer">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -205,3 +214,39 @@
     </div>
 
 </div>
+
+<script>
+    if (typeof checkOrderStatus !== 'function') {
+        function checkOrderStatus(orderNumber, btn) {
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = `<svg class="w-3.5 h-3.5 animate-spin inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg> Cek...`;
+            btn.disabled = true;
+
+            fetch(`/order/${orderNumber}/sync-status`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message || 'Pembayaran berhasil dikonfirmasi!');
+                    window.location.reload();
+                } else {
+                    alert(data.message || 'Pembayaran belum terdeteksi. Silakan selesaikan pembayaran.');
+                    btn.innerHTML = originalContent;
+                    btn.disabled = false;
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Terjadi kesalahan saat memeriksa status.');
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            });
+        }
+    }
+</script>

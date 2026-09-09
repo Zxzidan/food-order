@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class Order extends Model
@@ -103,5 +104,43 @@ class Order extends Model
         }
 
         return Str::limit($this->order_number, 10);
+    }
+
+    /**
+     * Selesaikan pesanan & kurangi stok menu secara idempotent (hanya sekali)
+     */
+    public function markAsPaid(string $paymentMethod, ?string $transactionId = null, ?string $paymentType = null, $transactionTime = null, $settlementTime = null): void
+    {
+        if ($this->payment_status === 'paid' && $this->status === 'Selesai') {
+            return;
+        }
+
+        DB::transaction(function () use ($paymentMethod, $transactionId, $paymentType, $transactionTime, $settlementTime) {
+            $this->update([
+                'payment_status' => 'paid',
+                'status' => 'Selesai',
+                'payment_method' => $paymentMethod,
+                'midtrans_transaction_id' => $transactionId ?? $this->midtrans_transaction_id,
+                'midtrans_payment_type' => $paymentType ?? $this->midtrans_payment_type,
+                'midtrans_transaction_time' => $transactionTime ?? $this->midtrans_transaction_time,
+                'midtrans_settlement_time' => $settlementTime ?? $this->midtrans_settlement_time,
+                'midtrans_status' => 'settlement',
+            ]);
+
+            // Potong stok menu dan tambahkan jumlah terjual
+            $this->loadMissing('items');
+            foreach ($this->items as $item) {
+                if ($item->menu_id) {
+                    $menu = Menu::find($item->menu_id);
+                    if ($menu) {
+                        $menu->decrement('stock', $item->quantity);
+                        $menu->increment('sold', $item->quantity);
+                        if ($menu->stock <= 0) {
+                            $menu->update(['is_available' => false]);
+                        }
+                    }
+                }
+            }
+        });
     }
 }

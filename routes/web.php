@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
 
     Route::get('/riwayat-pesanan', [OrderHistoryController::class, 'index'])->name('riwayat.pesanan');
+    Route::post('/order/{order_number}/sync-status', [OrderHistoryController::class, 'syncStatus'])->name('order.sync_status');
 
     Route::get('/payment/{order_number}', [PaymentController::class, 'show'])->name('payment.show');
     Route::post('/payment/{order_number}/cash', [PaymentController::class, 'processCash'])->name('payment.cash');

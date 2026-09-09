@@ -59,29 +59,41 @@ class MidtransNotificationController extends Controller
         if ($transactionStatus == 'capture') {
             if ($fraudStatus == 'accept') {
                 $paymentStatus = 'paid';
-                $orderStatus = 'Selesai'; // Sesuai permintaan pengguna
+                $orderStatus = 'Selesai';
             }
         } elseif ($transactionStatus == 'settlement') {
             $paymentStatus = 'paid';
             $orderStatus = 'Selesai';
         } elseif ($transactionStatus == 'cancel' || $transactionStatus == 'deny' || $transactionStatus == 'expire') {
             $paymentStatus = $transactionStatus == 'deny' ? 'failed' : ($transactionStatus == 'expire' ? 'expired' : 'cancelled');
-            $orderStatus = 'Dibatalkan'; // Opsional, bisa disesuaikan
+            $orderStatus = 'Batal';
         } elseif ($transactionStatus == 'pending') {
             $paymentStatus = 'pending';
         }
 
         // 5. Update Database
-        $order->update([
-            'payment_status' => $paymentStatus,
-            'status' => $orderStatus,
-            'midtrans_status' => $transactionStatus,
-            'midtrans_transaction_id' => $payload['transaction_id'] ?? null,
-            'midtrans_payment_type' => $payload['payment_type'] ?? null,
-            'midtrans_transaction_time' => $payload['transaction_time'] ?? null,
-            'midtrans_settlement_time' => $payload['settlement_time'] ?? null,
-            'payment_method' => $payload['payment_type'] == 'qris' ? 'QRIS' : ($payload['payment_type'] ?? 'Midtrans'),
-        ]);
+        $paymentMethod = ($payload['payment_type'] ?? '') === 'qris' ? 'QRIS' : (ucfirst($payload['payment_type'] ?? 'Midtrans'));
+
+        if ($paymentStatus === 'paid') {
+            $order->markAsPaid(
+                paymentMethod: $paymentMethod,
+                transactionId: $payload['transaction_id'] ?? null,
+                paymentType: $payload['payment_type'] ?? null,
+                transactionTime: $payload['transaction_time'] ?? null,
+                settlementTime: $payload['settlement_time'] ?? null
+            );
+        } else {
+            $order->update([
+                'payment_status' => $paymentStatus,
+                'status' => $orderStatus,
+                'midtrans_status' => $transactionStatus,
+                'midtrans_transaction_id' => $payload['transaction_id'] ?? null,
+                'midtrans_payment_type' => $payload['payment_type'] ?? null,
+                'midtrans_transaction_time' => $payload['transaction_time'] ?? null,
+                'midtrans_settlement_time' => $payload['settlement_time'] ?? null,
+                'payment_method' => $paymentMethod,
+            ]);
+        }
 
         Log::info("Midtrans Notification: Berhasil memproses Order {$orderId}. Status: {$transactionStatus}, Payment Status: {$paymentStatus}");
 

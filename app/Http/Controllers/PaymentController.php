@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Order;
+use App\Services\MidtransService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Midtrans\Config;
 use Midtrans\Snap;
-use Midtrans\Transaction;
 
 class PaymentController extends Controller
 {
@@ -92,19 +91,7 @@ class PaymentController extends Controller
         }
 
         // Configure Midtrans
-        Config::$serverKey = config('services.midtrans.server_key') ?? config('midtrans.server_key');
-        Config::$clientKey = config('services.midtrans.client_key') ?? config('midtrans.client_key');
-        Config::$isProduction = config('services.midtrans.is_production') ?? config('midtrans.is_production') ?? false;
-        Config::$isSanitized = true;
-        Config::$is3ds = true;
-
-        // Disable SSL verification for local development curl issues
-        // Also provide empty CURLOPT_HTTPHEADER to prevent "Undefined array key 10023" bug in Midtrans PHP SDK on PHP 8
-        Config::$curlOptions = [
-            CURLOPT_SSL_VERIFYHOST => 0,
-            CURLOPT_SSL_VERIFYPEER => 0,
-            CURLOPT_HTTPHEADER => [],
-        ];
+        MidtransService::initConfig();
 
         $params = [
             'transaction_details' => [
@@ -121,7 +108,7 @@ class PaymentController extends Controller
 
             $order->update([
                 'snap_token' => $snapToken,
-                'payment_method' => 'QRIS', // Default label for Midtrans initially, wait, we can just leave it as null or 'QRIS'
+                'payment_method' => 'QRIS',
             ]);
 
             return response()->json(['snap_token' => $snapToken]);
@@ -134,34 +121,12 @@ class PaymentController extends Controller
     {
         $order = Order::where('user_id', auth()->id())->where('order_number', $order_number)->firstOrFail();
 
-        // Configure Midtrans
-        Config::$serverKey = config('services.midtrans.server_key') ?? config('midtrans.server_key');
-        Config::$isProduction = config('services.midtrans.is_production') ?? config('midtrans.is_production') ?? false;
-        Config::$curlOptions = [
-            CURLOPT_SSL_VERIFYHOST => 0,
-            CURLOPT_SSL_VERIFYPEER => 0,
-            CURLOPT_HTTPHEADER => [],
-        ];
+        $synced = MidtransService::syncOrderStatus($order);
 
-        try {
-            // Check status directly to Midtrans API to prevent spoofing
-            $status = Transaction::status($order_number);
-
-            if ($status->transaction_status == 'settlement' || $status->transaction_status == 'capture') {
-                $order->update([
-                    'payment_status' => 'paid',
-                    'status' => 'Selesai',
-                    'midtrans_transaction_id' => $status->transaction_id ?? null,
-                    'midtrans_payment_type' => $status->payment_type ?? null,
-                ]);
-
-                return response()->json(['success' => true]);
-            }
-
-            return response()->json(['success' => false, 'message' => 'Status belum dibayar']);
-        } catch (\Exception $e) {
-            // If checking fails, just return error
-            return response()->json(['error' => $e->getMessage()], 500);
+        if ($synced) {
+            return response()->json(['success' => true]);
         }
+
+        return response()->json(['success' => false, 'message' => 'Status belum dibayar']);
     }
 }

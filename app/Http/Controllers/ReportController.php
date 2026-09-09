@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Services\MidtransService;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -12,6 +13,17 @@ class ReportController extends Controller
 {
     public function index()
     {
+        // Auto-sync pesanan pending yang memiliki snap_token ke Midtrans
+        $pendingOrders = Order::where('user_id', auth()->id())
+            ->where('status', 'Menunggu Pembayaran')
+            ->whereNotNull('snap_token')
+            ->where('created_at', '>=', now()->subHours(24))
+            ->get();
+
+        foreach ($pendingOrders as $pendingOrder) {
+            MidtransService::syncOrderStatus($pendingOrder);
+        }
+
         // Auto-cancel orders older than 15 minutes that haven't been paid
         Order::where('user_id', auth()->id())
             ->where('status', 'Menunggu Pembayaran')
