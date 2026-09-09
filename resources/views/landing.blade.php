@@ -220,7 +220,7 @@
                 </a>
 
                 <!-- Desktop Menu -->
-                <nav class="hidden lg:flex items-center gap-8 text-[14px] font-semibold text-gray-700" id="navLinks">
+                <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-[15px] sm:text-base font-semibold text-gray-700" id="navLinks">
                     <a href="#fitur" class="hover:text-primary-600 transition-colors py-1">Fitur</a>
                     <a href="#keunggulan" class="hover:text-primary-600 transition-colors py-1">Keunggulan</a>
                     <a href="#testimoni" class="hover:text-primary-600 transition-colors py-1">Testimoni</a>
@@ -230,8 +230,8 @@
                 </nav>
 
                 <div class="hidden lg:flex items-center gap-4">
-                    <a href="{{ route('login') }}" class="text-[14px] font-bold text-gray-900 hover:text-primary-600 transition-colors px-3 py-2" id="navLogin">Log in</a>
-                    <a href="{{ route('register') }}" class="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white text-[14px] font-bold py-2.5 px-6 rounded-full transition-all shadow-sm hover:shadow-md" id="navRegister">
+                    <a href="{{ route('login') }}" class="text-[15px] sm:text-base font-bold text-gray-900 hover:text-primary-600 transition-colors px-3 py-2" id="navLogin">Log in</a>
+                    <a href="{{ route('register') }}" class="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white text-[15px] sm:text-base font-bold py-2.5 px-6 rounded-full transition-all shadow-sm hover:shadow-md" id="navRegister">
                         <span>Daftar Sekarang</span>
                         <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
@@ -247,7 +247,7 @@
         <!-- Mobile Menu Dropdown -->
         <div id="mobileMenu" class="hidden lg:hidden max-w-7xl mx-auto px-3 sm:px-6 pt-2">
             <div class="bg-white/95 backdrop-blur-xl border border-gray-200 rounded-2xl sm:rounded-3xl p-5 sm:p-6 shadow-xl transition-all duration-300">
-                <nav class="flex flex-col gap-4 text-base font-medium text-gray-800">
+                <nav class="flex flex-col gap-4 text-base sm:text-lg font-semibold text-gray-800">
                     <a href="#fitur" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Fitur</a>
                     <a href="#keunggulan" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Keunggulan</a>
                     <a href="#testimoni" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Testimoni</a>
@@ -255,8 +255,8 @@
                     <a href="#faq" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">FAQ</a>
                     <a href="#kontak" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Kontak</a>
                     <div class="pt-4 border-t border-gray-100 flex flex-col gap-3">
-                        <a href="{{ route('login') }}" class="text-center font-bold text-gray-900 py-2.5 rounded-full border border-gray-200 hover:border-primary-600 hover:text-primary-600 transition-colors">Log in</a>
-                        <a href="{{ route('register') }}" class="text-center font-bold text-white bg-primary-600 hover:bg-primary-700 py-2.5 rounded-full shadow-sm transition-all">Daftar Sekarang</a>
+                        <a href="{{ route('login') }}" class="text-center font-bold text-gray-900 py-2.5 rounded-full border border-gray-200 hover:border-primary-600 hover:text-primary-600 transition-colors text-base">Log in</a>
+                        <a href="{{ route('register') }}" class="text-center font-bold text-white bg-primary-600 hover:bg-primary-700 py-2.5 rounded-full shadow-sm transition-all text-base">Daftar Sekarang</a>
                     </div>
                 </nav>
             </div>
