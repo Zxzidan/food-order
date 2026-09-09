@@ -117,63 +117,70 @@ class PaymentController extends Controller
             // Belum ada transaksi di Midtrans, lanjut buat token
         }
 
-        // 2. Buat Snap token dengan penanganan tabrakan order_id
+        // 2. Buat Snap token dengan penanganan tabrakan order_id otomatis
         $midtransOrderId = $order->order_number;
         $snapToken = null;
+        $maxAttempts = 5;
 
-        try {
-            $snapToken = Snap::getSnapToken([
-                'transaction_details' => [
-                    'order_id' => $midtransOrderId,
-                    'gross_amount' => (int) $order->total_amount,
-                ],
-                'customer_details' => [
-                    'first_name' => $order->customer_name,
-                ],
-            ]);
-        } catch (\Exception $e) {
-            if (str_contains($e->getMessage(), 'order_id sudah digunakan')) {
-                // Cari nomor order baru yang belum pernah dipakai di DB
-                $todayPrefix = 'ORD-'.date('Ymd').'-';
-                $latestOrder = Order::where('order_number', 'like', $todayPrefix.'%')->orderByDesc('id')->first();
-                $seq = 1;
-                if ($latestOrder && preg_match('/-(\d+)$/', $latestOrder->order_number, $matches)) {
-                    $seq = (int) $matches[1] + 1;
-                }
-                do {
-                    $newOrderNumber = $todayPrefix.str_pad((string) $seq, 4, '0', STR_PAD_LEFT);
-                    $seq++;
-                } while (Order::where('order_number', $newOrderNumber)->exists());
+        for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
+            try {
+                $snapToken = Snap::getSnapToken([
+                    'transaction_details' => [
+                        'order_id' => $midtransOrderId,
+                        'gross_amount' => (int) $order->total_amount,
+                    ],
+                    'customer_details' => [
+                        'first_name' => $order->customer_name,
+                    ],
+                ]);
+                break; // Berhasil mendapatkan token
+            } catch (\Exception $e) {
+                $errMsg = strtolower($e->getMessage());
+                $isDuplicate = str_contains($errMsg, 'already been taken')
+                    || str_contains($errMsg, 'sudah digunakan')
+                    || (str_contains($errMsg, 'order_id') && str_contains($errMsg, '400'));
 
-                try {
-                    $snapToken = Snap::getSnapToken([
-                        'transaction_details' => [
-                            'order_id' => $newOrderNumber,
-                            'gross_amount' => (int) $order->total_amount,
-                        ],
-                        'customer_details' => [
-                            'first_name' => $order->customer_name,
-                        ],
-                    ]);
+                if ($isDuplicate && $attempt < $maxAttempts) {
+                    // Cari nomor order baru yang belum pernah dipakai di DB
+                    $todayPrefix = 'ORD-'.date('Ymd').'-';
+                    $latestOrder = Order::where('order_number', 'like', $todayPrefix.'%')->orderByDesc('id')->first();
+                    $seq = 1;
+                    if ($latestOrder && preg_match('/-(\d+)$/', $latestOrder->order_number, $matches)) {
+                        $seq = (int) $matches[1] + 1;
+                    }
+                    do {
+                        $newOrderNumber = $todayPrefix.str_pad((string) $seq, 4, '0', STR_PAD_LEFT);
+                        $seq++;
+                    } while (Order::where('order_number', $newOrderNumber)->exists());
+
                     $order->update(['order_number' => $newOrderNumber]);
-                } catch (\Exception) {
-                    // Fallback menggunakan akhiran unik agar 100% tembus
-                    $uniqueMidtransId = $newOrderNumber.'-'.substr((string) time(), -4);
-                    $snapToken = Snap::getSnapToken([
-                        'transaction_details' => [
-                            'order_id' => $uniqueMidtransId,
-                            'gross_amount' => (int) $order->total_amount,
-                        ],
-                        'customer_details' => [
-                            'first_name' => $order->customer_name,
-                        ],
-                    ]);
-                    $order->update([
-                        'order_number' => $newOrderNumber,
-                        'midtrans_transaction_id' => $uniqueMidtransId,
-                    ]);
+                    $midtransOrderId = $newOrderNumber;
+
+                    continue;
                 }
-            } else {
+
+                // Fallback dengan suffix unik jika percobaan berulang masih mendeteksi duplikat
+                if ($isDuplicate) {
+                    $uniqueMidtransId = $order->order_number.'-'.substr((string) time(), -4);
+                    try {
+                        $snapToken = Snap::getSnapToken([
+                            'transaction_details' => [
+                                'order_id' => $uniqueMidtransId,
+                                'gross_amount' => (int) $order->total_amount,
+                            ],
+                            'customer_details' => [
+                                'first_name' => $order->customer_name,
+                            ],
+                        ]);
+                        $order->update([
+                            'midtrans_transaction_id' => $uniqueMidtransId,
+                        ]);
+                        break;
+                    } catch (\Exception $finalE) {
+                        return response()->json(['error' => $finalE->getMessage()], 500);
+                    }
+                }
+
                 return response()->json(['error' => $e->getMessage()], 500);
             }
         }
