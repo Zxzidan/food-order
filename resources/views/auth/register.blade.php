@@ -68,7 +68,7 @@
                     <label for="name" class="block font-bold text-ink text-[10px] mb-1 uppercase tracking-wider">Nama Lengkap</label>
                     <input type="text" name="name" id="name" value="{{ old('name') }}" required autofocus
                         class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2 px-3 text-[13px] font-medium shadow-sm hover:border-gray-300"
-                        placeholder="John Doe">
+                        placeholder="Nama Lengkap">
                 </div>
 
                 <div class="mb-3.5">
