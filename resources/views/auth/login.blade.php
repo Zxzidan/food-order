@@ -68,14 +68,14 @@
                 @endif
 
                 <div class="mb-4">
-                    <label for="email" class="block font-bold text-ink text-xs mb-1.5">Email Atau Username</label>
+                    <label for="email" class="block font-bold text-ink text-sm mb-1.5">Email Atau Username</label>
                     <input type="text" name="email" id="email" value="{{ old('email') }}" autofocus required
                         class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2.5 px-3 text-sm font-medium shadow-sm hover:border-gray-300"
                         placeholder="admin@sipemma.com">
                 </div>
 
                 <div class="mb-5">
-                    <label for="password" class="block font-bold text-ink text-xs mb-1.5">Kata Sandi</label>
+                    <label for="password" class="block font-bold text-ink text-sm mb-1.5">Kata Sandi</label>
                     <div class="relative flex items-center">
                         <input type="password" name="password" id="password" required
                             class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2.5 pl-3 pr-10 text-sm font-medium shadow-sm hover:border-gray-300"

@@ -72,7 +72,7 @@
                 @csrf
 
                 <div class="mb-6">
-                    <label for="email" class="block font-bold text-ink text-xs mb-1.5">Email</label>
+                    <label for="email" class="block font-bold text-ink text-sm mb-1.5">Email</label>
                     <input type="email" name="email" id="email" required autofocus
                         class="w-full bg-paper border border-gray-200 text-ink rounded-xl focus:ring-2 focus:ring-accent focus:border-accent focus:bg-white outline-none transition-all py-2.5 px-3 text-sm font-medium shadow-sm hover:border-gray-300"
                         placeholder="admin@gmail.com">
