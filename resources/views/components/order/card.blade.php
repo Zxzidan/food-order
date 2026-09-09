@@ -28,6 +28,7 @@
     <!-- Image & Badges -->
     <div class="relative w-full h-36 sm:h-40 bg-gray-100 dark:bg-gray-700 overflow-hidden">
         <img src="{{ $image }}" alt="{{ $name }}"
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400';"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
         
         <!-- Category Badge -->

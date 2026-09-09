@@ -40,7 +40,8 @@ class MenuController extends Controller
 
         $imagePath = $validated['image'] ?? null;
         if ($request->hasFile('image_file')) {
-            $imagePath = 'storage/'.$request->file('image_file')->store('menus', 'public');
+            $file = $request->file('image_file');
+            $imagePath = 'data:'.$file->getMimeType().';base64,'.base64_encode(file_get_contents($file->getRealPath()));
         }
 
         if (empty($imagePath)) {
@@ -83,7 +84,8 @@ class MenuController extends Controller
 
         $imagePath = $validated['image'] ?? $menu->image;
         if ($request->hasFile('image_file')) {
-            $imagePath = 'storage/'.$request->file('image_file')->store('menus', 'public');
+            $file = $request->file('image_file');
+            $imagePath = 'data:'.$file->getMimeType().';base64,'.base64_encode(file_get_contents($file->getRealPath()));
         }
 
         $menu->update([

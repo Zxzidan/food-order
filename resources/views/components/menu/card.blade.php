@@ -32,7 +32,8 @@
     
     <!-- Image & Stock Badge -->
     <div class="relative w-full h-44 sm:h-48 bg-gray-100 dark:bg-gray-700 overflow-hidden group">
-        <img src="{{ $image }}" alt="{{ $name }}"
+        <img src="{{ $image ? (str_starts_with($image, 'http') || str_starts_with($image, 'data:') ? $image : asset($image)) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400' }}" alt="{{ $name }}"
+            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400';"
             class="menu-item-img w-full h-full object-cover group-hover:scale-105 transition duration-300">
         <div class="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xs px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-600 dark:text-emerald-400 shadow-xs flex items-center gap-1">
             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>

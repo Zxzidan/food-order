@@ -87,7 +87,7 @@
                     :price="$menu->price"
                     :stock="$menu->stock"
                     :description="$menu->description ?? ''"
-                    :image="$menu->image ? (str_starts_with($menu->image, 'http') ? $menu->image : asset($menu->image)) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'"
+                    :image="$menu->image ? (str_starts_with($menu->image, 'http') || str_starts_with($menu->image, 'data:') ? $menu->image : asset($menu->image)) : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400'"
                     :sold="$menu->sold"
                 />
             @empty
@@ -183,20 +183,20 @@
         });
 
         // File image preview for Add
-        inputFileGambar.addEventListener('change', function() {
+        inputFileGambar.addEventListener('change', async function() {
             const file = this.files[0];
             if (file) {
                 const fileNameText = document.getElementById('add-file-name-text');
                 if (fileNameText) fileNameText.innerText = file.name;
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    currentAddImageSrc = e.target.result;
+                try {
+                    currentAddImageSrc = await compressImage(file);
                     imagePreview.src = currentAddImageSrc;
                     imagePreview.classList.remove('hidden');
                     imagePlaceholderIcon.classList.add('hidden');
                     inputUrlGambar.value = '';
-                };
-                reader.readAsDataURL(file);
+                } catch (e) {
+                    console.error('Error reading image:', e);
+                }
             }
         });
 
@@ -267,18 +267,18 @@
         });
 
         // File image preview for Edit
-        editFileGambar.addEventListener('change', function() {
+        editFileGambar.addEventListener('change', async function() {
             const file = this.files[0];
             if (file) {
                 const editFileNameText = document.getElementById('edit-file-name-text');
                 if (editFileNameText) editFileNameText.innerText = file.name;
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    currentEditImageSrc = e.target.result;
+                try {
+                    currentEditImageSrc = await compressImage(file);
                     editImagePreview.src = currentEditImageSrc;
                     editUrlGambar.value = '';
-                };
-                reader.readAsDataURL(file);
+                } catch (e) {
+                    console.error('Error reading image:', e);
+                }
             }
         });
 
@@ -326,10 +326,19 @@
                 formData.append('price', price);
                 formData.append('stock', stock);
                 formData.append('description', description);
-                if (fileGambar) {
-                    formData.append('image_file', fileGambar);
-                } else if (urlGambar) {
-                    formData.append('image', urlGambar);
+                
+                let finalImage = '';
+                if (urlGambar) {
+                    finalImage = urlGambar;
+                } else if (currentEditImageSrc && currentEditImageSrc.startsWith('data:')) {
+                    finalImage = currentEditImageSrc;
+                } else if (fileGambar) {
+                    finalImage = await compressImage(fileGambar);
+                } else if (currentEditImageSrc) {
+                    finalImage = currentEditImageSrc;
+                }
+                if (finalImage) {
+                    formData.append('image', finalImage);
                 }
 
                 const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}';
@@ -350,7 +359,7 @@
 
                 const updatedMenu = data.menu;
                 const image = updatedMenu.image 
-                    ? (updatedMenu.image.startsWith('http') ? updatedMenu.image : '/' + updatedMenu.image.replace(/^\//, ''))
+                    ? (updatedMenu.image.startsWith('http') || updatedMenu.image.startsWith('data:') ? updatedMenu.image : '/' + updatedMenu.image.replace(/^\//, ''))
                     : (currentEditImageSrc || activeEditCard.getAttribute('data-image'));
                 const unit = (category === 'Minuman') ? 'gelas' : 'porsi';
 
@@ -369,8 +378,15 @@
                 activeEditCard.querySelector('.menu-item-price').innerText = formatRupiah(updatedMenu.price);
                 activeEditCard.querySelector('.stock-badge').innerText = `Sisa: ${updatedMenu.stock} ${unit}`;
                 activeEditCard.querySelector('.stock-num').innerText = updatedMenu.stock;
-                activeEditCard.querySelector('.menu-item-img').src = image;
-                activeEditCard.querySelector('.menu-item-img').alt = updatedMenu.name;
+                const editImg = activeEditCard.querySelector('.menu-item-img');
+                if (editImg) {
+                    editImg.src = image;
+                    editImg.alt = updatedMenu.name;
+                    editImg.onerror = function() {
+                        this.onerror = null;
+                        this.src = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400';
+                    };
+                }
 
                 // Update category badge
                 const categoryBadge = activeEditCard.querySelector('.category-badge');
@@ -508,10 +524,16 @@
                 formData.append('price', harga);
                 formData.append('stock', stok);
                 formData.append('description', deskripsi);
-                if (fileGambar) {
-                    formData.append('image_file', fileGambar);
-                } else if (urlGambar) {
-                    formData.append('image', urlGambar);
+                let finalImage = '';
+                if (urlGambar) {
+                    finalImage = urlGambar;
+                } else if (currentAddImageSrc && currentAddImageSrc.startsWith('data:')) {
+                    finalImage = currentAddImageSrc;
+                } else if (fileGambar) {
+                    finalImage = await compressImage(fileGambar);
+                }
+                if (finalImage) {
+                    formData.append('image', finalImage);
                 }
 
                 const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}';
@@ -532,7 +554,7 @@
 
                 const createdMenu = data.menu;
                 const imageSrc = createdMenu.image 
-                    ? (createdMenu.image.startsWith('http') ? createdMenu.image : '/' + createdMenu.image.replace(/^\//, ''))
+                    ? (createdMenu.image.startsWith('http') || createdMenu.image.startsWith('data:') ? createdMenu.image : '/' + createdMenu.image.replace(/^\//, ''))
                     : 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60';
                 
                 const unit = (kategori === 'Minuman') ? 'gelas' : 'porsi';
@@ -562,6 +584,7 @@
                 card.innerHTML = `
                     <div class="relative w-full h-44 sm:h-48 bg-gray-100 dark:bg-gray-700 overflow-hidden group">
                         <img src="${imageSrc}" alt="${createdMenu.name}"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400';"
                             class="menu-item-img w-full h-full object-cover group-hover:scale-105 transition duration-300">
                         <div class="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xs px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-600 dark:text-emerald-400 shadow-xs flex items-center gap-1">
                             <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
@@ -690,6 +713,43 @@
                         this.setSelectionRange(newCursor, newCursor);
                     }
                 }
+            });
+        }
+
+        function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.75) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.onload = () => {
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > height) {
+                            if (width > maxWidth) {
+                                height = Math.round((height * maxWidth) / width);
+                                width = maxWidth;
+                            }
+                        } else {
+                            if (height > maxHeight) {
+                                width = Math.round((width * maxHeight) / height);
+                                height = maxHeight;
+                            }
+                        }
+
+                        const canvas = document.createElement('canvas');
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        resolve(canvas.toDataURL('image/jpeg', quality));
+                    };
+                    img.onerror = () => resolve(e.target.result);
+                };
+                reader.onerror = (err) => reject(err);
             });
         }
 
