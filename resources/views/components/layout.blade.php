@@ -136,6 +136,28 @@
                 }, 400);
             });
         }
+
+        // Global Realtime Clock Functionality (WIB / Local)
+        function updateGlobalClock() {
+            const now = new Date();
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+
+            const dayName = days[now.getDay()];
+            const dateStr = `${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+            const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+
+            document.querySelectorAll('.global-clock-day').forEach(el => el.textContent = `${dayName},`);
+            document.querySelectorAll('.global-clock-date').forEach(el => el.textContent = dateStr);
+            document.querySelectorAll('.global-clock-time').forEach(el => el.textContent = timeStr);
+
+            const legacyPosClock = document.getElementById('pos-clock');
+            if (legacyPosClock) {
+                legacyPosClock.textContent = `${dateStr} • ${timeStr}`;
+            }
+        }
+        updateGlobalClock();
+        setInterval(updateGlobalClock, 1000);
     </script>
 </body>
 

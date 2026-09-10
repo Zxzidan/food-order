@@ -10,6 +10,18 @@
             <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $slot }}</h1>
         </div>
         <div class="flex items-center space-x-2 sm:space-x-3">
+            <!-- Global Realtime Clock Widget -->
+            <div class="flex items-center gap-1.5 sm:gap-2 bg-gray-50 dark:bg-gray-700/60 border border-gray-200 dark:border-gray-600/70 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-200 shadow-2xs select-none" title="Waktu Realtime Sistem">
+                <svg class="w-4 h-4 text-orange-500 dark:text-orange-400 shrink-0 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="hidden xl:inline text-gray-500 dark:text-gray-400 font-normal global-clock-day">--</span>
+                <span class="hidden md:inline global-clock-date">--</span>
+                <span class="hidden md:inline text-gray-300 dark:text-gray-600">•</span>
+                <span class="global-clock-time font-mono font-bold text-orange-600 dark:text-orange-400">--:--:--</span>
+                <span class="text-[10px] text-gray-400 dark:text-gray-500 font-semibold tracking-wider">WIB</span>
+            </div>
+
             <!-- AI Assistant Header Shortcut Button -->
             <button type="button" onclick="toggleAIChat()" title="Buka SIPEMMA Assistant"
                 class="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-xl transition cursor-pointer">
