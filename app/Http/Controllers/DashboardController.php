@@ -11,7 +11,7 @@ class DashboardController extends Controller
     public function index()
     {
         $admin = auth()->user();
-        $nama = $admin ? $admin->name : 'Dandi Azaidane';
+        $nama = $admin ? $admin->name : 'Admin';
 
         try {
             $totalCustomers = Order::where('user_id', auth()->id())
@@ -29,14 +29,21 @@ class DashboardController extends Controller
         }
 
         try {
-            $menusAvailable = Menu::where('is_available', true)->count();
+            $menusAvailable = Menu::where('user_id', auth()->id())
+                ->where('is_available', true)
+                ->count();
         } catch (\Throwable) {
             $menusAvailable = 0;
         }
 
-        // Top 5 Best Selling Menus from database
+        // Top 5 Best Selling Menus from database belonging to current user
         try {
-            $bestSellingMenus = Menu::with('category')->orderByDesc('sold')->take(5)->get();
+            $bestSellingMenus = Menu::where('user_id', auth()->id())
+                ->with('category')
+                ->where('sold', '>', 0)
+                ->orderByDesc('sold')
+                ->take(5)
+                ->get();
         } catch (\Throwable) {
             $bestSellingMenus = collect();
         }

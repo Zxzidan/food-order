@@ -91,11 +91,11 @@
                 series: [{
                     name: 'Pendapatan (Rp)',
                     type: 'area',
-                    data: chartsData.trend ? chartsData.trend.revenue : [1200000, 1850000, 1400000, 2100000, 2600000, 3100000, 2800000, 1950000, 2400000, 2900000, 3450000, 3700000]
+                    data: chartsData.trend ? chartsData.trend.revenue : []
                 }, {
                     name: 'Jumlah Pesanan',
                     type: 'line',
-                    data: chartsData.trend ? chartsData.trend.orders : [42, 65, 48, 72, 88, 105, 94, 68, 80, 96, 118, 128]
+                    data: chartsData.trend ? chartsData.trend.orders : []
                 }],
                 chart: {
                     height: 320,
@@ -103,6 +103,12 @@
                     toolbar: { show: false },
                     zoom: { enabled: false },
                     fontFamily: '"SF Pro", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
+                },
+                noData: {
+                    text: 'Belum ada data pendapatan',
+                    align: 'center',
+                    verticalAlign: 'middle',
+                    style: { color: textColor, fontSize: '12px' }
                 },
                 colors: ['#ea580c', '#10b981'],
                 dataLabels: { enabled: false },
@@ -120,7 +126,7 @@
                     }
                 },
                 xaxis: {
-                    categories: chartsData.trend ? chartsData.trend.categories : ['1 Agu', '3 Agu', '5 Agu', '7 Agu', '9 Agu', '11 Agu', '13 Agu', '15 Agu', '17 Agu', '19 Agu', '21 Agu', '22 Agu'],
+                    categories: chartsData.trend ? chartsData.trend.categories : [],
                     labels: {
                         style: { colors: textColor, fontSize: '11px' }
                     },
@@ -170,11 +176,17 @@
 
             // 2. Payment Methods Donut Chart
             const paymentOptions = {
-                series: chartsData.payment ? chartsData.payment.series : [54, 32, 14],
+                series: (chartsData.payment && chartsData.payment.total > 0) ? chartsData.payment.series : [],
                 chart: {
                     type: 'donut',
                     height: 240, // Slightly taller to accommodate legends
                     fontFamily: '"SF Pro", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
+                },
+                noData: {
+                    text: 'Belum ada data pembayaran',
+                    align: 'center',
+                    verticalAlign: 'middle',
+                    style: { color: textColor, fontSize: '12px' }
                 },
                 labels: ['QRIS', 'Tunai', 'Transfer / Debit'],
                 colors: ['#ea580c', '#10b981', '#f59e0b'],
@@ -214,7 +226,7 @@
                                     label: 'Total Transaksi',
                                     fontSize: '10px',
                                     color: textColor,
-                                    formatter: function() { return chartsData.payment ? chartsData.payment.total : '924'; }
+                                    formatter: function() { return chartsData.payment ? chartsData.payment.total : 0; }
                                 }
                             }
                         }
@@ -234,13 +246,19 @@
             const peakHoursOptions = {
                 series: [{
                     name: 'Pesanan per Jam',
-                    data: chartsData.peak ? chartsData.peak.data : [12, 28, 95, 142, 60, 35, 88, 130, 75, 20]
+                    data: chartsData.peak ? chartsData.peak.data : []
                 }],
                 chart: {
                     type: 'bar',
                     height: 180,
                     toolbar: { show: false },
                     fontFamily: '"SF Pro", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif'
+                },
+                noData: {
+                    text: 'Belum ada data jam sibuk',
+                    align: 'center',
+                    verticalAlign: 'middle',
+                    style: { color: textColor, fontSize: '12px' }
                 },
                 colors: ['#ea580c'],
                 plotOptions: {
@@ -252,7 +270,7 @@
                 },
                 dataLabels: { enabled: false },
                 xaxis: {
-                    categories: chartsData.peak ? chartsData.peak.categories : ['10:00', '11:00', '12:00', '13:00', '14:00', '17:00', '18:00', '19:00', '20:00', '21:00'],
+                    categories: chartsData.peak ? chartsData.peak.categories : [],
                     labels: {
                         style: { colors: textColor, fontSize: '10px' }
                     },

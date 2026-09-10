@@ -51,7 +51,7 @@ class ReportController extends Controller
             'aov' => $aov,
         ];
 
-        $topSelling = Menu::with('category')->orderByDesc('sold')->take(5)->get();
+        $topSelling = Menu::where('user_id', auth()->id())->where('sold', '>', 0)->with('category')->orderByDesc('sold')->take(5)->get();
 
         // 1. Revenue & Orders Trend Area Chart (Last 12 days)
         $trendDates = [];

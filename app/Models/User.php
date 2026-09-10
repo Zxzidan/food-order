@@ -62,6 +62,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Relasi ke katalog menu yang dibuat user ini
+     */
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
+    }
+
+    /**
      * Accessor URL Avatar User (mendukung Base64, external URL, dan storage lokal)
      */
     public function getAvatarUrlAttribute(): ?string

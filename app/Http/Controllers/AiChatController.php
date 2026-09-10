@@ -138,8 +138,8 @@ ATURAN STRUKTUR & FORMAT TAMPILAN (SANGAT PENTING):
             $totalOrdersCount = $allOrders->count();
             $totalCompleted = $allOrders->where('status', 'Selesai')->count();
 
-            // 3. Menu Terlaris (Top 5 berdasarkan kolom sold)
-            $topMenus = Menu::orderByDesc('sold')->take(5)->get(['name', 'price', 'sold', 'stock']);
+            // 3. Menu Terlaris (Top 5 berdasarkan kolom sold milik user ini)
+            $topMenus = Menu::where('user_id', auth()->id())->where('sold', '>', 0)->orderByDesc('sold')->take(5)->get(['name', 'price', 'sold', 'stock']);
             $topMenusList = $topMenus->isNotEmpty()
                 ? $topMenus->map(function ($m) {
                     return "- {$m->name}: Rp ".number_format($m->price, 0, ',', '.')." | Terjual: {$m->sold} porsi | Sisa Stok: {$m->stock}";
@@ -147,7 +147,7 @@ ATURAN STRUKTUR & FORMAT TAMPILAN (SANGAT PENTING):
                 : '- Belum ada data menu terlaris.';
 
             // 4. Menu dengan Stok Menipis (stok <= 10)
-            $lowStockMenus = Menu::where('stock', '<=', 10)->get(['name', 'stock']);
+            $lowStockMenus = Menu::where('user_id', auth()->id())->where('stock', '<=', 10)->get(['name', 'stock']);
             $lowStockList = $lowStockMenus->isNotEmpty()
                 ? $lowStockMenus->map(fn ($m) => "- {$m->name}: Sisa {$m->stock} porsi")->implode("\n")
                 : '- Semua stok menu dalam kondisi aman.';
@@ -164,8 +164,10 @@ ATURAN STRUKTUR & FORMAT TAMPILAN (SANGAT PENTING):
                 : '- Belum ada transaksi sebelumnya.';
 
             // 6. Ringkasan Menu Aktif & Harga
-            $allAvailableMenus = Menu::where('is_available', true)->get(['name', 'price']);
-            $menusList = $allAvailableMenus->map(fn ($m) => "{$m->name} (Rp ".number_format($m->price, 0, ',', '.').')')->implode(', ');
+            $allAvailableMenus = Menu::where('user_id', auth()->id())->where('is_available', true)->get(['name', 'price']);
+            $menusList = $allAvailableMenus->isNotEmpty()
+                ? $allAvailableMenus->map(fn ($m) => "{$m->name} (Rp ".number_format($m->price, 0, ',', '.').')')->implode(', ')
+                : '- Belum ada menu aktif yang didaftarkan.';
 
             return "Waktu Sistem: {$now}
 

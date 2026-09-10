@@ -15,7 +15,7 @@ class OrderController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $menus = Menu::with('category')->where('is_available', true)->get();
+        $menus = Menu::where('user_id', auth()->id())->with('category')->where('is_available', true)->get();
         $tables = RestaurantTable::all();
 
         return view('order', [

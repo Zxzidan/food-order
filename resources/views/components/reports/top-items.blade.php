@@ -64,6 +64,7 @@
         </div>
 
         <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 space-y-2.5">
+            @if(count($topSelling) > 0)
             <div class="flex items-center justify-between text-xs">
                 <span class="text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
                     <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span> Jam Paling Ramai:
@@ -82,6 +83,11 @@
                 </svg>
                 <span>Rekomendasi: Tambah 1 kasir & stok bahan pada pk 11:30 & 18:00</span>
             </div>
+            @else
+            <div class="p-3 bg-gray-50 dark:bg-gray-700/40 text-gray-500 dark:text-gray-400 rounded-xl text-xs flex items-center justify-center gap-2 text-center">
+                <span>Belum ada data transaksi untuk menganalisis jam sibuk restoran.</span>
+            </div>
+            @endif
         </div>
     </div>
 

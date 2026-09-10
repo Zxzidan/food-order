@@ -10,6 +10,7 @@ class Menu extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'category_id',
         'name',
         'description',
@@ -28,6 +29,14 @@ class Menu extends Model
             'sold' => 'integer',
             'is_available' => 'boolean',
         ];
+    }
+
+    /**
+     * Relasi ke user pemilik menu
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

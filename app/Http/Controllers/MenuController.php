@@ -12,7 +12,7 @@ class MenuController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $menus = Menu::with('category')->latest()->get();
+        $menus = Menu::where('user_id', auth()->id())->with('category')->latest()->get();
 
         return view('menu', [
             'title' => 'Menu',
@@ -49,6 +49,7 @@ class MenuController extends Controller
         }
 
         $menu = Menu::create([
+            'user_id' => auth()->id(),
             'category_id' => $category->id,
             'name' => $validated['name'],
             'price' => $validated['price'],
@@ -67,6 +68,8 @@ class MenuController extends Controller
 
     public function update(Request $request, Menu $menu)
     {
+        abort_if($menu->user_id && $menu->user_id !== auth()->id(), 403);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'category' => 'required|string',
@@ -107,6 +110,8 @@ class MenuController extends Controller
 
     public function destroy(Request $request, Menu $menu)
     {
+        abort_if($menu->user_id && $menu->user_id !== auth()->id(), 403);
+
         $menu->delete();
 
         if ($request->wantsJson()) {

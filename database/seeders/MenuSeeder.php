@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Menu;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class MenuSeeder extends Seeder
@@ -13,6 +14,7 @@ class MenuSeeder extends Seeder
      */
     public function run(): void
     {
+        $admin = User::where('role', 'admin')->first();
         $makanan = Category::where('slug', 'makanan')->first();
         $minuman = Category::where('slug', 'minuman')->first();
         $snack = Category::where('slug', 'snack')->first();
@@ -92,6 +94,7 @@ class MenuSeeder extends Seeder
         ];
 
         foreach ($menus as $menu) {
+            $menu['user_id'] = $admin?->id;
             Menu::updateOrCreate(
                 ['name' => $menu['name']],
                 $menu
