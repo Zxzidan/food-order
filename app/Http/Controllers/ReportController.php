@@ -6,6 +6,7 @@ use App\Models\Menu;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Services\MidtransService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -132,6 +133,94 @@ class ReportController extends Controller
             'kpi' => $kpi,
             'topSelling' => $topSelling,
             'chartsData' => $chartsData,
+        ]);
+    }
+
+    /**
+     * Ekspor data riwayat transaksi penjualan ke format CSV (Kompatibel Excel)
+     */
+    public function exportCsv(Request $request)
+    {
+        $query = Order::where('user_id', auth()->id())
+            ->with('items')
+            ->where(function ($q) {
+                $q->where('status', 'Selesai')
+                    ->orWhere('payment_status', 'paid');
+            });
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->input('start_date'));
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->input('end_date'));
+        }
+
+        if ($request->filled('payment_method')) {
+            $query->where('payment_method', $request->input('payment_method'));
+        }
+
+        if ($request->filled('order_type')) {
+            $query->where('order_type', $request->input('order_type'));
+        }
+
+        $orders = $query->latest()->get();
+
+        $fileName = 'Laporan_Penjualan_SIPEMMA_'.now()->format('Y-m-d_His').'.csv';
+
+        return response()->streamDownload(function () use ($orders) {
+            $file = fopen('php://output', 'w');
+
+            // UTF-8 BOM untuk kompatibilitas penuh Microsoft Excel di Windows
+            fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
+
+            // Header Kolom CSV
+            fputcsv($file, [
+                'No. Pesanan',
+                'Tanggal & Waktu',
+                'Nama Pelanggan',
+                'Tipe Pesanan',
+                'Nomor Meja',
+                'Metode Pembayaran',
+                'Status Pembayaran',
+                'Status Pesanan',
+                'Daftar Menu',
+                'Total Porsi Terjual',
+                'Subtotal (Rp)',
+                'Pajak PB1 10% (Rp)',
+                'Total Pendapatan (Rp)',
+            ]);
+
+            foreach ($orders as $order) {
+                $itemsList = $order->items->map(function ($item) {
+                    return "{$item->quantity}x {$item->menu_name}";
+                })->join(', ');
+
+                $totalQty = $order->items->sum('quantity');
+
+                fputcsv($file, [
+                    $order->order_number,
+                    $order->created_at ? $order->created_at->translatedFormat('d/m/Y H:i') : '-',
+                    $order->customer_name ?: 'Umum',
+                    $order->order_type,
+                    $order->table_number ?: '-',
+                    $order->payment_method ?: '-',
+                    $order->payment_status === 'paid' ? 'Lunas' : $order->payment_status,
+                    $order->status,
+                    $itemsList,
+                    $totalQty,
+                    $order->subtotal,
+                    $order->tax,
+                    $order->total_amount,
+                ]);
+            }
+
+            fclose($file);
+        }, $fileName, [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+            'Cache-Control' => 'no-cache, no-store, must-revalidate',
+            'Pragma' => 'no-cache',
+            'Expires' => '0',
         ]);
     }
 }

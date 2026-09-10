@@ -318,33 +318,36 @@
             });
             button.className = 'period-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-gray-800 text-orange-600 dark:text-orange-400 shadow-2xs transition cursor-pointer';
 
-            // Simulate updating stats based on filter
-            if (type === 'today') {
-                document.getElementById('stat-revenue').innerText = 'Rp 2.450.000';
-                document.getElementById('stat-transactions').innerText = '78';
-                document.getElementById('stat-items').innerText = '154';
-                document.getElementById('stat-aov').innerText = 'Rp 31.410';
-            } else if (type === '7days') {
-                document.getElementById('stat-revenue').innerText = 'Rp 14.820.000';
-                document.getElementById('stat-transactions').innerText = '480';
-                document.getElementById('stat-items').innerText = '960';
-                document.getElementById('stat-aov').innerText = 'Rp 30.875';
-            } else if (type === 'month') {
-                document.getElementById('stat-revenue').innerText = 'Rp 28.450.000';
-                document.getElementById('stat-transactions').innerText = '924';
-                document.getElementById('stat-items').innerText = '1.842';
-                document.getElementById('stat-aov').innerText = 'Rp 30.790';
-            } else if (type === 'year') {
-                document.getElementById('stat-revenue').innerText = 'Rp 324.500.000';
-                document.getElementById('stat-transactions').innerText = '10.850';
-                document.getElementById('stat-items').innerText = '21.400';
-                document.getElementById('stat-aov').innerText = 'Rp 29.900';
+            const today = new Date();
+            const formatDate = (d) => {
+                const year = d.getFullYear();
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            };
+            const dateEndEl = document.getElementById('date-end');
+            const dateStartEl = document.getElementById('date-start');
+
+            if (dateEndEl) dateEndEl.value = formatDate(today);
+
+            if (type === 'today' && dateStartEl) {
+                dateStartEl.value = formatDate(today);
+            } else if (type === '7days' && dateStartEl) {
+                const d = new Date();
+                d.setDate(today.getDate() - 6);
+                dateStartEl.value = formatDate(d);
+            } else if (type === 'month' && dateStartEl) {
+                const d = new Date(today.getFullYear(), today.getMonth(), 1);
+                dateStartEl.value = formatDate(d);
+            } else if (type === 'year' && dateStartEl) {
+                const d = new Date(today.getFullYear(), 0, 1);
+                dateStartEl.value = formatDate(d);
             }
         }
 
         function applyCustomDates() {
-            const start = document.getElementById('date-start').value;
-            const end = document.getElementById('date-end').value;
+            const start = document.getElementById('date-start')?.value;
+            const end = document.getElementById('date-end')?.value;
             console.log('Filtered from', start, 'to', end);
         }
 
@@ -373,25 +376,21 @@
             });
         }
 
-        // Export to CSV Function
+        // Export to CSV Function (Downloads real user orders from server)
         function exportToCSV() {
-            const rows = [
-                ["No. Order", "Tanggal", "Pelanggan", "Tipe Pesanan", "Metode Bayar", "Items", "Total"],
-                ["#ORD-20260822-045", "22 Agu 2026 13:42", "Ahmad Fauzi", "Dine In (Meja 04)", "QRIS", "2x Mie Ayam, 2x Es Jeruk", "55000"],
-                ["#ORD-20260822-044", "22 Agu 2026 13:20", "Siti Nurhaliza", "Take Away", "Tunai", "1x Nasi Goreng, 1x Es Jeruk", "29700"],
-                ["#ORD-20260822-043", "22 Agu 2026 12:55", "Budi Santoso", "Dine In (Meja 08)", "QRIS", "3x Gado-Gado, 3x Es Jeruk", "75900"],
-                ["#ORD-20260822-042", "22 Agu 2026 12:15", "Dewi Lestari", "Dine In (Meja 02)", "Transfer", "2x Nasi Goreng Ayam", "44000"],
-                ["#ORD-20260822-041", "22 Agu 2026 11:45", "Reza Rahardian", "Take Away", "Tunai", "4x Mie Ayam Spesial", "79200"]
-            ];
+            const payment = document.getElementById('report-filter-payment')?.value || '';
+            const type = document.getElementById('report-filter-type')?.value || '';
+            const start = document.getElementById('date-start')?.value || '';
+            const end = document.getElementById('date-end')?.value || '';
 
-            let csvContent = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "Laporan_Penjualan_SIPEMMA_" + new Date().toISOString().slice(0, 10) + ".csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            const params = new URLSearchParams();
+            if (payment) params.append('payment_method', payment);
+            if (type) params.append('order_type', type);
+            if (start) params.append('start_date', start);
+            if (end) params.append('end_date', end);
+
+            const url = "{{ route('reports.export') }}" + (params.toString() ? '?' + params.toString() : '');
+            window.location.href = url;
         }
 
         // Receipt Modal Handlers

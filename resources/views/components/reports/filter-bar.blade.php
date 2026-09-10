@@ -27,10 +27,10 @@
             </svg>
             <span>Rentang:</span>
         </div>
-        <input type="date" id="date-start" value="2026-08-01" onchange="applyCustomDates()"
+        <input type="date" id="date-start" value="{{ now()->startOfMonth()->format('Y-m-d') }}" onchange="applyCustomDates()"
             class="px-3 py-1.5 bg-gray-50 dark:bg-gray-700/80 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500" />
         <span class="text-xs text-gray-400">s/d</span>
-        <input type="date" id="date-end" value="2026-08-22" onchange="applyCustomDates()"
+        <input type="date" id="date-end" value="{{ now()->format('Y-m-d') }}" onchange="applyCustomDates()"
             class="px-3 py-1.5 bg-gray-50 dark:bg-gray-700/80 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-xs rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500" />
         
         <!-- Refresh Button -->

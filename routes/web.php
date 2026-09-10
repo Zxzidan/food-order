@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/payment/{order_number}/midtrans/callback', [PaymentController::class, 'callbackMidtrans'])->name('payment.midtrans.callback');
 
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/reports/export', [ReportController::class, 'exportCsv'])->name('reports.export');
 
     Route::post('/ai/chat', [AiChatController::class, 'chat'])->name('ai.chat');
 });

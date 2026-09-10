@@ -2,6 +2,7 @@
 
 use App\Models\Menu;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -161,4 +162,61 @@ test('newly registered user has completely empty data across all pages', functio
     $historyResponse->assertStatus(200);
     $historyResponse->assertViewHas('orders', fn ($o) => $o->isEmpty());
     $historyResponse->assertSee('Belum ada data transaksi');
+});
+
+test('reports can export valid csv containing user orders and items', function () {
+    $user = User::factory()->create();
+    $otherUser = User::factory()->create();
+
+    $order1 = Order::create([
+        'user_id' => $user->id,
+        'order_number' => 'ORD-CSV-001',
+        'customer_name' => 'Budi Santoso',
+        'order_type' => 'Dine In',
+        'table_number' => 'Meja 02',
+        'payment_method' => 'Tunai',
+        'payment_status' => 'paid',
+        'status' => 'Selesai',
+        'subtotal' => 20000,
+        'tax' => 2000,
+        'total_amount' => 22000,
+    ]);
+
+    OrderItem::create([
+        'order_id' => $order1->id,
+        'menu_name' => 'Ayam Goreng',
+        'price' => 20000,
+        'quantity' => 1,
+        'subtotal' => 20000,
+    ]);
+
+    // Order of another user that should NOT be exported
+    Order::create([
+        'user_id' => $otherUser->id,
+        'order_number' => 'ORD-CSV-OTHER',
+        'customer_name' => 'Rahasia User Lain',
+        'order_type' => 'Take Away',
+        'payment_method' => 'QRIS',
+        'payment_status' => 'paid',
+        'status' => 'Selesai',
+        'subtotal' => 50000,
+        'tax' => 5000,
+        'total_amount' => 55000,
+    ]);
+
+    $response = $this->actingAs($user)->get('/reports/export');
+
+    $response->assertStatus(200);
+    $response->assertHeader('Content-Type', 'text/csv; charset=UTF-8');
+
+    $content = $response->streamedContent();
+
+    expect($content)
+        ->toContain('No. Pesanan')
+        ->toContain('ORD-CSV-001')
+        ->toContain('Budi Santoso')
+        ->toContain('1x Ayam Goreng')
+        ->toContain('22000')
+        ->not->toContain('ORD-CSV-OTHER')
+        ->not->toContain('Rahasia User Lain');
 });
