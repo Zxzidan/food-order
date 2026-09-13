@@ -135,7 +135,7 @@
                 </div>
             </div>
 
-            <!-- Tags (Type & Table) -->
+            <!-- Tags (Type & Table & Member) -->
             <div class="flex flex-wrap gap-2 mb-4">
                 @if($order->order_type === 'Dine In')
                 <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold {{ $themeBgBadge }}">
@@ -147,6 +147,23 @@
                 @else
                 <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold {{ $themeBgBadge }}">
                     Take Away
+                </span>
+                @endif
+
+                @if($order->member)
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-bold bg-green-50 text-green-700 border border-green-200 dark:bg-green-950/40 dark:text-green-300 dark:border-green-800">
+                    <span>👤</span> {{ $order->member->name }}
+                </span>
+                @endif
+
+                @if($order->points_used > 0)
+                <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold bg-yellow-50 text-yellow-700 border border-yellow-200 dark:bg-yellow-950/40 dark:text-yellow-300">
+                    🪙 -{{ $order->points_used }} Poin
+                </span>
+                @endif
+                @if($order->points_earned > 0)
+                <span class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-300">
+                    ✨ +{{ $order->points_earned }} Poin
                 </span>
                 @endif
             </div>

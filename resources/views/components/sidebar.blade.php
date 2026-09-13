@@ -61,6 +61,18 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('members.index') }}"
+                    class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary dark:hover:bg-gray-700 hover:text-fg-brand dark:text-gray-300 dark:hover:text-white group {{ request()->routeIs('members.*') ? 'bg-neutral-tertiary dark:bg-gray-700 text-fg-brand dark:text-white font-semibold' : '' }}">
+                    <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                        viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm14 10v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Member</span>
+                </a>
+            </li>
+            <li>
                 <a href="/reports"
                     class="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary dark:hover:bg-gray-700 hover:text-fg-brand dark:text-gray-300 dark:hover:text-white group">
                     <svg class="shrink-0 w-5 h-5 transition duration-75 group-hover:text-fg-brand" aria-hidden="true"

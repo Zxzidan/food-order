@@ -70,6 +70,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Relasi ke data member pelanggan terdaftar
+     */
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+    }
+
+    /**
      * Accessor URL Avatar User (mendukung Base64, external URL, dan storage lokal)
      */
     public function getAvatarUrlAttribute(): ?string

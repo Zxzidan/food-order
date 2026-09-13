@@ -47,6 +47,11 @@
                             <div>
                                 <span class="block text-gray-500 dark:text-gray-400 mb-1">Pelanggan</span>
                                 <span class="font-bold text-gray-900 dark:text-white">{{ $order->customer_name }}</span>
+                                @if($order->member)
+                                    <span class="inline-flex items-center gap-1 px-2 py-0.5 mt-1 rounded-md text-[11px] font-bold bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">
+                                        <span>👤 Member</span> • {{ $order->member->member_code }}
+                                    </span>
+                                @endif
                             </div>
                             <div>
                                 <span class="block text-gray-500 dark:text-gray-400 mb-1">Tipe Pesanan</span>
@@ -89,14 +94,25 @@
                             <span>Subtotal</span>
                             <span class="font-medium text-gray-800 dark:text-gray-200">{{ $order->formatted_subtotal }}</span>
                         </div>
+                        @if($order->points_discount_amount > 0)
+                        <div class="flex justify-between text-green-600 dark:text-green-400 font-medium">
+                            <span>Diskon Poin Member ({{ $order->points_used }} Poin)</span>
+                            <span class="font-bold">- {{ $order->formatted_points_discount }}</span>
+                        </div>
+                        @elseif($order->discount > 0)
+                        <div class="flex justify-between text-green-600 dark:text-green-400 font-medium">
+                            <span>Diskon</span>
+                            <span class="font-bold">- Rp {{ number_format($order->discount, 0, ',', '.') }}</span>
+                        </div>
+                        @endif
                         <div class="flex justify-between text-gray-500 dark:text-gray-400">
                             <span>Pajak Restoran (10%)</span>
                             <span class="font-medium text-gray-800 dark:text-gray-200">{{ $order->formatted_tax }}</span>
                         </div>
-                        @if($order->discount > 0)
-                        <div class="flex justify-between text-green-600 dark:text-green-400">
-                            <span>Diskon</span>
-                            <span class="font-medium">- Rp {{ number_format($order->discount, 0, ',', '.') }}</span>
+                        @if($order->member && $order->total_amount >= 10000)
+                        <div class="flex justify-between items-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 p-2.5 rounded-xl text-xs font-semibold">
+                            <span class="flex items-center gap-1">✨ Reward Poin Setelah Lunas:</span>
+                            <span class="font-extrabold text-sm">+{{ floor($order->total_amount / 10000) }} Poin</span>
                         </div>
                         @endif
                         <div class="flex justify-between items-center pt-3 border-t border-gray-200 dark:border-gray-700">

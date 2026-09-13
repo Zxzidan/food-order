@@ -29,7 +29,7 @@ class OrderHistoryController extends Controller
                 'payment_status' => 'expired',
             ]);
 
-        $orders = Order::where('user_id', auth()->id())->with('items')->latest()->get();
+        $orders = Order::where('user_id', auth()->id())->with(['items', 'member'])->latest()->get();
 
         return view('riwayat-pesanan', [
             'title' => 'Riwayat Pesanan',

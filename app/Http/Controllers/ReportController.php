@@ -36,7 +36,7 @@ class ReportController extends Controller
 
         // "buat semua pesanan yang sukses dibayar hanya pada halaman report saja."
         // We fetch only 'Selesai' orders for the table.
-        $orders = Order::where('user_id', auth()->id())->with('items')->where('status', 'Selesai')->latest()->get();
+        $orders = Order::where('user_id', auth()->id())->with(['items', 'member'])->where('status', 'Selesai')->latest()->get();
 
         $totalRevenue = $orders->sum('total_amount');
         $totalTransactions = $orders->count();

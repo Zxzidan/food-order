@@ -3,6 +3,7 @@
 use App\Http\Controllers\AiChatController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MidtransNotificationController;
 use App\Http\Controllers\OrderController;
@@ -63,6 +64,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
     Route::get('/reports/export', [ReportController::class, 'exportCsv'])->name('reports.export');
+
+    // Member Management Routes
+    Route::get('/members', [MemberController::class, 'index'])->name('members.index');
+    Route::post('/members', [MemberController::class, 'store'])->name('members.store');
+    Route::get('/members/search', [MemberController::class, 'search'])->name('members.search');
+    Route::get('/members/{member}', [MemberController::class, 'show'])->name('members.show');
+    Route::put('/members/{member}', [MemberController::class, 'update'])->name('members.update');
+    Route::delete('/members/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
 
     Route::post('/ai/chat', [AiChatController::class, 'chat'])->name('ai.chat');
 });

@@ -14,12 +14,16 @@ class Order extends Model
     protected $fillable = [
         'order_number',
         'user_id',
+        'member_id',
         'customer_name',
         'order_type',
         'table_number',
         'subtotal',
         'tax',
         'discount',
+        'points_used',
+        'points_discount_amount',
+        'points_earned',
         'total_amount',
         'payment_method',
         'payment_status',
@@ -41,6 +45,9 @@ class Order extends Model
             'subtotal' => 'integer',
             'tax' => 'integer',
             'discount' => 'integer',
+            'points_used' => 'integer',
+            'points_discount_amount' => 'integer',
+            'points_earned' => 'integer',
             'total_amount' => 'integer',
             'cash_received' => 'integer',
             'change_amount' => 'integer',
@@ -55,6 +62,14 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Relasi ke member pelanggan
+     */
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
     }
 
     /**
@@ -107,6 +122,22 @@ class Order extends Model
     }
 
     /**
+     * Accessor diskon poin rupiah
+     */
+    public function getFormattedPointsDiscountAttribute(): string
+    {
+        return 'Rp '.number_format($this->points_discount_amount, 0, ',', '.');
+    }
+
+    /**
+     * Accessor total diskon gabungan
+     */
+    public function getFormattedDiscountAttribute(): string
+    {
+        return 'Rp '.number_format($this->discount, 0, ',', '.');
+    }
+
+    /**
      * Selesaikan pesanan & kurangi stok menu secara idempotent (hanya sekali)
      */
     public function markAsPaid(string $paymentMethod, ?string $transactionId = null, ?string $paymentType = null, $transactionTime = null, $settlementTime = null): void
@@ -141,6 +172,59 @@ class Order extends Model
                     }
                 }
             }
+
+            // Proses perolehan & pemotongan poin member
+            $this->processMemberPoints();
         });
+    }
+
+    /**
+     * Eksekusi mutasi poin member (redeem & earn) secara aman dan idempotent
+     */
+    public function processMemberPoints(): void
+    {
+        if (! $this->member_id) {
+            return;
+        }
+
+        $member = Member::lockForUpdate()->find($this->member_id);
+        if (! $member) {
+            return;
+        }
+
+        // 1. Kurangi poin yang di-redeem jika ada dan belum pernah dicatat
+        if ($this->points_used > 0) {
+            $alreadyRedeemed = MemberPointLog::where('order_id', $this->id)
+                ->where('type', 'redeem')
+                ->exists();
+
+            if (! $alreadyRedeemed) {
+                $member->deductPoints(
+                    $this->points_used,
+                    $this,
+                    "Penukaran {$this->points_used} poin untuk pesanan #{$this->order_number}"
+                );
+            }
+        }
+
+        // 2. Berikan poin baru yang didapat dari transaksi lunas (Rp 10.000 = 1 Poin)
+        $alreadyEarned = MemberPointLog::where('order_id', $this->id)
+            ->where('type', 'earn')
+            ->exists();
+
+        if (! $alreadyEarned) {
+            $earnedPoints = (int) floor($this->total_amount / 10000);
+            if ($earnedPoints > 0) {
+                $this->update(['points_earned' => $earnedPoints]);
+                $member->addPoints(
+                    $earnedPoints,
+                    $this,
+                    "Perolehan {$earnedPoints} poin dari pesanan #{$this->order_number}"
+                );
+            }
+
+            // Akumulasi total belanja member
+            $member->increment('total_spend', $this->total_amount);
+        }
     }
 }

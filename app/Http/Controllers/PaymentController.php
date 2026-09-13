@@ -74,6 +74,9 @@ class PaymentController extends Controller
                 }
             }
 
+            // Proses pemotongan & perolehan poin member
+            $order->processMemberPoints();
+
             return redirect()->route('riwayat.pesanan')->with('success', 'Pembayaran berhasil diproses!');
         });
     }

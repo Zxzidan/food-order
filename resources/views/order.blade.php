@@ -155,19 +155,91 @@
                     </button>
                 </div>
 
-                <!-- Customer Details Inputs -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    <div>
-                        <label class="block text-[11px] font-semibold text-gray-500 dark:text-gray-400 mb-1">Nama Pelanggan</label>
-                        <input type="text" id="input-customer-name" value="Umum"
-                            class="w-full px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs font-medium rounded-lg text-gray-900 dark:text-white focus:ring-1 focus:ring-green-500"
-                            placeholder="Nama pembeli..." />
+                <!-- Customer & Member Details Section -->
+                <div class="space-y-2.5">
+                    <div class="flex items-center justify-between">
+                        <label class="block text-[11px] font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wider">Pelanggan & Member</label>
+                        <button type="button" onclick="openPOSMemberModal()"
+                            class="text-[11px] font-semibold text-green-600 dark:text-green-400 hover:text-green-700 hover:underline inline-flex items-center gap-1 cursor-pointer">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+                            + Member Baru
+                        </button>
                     </div>
-                    <div id="table-number-wrapper">
-                        <label class="block text-[11px] font-semibold text-gray-500 dark:text-gray-400 mb-1">Nomor Meja</label>
-                        <input type="text" id="input-table-number" value="Meja 01"
-                            class="w-full px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs font-medium rounded-lg text-gray-900 dark:text-white focus:ring-1 focus:ring-green-500"
-                            placeholder="Contoh: Meja 05" />
+
+                    <!-- Member Search Box -->
+                    <div class="relative" id="member-search-wrapper">
+                        <div class="relative">
+                            <input type="text" id="pos-member-search" oninput="searchPOSMember(this.value)"
+                                class="w-full pl-8 pr-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs rounded-lg text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-1 focus:ring-green-500"
+                                placeholder="Cari member (No. HP atau Nama)..." />
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none text-gray-400">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                            </div>
+                        </div>
+
+                        <!-- Dropdown Search Results -->
+                        <div id="pos-member-dropdown" class="absolute left-0 right-0 top-full mt-1 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 z-30 hidden max-h-48 overflow-y-auto divide-y divide-gray-100 dark:divide-gray-700">
+                            <!-- Items injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Selected Member Pill / Card (Hidden by default) -->
+                    <div id="selected-member-card" class="hidden p-2.5 bg-green-50/80 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-xl flex items-center justify-between">
+                        <div class="flex items-center gap-2 min-w-0">
+                            <div class="w-7 h-7 rounded-lg bg-green-600 text-white font-bold text-xs flex items-center justify-center shrink-0">
+                                👤
+                            </div>
+                            <div class="min-w-0">
+                                <div class="flex items-center gap-1.5">
+                                    <span id="card-member-name" class="text-xs font-bold text-gray-900 dark:text-white truncate">Nama Member</span>
+                                    <span id="card-member-code" class="text-[10px] font-mono text-gray-500 dark:text-gray-400 bg-white/60 dark:bg-gray-800 px-1 rounded">MBR-001</span>
+                                </div>
+                                <div class="text-[11px] text-green-700 dark:text-green-300 font-semibold flex items-center gap-1">
+                                    <span>Saldo:</span>
+                                    <span id="card-member-points" class="font-extrabold">0 Poin</span>
+                                    <span id="card-member-val" class="text-gray-500 dark:text-gray-400 font-normal">(Rp 0)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="clearSelectedMember()" class="p-1 text-gray-400 hover:text-red-500 rounded-lg transition" title="Lepas Member">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- Member Points Redeem Control (Hidden if no member / 0 points) -->
+                    <div id="redeem-points-wrapper" class="hidden p-2.5 bg-yellow-50/80 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800/60 rounded-xl space-y-2">
+                        <div class="flex items-center justify-between text-xs font-bold text-yellow-800 dark:text-yellow-300">
+                            <span class="flex items-center gap-1">🪙 Tukar Poin Diskon</span>
+                            <button type="button" onclick="useAllMemberPoints()" class="text-[11px] font-semibold text-yellow-700 dark:text-yellow-400 underline hover:text-yellow-900 cursor-pointer">
+                                Gunakan Maksimal
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="number" id="input-points-used" min="0" value="0" oninput="onPointsUsedChange(this.value)"
+                                class="w-full px-2.5 py-1.5 bg-white dark:bg-gray-800 border border-yellow-300 dark:border-yellow-700 text-xs font-bold rounded-lg text-gray-900 dark:text-white focus:ring-1 focus:ring-yellow-500"
+                                placeholder="Jumlah poin..." />
+                            <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 shrink-0">Poin</span>
+                        </div>
+                        <div class="text-[11px] text-yellow-700 dark:text-yellow-300 flex justify-between font-medium">
+                            <span>Nilai Potongan Diskon:</span>
+                            <span id="redeem-discount-preview" class="font-bold text-green-600 dark:text-green-400">- Rp 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Customer Name & Table Number Inputs -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[11px] font-semibold text-gray-500 dark:text-gray-400 mb-1">Nama Pembeli</label>
+                            <input type="text" id="input-customer-name" value="Umum"
+                                class="w-full px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs font-medium rounded-lg text-gray-900 dark:text-white focus:ring-1 focus:ring-green-500"
+                                placeholder="Nama pembeli..." />
+                        </div>
+                        <div id="table-number-wrapper">
+                            <label class="block text-[11px] font-semibold text-gray-500 dark:text-gray-400 mb-1">Nomor Meja</label>
+                            <input type="text" id="input-table-number" value="Meja 01"
+                                class="w-full px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs font-medium rounded-lg text-gray-900 dark:text-white focus:ring-1 focus:ring-green-500"
+                                placeholder="Contoh: Meja 05" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -198,9 +270,17 @@
                         <span>Subtotal:</span>
                         <span id="summary-subtotal" class="font-semibold text-gray-800 dark:text-gray-200">Rp 0</span>
                     </div>
+                    <div id="summary-discount-row" class="hidden flex justify-between text-green-600 dark:text-green-400 font-medium">
+                        <span>Diskon Poin Member (<span id="summary-points-used-text">0</span> Poin):</span>
+                        <span id="summary-discount" class="font-bold">- Rp 0</span>
+                    </div>
                     <div class="flex justify-between text-gray-500 dark:text-gray-400">
                         <span>Pajak Restoran (PB1 10%):</span>
                         <span id="summary-tax" class="font-semibold text-gray-800 dark:text-gray-200">Rp 0</span>
+                    </div>
+                    <div id="summary-earned-row" class="hidden flex justify-between items-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 p-2 rounded-xl text-[11px] font-semibold">
+                        <span class="flex items-center gap-1">✨ Estimasi Poin Didapat:</span>
+                        <span id="summary-points-earned" class="font-extrabold">+0 Poin</span>
                     </div>
                     <div class="flex justify-between items-center pt-2 border-t border-gray-200 dark:border-gray-700 text-sm font-bold">
                         <span class="text-gray-900 dark:text-white">Total Tagihan:</span>
@@ -212,6 +292,8 @@
                 <form id="checkout-form" action="{{ route('order.checkout') }}" method="POST" class="hidden">
                     @csrf
                     <input type="hidden" name="customer_name" id="hidden-customer-name">
+                    <input type="hidden" name="member_id" id="hidden-member-id">
+                    <input type="hidden" name="points_used" id="hidden-points-used" value="0">
                     <input type="hidden" name="order_type" id="hidden-order-type">
                     <input type="hidden" name="table_number" id="hidden-table-number">
                     <input type="hidden" name="items" id="hidden-items">
@@ -274,6 +356,234 @@
         let orderType = 'Dine In';
         let currentTaxRate = 0.10; // 10% PB1 Restaurant Tax
         let activeCategory = 'all';
+        let selectedMember = null;
+        let pointsUsed = 0;
+
+        // Member POS Search & Selection
+        let searchTimeout = null;
+        function searchPOSMember(keyword) {
+            clearTimeout(searchTimeout);
+            const dropdown = document.getElementById('pos-member-dropdown');
+            keyword = keyword.trim();
+
+            if (keyword.length < 2) {
+                dropdown.classList.add('hidden');
+                dropdown.innerHTML = '';
+                return;
+            }
+
+            searchTimeout = setTimeout(() => {
+                fetch(`/members/search?q=${encodeURIComponent(keyword)}`, {
+                    headers: { 'Accept': 'application/json' }
+                })
+                .then(res => res.json())
+                .then(members => {
+                    if (members.length === 0) {
+                        dropdown.innerHTML = `
+                            <div class="p-3 text-center text-xs text-gray-400">
+                                Member tidak ditemukan.
+                                <button type="button" onclick="openPOSMemberModal('${keyword}')" class="block w-full mt-1 text-green-600 font-semibold hover:underline">
+                                    + Daftarkan "${keyword}"
+                                </button>
+                            </div>
+                        `;
+                        dropdown.classList.remove('hidden');
+                        return;
+                    }
+
+                    let html = '';
+                    members.forEach(m => {
+                        html += `
+                            <button type="button" onclick='selectPOSMember(${JSON.stringify(m)})'
+                                class="w-full text-left p-2.5 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-between transition cursor-pointer">
+                                <div>
+                                    <div class="text-xs font-bold text-gray-900 dark:text-white">${m.name}</div>
+                                    <div class="text-[11px] text-gray-400 font-mono">${m.member_code} • ${m.phone}</div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="inline-block px-1.5 py-0.5 bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 rounded font-bold text-[10px]">
+                                        ${m.formatted_points}
+                                    </span>
+                                </div>
+                            </button>
+                        `;
+                    });
+                    dropdown.innerHTML = html;
+                    dropdown.classList.remove('hidden');
+                })
+                .catch(() => {
+                    dropdown.classList.add('hidden');
+                });
+            }, 250);
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const wrapper = document.getElementById('member-search-wrapper');
+            const dropdown = document.getElementById('pos-member-dropdown');
+            if (wrapper && !wrapper.contains(e.target) && dropdown) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        function selectPOSMember(member) {
+            selectedMember = member;
+            pointsUsed = 0;
+
+            // Update UI elements
+            document.getElementById('pos-member-search').value = '';
+            document.getElementById('pos-member-dropdown').classList.add('hidden');
+            document.getElementById('member-search-wrapper').classList.add('hidden');
+
+            const card = document.getElementById('selected-member-card');
+            card.classList.remove('hidden');
+            document.getElementById('card-member-name').textContent = member.name;
+            document.getElementById('card-member-code').textContent = member.member_code;
+            document.getElementById('card-member-points').textContent = `${new Intl.NumberFormat('id-ID').format(member.points_balance)} Poin`;
+            document.getElementById('card-member-val').textContent = `(Rp ${new Intl.NumberFormat('id-ID').format(member.points_balance * 1000)})`;
+
+            // Auto-fill customer name
+            document.getElementById('input-customer-name').value = member.name;
+
+            // Show redeem points control if member has points
+            const redeemWrapper = document.getElementById('redeem-points-wrapper');
+            const pointsInput = document.getElementById('input-points-used');
+            pointsInput.value = 0;
+
+            if (member.points_balance > 0) {
+                redeemWrapper.classList.remove('hidden');
+            } else {
+                redeemWrapper.classList.add('hidden');
+            }
+
+            renderCart();
+            showToast(`Member "${member.name}" berhasil dihubungkan!`, 'success');
+        }
+
+        function clearSelectedMember() {
+            selectedMember = null;
+            pointsUsed = 0;
+
+            document.getElementById('selected-member-card').classList.add('hidden');
+            document.getElementById('redeem-points-wrapper').classList.add('hidden');
+            document.getElementById('member-search-wrapper').classList.remove('hidden');
+            document.getElementById('input-customer-name').value = 'Umum';
+            document.getElementById('input-points-used').value = 0;
+
+            renderCart();
+            showToast('Member dilepas dari pesanan.', 'delete');
+        }
+
+        function onPointsUsedChange(val) {
+            if (!selectedMember) {
+                pointsUsed = 0;
+                renderCart();
+                return;
+            }
+
+            let num = parseInt(val, 10) || 0;
+            if (num < 0) num = 0;
+
+            // Maximum points member has
+            num = Math.min(num, selectedMember.points_balance);
+
+            // Maximum discount cannot exceed subtotal
+            let subtotal = 0;
+            cart.forEach(i => subtotal += i.price * i.qty);
+            const maxPointsForSubtotal = Math.floor(subtotal / 1000);
+            num = Math.min(num, maxPointsForSubtotal);
+
+            pointsUsed = num;
+            document.getElementById('input-points-used').value = pointsUsed;
+            renderCart();
+        }
+
+        function useAllMemberPoints() {
+            if (!selectedMember || selectedMember.points_balance <= 0) return;
+
+            let subtotal = 0;
+            cart.forEach(i => subtotal += i.price * i.qty);
+            const maxPointsForSubtotal = Math.floor(subtotal / 1000);
+            const maxPoints = Math.min(selectedMember.points_balance, maxPointsForSubtotal);
+
+            pointsUsed = maxPoints;
+            document.getElementById('input-points-used').value = pointsUsed;
+            renderCart();
+
+            if (pointsUsed > 0) {
+                showToast(`${pointsUsed} Poin diterapkan sebagai diskon!`, 'success');
+            } else {
+                showToast('Tambahkan menu ke keranjang terlebih dahulu!', 'delete');
+            }
+        }
+
+        // Quick Member Registration Modal on POS
+        function openPOSMemberModal(initialPhoneOrName = '') {
+            document.getElementById('pos-add-member-modal').classList.remove('hidden');
+            const phoneInput = document.getElementById('pos-new-phone');
+            const nameInput = document.getElementById('pos-new-name');
+            nameInput.value = '';
+            phoneInput.value = '';
+            document.getElementById('pos-new-email').value = '';
+
+            if (initialPhoneOrName) {
+                if (/^\d+$/.test(initialPhoneOrName)) {
+                    phoneInput.value = initialPhoneOrName;
+                } else {
+                    nameInput.value = initialPhoneOrName;
+                }
+            }
+            nameInput.focus();
+        }
+
+        function closePOSMemberModal() {
+            document.getElementById('pos-add-member-modal').classList.add('hidden');
+        }
+
+        function submitPOSAddMember(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-pos-member');
+            const name = document.getElementById('pos-new-name').value.trim();
+            const phone = document.getElementById('pos-new-phone').value.trim();
+            const email = document.getElementById('pos-new-email').value.trim();
+
+            if (!name || !phone) {
+                alert('Nama dan Nomor HP wajib diisi.');
+                return;
+            }
+
+            btn.setAttribute('disabled', 'true');
+            btn.innerHTML = `<span class="animate-spin inline-block w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full mr-1.5"></span> Mendaftarkan...`;
+
+            fetch('{{ route("members.store") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ name, phone, email, status: 'active' })
+            })
+            .then(async res => {
+                const data = await res.json();
+                if (!res.ok) {
+                    throw new Error(data.message || 'Gagal mendaftarkan member');
+                }
+                return data;
+            })
+            .then(data => {
+                closePOSMemberModal();
+                selectPOSMember(data.member);
+                showToast(data.message, 'success');
+            })
+            .catch(err => {
+                alert(err.message);
+            })
+            .finally(() => {
+                btn.removeAttribute('disabled');
+                btn.innerHTML = 'Daftarkan & Pilih Member';
+            });
+        }
 
         // Add to Cart
         function addToCart(id, name, price, image, stock) {
@@ -336,6 +646,10 @@
         function clearCart() {
             if (cart.length === 0) return;
             cart = [];
+            pointsUsed = 0;
+            if (document.getElementById('input-points-used')) {
+                document.getElementById('input-points-used').value = 0;
+            }
             renderCart();
             showToast('Keranjang pesanan telah dikosongkan.', 'delete');
         }
@@ -358,8 +672,6 @@
             }
         }
 
-        // Payment Method function removed
-
         // Render Cart DOM
         function renderCart() {
             const container = document.getElementById('cart-items-container');
@@ -379,8 +691,39 @@
                 totalItems += item.qty;
             });
 
-            const tax = Math.round(subtotal * currentTaxRate);
-            const grandTotal = subtotal + tax;
+            // Calculate Points Discount
+            let discountAmount = pointsUsed * 1000;
+            if (discountAmount > subtotal) {
+                discountAmount = subtotal;
+                pointsUsed = Math.floor(discountAmount / 1000);
+            }
+
+            const discountRow = document.getElementById('summary-discount-row');
+            const discountPreview = document.getElementById('redeem-discount-preview');
+
+            if (pointsUsed > 0) {
+                discountRow.classList.remove('hidden');
+                document.getElementById('summary-points-used-text').innerText = pointsUsed;
+                document.getElementById('summary-discount').innerText = `- ${formatRupiah(discountAmount)}`;
+                if (discountPreview) discountPreview.innerText = `- ${formatRupiah(discountAmount)}`;
+            } else {
+                discountRow.classList.add('hidden');
+                if (discountPreview) discountPreview.innerText = `- Rp 0`;
+            }
+
+            const taxableSubtotal = Math.max(0, subtotal - discountAmount);
+            const tax = Math.round(taxableSubtotal * currentTaxRate);
+            const grandTotal = taxableSubtotal + tax;
+
+            // Estimated Points Earned for Member
+            const earnedRow = document.getElementById('summary-earned-row');
+            if (selectedMember && grandTotal >= 10000) {
+                const earnedPoints = Math.floor(grandTotal / 10000);
+                earnedRow.classList.remove('hidden');
+                document.getElementById('summary-points-earned').innerText = `+${earnedPoints} Poin`;
+            } else {
+                earnedRow.classList.add('hidden');
+            }
 
             // Update Summary DOM
             document.getElementById('summary-subtotal').innerText = formatRupiah(subtotal);
@@ -443,14 +786,6 @@
                     container.appendChild(itemEl);
                 });
             }
-        }
-
-        // Cash Calculation functions removed
-
-        function getGrandTotal() {
-            let subtotal = 0;
-            cart.forEach(i => subtotal += i.price * i.qty);
-            return subtotal + Math.round(subtotal * currentTaxRate);
         }
 
         // Toggle Mobile Cart Drawer
@@ -525,8 +860,10 @@
             document.getElementById('hidden-customer-name').value = customerName;
             document.getElementById('hidden-order-type').value = orderType;
             document.getElementById('hidden-table-number').value = tableNumber;
+            document.getElementById('hidden-member-id').value = selectedMember ? selectedMember.id : '';
+            document.getElementById('hidden-points-used').value = pointsUsed;
             
-            // Format cart to match the previous structure expected by backend
+            // Format cart to match the structure expected by backend
             const itemsToSubmit = cart.map(item => ({
                 id: item.id,
                 name: item.name,
@@ -553,6 +890,51 @@
         // Initial Render
         renderCart();
     </script>
+
+    <!-- Quick Register Member Modal (POS Kasir) -->
+    <div id="pos-add-member-modal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-sm shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden">
+            <div class="px-5 py-3.5 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between bg-gray-50/60 dark:bg-gray-800">
+                <h3 class="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                    <span class="text-green-600">👤</span> Daftar Member Cepat
+                </h3>
+                <button type="button" onclick="closePOSMemberModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <form onsubmit="submitPOSAddMember(event)" class="p-5 space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-semibold text-gray-700 dark:text-gray-300 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
+                    <input type="text" id="pos-new-name" required placeholder="Nama pembeli..."
+                        class="w-full px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs rounded-xl text-gray-900 dark:text-white focus:ring-1 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-semibold text-gray-700 dark:text-gray-300 mb-1">Nomor WhatsApp / HP <span class="text-red-500">*</span></label>
+                    <input type="text" id="pos-new-phone" required placeholder="08xxxxxxxxxx"
+                        class="w-full px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs rounded-xl text-gray-900 dark:text-white focus:ring-1 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-semibold text-gray-700 dark:text-gray-300 mb-1">Email (Opsional)</label>
+                    <input type="email" id="pos-new-email" placeholder="email@contoh.com"
+                        class="w-full px-3 py-1.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs rounded-xl text-gray-900 dark:text-white focus:ring-1 focus:ring-green-500">
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-2 border-t border-gray-100 dark:border-gray-700">
+                    <button type="button" onclick="closePOSMemberModal()"
+                        class="px-3 py-1.5 text-xs font-semibold text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition">
+                        Batal
+                    </button>
+                    <button type="submit" id="btn-submit-pos-member"
+                        class="px-4 py-1.5 bg-green-600 hover:bg-green-700 text-white text-xs font-semibold rounded-xl shadow-xs transition cursor-pointer">
+                        Daftarkan & Hubungkan
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <style>
         @media print {
