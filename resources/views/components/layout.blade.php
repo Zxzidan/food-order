@@ -24,7 +24,7 @@
     <title>@yield('title', 'Sistem Pemesanan Makanan')</title>
 </head>
 
-<body class="h-full dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
+<body class="h-full dark:bg-gray-900 text-gray-900 dark:text-gray-100 subpixel-antialiased">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 
     @yield('content')

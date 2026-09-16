@@ -15,9 +15,9 @@
 
 html, body, input, select, textarea, button, optgroup, option {
     font-family: var(--font-primary) !important;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+    text-rendering: auto;
 }
 
 /* Preserve monospace for raw code & technical elements */

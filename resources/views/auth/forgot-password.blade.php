@@ -30,9 +30,9 @@
     </script>
     <style>
         body {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: auto;
+            -moz-osx-font-smoothing: auto;
+            text-rendering: auto;
         }
         .bg-dots {
             background-image: radial-gradient(#1A1A1A 1px, transparent 1px);
@@ -41,7 +41,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen antialiased text-ink flex items-center justify-center font-sans p-4 relative overflow-x-hidden selection:bg-accent selection:text-white bg-paper">
+<body class="min-h-screen subpixel-antialiased text-ink flex items-center justify-center font-sans p-4 relative overflow-x-hidden selection:bg-accent selection:text-white bg-paper">
     
     <!-- Background Dots -->
     <div class="fixed inset-0 bg-dots pointer-events-none z-0"></div>

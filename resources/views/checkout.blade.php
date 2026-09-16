@@ -48,8 +48,11 @@
                                 <span class="block text-gray-500 dark:text-gray-400 mb-1">Pelanggan</span>
                                 <span class="font-bold text-gray-900 dark:text-white">{{ $order->customer_name }}</span>
                                 @if($order->member)
-                                    <span class="inline-flex items-center gap-1 px-2 py-0.5 mt-1 rounded-md text-[11px] font-bold bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">
-                                        <span>👤 Member</span> • {{ $order->member->member_code }}
+                                    <span class="inline-flex items-center gap-1.5 px-2 py-0.5 mt-1 rounded-md text-[11px] font-semibold bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">
+                                        <svg class="w-3 h-3 text-green-700 dark:text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        </svg>
+                                        Member • {{ $order->member->member_code }}
                                     </span>
                                 @endif
                             </div>
@@ -111,7 +114,7 @@
                         </div>
                         @if($order->member && $order->total_amount >= 10000)
                         <div class="flex justify-between items-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 p-2.5 rounded-xl text-xs font-semibold">
-                            <span class="flex items-center gap-1">✨ Reward Poin Setelah Lunas:</span>
+                            <span class="flex items-center gap-1">Poin Diperoleh:</span>
                             <span class="font-extrabold text-sm">+{{ floor($order->total_amount / 10000) }} Poin</span>
                         </div>
                         @endif
