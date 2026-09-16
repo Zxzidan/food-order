@@ -112,7 +112,7 @@
         <form method="GET" action="{{ route('members.index') }}" class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
             <div class="flex-1 relative">
                 <input type="text" name="search" value="{{ $search }}"
-                    placeholder="Cari berdasarkan Nama, Nomor HP, atau Kode Member..."
+                    placeholder="Cari berdasarkan Nama, Nomor HP, atau Kode Member"
                     class="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,15 +122,22 @@
             </div>
 
             <div class="flex items-center gap-2.5 shrink-0">
-                <select name="status" onchange="this.form.submit()"
-                    class="px-3 py-2 bg-gray-50 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500">
-                    <option value="">Semua Status</option>
-                    <option value="active" {{ $status === 'active' ? 'selected' : '' }}>Aktif</option>
-                    <option value="inactive" {{ $status === 'inactive' ? 'selected' : '' }}>Nonaktif</option>
-                </select>
+                <div class="relative">
+                    <select name="status" onchange="this.form.submit()"
+                        class="appearance-none pl-3.5 pr-8 py-2 bg-gray-50 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 cursor-pointer">
+                        <option value="">Semua Status</option>
+                        <option value="active" {{ $status === 'active' ? 'selected' : '' }}>Aktif</option>
+                        <option value="inactive" {{ $status === 'inactive' ? 'selected' : '' }}>Nonaktif</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-2.5 pointer-events-none text-gray-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                        </svg>
+                    </div>
+                </div>
 
                 <button type="submit"
-                    class="px-4 py-2 bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-semibold rounded-xl transition cursor-pointer">
+                    class="px-4 py-2 bg-green-600 hover:bg-green-700 active:scale-95 text-white text-xs sm:text-sm font-semibold rounded-xl shadow-xs hover:shadow-md transition cursor-pointer">
                     Cari
                 </button>
 
@@ -317,10 +324,17 @@
 
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Status Keanggotaan</label>
-                    <select name="status" class="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500">
-                        <option value="active" selected>Aktif</option>
-                        <option value="inactive">Nonaktif</option>
-                    </select>
+                    <div class="relative">
+                        <select name="status" class="w-full appearance-none pl-3.5 pr-9 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 cursor-pointer">
+                            <option value="active" selected>Aktif</option>
+                            <option value="inactive">Nonaktif</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="pt-3 flex items-center justify-end gap-2 border-t border-gray-100 dark:border-gray-700">
@@ -376,10 +390,17 @@
 
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Status</label>
-                    <select id="edit-member-status" name="status" class="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500">
-                        <option value="active">Aktif</option>
-                        <option value="inactive">Nonaktif</option>
-                    </select>
+                    <div class="relative">
+                        <select id="edit-member-status" name="status" class="w-full appearance-none pl-3.5 pr-9 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 cursor-pointer">
+                            <option value="active">Aktif</option>
+                            <option value="inactive">Nonaktif</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="pt-3 flex items-center justify-end gap-2 border-t border-gray-100 dark:border-gray-700">
