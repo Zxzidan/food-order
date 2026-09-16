@@ -8,7 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- AOS CSS for animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Apple San Francisco Typography -->
+    <!-- Google Fonts: Plus Jakarta Sans & Inter for crystal-clear typography on all screens & zoom levels -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Global Typography Overrides -->
     <link rel="stylesheet" href="{{ asset('css/sf-pro.css') }}">
     
     <!-- CSS Custom -->
@@ -18,9 +22,10 @@
             scroll-behavior: smooth;
         }
         body {
-            font-family: 'SF Pro', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
             overflow-x: hidden;
             position: relative;
             width: 100%;
@@ -94,17 +99,7 @@
             will-change: transform, opacity;
         }
 
-        .marquee-brands {
-            display: flex;
-            gap: 3rem;
-            animation: marquee 30s linear infinite;
-            width: max-content;
-            align-items: center;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+
 
         /* Architectural Grid Texture */
         .bg-grid-subtle {
@@ -136,6 +131,88 @@
         }
         .float-tablet {
             animation: floatTablet 5s ease-in-out infinite;
+        }
+
+        /* 3D Micro-Widget Floating Animations */
+        @keyframes floatWidgetA {
+            0%, 100% {
+                transform: translateY(0px) rotate(2deg);
+            }
+            50% {
+                transform: translateY(-8px) rotate(2deg);
+            }
+        }
+        @keyframes floatWidgetB {
+            0%, 100% {
+                transform: translateY(0px) rotate(2.5deg);
+            }
+            50% {
+                transform: translateY(7px) rotate(2.5deg);
+            }
+        }
+        @keyframes floatWidgetC {
+            0%, 100% {
+                transform: translateY(0px) rotate(-1.5deg);
+            }
+            50% {
+                transform: translateY(-7px) rotate(-1.5deg);
+            }
+        }
+        @keyframes floatWidgetD {
+            0%, 100% {
+                transform: translateY(0px) rotate(1.5deg);
+            }
+            50% {
+                transform: translateY(6px) rotate(1.5deg);
+            }
+        }
+        .float-widget-1 {
+            animation: floatWidgetA 5s ease-in-out infinite;
+            will-change: transform;
+        }
+        .float-widget-2 {
+            animation: floatWidgetB 5.8s ease-in-out infinite 0.7s;
+            will-change: transform;
+        }
+        .float-widget-3 {
+            animation: floatWidgetC 5.2s ease-in-out infinite 1.4s;
+            will-change: transform;
+        }
+        .float-widget-4 {
+            animation: floatWidgetD 6s ease-in-out infinite 0.4s;
+            will-change: transform;
+        }
+
+        /* Looping Progress Slider for Kopi Susu */
+        @keyframes progressLoop {
+            0% {
+                width: 0%;
+                opacity: 1;
+            }
+            65% {
+                width: 100%;
+                opacity: 1;
+            }
+            85% {
+                width: 100%;
+                opacity: 1;
+            }
+            94% {
+                width: 100%;
+                opacity: 0;
+            }
+            96% {
+                width: 0%;
+                opacity: 0;
+            }
+            100% {
+                width: 0%;
+                opacity: 1;
+            }
+        }
+        .animate-progress-loop {
+            animation: progressLoop 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            will-change: width, opacity;
         }
 
         .realistic-shadow {
@@ -199,7 +276,7 @@
                         'inner-subtle': 'inset 0 1px 1px rgba(255, 255, 255, 0.2)',
                     },
                     fontFamily: {
-                        sans: ['"SF Pro"', '"SF Pro Display"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        sans: ['"Plus Jakarta Sans"', '"Inter"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
                     }
                 }
             }
@@ -228,8 +305,8 @@
                 <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-[15px] sm:text-base font-semibold text-gray-700" id="navLinks">
                     <a href="#fitur" class="hover:text-primary-600 transition-colors py-1">Fitur</a>
                     <a href="#keunggulan" class="hover:text-primary-600 transition-colors py-1">Keunggulan</a>
-                    <a href="#testimoni" class="hover:text-primary-600 transition-colors py-1">Testimoni</a>
                     <a href="#tentang" class="hover:text-primary-600 transition-colors py-1">Tentang Kami</a>
+                    <a href="#testimoni" class="hover:text-primary-600 transition-colors py-1">Testimoni</a>
                     <a href="#faq" class="hover:text-primary-600 transition-colors py-1">FAQ</a>
                     <a href="#kontak" class="hover:text-primary-600 transition-colors py-1">Kontak</a>
                 </nav>
@@ -255,8 +332,8 @@
                 <nav class="flex flex-col gap-4 text-base sm:text-lg font-semibold text-gray-800">
                     <a href="#fitur" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Fitur</a>
                     <a href="#keunggulan" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Keunggulan</a>
-                    <a href="#testimoni" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Testimoni</a>
                     <a href="#tentang" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Tentang Kami</a>
+                    <a href="#testimoni" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Testimoni</a>
                     <a href="#faq" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">FAQ</a>
                     <a href="#kontak" onclick="toggleMobileMenu()" class="hover:text-primary-600 py-1 transition-colors">Kontak</a>
                     <div class="pt-4 border-t border-gray-100 flex flex-col gap-3">
@@ -279,11 +356,11 @@
                 <!-- Left Content (col-span-5 on LG for ample visual room) -->
                 <div class="lg:col-span-5 text-white pt-4 lg:pt-0">
                     <div class="inline-flex max-w-full items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 rounded-lg bg-white/15 border border-white/25 text-white text-[11px] sm:text-sm font-bold uppercase tracking-wider mb-5 sm:mb-6 backdrop-blur-xs">
-                        <span class="truncate sm:whitespace-normal">Sistem POS &amp; Manajemen Restoran Terpadu</span>
+                        <span class="whitespace-normal">Sistem POS &amp; Manajemen Restoran Terpadu</span>
                     </div>
 
                     <div class="min-h-[110px] sm:min-h-[160px] lg:min-h-[190px] flex flex-col justify-center">
-                        <h1 id="heroTitle" class="text-3xl sm:text-5xl lg:text-[54px] font-extrabold leading-[1.12] sm:leading-[1.08] tracking-tight text-white mb-4 sm:mb-6">
+                        <h1 id="heroTitle" class="text-3xl sm:text-5xl lg:text-[54px] font-extrabold leading-[1.22] sm:leading-[1.16] tracking-[-0.01em] text-white mb-4 sm:mb-6">
                             Laporan Keuangan<br>Real-Time &amp;<br>Otomatis
                         </h1>
                     </div>
@@ -529,11 +606,11 @@
                                                     <span class="font-bold text-gray-900">50K</span>
                                                 </div>
                                                 <div class="flex items-center justify-between py-0.5 border-b border-gray-50">
-                                                    <span class="text-gray-700 truncate max-w-[65px] sm:max-w-[85px]"><strong class="text-gray-900">1x</strong> Croissant</span>
+                                                    <span class="text-gray-700 truncate max-w-[90px] sm:max-w-[110px]"><strong class="text-gray-900">1x</strong> Croissant</span>
                                                     <span class="font-bold text-gray-900">20K</span>
                                                 </div>
                                                 <div class="flex items-center justify-between py-0.5">
-                                                    <span class="text-gray-700 truncate max-w-[65px] sm:max-w-[85px]"><strong class="text-gray-900">1x</strong> Beef Bowl</span>
+                                                    <span class="text-gray-700 truncate max-w-[90px] sm:max-w-[110px]"><strong class="text-gray-900">1x</strong> Beef Bowl</span>
                                                     <span class="font-bold text-gray-900">39K</span>
                                                 </div>
                                             </div>
@@ -643,172 +720,160 @@
         </div>
     </section>
 
-    <!-- Executive Metrics & Ecosystem Section (Clean, Professional, No Emojis) -->
-    <section class="relative bg-[#FAF8F5] border-b border-gray-200/70 py-10 sm:py-12 lg:py-16 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- 4 Column Structured Stat Matrix -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mb-10 sm:mb-12">
-                <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-center" data-aos="fade-up" data-aos-delay="0">
-                    <div class="text-2xl sm:text-4xl font-extrabold text-primary-600 tracking-tight">10.000+</div>
-                    <div class="text-xs sm:text-sm font-bold text-gray-800 mt-1 sm:mt-1.5">Merchant Aktif</div>
-                    <div class="text-[11px] sm:text-xs text-gray-500 mt-0.5 leading-snug">Tergabung dalam ekosistem</div>
-                </div>
-                <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">&lt; 2 Detik</div>
-                    <div class="text-xs sm:text-sm font-bold text-gray-800 mt-1 sm:mt-1.5">Kecepatan Kasir</div>
-                    <div class="text-[11px] sm:text-xs text-gray-500 mt-0.5 leading-snug">Proses cetak struk &amp; bayar</div>
-                </div>
-                <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">99.9%</div>
-                    <div class="text-xs sm:text-sm font-bold text-gray-800 mt-1 sm:mt-1.5">Uptime Cloud POS</div>
-                    <div class="text-[11px] sm:text-xs text-gray-500 mt-0.5 leading-snug">Konektivitas stabil harian</div>
-                </div>
-                <div class="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200/80 shadow-2xs hover:shadow-xs transition-shadow flex flex-col justify-center" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">24/7</div>
-                    <div class="text-xs sm:text-sm font-bold text-gray-800 mt-1 sm:mt-1.5">Dukungan Teknis</div>
-                    <div class="text-[11px] sm:text-xs text-gray-500 mt-0.5 leading-snug">Pendampingan operasional</div>
-                </div>
-            </div>
-
-            <!-- Sleek Brand Divider Label -->
-            <div class="flex items-center justify-center gap-2 sm:gap-4 max-w-3xl mx-auto mb-6 sm:mb-8 px-2" data-aos="fade-up">
-                <div class="hidden sm:block h-px bg-gradient-to-r from-transparent via-gray-300 to-gray-300 flex-1"></div>
-                <p class="text-[11px] sm:text-[13px] font-bold tracking-wider sm:tracking-widest text-gray-500 uppercase text-center leading-normal">
-                    Dipercaya oleh Berbagai Usaha Kuliner &amp; Restoran Mitra
-                </p>
-                <div class="hidden sm:block h-px bg-gradient-to-l from-transparent via-gray-300 to-gray-300 flex-1"></div>
-            </div>
+    <!-- Permasalahan Owner F&B Section (Adapted from Reference to SIPEMMA Theme) -->
+    <section class="py-16 sm:py-24 lg:py-28 bg-[#FAF8F5] overflow-hidden relative border-b border-gray-200/70">
+        <!-- Giant Stylized Question Mark Watermark on Right (Matching Reference) -->
+        <div class="absolute -right-4 sm:right-4 lg:right-10 top-1/2 -translate-y-1/2 select-none pointer-events-none text-orange-500/10 text-[200px] sm:text-[320px] lg:text-[420px] font-black leading-none z-0">
+            ?
         </div>
 
-        <!-- Continuous Non-Stopping Culinary Partners Marquee -->
-        <div class="relative w-full overflow-hidden py-2">
-            <!-- Fade edges -->
-            <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#FAF8F5] via-[#FAF8F5]/80 to-transparent z-10 pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#FAF8F5] via-[#FAF8F5]/80 to-transparent z-10 pointer-events-none"></div>
-
-            <div class="marquee-wrapper">
-                <div class="marquee-brands select-none">
-                    <!-- Set 1 (Mitra Usaha Kuliner - Typographic Brandmarks without Emojis) -->
-                    <div class="flex items-center gap-1.5 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-black tracking-tight text-gray-800">SAMBAL BAKAR</span>
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-orange-100 text-primary-600 uppercase tracking-wider">JUARA</span>
-                    </div>
-
-                    <div class="flex items-center px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <div class="leading-none text-left">
-                            <span class="text-[9px] tracking-widest block font-bold text-gray-400 uppercase">KOPI</span>
-                            <span class="text-base font-extrabold tracking-tight text-gray-800">TITIK TEMU</span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                <!-- Left Column: Stressed Owner Photo matching Reference -->
+                <div class="lg:col-span-5" data-aos="fade-right">
+                    <div class="relative max-w-md mx-auto lg:max-w-none">
+                        <div class="relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-gray-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.08)] bg-white p-2">
+                            <img src="{{ asset('assets/img/stressed-owner.jpg') }}" alt="Owner F&B Pusing Laporan Rekap Manual" class="w-full h-auto object-cover rounded-[1.6rem] sm:rounded-[2.1rem] shadow-inner select-none pointer-events-none">
                         </div>
                     </div>
+                </div>
 
-                    <div class="flex items-center gap-1.5 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-black tracking-tight text-gray-800">BAKMI PANGSIT</span>
-                        <span class="text-base font-black text-primary-600">88</span>
-                    </div>
+                <!-- Right Column: Heading + 2x2 Problem Cards + Bottom Callout Bar -->
+                <div class="lg:col-span-7" data-aos="fade-left">
+                    <div class="max-w-2xl">
+                        <!-- Section Heading matching reference typography with SIPEMMA Orange Pill -->
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-[-0.01em] leading-[1.24] sm:leading-[1.2] mb-8 sm:mb-10 text-left">
+                            Masalah yang<br>
+                            <span class="inline-block bg-primary-600 text-white px-4 py-1 sm:px-5 sm:py-1.5 rounded-2xl shadow-md -rotate-1 mr-2 align-middle">Diam-Diam</span> Paling<br>
+                            Sering Dirasakan<br>
+                            Owner F&B
+                        </h2>
 
-                    <div class="flex items-center px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-serif font-bold text-gray-800 tracking-wide">Saung Selera Sunda</span>
-                    </div>
+                        <!-- 2x2 Problem Cards Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-6">
+                            <!-- Card 01: Stok Habis -->
+                            <div class="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/85 shadow-xs hover:shadow-md hover:border-orange-300 transition-all duration-300 text-left group">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-2xl sm:text-3xl font-black text-gray-300 group-hover:text-primary-600 transition-colors">01</span>
+                                    <div class="w-10 h-10 rounded-full bg-orange-50 border border-orange-200/70 flex items-center justify-center text-primary-600 group-hover:scale-105 transition-transform shadow-2xs">
+                                        <!-- Calculation / Sheet Icon -->
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="text-sm sm:text-[14.5px] font-semibold text-gray-800 leading-snug">
+                                    Tau stok habis pas customer mau order, padahal di catatan masih ada.
+                                </p>
+                            </div>
 
-                    <div class="flex items-center gap-2 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-black tracking-tighter text-gray-800 uppercase">URBAN BITES</span>
-                        <span class="text-[9px] font-bold text-gray-400 tracking-widest uppercase">CAFE</span>
-                    </div>
+                            <!-- Card 02: Uang Laci Selisih -->
+                            <div class="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/85 shadow-xs hover:shadow-md hover:border-orange-300 transition-all duration-300 text-left group">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-2xl sm:text-3xl font-black text-gray-300 group-hover:text-primary-600 transition-colors">02</span>
+                                    <div class="w-10 h-10 rounded-full bg-orange-50 border border-orange-200/70 flex items-center justify-center text-primary-600 group-hover:scale-105 transition-transform shadow-2xs">
+                                        <!-- Cash Drawer / Box Icon -->
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="text-sm sm:text-[14.5px] font-semibold text-gray-800 leading-snug">
+                                    Uang di laci ada, tapi nggak sinkron sama laporan penjualan.
+                                </p>
+                            </div>
 
-                    <div class="flex items-center gap-2 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-bold text-gray-800 tracking-tight">Kedai Kopi Senja</span>
-                        <span class="text-[9px] font-bold bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded">ROASTERY</span>
-                    </div>
+                            <!-- Card 03: Data Pelanggan Diabaikan -->
+                            <div class="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/85 shadow-xs hover:shadow-md hover:border-orange-300 transition-all duration-300 text-left group">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-2xl sm:text-3xl font-black text-gray-300 group-hover:text-primary-600 transition-colors">03</span>
+                                    <div class="w-10 h-10 rounded-full bg-orange-50 border border-orange-200/70 flex items-center justify-center text-primary-600 group-hover:scale-105 transition-transform shadow-2xs">
+                                        <!-- Wallet / Customer Loyalty Icon -->
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="text-sm sm:text-[14.5px] font-semibold text-gray-800 leading-snug">
+                                    Capek cari pelanggan baru tiap hari, data lama diabaikan.
+                                </p>
+                            </div>
 
-                    <div class="flex items-center px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <div class="leading-none text-left">
-                            <span class="text-base font-extrabold tracking-tight text-gray-800">DAPUR RASA</span>
-                            <span class="text-[9px] tracking-widest block font-bold text-gray-400 uppercase mt-0.5">NUSANTARA</span>
+                            <!-- Card 04: Keputusan Pakai Feeling -->
+                            <div class="bg-white rounded-2xl p-5 sm:p-6 border border-gray-200/85 shadow-xs hover:shadow-md hover:border-orange-300 transition-all duration-300 text-left group">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-2xl sm:text-3xl font-black text-gray-300 group-hover:text-primary-600 transition-colors">04</span>
+                                    <div class="w-10 h-10 rounded-full bg-orange-50 border border-orange-200/70 flex items-center justify-center text-primary-600 group-hover:scale-105 transition-transform shadow-2xs">
+                                        <!-- Brain / Idea / Decision Icon -->
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="text-sm sm:text-[14.5px] font-semibold text-gray-800 leading-snug">
+                                    Data bisnis numpuk, tapi tetap ambil keputusan pakai feeling.
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="flex items-center gap-2 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-serif font-bold text-gray-800 tracking-tight">PADANG SAIYO</span>
-                        <span class="text-[9px] font-semibold bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">MINANG</span>
-                    </div>
-
-                    <div class="flex items-center gap-2 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-bold italic text-gray-800 tracking-tight">Artisan Bakery</span>
-                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">PASTRY</span>
-                    </div>
-
-                    <div class="flex items-center gap-1.5 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-black text-gray-800 tracking-tighter uppercase">Ayam Geprek</span>
-                        <span class="text-xs font-black text-primary-600 uppercase">MAS BRO</span>
-                    </div>
-
-                    <!-- Set 2 (Duplicated for seamless continuous scroll) -->
-                    <div class="flex items-center gap-1.5 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-black tracking-tight text-gray-800">SAMBAL BAKAR</span>
-                        <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded bg-orange-100 text-primary-600 uppercase tracking-wider">JUARA</span>
-                    </div>
-
-                    <div class="flex items-center px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <div class="leading-none text-left">
-                            <span class="text-[9px] tracking-widest block font-bold text-gray-400 uppercase">KOPI</span>
-                            <span class="text-base font-extrabold tracking-tight text-gray-800">TITIK TEMU</span>
+                        <!-- Summary Callout Bar (Clean straight accent line, zero curve artifacts) -->
+                        <div class="p-4 sm:p-4.5 rounded-xl bg-white border border-gray-200/80 text-left flex items-center gap-3.5 shadow-2xs">
+                            <div class="w-1 h-8 sm:h-7 rounded-full bg-primary-600 shrink-0"></div>
+                            <p class="text-xs sm:text-[13.5px] text-gray-600 leading-relaxed font-normal">
+                                Masalah-masalah ini sering dianggap wajar, padahal jika dibiarkan terus, membuat bisnis sulit berkembang dan owner cepat lelah.
+                            </p>
                         </div>
-                    </div>
-
-                    <div class="flex items-center gap-1.5 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-black tracking-tight text-gray-800">BAKMI PANGSIT</span>
-                        <span class="text-base font-black text-primary-600">88</span>
-                    </div>
-
-                    <div class="flex items-center px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-serif font-bold text-gray-800 tracking-wide">Saung Selera Sunda</span>
-                    </div>
-
-                    <div class="flex items-center gap-2 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-black tracking-tighter text-gray-800 uppercase">URBAN BITES</span>
-                        <span class="text-[9px] font-bold text-gray-400 tracking-widest uppercase">CAFE</span>
-                    </div>
-
-                    <div class="flex items-center gap-2 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-bold text-gray-800 tracking-tight">Kedai Kopi Senja</span>
-                        <span class="text-[9px] font-bold bg-gray-200 text-gray-600 px-1.5 py-0.5 rounded">ROASTERY</span>
-                    </div>
-
-                    <div class="flex items-center px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <div class="leading-none text-left">
-                            <span class="text-base font-extrabold tracking-tight text-gray-800">DAPUR RASA</span>
-                            <span class="text-[9px] tracking-widest block font-bold text-gray-400 uppercase mt-0.5">NUSANTARA</span>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-2 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-serif font-bold text-gray-800 tracking-tight">PADANG SAIYO</span>
-                        <span class="text-[9px] font-semibold bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">MINANG</span>
-                    </div>
-
-                    <div class="flex items-center gap-2 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-bold italic text-gray-800 tracking-tight">Artisan Bakery</span>
-                        <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">PASTRY</span>
-                    </div>
-
-                    <div class="flex items-center gap-1.5 px-4 py-2 hover:opacity-80 transition-opacity shrink-0">
-                        <span class="text-base font-black text-gray-800 tracking-tighter uppercase">Ayam Geprek</span>
-                        <span class="text-xs font-black text-primary-600 uppercase">MAS BRO</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Feature Chapter 1: Real-time Restaurant Operations -->
+    <!-- Feature Chapter 1: Point of Sale Experience (Core Foundation) -->
     <section id="fitur" class="scroll-mt-24 py-16 sm:py-24 lg:py-32 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                <div class="lg:col-span-6" data-aos="fade-right">
+                    <div class="max-w-xl">
+                        <div class="inline-block text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-100/70 px-3 py-1 rounded-md mb-3 sm:mb-4">
+                            Solusi Kasir & Kas Terpadu
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6 leading-[1.22] sm:leading-[1.18] tracking-[-0.01em]">
+                            Uang Kasir &amp; Laporan Sinkron Real-Time
+                        </h2>
+                        <p class="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
+                            Tak ada lagi uang laci selisih atau nota kertas hilang. Catat pesanan dalam 3 detik, terima QRIS & tunai, dan cetak struk otomatis langsung sinkron dengan pembukuan kasir.
+                        </p>
+
+                        <button type="button" onclick="openFeatureModal('pos')" class="group inline-flex items-center gap-2.5 sm:gap-3 text-primary-600 font-extrabold text-sm sm:text-base hover:text-primary-700 transition-colors cursor-pointer">
+                            <span>Pelajari Fitur Kasir</span>
+                            <span class="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 group-hover:translate-x-1 transition-transform shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 mt-6 lg:mt-0" data-aos="fade-left">
+                    <div class="p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-white border border-gray-200 shadow-xl">
+                        <div class="rounded-xl sm:rounded-2xl overflow-hidden">
+                            <img src="{{ asset('assets/img/pos-cashier.jpg') }}" alt="Sistem Kasir POS Tablet & Struk Kasir Otomatis SIPEMMA" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Chapter 2: Real-time Restaurant Operations -->
+    <section class="py-16 sm:py-24 lg:py-32 bg-[#F8F9FA] border-y border-gray-200/70 overflow-hidden bg-grid-subtle">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
                 <!-- Visual Container (Hardware & Dashboard double-bezel) -->
                 <div class="lg:col-span-6 order-2 lg:order-1 mt-6 lg:mt-0" data-aos="fade-right">
                     <div class="relative p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-gray-50 border border-gray-200/90 shadow-lg">
                         <div class="rounded-xl sm:rounded-2xl overflow-hidden shadow-inner">
-                            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=800" alt="Dashboard Backoffice" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
+                            <img src="{{ asset('assets/img/kitchen-stock.jpg') }}" alt="Manajemen Stok Bahan & Dapur Restoran SIPEMMA" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
                         </div>
                     </div>
                 </div>
@@ -816,20 +881,23 @@
                 <!-- Content Column -->
                 <div class="lg:col-span-6 order-1 lg:order-2" data-aos="fade-left">
                     <div class="max-w-xl">
-                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6 leading-[1.15] tracking-tight">
-                            Pantau Bisnis Lebih Cepat
+                        <div class="inline-block text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-100/70 px-3 py-1 rounded-md mb-3 sm:mb-4">
+                            Solusi Stok & Pelanggan
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6 leading-[1.22] sm:leading-[1.18] tracking-[-0.01em]">
+                            Peringatan Bahan &amp; Data Pelanggan
                         </h2>
-                        <p class="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-10 leading-relaxed font-normal">
-                            Kelola operasional dan pantau performa finansial usaha Anda secara real-time dari satu sistem.
+                        <p class="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed font-normal">
+                            Cegah customer kecewa karena stok habis mendadak, serta manfaatkan database pelanggan lama untuk mendorong pesanan berulang.
                         </p>
 
-                        <!-- Structured Feature List (Eliminating repetitive round bubbles) -->
-                        <div class="space-y-4 sm:space-y-6">
+                        <!-- Structured Feature List -->
+                        <div class="space-y-4 sm:space-y-6 mb-8">
                             <div class="flex gap-3 sm:gap-4 items-start p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-orange-50/40 border border-orange-100/80">
                                 <div class="w-1.5 h-8 sm:h-10 rounded-full bg-primary-600 shrink-0 mt-0.5 sm:mt-0"></div>
                                 <div>
                                     <h3 class="text-sm sm:text-lg font-bold text-gray-900 leading-snug">
-                                        Kelola pesanan dine-in, takeaway, dan online terpadu.
+                                        Peringatan stok menipis otomatis sebelum bahan habis di jam ramai resto.
                                     </h3>
                                 </div>
                             </div>
@@ -838,7 +906,7 @@
                                 <div class="w-1.5 h-8 sm:h-10 rounded-full bg-gray-400 shrink-0 mt-0.5 sm:mt-0"></div>
                                 <div>
                                     <h3 class="text-sm sm:text-lg font-bold text-gray-900 leading-snug">
-                                        Atur menu, meja, dan operasional toko dengan mudah.
+                                        Database pelanggan & riwayat transaksi tersimpan rapi untuk promo loyalitas.
                                     </h3>
                                 </div>
                             </div>
@@ -847,47 +915,18 @@
                                 <div class="w-1.5 h-8 sm:h-10 rounded-full bg-primary-500 shrink-0 mt-0.5 sm:mt-0"></div>
                                 <div>
                                     <h3 class="text-sm sm:text-lg font-bold text-gray-900 leading-snug">
-                                        Analisis tren penjualan cerdas berbasis AI Assistant.
+                                        Pesanan meja dine-in & takeaway terintegrasi langsung ke printer dapur.
                                     </h3>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Feature Chapter 2: Point of Sale Experience (Architectural Split with Subtle Grid) -->
-    <section class="py-16 sm:py-24 lg:py-32 bg-[#F8F9FA] border-y border-gray-200/70 overflow-hidden bg-grid-subtle">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-                <div class="lg:col-span-6" data-aos="fade-right">
-                    <div class="max-w-xl">
-                        <div class="inline-block text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-100/70 px-3 py-1 rounded-md mb-3 sm:mb-4">
-                            SIPEMMA Point of Sale
-                        </div>
-                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6 leading-[1.15] tracking-tight">
-                            Kasir Cepat & Praktis untuk Toko Anda
-                        </h2>
-                        <p class="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-                            Catat transaksi dalam hitungan detik, terima aneka metode pembayaran, dan pantau stok barang otomatis tanpa khawatir selisih.
-                        </p>
-
-                        <a href="#fitur" class="group inline-flex items-center gap-2.5 sm:gap-3 text-primary-600 font-extrabold text-sm sm:text-base hover:text-primary-700 transition-colors">
-                            <span>Pelajari Fitur</span>
+                        <button type="button" onclick="openFeatureModal('stock')" class="group inline-flex items-center gap-2.5 sm:gap-3 text-primary-600 font-extrabold text-sm sm:text-base hover:text-primary-700 transition-colors cursor-pointer">
+                            <span>Pelajari Fitur Stok & Dapur</span>
                             <span class="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 group-hover:translate-x-1 transition-transform shrink-0">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                             </span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-6 mt-6 lg:mt-0" data-aos="fade-left">
-                    <div class="p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-white border border-gray-200 shadow-xl">
-                        <div class="rounded-xl sm:rounded-2xl overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&q=80&w=800" alt="Kasir Offline" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -901,7 +940,7 @@
                 <div class="lg:col-span-6 order-2 lg:order-1 mt-6 lg:mt-0" data-aos="fade-right">
                     <div class="p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-orange-50/60 border border-orange-100 shadow-xl">
                         <div class="rounded-xl sm:rounded-2xl overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&q=80&w=800" alt="Laporan Penjualan" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
+                            <img src="{{ asset('assets/img/business-analytics.jpg') }}" alt="Laporan Penjualan & Analitik AI SIPEMMA" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
                         </div>
                     </div>
                 </div>
@@ -909,21 +948,210 @@
                 <div class="lg:col-span-6 order-1 lg:order-2" data-aos="fade-left">
                     <div class="max-w-xl">
                         <div class="inline-block text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-100/70 px-3 py-1 rounded-md mb-3 sm:mb-4">
-                            SIPEMMA Manajemen Terpadu
+                            Solusi Analitik Bisnis
                         </div>
-                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6 leading-[1.15] tracking-tight">
-                            Laporan Penjualan & Laba Real-Time
+                        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 sm:mb-6 leading-[1.22] sm:leading-[1.18] tracking-[-0.01em]">
+                            Ambil Keputusan dari Data, Bukan Feeling
                         </h2>
                         <p class="text-sm sm:text-base lg:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-                            Tanpa rekap manual yang melelahkan. Pantau laba rugi, omzet harian, dan mutasi barang otomatis dari perangkat apa pun kapan saja.
+                            Tinggalkan tebak-tebakan. Laporan omzet harian, margin laba bersih tiap menu, dan analitik cerdas AI Assistant tersaji otomatis kapan pun dibutuhkan dari smartphone Anda.
                         </p>
 
-                        <a href="#fitur" class="group inline-flex items-center gap-2.5 sm:gap-3 text-primary-600 font-extrabold text-sm sm:text-base hover:text-primary-700 transition-colors">
+                        <button type="button" onclick="openFeatureModal('analytics')" class="group inline-flex items-center gap-2.5 sm:gap-3 text-primary-600 font-extrabold text-sm sm:text-base hover:text-primary-700 focus:outline-none transition-colors cursor-pointer">
                             <span>Lihat Selengkapnya</span>
                             <span class="w-7 h-7 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 group-hover:translate-x-1 transition-transform shrink-0">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                             </span>
-                        </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apa Yang Berubah Section (Before vs After / Dulu vs Sekarang - Aligned with SIPEMMA System) -->
+    <section class="relative bg-[#FAF8F5] border-y border-gray-200/70 py-16 sm:py-20 lg:py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header: Clean SIPEMMA Typography & Tone -->
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-[-0.01em] leading-[1.28] sm:leading-[1.24]">
+                    Apa yang<br class="hidden sm:inline">
+                    <span class="inline-block bg-primary-600 text-white px-4 py-1 sm:px-5 sm:py-1.5 rounded-2xl shadow-md -rotate-1 mx-2 align-middle">Berubah</span>
+                    Setelah<br>
+                    Menggunakan SIPEMMA
+                </h2>
+                <p class="text-sm sm:text-base text-gray-600 mt-3 sm:mt-4 max-w-xl mx-auto">
+                    Transformasi nyata operasional restoran Anda dari cara manual yang lambat menjadi serba otomatis dan terkendali.
+                </p>
+            </div>
+
+            <!-- 2x2 Grid Transformation Cards (Exact Reference Layout + Animated Floating Widgets) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
+                <!-- Card 1: Omzet & COGS / Kasir -->
+                <div class="bg-white rounded-[2.2rem] sm:rounded-[2.5rem] p-6 sm:p-8 lg:p-10 border border-gray-200/85 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="0">
+                    <!-- Floating Micro-Widget with Gentle Continuous Float -->
+                    <div class="h-36 sm:h-44 flex items-center justify-center mb-4 sm:mb-6">
+                        <div class="float-widget-1 bg-white rounded-2xl p-4 sm:p-4.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.12)] border border-gray-100/90 flex items-center gap-3.5 min-w-[210px] sm:min-w-[230px] group-hover:scale-105 transition-transform duration-300">
+                            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-primary-600 shrink-0 shadow-xs">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                            <div class="text-left">
+                                <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider block">Total Transaksi</span>
+                                <span class="text-base sm:text-lg font-black text-gray-900 tracking-tight">Rp 3.420.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Boxes -->
+                    <div class="space-y-3">
+                        <!-- Dulu -->
+                        <div class="bg-[#FFF5F5] border border-[#FED7D7] rounded-2xl p-4 text-left flex items-start gap-3">
+                            <svg class="w-4 h-4 text-rose-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                            <div class="text-xs sm:text-[13px] leading-relaxed text-gray-700">
+                                <strong class="font-extrabold text-rose-600 mr-1">Dulu:</strong><span>Kasir lambat dan sering antre panjang, nota kertas mudah hilang, dan rawan salah hitung pesanan meja.</span>
+                            </div>
+                        </div>
+
+                        <!-- Sekarang -->
+                        <div class="bg-[#F4F7F5] border border-[#DCE5E0] rounded-2xl p-4 text-left flex items-start gap-3">
+                            <svg class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
+                            </svg>
+                            <div class="text-xs sm:text-[13px] leading-relaxed text-gray-700">
+                                <strong class="font-extrabold text-emerald-800 mr-1">Sekarang:</strong><span>Input pesanan cuma 3 detik, cetak struk bluetooth otomatis, dan transaksi sinkron real-time ke dapur.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Top Menu & Cash Flow -->
+                <div class="bg-white rounded-[2.2rem] sm:rounded-[2.5rem] p-6 sm:p-8 lg:p-10 border border-gray-200/85 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Floating Micro-Widget with Gentle Continuous Float -->
+                    <div class="h-36 sm:h-44 flex items-center justify-center mb-4 sm:mb-6">
+                        <div class="float-widget-2 bg-white rounded-2xl p-4 sm:p-4.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.12)] border border-gray-100/90 text-left min-w-[210px] sm:min-w-[240px] group-hover:scale-105 transition-transform duration-300">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-xs font-bold text-gray-900">Top Menu</span>
+                                <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                </svg>
+                            </div>
+                            <div class="flex items-center justify-between text-xs font-bold mb-2">
+                                <span class="text-gray-700">Kopi Susu</span>
+                                <span class="text-primary-600 font-extrabold pr-1">45% Margin</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden relative">
+                                <div class="h-full bg-gradient-to-r from-primary-600 to-orange-500 rounded-full animate-progress-loop"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Boxes -->
+                    <div class="space-y-3">
+                        <!-- Dulu -->
+                        <div class="bg-[#FFF5F5] border border-[#FED7D7] rounded-2xl p-4 text-left flex items-start gap-3">
+                            <svg class="w-4 h-4 text-rose-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                            <div class="text-xs sm:text-[13px] leading-relaxed text-gray-700">
+                                <strong class="font-extrabold text-rose-600 mr-1">Dulu:</strong><span>Ribet input pengeluaran manual, nota kertas pesanan meja sering hilang, dan laporan keuangan sering selisih.</span>
+                            </div>
+                        </div>
+
+                        <!-- Sekarang -->
+                        <div class="bg-[#F4F7F5] border border-[#DCE5E0] rounded-2xl p-4 text-left flex items-start gap-3">
+                            <svg class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
+                            </svg>
+                            <div class="text-xs sm:text-[13px] leading-relaxed text-gray-700">
+                                <strong class="font-extrabold text-emerald-800 mr-1">Sekarang:</strong><span>Menu terlaris, persentase margin laba, dan grafik penjualan harian langsung terkalkulasi otomatis.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Stock Alert & Recipe Management -->
+                <div class="bg-white rounded-[2.2rem] sm:rounded-[2.5rem] p-6 sm:p-8 lg:p-10 border border-gray-200/85 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Floating Micro-Widget with Gentle Continuous Float -->
+                    <div class="h-36 sm:h-44 flex items-center justify-center mb-4 sm:mb-6">
+                        <div class="float-widget-3 bg-white rounded-2xl p-3.5 sm:p-4 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.12)] border border-gray-100/90 text-left min-w-[210px] sm:min-w-[230px] group-hover:scale-105 transition-transform duration-300">
+                            <div class="flex items-center gap-2.5 mb-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                                <span class="text-xs font-bold text-gray-800 pr-1">Peringatan Bahan</span>
+                            </div>
+                            <div class="bg-amber-50/70 border border-amber-200/70 rounded-xl p-2.5 flex items-center justify-between">
+                                <span class="text-xs font-semibold text-gray-700">Sirup Karamel</span>
+                                <span class="text-xs font-extrabold text-amber-700 bg-amber-100/80 px-2 py-0.5 rounded-md">Sisa 2 Btl</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Boxes -->
+                    <div class="space-y-3">
+                        <!-- Dulu -->
+                        <div class="bg-[#FFF5F5] border border-[#FED7D7] rounded-2xl p-4 text-left flex items-start gap-3">
+                            <svg class="w-4 h-4 text-rose-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                            <div class="text-xs sm:text-[13px] leading-relaxed text-gray-700">
+                                <strong class="font-extrabold text-rose-600 mr-1">Dulu:</strong><span>Stok bahan habis mendadak saat jam ramai resto, pembeli kecewa pesanan batal, dan stok opname manual makan waktu.</span>
+                            </div>
+                        </div>
+
+                        <!-- Sekarang -->
+                        <div class="bg-[#F4F7F5] border border-[#DCE5E0] rounded-2xl p-4 text-left flex items-start gap-3">
+                            <svg class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
+                            </svg>
+                            <div class="text-xs sm:text-[13px] leading-relaxed text-gray-700">
+                                <strong class="font-extrabold text-emerald-800 mr-1">Sekarang:</strong><span>Bahan baku berkurang otomatis tiap pesanan terjual, dilengkapi sistem peringatan dini sebelum bahan habis.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Financial Reports & Multi-Outlet -->
+                <div class="bg-white rounded-[2.2rem] sm:rounded-[2.5rem] p-6 sm:p-8 lg:p-10 border border-gray-200/85 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="300">
+                    <!-- Floating Micro-Widget with Gentle Continuous Float -->
+                    <div class="h-36 sm:h-44 flex items-center justify-center mb-4 sm:mb-6">
+                        <div class="float-widget-4 bg-white rounded-2xl p-4 sm:p-4.5 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.12)] border border-gray-100/90 text-left min-w-[210px] sm:min-w-[230px] group-hover:scale-105 transition-transform duration-300">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-bold text-gray-500 pr-1">Laporan Laba Harian</span>
+                                <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">+28.4%</span>
+                            </div>
+                            <div class="text-lg sm:text-xl font-black text-gray-900 tracking-tight mb-1.5">Rp 12.850.000</div>
+                            <div class="text-[11px] font-semibold text-gray-500">Otomatis sinkron dari semua meja</div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison Boxes -->
+                    <div class="space-y-3">
+                        <!-- Dulu -->
+                        <div class="bg-[#FFF5F5] border border-[#FED7D7] rounded-2xl p-4 text-left flex items-start gap-3">
+                            <svg class="w-4 h-4 text-rose-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                            <div class="text-xs sm:text-[13px] leading-relaxed text-gray-700">
+                                <strong class="font-extrabold text-rose-600 mr-1">Dulu:</strong><span>Tiap tutup toko pusing rekap nota fisik sampai larut malam, hitung laba bersih manual, dan rentan kecurangan kasir.</span>
+                            </div>
+                        </div>
+
+                        <!-- Sekarang -->
+                        <div class="bg-[#F4F7F5] border border-[#DCE5E0] rounded-2xl p-4 text-left flex items-start gap-3">
+                            <svg class="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="9"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
+                            </svg>
+                            <div class="text-xs sm:text-[13px] leading-relaxed text-gray-700">
+                                <strong class="font-extrabold text-emerald-800 mr-1">Sekarang:</strong><span>Laporan omzet, margin laba, dan evaluasi performa penjualan cabang toko tersaji otomatis dan real-time.</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -938,7 +1166,7 @@
                     <svg class="w-4 h-4 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                     Komparasi Fitur Unggulan
                 </div>
-                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-3 sm:mb-4">
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-[-0.01em] mb-3 sm:mb-4">
                     Kenapa Memilih SIPEMMA?
                 </h2>
                 <p class="text-sm sm:text-lg text-gray-600 font-normal max-w-2xl mx-auto">
@@ -1171,6 +1399,34 @@
         </div>
     </section>
 
+    <!-- About Content Section with Refined Editorial Presentation -->
+    <section id="tentang" class="scroll-mt-24 py-16 sm:py-20 bg-gray-50/70 border-t border-gray-200/70 overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+            <div class="bg-white rounded-2xl p-5 sm:p-10 border border-gray-200 shadow-2xs">
+                <h3 class="text-lg sm:text-2xl font-extrabold text-gray-900 mb-4 sm:mb-6 text-left tracking-tight">
+                    Tentang Aplikasi Kasir SIPEMMA
+                </h3>
+                
+                <div id="aboutContent" class="text-sm sm:text-base text-gray-600 text-left leading-relaxed space-y-4 line-clamp-3 transition-all duration-500">
+                    <p>
+                        <strong>SIPEMMA</strong> adalah sistem Point of Sale (POS) cloud modern yang memudahkan pencatatan pesanan, pengelolaan stok, dan pembukuan usaha tanpa perlu rekap manual. Semua data tersimpan aman di cloud dan dapat dipantau dari mana saja.
+                    </p>
+                    <p>
+                        Aplikasi ini mendukung integrasi hardware kasir lengkap seperti printer bluetooth, pemindai barcode, dan laci kasir (cash drawer) untuk mempercepat alur transaksi pelanggan serta mencegah antrean panjang.
+                    </p>
+                    <p>
+                        Dirancang untuk bisnis skala UMKM hingga multi-cabang di bidang F&B, retail, maupun jasa, SIPEMMA membantu pengusaha mengambil keputusan bisnis yang lebih cepat dan tepat berbasis data real-time.
+                    </p>
+                </div>
+                
+                <button id="readMoreBtn" onclick="toggleReadMore()" class="mt-6 text-sm text-primary-600 font-extrabold hover:text-primary-700 focus:outline-none flex items-center justify-start gap-1.5 transition-colors">
+                    <span>Baca selengkapnya</span> 
+                    <svg id="readMoreIcon" class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
     <!-- Impact Stats & Testimonials Section -->
     <section id="testimoni" class="scroll-mt-24 py-16 sm:py-24 lg:py-32 bg-white border-t border-gray-100 relative bg-dots overflow-hidden">
         <!-- Section Header -->
@@ -1179,7 +1435,7 @@
                 <svg class="w-4 h-4 text-primary-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                 Ulasan &amp; Dampak Nyata
             </div>
-            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight mb-3 sm:mb-4 md:whitespace-nowrap">
+            <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-[-0.01em] mb-3 sm:mb-4">
                 Dipercaya oleh Pengusaha <span class="whitespace-nowrap">Restoran &amp; Kafe</span>
             </h2>
             <p class="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -1222,7 +1478,7 @@
 
         <!-- Testimonials 3D Carousel Header -->
         <div class="mb-8 sm:mb-12 text-center" data-aos="fade-up">
-            <h3 class="text-2xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight leading-tight">
+            <h3 class="text-2xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-[-0.01em] leading-tight">
                 Dipercaya oleh Ratusan <br class="sm:hidden"><span class="text-primary-600">Pengusaha F&B</span>
             </h3>
             <p class="text-xs sm:text-base text-gray-500 mt-2 font-normal max-w-xl mx-auto">
@@ -1403,34 +1659,6 @@
         </div>
     </section>
 
-    <!-- About Content Section with Refined Editorial Presentation -->
-    <section id="tentang" class="scroll-mt-24 py-16 sm:py-20 bg-gray-50/70 border-t border-gray-200/70 overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
-            <div class="bg-white rounded-2xl p-5 sm:p-10 border border-gray-200 shadow-2xs">
-                <h3 class="text-lg sm:text-2xl font-extrabold text-gray-900 mb-4 sm:mb-6 text-left tracking-tight">
-                    Tentang Aplikasi Kasir SIPEMMA
-                </h3>
-                
-                <div id="aboutContent" class="text-sm sm:text-base text-gray-600 text-left leading-relaxed space-y-4 line-clamp-3 transition-all duration-500">
-                    <p>
-                        <strong>SIPEMMA</strong> adalah sistem Point of Sale (POS) cloud modern yang memudahkan pencatatan pesanan, pengelolaan stok, dan pembukuan usaha tanpa perlu rekap manual. Semua data tersimpan aman di cloud dan dapat dipantau dari mana saja.
-                    </p>
-                    <p>
-                        Aplikasi ini mendukung integrasi hardware kasir lengkap seperti printer bluetooth, pemindai barcode, dan laci kasir (cash drawer) untuk mempercepat alur transaksi pelanggan serta mencegah antrean panjang.
-                    </p>
-                    <p>
-                        Dirancang untuk bisnis skala UMKM hingga multi-cabang di bidang F&B, retail, maupun jasa, SIPEMMA membantu pengusaha mengambil keputusan bisnis yang lebih cepat dan tepat berbasis data real-time.
-                    </p>
-                </div>
-                
-                <button id="readMoreBtn" onclick="toggleReadMore()" class="mt-6 text-sm text-primary-600 font-extrabold hover:text-primary-700 focus:outline-none flex items-center justify-start gap-1.5 transition-colors">
-                    <span>Baca selengkapnya</span> 
-                    <svg id="readMoreIcon" class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- FAQ Section (Side-by-Side Editorial Split) -->
     <section id="faq" class="scroll-mt-24 py-16 sm:py-24 lg:py-32 bg-white border-t border-gray-200/70 overflow-hidden">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1575,9 +1803,334 @@
         </div>
     </footer>
 
+    <!-- Feature Detail Modal (Interactive Detail for Pelajari Fitur Kasir, Stok & Dapur, Laporan & AI) -->
+    <div id="featureDetailModal" class="fixed inset-0 z-50 bg-gray-900/60 backdrop-blur-sm flex items-center justify-center p-3.5 sm:p-6 opacity-0 pointer-events-none transition-all duration-300" role="dialog" aria-modal="true" aria-labelledby="featureModalTitle">
+        <!-- Backdrop Backdrop Click Handler -->
+        <div class="fixed inset-0" onclick="closeFeatureModal()" aria-hidden="true"></div>
+
+        <!-- Modal Card Container -->
+        <div id="featureModalDialog" class="relative w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-gray-200/80 flex flex-col max-h-[92vh] sm:max-h-[88vh] z-10 overflow-hidden transform scale-95 transition-all duration-300">
+            <!-- Modal Top Header with Tabs & Close Button -->
+            <div class="px-4 py-3.5 sm:px-7 sm:py-4.5 border-b border-gray-100 flex items-center justify-between bg-white shrink-0">
+                <!-- Interactive Tab Pill Switcher -->
+                <div class="flex items-center gap-1 sm:gap-1.5 p-1 bg-gray-100 rounded-xl overflow-x-auto max-w-[calc(100%-44px)] sm:max-w-none">
+                    <button type="button" onclick="switchFeatureTab('pos')" id="tabBtn-pos" class="px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-extrabold transition-all shrink-0 cursor-pointer bg-primary-600 text-white shadow-xs">
+                        Kasir POS
+                    </button>
+                    <button type="button" onclick="switchFeatureTab('stock')" id="tabBtn-stock" class="px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-gray-600 hover:text-gray-900 hover:bg-white/60 transition-all shrink-0 cursor-pointer">
+                        Stok &amp; Dapur
+                    </button>
+                    <button type="button" onclick="switchFeatureTab('analytics')" id="tabBtn-analytics" class="px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-gray-600 hover:text-gray-900 hover:bg-white/60 transition-all shrink-0 cursor-pointer">
+                        Laporan &amp; AI
+                    </button>
+                </div>
+
+                <!-- Close "X" Button -->
+                <button type="button" onclick="closeFeatureModal()" aria-label="Tutup Detail Fitur" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-900 flex items-center justify-center transition-colors cursor-pointer shrink-0">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable with Smooth Momentum) -->
+            <div class="overflow-y-auto px-5 py-5 sm:px-8 sm:py-7 space-y-6">
+                <!-- Pane 1: Kasir POS -->
+                <div id="featurePane-pos" class="space-y-6 text-left">
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-50 border border-orange-200/70 px-3 py-1 rounded-md mb-2">
+                            Solusi Kasir &amp; Kas Terpadu
+                        </div>
+                        <h3 id="featureModalTitle" class="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 tracking-tight leading-tight">
+                            Sistem Kasir Pintar (POS) &amp; Pembukuan Otomatis
+                        </h3>
+                        <p class="text-xs sm:text-[15px] text-gray-600 mt-2 leading-relaxed font-normal">
+                            Dirancang khusus untuk ritme cepat bisnis resto dan kafe. Menggabungkan pencatatan pesanan kilat, penerimaan pembayaran digital otomatis, hingga pencetakan nota fisik tanpa risiko uang kas laci selisih.
+                        </p>
+                    </div>
+
+                    <!-- 4 Capabilities Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">01</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">Transaksi Kilat 3 Detik</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Pilih menu, varian rasa, level pedas, dan nomor meja langsung dalam beberapa sentuhan. Antrean kasir tetap lancar di jam sibuk.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">02</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">Multi-Metode Pembayaran</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Mendukung uang tunai dengan kalkulator kembalian otomatis, serta QRIS dinamis Midtrans tanpa perlu cek mutasi manual.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">03</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">Cetak Struk &amp; Split Bill</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Koneksi bluetooth &amp; USB ke printer thermal kasir 58mm/80mm, pisah tagihan antar tamu (split bill), dan kirim struk digital.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">04</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">Kontrol Kas Shift &amp; Laci Uang</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Catat modal kasir awal shift, buka otomatis laci uang kasir (cash drawer RJ-11), dan rekonsiliasi kas akhir harian bebas selisih.</p>
+                        </div>
+                    </div>
+
+                    <!-- Hardware & Alur Kerja Step-by-Step -->
+                    <div class="bg-gray-50/90 border border-gray-200/80 rounded-2xl p-4 sm:p-5 space-y-4">
+                        <div>
+                            <div class="text-[11px] font-extrabold uppercase tracking-wider text-gray-500 mb-2">Hardware &amp; Perangkat yang Didukung:</div>
+                            <div class="flex flex-wrap gap-2 text-xs font-semibold text-gray-700">
+                                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg shadow-2xs">Tablet Android &amp; iPad</span>
+                                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg shadow-2xs">PC / Laptop Kasir</span>
+                                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg shadow-2xs">Printer Thermal Bluetooth &amp; USB (58mm/80mm)</span>
+                                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg shadow-2xs">Laci Uang Kasir (Cash Drawer RJ-11)</span>
+                                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg shadow-2xs">Barcode Scanner</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-gray-200/70">
+                            <div class="text-[11px] font-extrabold uppercase tracking-wider text-gray-500 mb-2.5">Alur Kerja Kasir:</div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs text-gray-700">
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 1</strong>
+                                    Input menu &amp; nomor meja makan
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 2</strong>
+                                    Pilih pembayaran (QRIS / Tunai / Transfer)
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 3</strong>
+                                    Struk kasir &amp; dapur otomatis tercetak
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 4</strong>
+                                    Omzet langsung tercatat di laporan keuangan
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pane 2: Stok & Dapur -->
+                <div id="featurePane-stock" class="hidden space-y-6 text-left">
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-50 border border-orange-200/70 px-3 py-1 rounded-md mb-2">
+                            Solusi Stok &amp; Pelanggan
+                        </div>
+                        <h3 class="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 tracking-tight leading-tight">
+                            Manajemen Stok Otomatis &amp; Kitchen Display System
+                        </h3>
+                        <p class="text-xs sm:text-[15px] text-gray-600 mt-2 leading-relaxed font-normal">
+                            Hentikan kebocoran bahan baku dan hindari tamu kecewa karena stok habis mendadak. Setiap menu terjual otomatis memotong bahan baku per resep, dengan peringatan dini sebelum bahan habis dan tiket pesanan langsung ke layar dapur.
+                        </p>
+                    </div>
+
+                    <!-- 4 Capabilities Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">01</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">Potong Bahan per Resep (COGS)</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Tiap 1 porsi menu terjual, bahan baku (kopi, susu, beras, daging) otomatis terpangkas real-time sesuai gramasi resep.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">02</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">Peringatan Stok Menipis</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Sistem memberi peringatan dini visual saat stok mendekati batas minimum, sehingga staf dapur sempat restock sebelum jam ramai.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">03</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">Layar Dapur Terintegrasi (KDS)</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Pesanan dari kasir atau pemesanan meja langsung muncul di layar tablet dapur chef/barista tanpa risiko nota kertas basah atau hilang.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">04</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">Database &amp; Riwayat Pelanggan</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Rekam nomor kontak, riwayat belanja, dan menu favorit pelanggan untuk penawaran promo loyalitas dan follow-up WhatsApp.</p>
+                        </div>
+                    </div>
+
+                    <!-- Alur Kerja Dapur Step-by-Step -->
+                    <div class="bg-gray-50/90 border border-gray-200/80 rounded-2xl p-4 sm:p-5 space-y-4">
+                        <div>
+                            <div class="text-[11px] font-extrabold uppercase tracking-wider text-gray-500 mb-2">Manfaat Nyata untuk Operasional:</div>
+                            <div class="flex flex-wrap gap-2 text-xs font-semibold text-gray-700">
+                                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg shadow-2xs">Zero Food Waste &amp; Bahan Kedaluwarsa</span>
+                                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg shadow-2xs">Waktu Tunggu Masak Turun hingga 40%</span>
+                                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg shadow-2xs">Stok Opname Cepat Tanpa Hitung Manual Semalaman</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-gray-200/70">
+                            <div class="text-[11px] font-extrabold uppercase tracking-wider text-gray-500 mb-2.5">Alur Sinkronisasi Dapur:</div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs text-gray-700">
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 1</strong>
+                                    Pesanan kasir sukses dibayar
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 2</strong>
+                                    Tiket tampil di KDS dapur &amp; stok terpotong
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 3</strong>
+                                    Chef menyiapkan pesanan sesuai urutan meja
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 4</strong>
+                                    Notifikasi restock muncul saat bahan menipis
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pane 3: Laporan & AI -->
+                <div id="featurePane-analytics" class="hidden space-y-6 text-left">
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-primary-600 bg-orange-50 border border-orange-200/70 px-3 py-1 rounded-md mb-2">
+                            Solusi Analitik Bisnis
+                        </div>
+                        <h3 class="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 tracking-tight leading-tight">
+                            Laporan Keuangan Real-Time &amp; SIPEMMA AI Assistant
+                        </h3>
+                        <p class="text-xs sm:text-[15px] text-gray-600 mt-2 leading-relaxed font-normal">
+                            Tinggalkan tebak-tebakan saat menentukan strategi bisnis. SIPEMMA menghitung omzet kotor, beban HPP, laba bersih tiap menu, grafik jam sibuk, hingga saran analitis cerdas AI Assistant langsung dari smartphone Anda kapan pun dibutuhkan.
+                        </p>
+                    </div>
+
+                    <!-- 4 Capabilities Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">01</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">Kalkulasi Margin Laba Bersih</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Ketahui laba bersih sesungguhnya harian dan bulanan setelah dikurangi modal bahan (COGS) dan operasional tanpa lembur hitung nota.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">02</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">Analisis Menu Paling Untung</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Pilah menu dengan margin laba tertinggi vs menu yang kurang diminati untuk mengoptimalkan resep dan promosi penjualan.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">03</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">SIPEMMA AI Restaurant Assistant</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Asisten AI cerdas yang membaca database live resto Anda, memprediksi jam ramai, dan memberikan saran paket promo terlaris.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-orange-50/40 border border-orange-100/90 text-left">
+                            <div class="w-8 h-8 rounded-lg bg-white border border-orange-200/80 text-primary-600 flex items-center justify-center font-bold text-sm mb-2.5 shadow-2xs">04</div>
+                            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-1">Pantau Toko dari Smartphone</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed font-normal">Akses laporan multi-cabang kapan saja secara live di ponsel. Owner bisa bepergian dengan tenang karena bisnis tetap terpantau akurat.</p>
+                        </div>
+                    </div>
+
+                    <!-- AI & Analitik Flow -->
+                    <div class="bg-gray-50/90 border border-gray-200/80 rounded-2xl p-4 sm:p-5 space-y-4">
+                        <div>
+                            <div class="text-[11px] font-extrabold uppercase tracking-wider text-gray-500 mb-2">Manfaat Nyata bagi Pemilik Usaha:</div>
+                            <div class="flex flex-wrap gap-2 text-xs font-semibold text-gray-700">
+                                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg shadow-2xs">Tutup Toko 5 Menit (Bukan 2 Jam)</span>
+                                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg shadow-2xs">Bebas Manipulasi &amp; Kecurangan Kasir</span>
+                                <span class="px-2.5 py-1 bg-white border border-gray-200 rounded-lg shadow-2xs">Keputusan Belanja Bahan Berbasis Data</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 border-t border-gray-200/70">
+                            <div class="text-[11px] font-extrabold uppercase tracking-wider text-gray-500 mb-2.5">Alur Analitik Bisnis:</div>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs text-gray-700">
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 1</strong>
+                                    Transaksi kasir sinkron real-time ke cloud
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 2</strong>
+                                    Dashboard hitung omzet, HPP &amp; margin laba
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 3</strong>
+                                    AI Assistant susun rangkuman performa harian
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-white border border-gray-200/70">
+                                    <strong class="text-primary-600 block mb-0.5 font-black">Langkah 4</strong>
+                                    Owner terima laporan lengkap di smartphone
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Bottom Action Bar -->
+            <div class="px-5 py-3.5 sm:px-8 sm:py-4 border-t border-gray-100 bg-gray-50/90 flex flex-wrap items-center justify-between gap-3 shrink-0">
+                <div class="text-xs text-gray-500 font-medium hidden sm:block">
+                    Aplikasi kasir cloud lengkap untuk kafe, resto, &amp; UMKM kuliner.
+                </div>
+                <div class="flex items-center gap-2.5 ml-auto">
+                    <button type="button" onclick="closeFeatureModal()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:bg-gray-100 transition-colors cursor-pointer">
+                        Tutup
+                    </button>
+                    <a href="#kontak" onclick="closeFeatureModal()" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-extrabold text-white bg-primary-600 hover:bg-primary-700 shadow-xs transition-colors cursor-pointer">
+                        Konsultasi Fitur
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // -------------------------------------------------------------
+        // Feature Detail Modal Controller Logic
+        // -------------------------------------------------------------
+        function openFeatureModal(key) {
+            const modal = document.getElementById('featureDetailModal');
+            const dialog = document.getElementById('featureModalDialog');
+            if (!modal || !dialog) return;
+
+            switchFeatureTab(key || 'pos');
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            dialog.classList.remove('scale-95');
+            dialog.classList.add('scale-100');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeFeatureModal() {
+            const modal = document.getElementById('featureDetailModal');
+            const dialog = document.getElementById('featureModalDialog');
+            if (!modal || !dialog) return;
+
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            dialog.classList.remove('scale-100');
+            dialog.classList.add('scale-95');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        function switchFeatureTab(key) {
+            const tabs = ['pos', 'stock', 'analytics'];
+            tabs.forEach(t => {
+                const pane = document.getElementById(`featurePane-${t}`);
+                const btn = document.getElementById(`tabBtn-${t}`);
+                if (pane) {
+                    if (t === key) {
+                        pane.classList.remove('hidden');
+                    } else {
+                        pane.classList.add('hidden');
+                    }
+                }
+                if (btn) {
+                    if (t === key) {
+                        btn.className = 'px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-extrabold transition-all shrink-0 cursor-pointer bg-primary-600 text-white shadow-xs';
+                    } else {
+                        btn.className = 'px-3 sm:px-4 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-gray-600 hover:text-gray-900 hover:bg-white/60 transition-all shrink-0 cursor-pointer';
+                    }
+                }
+            });
+        }
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeFeatureModal();
+            }
+        });
+
         AOS.init({
             once: true,
             offset: 50,
