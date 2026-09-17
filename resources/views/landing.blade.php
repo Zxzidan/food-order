@@ -24,14 +24,16 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
+        body, html {
+            overflow-x: hidden;
+            position: relative;
+            width: 100%;
+        }
         body, html, input, select, textarea, button {
             font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
             -webkit-font-smoothing: auto;
             -moz-osx-font-smoothing: auto;
             text-rendering: auto;
-            overflow-x: hidden;
-            position: relative;
-            width: 100%;
         }
 
         /* Animated Parallax Water Waves */
@@ -323,7 +325,7 @@
                 </div>
 
                 <!-- Mobile menu button -->
-                <button class="lg:hidden p-2 text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none transition-colors" id="navMobileBtn" onclick="toggleMobileMenu()">
+                <button class="lg:hidden ml-auto p-2 text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-none transition-colors" id="navMobileBtn" onclick="toggleMobileMenu()">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="navMobileIcon"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
             </div>
@@ -375,7 +377,7 @@
                             <svg class="w-4 h-4 text-primary-600 group-hover:translate-x-1 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
                         <a href="#fitur" class="inline-flex items-center justify-center bg-white/15 hover:bg-white/25 border border-white/30 text-white text-sm sm:text-base font-bold py-3 sm:py-3.5 px-6 sm:px-8 rounded-full backdrop-blur-xs transition-all text-center">
-                            <span>Chat WhatsApp</span>
+                            <span>Pelajari Fitur</span>
                         </a>
                     </div>
                 </div>
@@ -745,9 +747,9 @@
                 <div class="lg:col-span-7" data-aos="fade-left">
                     <div class="max-w-2xl">
                         <!-- Section Heading matching reference typography with SIPEMMA Orange Pill -->
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-[-0.01em] leading-[1.24] sm:leading-[1.2] mb-8 sm:mb-10 text-left">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-[-0.01em] leading-[1.4] sm:leading-[1.36] lg:leading-[1.32] mb-8 sm:mb-10 text-left">
                             Masalah yang<br>
-                            <span class="inline-block bg-primary-600 text-white px-4 py-1 sm:px-5 sm:py-1.5 rounded-2xl shadow-md -rotate-1 mr-2 align-middle">Diam-Diam</span> Paling<br>
+                            <span class="inline-block bg-primary-600 text-white px-3.5 py-0.5 sm:px-5 sm:py-1 rounded-2xl shadow-md -rotate-1 mr-2 align-middle mt-2.5 mb-1 sm:mt-3 sm:mb-1.5">Diam-Diam</span> Paling<br>
                             Sering Dirasakan<br>
                             Owner F&B
                         </h2>
@@ -977,9 +979,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header: Clean SIPEMMA Typography & Tone -->
             <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16" data-aos="fade-up">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-[-0.01em] leading-[1.28] sm:leading-[1.24]">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-[-0.01em] leading-[1.4] sm:leading-[1.36] lg:leading-[1.32]">
                     Apa yang<br class="hidden sm:inline">
-                    <span class="inline-block bg-primary-600 text-white px-4 py-1 sm:px-5 sm:py-1.5 rounded-2xl shadow-md -rotate-1 mx-2 align-middle">Berubah</span>
+                    <span class="inline-block bg-primary-600 text-white px-3.5 py-0.5 sm:px-5 sm:py-1 rounded-2xl shadow-md -rotate-1 mx-2 align-middle mt-2.5 mb-1 sm:mt-3 sm:mb-1.5">Berubah</span>
                     Setelah<br>
                     Menggunakan SIPEMMA
                 </h2>
