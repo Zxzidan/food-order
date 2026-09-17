@@ -186,8 +186,10 @@
                     <!-- Selected Member Pill / Card (Hidden by default) -->
                     <div id="selected-member-card" class="hidden p-2.5 bg-green-50/80 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-xl flex items-center justify-between">
                         <div class="flex items-center gap-2 min-w-0">
-                            <div class="w-7 h-7 rounded-lg bg-green-600 text-white font-bold text-xs flex items-center justify-center shrink-0">
-                                👤
+                            <div class="w-7 h-7 rounded-lg bg-green-600 text-white flex items-center justify-center shrink-0">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
                             </div>
                             <div class="min-w-0">
                                 <div class="flex items-center gap-1.5">
@@ -209,7 +211,7 @@
                     <!-- Member Points Redeem Control (Hidden if no member / 0 points) -->
                     <div id="redeem-points-wrapper" class="hidden p-2.5 bg-yellow-50/80 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800/60 rounded-xl space-y-2">
                         <div class="flex items-center justify-between text-xs font-bold text-yellow-800 dark:text-yellow-300">
-                            <span class="flex items-center gap-1">🪙 Tukar Poin Diskon</span>
+                            <span class="flex items-center gap-1.5">Tukar Poin Diskon</span>
                             <button type="button" onclick="useAllMemberPoints()" class="text-[11px] font-semibold text-yellow-700 dark:text-yellow-400 underline hover:text-yellow-900 cursor-pointer">
                                 Gunakan Maksimal
                             </button>
@@ -279,7 +281,7 @@
                         <span id="summary-tax" class="font-semibold text-gray-800 dark:text-gray-200">Rp 0</span>
                     </div>
                     <div id="summary-earned-row" class="hidden flex justify-between items-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 p-2 rounded-xl text-[11px] font-semibold">
-                        <span class="flex items-center gap-1">✨ Estimasi Poin Didapat:</span>
+                        <span class="flex items-center gap-1">Poin Diperoleh:</span>
                         <span id="summary-points-earned" class="font-extrabold">+0 Poin</span>
                     </div>
                     <div class="flex justify-between items-center pt-2 border-t border-gray-200 dark:border-gray-700 text-sm font-bold">
@@ -896,7 +898,10 @@
         <div class="bg-white dark:bg-gray-800 rounded-2xl w-full max-w-sm shadow-2xl border border-gray-100 dark:border-gray-700 overflow-hidden">
             <div class="px-5 py-3.5 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between bg-gray-50/60 dark:bg-gray-800">
                 <h3 class="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                    <span class="text-green-600">👤</span> Daftar Member Cepat
+                    <svg class="w-4 h-4 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span>Daftar Member Cepat</span>
                 </h3>
                 <button type="button" onclick="closePOSMemberModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>

@@ -55,7 +55,7 @@
                     </svg>
                 </div>
             </div>
-            <p class="text-[11px] text-gray-400 dark:text-gray-500 mt-2 flex items-center gap-1">
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2 flex items-center gap-1">
                 <span class="text-green-600 dark:text-green-400 font-semibold">{{ $stats['active_members'] }}</span> aktif
             </p>
         </div>
@@ -73,7 +73,7 @@
                     </svg>
                 </div>
             </div>
-            <p class="text-[11px] text-gray-400 dark:text-gray-500 mt-2">
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
                 Setara diskon <span class="font-medium text-gray-700 dark:text-gray-300">Rp {{ number_format($stats['total_points'] * 1000, 0, ',', '.') }}</span>
             </p>
         </div>
@@ -91,7 +91,7 @@
                     </svg>
                 </div>
             </div>
-            <p class="text-[11px] text-gray-400 dark:text-gray-500 mt-2">Nilai transaksi pelanggan terdaftar</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Nilai transaksi pelanggan terdaftar</p>
         </div>
 
         <!-- Card 4: Skema Loyalitas -->
@@ -112,7 +112,7 @@
         <form method="GET" action="{{ route('members.index') }}" class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
             <div class="flex-1 relative">
                 <input type="text" name="search" value="{{ $search }}"
-                    placeholder="Cari berdasarkan Nama, Nomor HP, atau Kode Member..."
+                    placeholder="Cari berdasarkan Nama, Nomor HP, atau Kode Member"
                     class="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-gray-400">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,15 +122,22 @@
             </div>
 
             <div class="flex items-center gap-2.5 shrink-0">
-                <select name="status" onchange="this.form.submit()"
-                    class="px-3 py-2 bg-gray-50 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500">
-                    <option value="">Semua Status</option>
-                    <option value="active" {{ $status === 'active' ? 'selected' : '' }}>Aktif</option>
-                    <option value="inactive" {{ $status === 'inactive' ? 'selected' : '' }}>Nonaktif</option>
-                </select>
+                <div class="relative">
+                    <select name="status" onchange="this.form.submit()"
+                        class="appearance-none pl-3.5 pr-8 py-2 bg-gray-50 dark:bg-gray-700/70 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500 cursor-pointer">
+                        <option value="">Semua Status</option>
+                        <option value="active" {{ $status === 'active' ? 'selected' : '' }}>Aktif</option>
+                        <option value="inactive" {{ $status === 'inactive' ? 'selected' : '' }}>Nonaktif</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-2.5 pointer-events-none text-gray-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                        </svg>
+                    </div>
+                </div>
 
                 <button type="submit"
-                    class="px-4 py-2 bg-gray-900 hover:bg-black text-white text-xs sm:text-sm font-semibold rounded-xl transition cursor-pointer">
+                    class="px-4 py-2 bg-green-600 hover:bg-green-700 active:scale-95 text-white text-xs sm:text-sm font-semibold rounded-xl shadow-xs hover:shadow-md transition cursor-pointer">
                     Cari
                 </button>
 
@@ -150,29 +157,29 @@
     <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-2xs overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left text-xs sm:text-sm text-gray-600 dark:text-gray-300">
-                <thead class="bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 uppercase text-[11px] font-bold tracking-wider border-b border-gray-200 dark:border-gray-700">
+                <thead class="bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 uppercase text-xs font-bold tracking-wider border-b border-gray-200 dark:border-gray-700">
                     <tr>
-                        <th scope="col" class="px-5 py-3.5">Member</th>
-                        <th scope="col" class="px-5 py-3.5">Kontak</th>
-                        <th scope="col" class="px-5 py-3.5">Saldo Poin</th>
-                        <th scope="col" class="px-5 py-3.5">Total Belanja</th>
-                        <th scope="col" class="px-5 py-3.5">Pesanan</th>
-                        <th scope="col" class="px-5 py-3.5">Status</th>
-                        <th scope="col" class="px-5 py-3.5 text-center">Aksi</th>
+                        <th scope="col" class="px-5 py-3.5 whitespace-nowrap">Member</th>
+                        <th scope="col" class="px-5 py-3.5 whitespace-nowrap">Kontak</th>
+                        <th scope="col" class="px-5 py-3.5 whitespace-nowrap">Saldo Poin</th>
+                        <th scope="col" class="px-5 py-3.5 whitespace-nowrap">Total Belanja</th>
+                        <th scope="col" class="px-5 py-3.5 whitespace-nowrap">Pesanan</th>
+                        <th scope="col" class="px-5 py-3.5 whitespace-nowrap">Status</th>
+                        <th scope="col" class="px-5 py-3.5 text-center whitespace-nowrap">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-gray-700/60 font-normal">
                     @forelse($members as $member)
                     <tr class="hover:bg-gray-50/80 dark:hover:bg-gray-700/40 transition">
                         <!-- Member Info -->
-                        <td class="px-5 py-4">
+                        <td class="px-5 py-4 whitespace-nowrap">
                             <div class="flex items-center gap-3">
                                 <div class="w-9 h-9 rounded-xl bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 font-bold flex items-center justify-center shrink-0 text-sm">
                                     {{ strtoupper(substr($member->name, 0, 1)) }}
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-gray-900 dark:text-white">{{ $member->name }}</h4>
-                                    <span class="inline-block px-1.5 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 font-mono text-[10px] rounded mt-0.5">
+                                    <span class="inline-block px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 font-mono text-xs rounded mt-0.5">
                                         {{ $member->member_code }}
                                     </span>
                                 </div>
@@ -180,45 +187,48 @@
                         </td>
 
                         <!-- Kontak -->
-                        <td class="px-5 py-4">
+                        <td class="px-5 py-4 whitespace-nowrap">
                             <div class="font-medium text-gray-900 dark:text-gray-200">{{ $member->phone }}</div>
-                            <div class="text-[11px] text-gray-400">{{ $member->email ?? '-' }}</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{{ $member->email ?? '-' }}</div>
                         </td>
 
                         <!-- Saldo Poin -->
-                        <td class="px-5 py-4">
-                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-lg font-bold text-xs">
-                                <span>🪙 {{ number_format($member->points_balance, 0, ',', '.') }}</span>
-                                <span class="text-[10px] font-normal text-green-600 dark:text-green-500">Poin</span>
+                        <td class="px-5 py-4 whitespace-nowrap">
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-lg font-bold text-xs whitespace-nowrap">
+                                <svg class="w-3.5 h-3.5 text-green-600 dark:text-green-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>{{ number_format($member->points_balance, 0, ',', '.') }}</span>
+                                <span class="text-xs font-semibold text-green-600 dark:text-green-500">Poin</span>
                             </div>
-                            <p class="text-[11px] text-gray-400 mt-1">Nilai: Rp {{ number_format($member->points_balance * 1000, 0, ',', '.') }}</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 whitespace-nowrap">Nilai: Rp {{ number_format($member->points_balance * 1000, 0, ',', '.') }}</p>
                         </td>
 
                         <!-- Total Belanja -->
-                        <td class="px-5 py-4 font-semibold text-gray-900 dark:text-white">
+                        <td class="px-5 py-4 font-semibold text-gray-900 dark:text-white whitespace-nowrap">
                             {{ $member->formatted_total_spend }}
                         </td>
 
                         <!-- Pesanan Count -->
-                        <td class="px-5 py-4 text-gray-700 dark:text-gray-300">
+                        <td class="px-5 py-4 text-gray-700 dark:text-gray-300 whitespace-nowrap">
                             {{ $member->orders_count }}x Transaksi
                         </td>
 
                         <!-- Status -->
-                        <td class="px-5 py-4">
+                        <td class="px-5 py-4 whitespace-nowrap">
                             @if($member->status === 'active')
-                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300">
                                     Aktif
                                 </span>
                             @else
-                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
                                     Nonaktif
                                 </span>
                             @endif
                         </td>
 
                         <!-- Actions -->
-                        <td class="px-5 py-4 text-center">
+                        <td class="px-5 py-4 text-center whitespace-nowrap">
                             <div class="inline-flex items-center gap-1">
                                 <!-- View History -->
                                 <button type="button" onclick="viewMemberHistory({{ $member->id }})"
@@ -317,10 +327,17 @@
 
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Status Keanggotaan</label>
-                    <select name="status" class="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500">
-                        <option value="active" selected>Aktif</option>
-                        <option value="inactive">Nonaktif</option>
-                    </select>
+                    <div class="relative">
+                        <select name="status" class="w-full appearance-none pl-3.5 pr-9 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 cursor-pointer">
+                            <option value="active" selected>Aktif</option>
+                            <option value="inactive">Nonaktif</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="pt-3 flex items-center justify-end gap-2 border-t border-gray-100 dark:border-gray-700">
@@ -376,10 +393,17 @@
 
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1.5">Status</label>
-                    <select id="edit-member-status" name="status" class="w-full px-3.5 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500">
-                        <option value="active">Aktif</option>
-                        <option value="inactive">Nonaktif</option>
-                    </select>
+                    <div class="relative">
+                        <select id="edit-member-status" name="status" class="w-full appearance-none pl-3.5 pr-9 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 text-xs sm:text-sm rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 cursor-pointer">
+                            <option value="active">Aktif</option>
+                            <option value="inactive">Nonaktif</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="pt-3 flex items-center justify-end gap-2 border-t border-gray-100 dark:border-gray-700">
@@ -402,7 +426,10 @@
             <div class="px-6 py-4 border-b border-gray-100 dark:border-gray-700 flex items-center justify-between bg-gray-50/50 dark:bg-gray-800 shrink-0">
                 <div>
                     <h3 class="text-base font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                        <span>🪙</span> Riwayat Mutasi Poin
+                        <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Riwayat Mutasi Poin</span>
                     </h3>
                     <p id="history-member-title" class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Memuat data member...</p>
                 </div>

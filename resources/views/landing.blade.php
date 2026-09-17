@@ -26,9 +26,9 @@
         }
         body, html, input, select, textarea, button {
             font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: auto;
+            -moz-osx-font-smoothing: auto;
+            text-rendering: auto;
             overflow-x: hidden;
             position: relative;
             width: 100%;
@@ -286,7 +286,7 @@
         }
     </script>
 </head>
-<body class="bg-white text-gray-800 antialiased overflow-x-hidden">
+<body class="bg-white text-gray-800 subpixel-antialiased overflow-x-hidden">
 
     <!-- Preloader -->
     <div id="preloader" class="fixed inset-0 bg-white z-[9999] flex flex-col items-center justify-center transition-all duration-700 ease-in-out">
