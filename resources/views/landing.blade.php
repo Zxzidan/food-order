@@ -13,15 +13,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Global Typography Overrides -->
-    <link rel="stylesheet" href="{{ asset('css/sf-pro.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/typography.css') }}?v=5.0">
     
     <!-- CSS Custom -->
     <style>
+        *, *::before, *::after {
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
         html {
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
-        body {
+        body, html, input, select, textarea, button {
             font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -733,7 +736,7 @@
                 <div class="lg:col-span-5" data-aos="fade-right">
                     <div class="relative max-w-md mx-auto lg:max-w-none">
                         <div class="relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-gray-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.08)] bg-white p-2">
-                            <img src="{{ asset('assets/img/stressed-owner.jpg') }}" alt="Owner F&B Pusing Laporan Rekap Manual" class="w-full h-auto object-cover rounded-[1.6rem] sm:rounded-[2.1rem] shadow-inner select-none pointer-events-none">
+                            <img src="{{ asset('assets/img/stressed-owner.jpg') }}?v=4.0" alt="Owner F&B Pusing Laporan Rekap Manual" class="w-full h-auto object-cover rounded-[1.6rem] sm:rounded-[2.1rem] shadow-inner select-none pointer-events-none">
                         </div>
                     </div>
                 </div>
@@ -857,7 +860,7 @@
                 <div class="lg:col-span-6 mt-6 lg:mt-0" data-aos="fade-left">
                     <div class="p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-white border border-gray-200 shadow-xl">
                         <div class="rounded-xl sm:rounded-2xl overflow-hidden">
-                            <img src="{{ asset('assets/img/pos-cashier.jpg') }}" alt="Sistem Kasir POS Tablet & Struk Kasir Otomatis SIPEMMA" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
+                            <img src="{{ asset('assets/img/pos-cashier.jpg') }}?v=4.0" alt="Sistem Kasir POS Tablet & Struk Kasir Otomatis SIPEMMA" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
                         </div>
                     </div>
                 </div>
@@ -873,7 +876,7 @@
                 <div class="lg:col-span-6 order-2 lg:order-1 mt-6 lg:mt-0" data-aos="fade-right">
                     <div class="relative p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-gray-50 border border-gray-200/90 shadow-lg">
                         <div class="rounded-xl sm:rounded-2xl overflow-hidden shadow-inner">
-                            <img src="{{ asset('assets/img/kitchen-stock.jpg') }}" alt="Manajemen Stok Bahan & Dapur Restoran SIPEMMA" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
+                            <img src="{{ asset('assets/img/kitchen-stock.jpg') }}?v=4.0" alt="Manajemen Stok Bahan & Dapur Restoran SIPEMMA" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
                         </div>
                     </div>
                 </div>
@@ -940,7 +943,7 @@
                 <div class="lg:col-span-6 order-2 lg:order-1 mt-6 lg:mt-0" data-aos="fade-right">
                     <div class="p-2.5 sm:p-3 rounded-2xl sm:rounded-3xl bg-orange-50/60 border border-orange-100 shadow-xl">
                         <div class="rounded-xl sm:rounded-2xl overflow-hidden">
-                            <img src="{{ asset('assets/img/business-analytics.jpg') }}" alt="Laporan Penjualan & Analitik AI SIPEMMA" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
+                            <img src="{{ asset('assets/img/business-analytics.jpg') }}?v=4.0" alt="Laporan Penjualan & Analitik AI SIPEMMA" class="w-full object-cover select-none pointer-events-none hover:scale-102 transition-transform duration-700">
                         </div>
                     </div>
                 </div>

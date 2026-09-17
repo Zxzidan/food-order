@@ -11,7 +11,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/sf-pro.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/typography.css') }}?v=5.0" />
+
+    <style>
+        *, *::before, *::after {
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body, html, button, input, select, textarea {
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+    </style>
 
     <script>
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -24,7 +36,7 @@
     <title>@yield('title', 'Sistem Pemesanan Makanan')</title>
 </head>
 
-<body class="h-full dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
+<body class="h-full dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased font-sans">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 
     @yield('content')
