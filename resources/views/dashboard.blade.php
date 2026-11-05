@@ -167,7 +167,7 @@
                     $heightPercent = $maxTotal > 0 ? max(10, round(($sale['total'] / $maxTotal) * 100)) : 10;
                     $isToday = $sale['day'] === \Illuminate\Support\Carbon::today()->translatedFormat('D');
                 @endphp
-                <div class="w-full flex flex-col items-center group">
+                <div class="w-full h-full flex flex-col justify-end items-center group">
                     <div
                         class="w-full {{ $isToday ? 'bg-orange-500 dark:bg-orange-600 group-hover:bg-orange-600 dark:group-hover:bg-orange-500' : 'bg-orange-100 dark:bg-orange-950/40 group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60' }} rounded-t-md relative transition"
                         style="height: {{ $heightPercent }}%; min-height: 24px;"
