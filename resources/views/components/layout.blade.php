@@ -49,7 +49,7 @@
 
         <x-sidebar />
         
-        <div id="main-content" class="flex-1 flex flex-col sm:ml-64 transition-all duration-300 min-w-0 w-full overflow-x-hidden">
+        <div id="main-content" class="flex-1 flex flex-col sm:ml-64 transition-all duration-300 min-w-0 overflow-x-hidden">
             <x-header>{{ $title }}</x-header>
             <main class="flex-1 w-full">
                 <div class="px-4 py-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">

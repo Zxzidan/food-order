@@ -52,6 +52,7 @@
             position: relative;
             width: 100%;
             display: block;
+            overflow: hidden;
         }
         .parallax-waves > use {
             animation: move-waves 25s cubic-bezier(.55, .5, .45, .5) infinite;
@@ -388,7 +389,7 @@
                     <div class="relative w-full max-w-[490px] sm:max-w-[560px] lg:max-w-[580px] mx-auto py-8 sm:py-10 px-2 sm:px-4 select-none">
                         
                         <!-- Floating Card 3: Contextual Detail / Top Item (Soft Directional Shadow) -->
-                        <div id="heroTopItemCard" class="absolute top-2.5 sm:top-4 -right-4 sm:-right-8 lg:-right-10 z-30 w-[155px] sm:w-[185px] bg-white rounded-2xl sm:rounded-3xl shadow-[0_15px_30px_-6px_rgba(0,0,0,0.22)] border border-gray-100 p-2.5 sm:p-3 transition-all duration-300 transform hover:scale-105">
+                        <div id="heroTopItemCard" class="absolute top-2.5 sm:top-4 -right-2 sm:-right-4 lg:-right-3 xl:-right-8 z-30 w-[155px] sm:w-[185px] bg-white rounded-2xl sm:rounded-3xl shadow-[0_15px_30px_-6px_rgba(0,0,0,0.22)] border border-gray-100 p-2.5 sm:p-3 transition-all duration-300 transform hover:scale-105">
                             <div class="flex items-center justify-between">
                                 <div id="heroTopItemIconBg" class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-orange-50 text-primary-600 flex items-center justify-center font-bold text-xs border border-orange-200/70 shadow-2xs">
                                     <span id="heroTopItemIcon">

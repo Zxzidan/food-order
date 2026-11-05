@@ -153,9 +153,18 @@
         </form>
     </div>
 
+    <!-- Mobile scroll hint -->
+    <div class="sm:hidden flex items-center justify-between text-[11px] text-gray-500 dark:text-gray-400 mb-2 px-1 font-medium">
+        <span class="flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+            Geser tabel ke samping untuk rincian kolom
+        </span>
+        <span class="text-xs font-bold text-green-600 dark:text-green-400">→</span>
+    </div>
+
     <!-- Table Members -->
     <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-2xs overflow-hidden">
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto overscroll-x-contain">
             <table class="w-full text-left text-xs sm:text-sm text-gray-600 dark:text-gray-300">
                 <thead class="bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 uppercase text-xs font-bold tracking-wider border-b border-gray-200 dark:border-gray-700">
                     <tr>
