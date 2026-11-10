@@ -58,10 +58,17 @@ class DashboardController extends Controller
                     ->whereDate('created_at', $date)
                     ->sum('total_amount');
 
+                $formatted = match (true) {
+                    $dailyTotal >= 1000000 => 'Rp '.number_format($dailyTotal / 1000000, 1, ',', '.').' Jt',
+                    $dailyTotal >= 1000 => 'Rp '.number_format($dailyTotal / 1000, 0, ',', '.').' rb',
+                    $dailyTotal > 0 => 'Rp '.$dailyTotal,
+                    default => 'Rp 0',
+                };
+
                 $weeklySales[] = [
                     'day' => $date->translatedFormat('D'),
                     'total' => (int) $dailyTotal,
-                    'formatted' => 'Rp'.number_format($dailyTotal / 1000000, 1, ',', '').'M', // Short format like Rp1.2M
+                    'formatted' => $formatted,
                     'raw_formatted' => 'Rp '.number_format($dailyTotal, 0, ',', '.'),
                 ];
             }

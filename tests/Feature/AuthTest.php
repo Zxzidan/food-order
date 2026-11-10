@@ -92,3 +92,52 @@ test('user can log in even with l vs i typo in email name', function () {
     $this->assertAuthenticatedAs($user);
     $response->assertRedirect('/dashboard');
 });
+
+test('database admin account can log in with email or username and access dashboard', function () {
+    $admin = User::factory()->create([
+        'name' => 'Dandi Azaidane',
+        'email' => 'admin@sipemma.com',
+        'password' => bcrypt('password'),
+        'role' => 'admin',
+    ]);
+
+    // Test dengan email penuh
+    $responseEmail = $this->post('/login', [
+        'email' => 'admin@sipemma.com',
+        'password' => 'password',
+    ]);
+
+    $this->assertAuthenticatedAs($admin);
+    $responseEmail->assertRedirect('/dashboard');
+
+    $this->post('/logout');
+
+    // Test dengan keyword username 'admin'
+    $responseUsername = $this->post('/login', [
+        'email' => 'admin',
+        'password' => 'password',
+    ]);
+
+    $this->assertAuthenticatedAs($admin);
+    $responseUsername->assertRedirect('/dashboard');
+
+    $this->post('/logout');
+
+    // Test dengan keyword 'juri' dialihkan ke admin
+    $responseJuri = $this->post('/login', [
+        'email' => 'juri',
+        'password' => 'password',
+    ]);
+
+    $this->assertAuthenticatedAs($admin);
+    $responseJuri->assertRedirect('/dashboard');
+});
+
+test('login page displays juri quick login helper and credentials with database account', function () {
+    $response = $this->get('/login');
+
+    $response->assertStatus(200);
+    $response->assertSee('Akun Khusus Juri');
+    $response->assertSee('admin@sipemma.com');
+    $response->assertSee('Masuk Cepat sebagai Juri');
+});

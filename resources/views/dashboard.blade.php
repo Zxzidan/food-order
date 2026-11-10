@@ -141,22 +141,30 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Sales Statistics -->
         <div
-            class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6"
+            class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 flex flex-col justify-between"
         >
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-lg font-bold text-gray-900 dark:text-white">
-                    Statistik Penjualan
-                </h2>
+            <div class="flex flex-wrap justify-between items-center gap-2 mb-4">
+                <div>
+                    <h2 class="text-lg font-bold text-gray-900 dark:text-white">
+                        Statistik Penjualan
+                    </h2>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                        Total Penjualan Minggu Ini: <span class="font-bold text-orange-600 dark:text-orange-400">Rp {{ number_format(array_sum(array_column($weeklySales, 'total')), 0, ',', '.') }}</span>
+                    </p>
+                </div>
                 <a
                     href="/reports"
-                    class="text-sm font-medium text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300"
+                    class="text-sm font-semibold text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 inline-flex items-center gap-1 transition"
                 >
-                    View Report
+                    <span>View Report</span>
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
                 </a>
             </div>
             <!-- Simple CSS Chart Representation -->
             <div
-                class="h-64 flex items-end justify-between space-x-2 pt-4 mt-20"
+                class="h-64 flex items-end justify-between space-x-2 pt-8 pb-1"
             >
                 @php
                     $maxTotal = count($weeklySales) > 0 ? max(array_column($weeklySales, 'total')) : 0;
@@ -164,22 +172,30 @@
                 
                 @foreach($weeklySales as $sale)
                 @php
-                    // Calculate height percentage relative to max, min 10%, max 100%
-                    $heightPercent = $maxTotal > 0 ? max(10, round(($sale['total'] / $maxTotal) * 100)) : 10;
+                    $hasSales = $sale['total'] > 0;
+                    // Calculate height percentage relative to max, min 14% if has sales, min 6% if 0
+                    $heightPercent = ($maxTotal > 0 && $hasSales) ? max(14, round(($sale['total'] / $maxTotal) * 100)) : 6;
                     $isToday = $sale['day'] === \Illuminate\Support\Carbon::today()->translatedFormat('D');
                 @endphp
-                <div class="w-full flex flex-col items-center group">
+                <div class="w-full h-full flex flex-col justify-end items-center group relative">
+                    <!-- Value Label Above Bar -->
+                    @if($hasSales)
+                        <span class="text-[10px] font-bold text-gray-700 dark:text-gray-300 mb-1.5 transition-transform group-hover:scale-110 whitespace-nowrap">
+                            {{ $sale['formatted'] }}
+                        </span>
+                    @endif
+
                     <div
-                        class="w-full {{ $isToday ? 'bg-orange-500 dark:bg-orange-600 group-hover:bg-orange-600 dark:group-hover:bg-orange-500' : 'bg-orange-100 dark:bg-orange-950/40 group-hover:bg-orange-200 dark:group-hover:bg-orange-800/60' }} rounded-t-md relative transition"
-                        style="height: {{ $heightPercent }}%; min-height: 24px;"
+                        class="w-full {{ $isToday ? 'bg-gradient-to-t from-orange-600 to-orange-500 shadow-md shadow-orange-500/20' : ($hasSales ? 'bg-gradient-to-t from-orange-300 to-orange-200 dark:from-orange-900/60 dark:to-orange-800/40 hover:from-orange-400 hover:to-orange-300' : 'bg-gray-100 dark:bg-gray-700/40') }} rounded-t-md relative transition-all duration-300"
+                        style="height: {{ $heightPercent }}%; min-height: 10px;"
                     >
                         <div
-                            class="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap z-10"
+                            class="absolute -top-9 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs py-1 px-2 rounded-lg opacity-0 group-hover:opacity-100 transition pointer-events-none whitespace-nowrap z-20 shadow-lg font-medium"
                         >
-                            {{ $sale['raw_formatted'] }}
+                            {{ $sale['day'] }}: {{ $sale['raw_formatted'] }}
                         </div>
                     </div>
-                    <span class="text-xs {{ $isToday ? 'font-bold text-gray-800 dark:text-gray-200' : 'text-gray-500 dark:text-gray-400' }} mt-2"
+                    <span class="text-xs {{ $isToday ? 'font-bold text-orange-600 dark:text-orange-400' : 'text-gray-500 dark:text-gray-400' }} mt-2 select-none"
                         >{{ $sale['day'] }}</span
                     >
                 </div>

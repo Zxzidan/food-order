@@ -65,7 +65,7 @@
                 <p class="text-xs font-medium text-gray-500">Silakan masuk ke akun SIPEMMA Anda</p>
             </div>
 
-            <form action="{{ route('login') }}" method="POST">
+            <form id="login-form" action="{{ route('login') }}" method="POST">
                 @csrf
 
                 @if (session('status'))
@@ -79,6 +79,39 @@
                         {{ $errors->first() }}
                     </div>
                 @endif
+
+                <!-- Akses Cepat Akun Juri / Penguji (Menggunakan Akun Database) -->
+                <div class="mb-4 p-3 rounded-2xl bg-orange-50 border border-orange-200/90 shadow-2xs transition-all hover:border-orange-300">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <div class="flex items-center gap-1.5 font-bold text-orange-950 text-xs">
+                            <span class="flex h-2 w-2 relative">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                            </span>
+                            <span>Akun Khusus Juri</span>
+                        </div>
+                        <span class="px-2 py-0.5 text-[9px] font-black uppercase tracking-wider bg-orange-200/90 text-orange-800 rounded-full">Database</span>
+                    </div>
+
+                    <div class="bg-white/95 rounded-xl p-2 border border-orange-100 mb-2 text-[11px] font-mono space-y-0.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-400 font-sans text-[10px]">Email / User:</span>
+                            <span class="font-bold text-ink selection:bg-orange-200">admin@sipemma.com</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-400 font-sans text-[10px]">Kata Sandi:</span>
+                            <span class="font-bold text-ink selection:bg-orange-200">password</span>
+                        </div>
+                    </div>
+
+                    <button type="button" id="btn-quick-juri" onclick="quickLoginJuri()"
+                        class="w-full py-2 px-3 bg-gradient-to-r from-orange-500 to-accent hover:from-orange-600 hover:to-accentHover text-white font-bold rounded-xl text-xs transition-all shadow-md shadow-accent/20 flex items-center justify-center gap-1.5 transform active:scale-95 cursor-pointer">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <span>Masuk Cepat sebagai Juri</span>
+                    </button>
+                </div>
 
                 <div class="mb-4">
                     <label for="email" class="block font-bold text-ink text-sm mb-1.5">Email atau Username</label>
@@ -131,6 +164,34 @@
         </div>
     </div>
     <script>
+        function quickLoginJuri() {
+            const form = document.getElementById('login-form');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const btn = document.getElementById('btn-quick-juri');
+
+            if (emailInput && passwordInput) {
+                emailInput.value = 'admin@sipemma.com';
+                passwordInput.value = 'password';
+
+                if (btn) {
+                    btn.innerHTML = `
+                        <svg class="animate-spin -ml-1 mr-1.5 h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span>Sedang Masuk...</span>
+                    `;
+                }
+
+                if (form) {
+                    form.submit();
+                } else if (emailInput.form) {
+                    emailInput.form.submit();
+                }
+            }
+        }
+
         function togglePasswordVisibility(inputId, btn) {
             const input = document.getElementById(inputId);
             if (!input) return;
