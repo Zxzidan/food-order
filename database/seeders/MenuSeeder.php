@@ -93,12 +93,20 @@ class MenuSeeder extends Seeder
             ],
         ];
 
-        foreach ($menus as $menu) {
-            $menu['user_id'] = $admin?->id;
-            Menu::updateOrCreate(
-                ['name' => $menu['name']],
-                $menu
-            );
+        $admins = User::where('role', 'admin')->get();
+        if ($admins->isEmpty()) {
+            $admins = User::all();
+        }
+
+        foreach ($admins as $admin) {
+            foreach ($menus as $menu) {
+                $menuData = $menu;
+                $menuData['user_id'] = $admin->id;
+                Menu::updateOrCreate(
+                    ['name' => $menu['name'], 'user_id' => $admin->id],
+                    $menuData
+                );
+            }
         }
     }
 }

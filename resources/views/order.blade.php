@@ -105,7 +105,7 @@
         <!-- RIGHT COLUMN: Order Cart Panel (5 Cols on LG, 4 on XL) -->
         <!-- ========================================== -->
         <div id="cart-drawer-container"
-            class="lg:col-span-5 xl:col-span-4 fixed inset-y-0 right-0 z-50 lg:z-10 w-full max-w-md lg:max-w-none lg:relative bg-white dark:bg-gray-800 lg:rounded-3xl border-l lg:border border-gray-200 dark:border-gray-700 shadow-2xl lg:shadow-sm flex flex-col max-h-screen lg:max-h-none lg:sticky lg:top-4 overflow-hidden transform translate-x-full lg:translate-x-0 transition-transform duration-300">
+            class="lg:col-span-5 xl:col-span-4 fixed inset-y-0 right-0 z-50 lg:z-10 w-full max-w-md lg:max-w-none lg:relative bg-white dark:bg-gray-800 lg:rounded-3xl border-l lg:border border-gray-200 dark:border-gray-700 shadow-2xl lg:shadow-sm flex flex-col max-h-screen lg:max-h-none lg:sticky lg:top-4 overflow-hidden transform translate-x-full lg:translate-x-0 transition-transform duration-300 invisible lg:visible">
             
             <!-- Mobile Drawer Backdrop -->
             <div id="cart-backdrop" onclick="toggleCartDrawer(false)"
@@ -795,6 +795,7 @@
             const drawer = document.getElementById('cart-drawer-container');
             const backdrop = document.getElementById('cart-backdrop');
             if (open) {
+                drawer.classList.remove('invisible');
                 drawer.classList.remove('translate-x-full');
                 backdrop.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
@@ -802,6 +803,11 @@
                 drawer.classList.add('translate-x-full');
                 backdrop.classList.add('hidden');
                 document.body.style.overflow = 'auto';
+                setTimeout(() => {
+                    if (drawer.classList.contains('translate-x-full')) {
+                        drawer.classList.add('invisible');
+                    }
+                }, 300);
             }
         }
 

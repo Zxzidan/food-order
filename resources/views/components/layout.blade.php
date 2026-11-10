@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-gray-100 dark:bg-gray-900">
+<html lang="en" class="h-full bg-gray-100 dark:bg-gray-900 overflow-x-hidden">
 
 <head>
     <meta charset="UTF-8">
@@ -36,23 +36,23 @@
     <title>@yield('title', 'Sistem Pemesanan Makanan')</title>
 </head>
 
-<body class="h-full dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased font-sans">
+<body class="h-full dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased font-sans overflow-x-hidden">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
 
     @yield('content')
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 
-    <div class="min-h-full flex flex-col">
+    <div class="min-h-full flex flex-col w-full overflow-x-hidden">
         <!-- Sidebar Backdrop for Mobile -->
         <div id="sidebar-backdrop" class="fixed inset-0 z-35 bg-white/30 dark:bg-gray-900/30 backdrop-blur-md hidden sm:hidden border-r border-white/20" style="opacity: 0; transition: opacity 0.4s ease-in-out;"></div>
 
         <x-sidebar />
         
-        <div id="main-content" class="flex-1 flex flex-col sm:ml-64 transition-all duration-300 min-w-0">
+        <div id="main-content" class="flex-1 flex flex-col sm:ml-64 transition-all duration-300 min-w-0 overflow-x-hidden">
             <x-header>{{ $title }}</x-header>
-            <main class="flex-1">
-                <div class="px-3 py-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <main class="flex-1 w-full">
+                <div class="px-4 py-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
                     <!-- Your content -->
                     {{ $slot }}
                 </div>

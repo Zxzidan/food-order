@@ -4,31 +4,30 @@
     </x-slot:title>
 
     <div class="mb-6">
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
             Welcome back, {{ $nama ?? "Admin" }}! 👋
         </h1>
-        <br />
-        <p class="text-gray-600 dark:text-gray-400 mt-1">
+        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">
             Here is what's happening with your restaurant today.
         </p>
     </div>
 
     <!-- Stats Row -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-7">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
         <!-- Customer Stat -->
         <div
-            class="bg-white dark:bg-gray-800 p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm"
+            class="bg-white dark:bg-gray-800 p-4 sm:p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm"
         >
             <!-- Baris Atas: Teks + Angka di Kiri, Ikon di Kanan -->
             <div class="flex items-start justify-between">
                 <div>
                     <p
-                        class="text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap"
+                        class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap"
                     >
                         Total Pelanggan
                     </p>
                     <h3
-                        class="text-3xl font-bold text-gray-900 dark:text-white mt-2"
+                        class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5 sm:mt-2"
                     >
                         {{ number_format($totalCustomers ?? 0) }}
                     </h3>
@@ -36,10 +35,10 @@
 
                 <!-- Ikon -->
                 <div
-                    class="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-2xl text-orange-600 dark:text-orange-400 shrink-0"
+                    class="p-2.5 sm:p-3 bg-orange-50 dark:bg-orange-950/30 rounded-2xl text-orange-600 dark:text-orange-400 shrink-0"
                 >
                     <svg
-                        class="w-6 h-6"
+                        class="w-5 h-5 sm:w-6 sm:h-6"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -57,18 +56,18 @@
 
         <!-- Orders Stat -->
         <div
-            class="bg-white dark:bg-gray-800 p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm"
+            class="bg-white dark:bg-gray-800 p-4 sm:p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm"
         >
             <div>
                 <div class="flex items-start justify-between">
                     <div>
                         <p
-                            class="text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap"
+                            class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap"
                         >
                             Total Pesanan
                         </p>
                         <h3
-                            class="text-3xl font-bold text-gray-900 dark:text-white mt-2"
+                            class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5 sm:mt-2"
                         >
                             {{ number_format($totalOrders ?? 0) }}
                         </h3>
@@ -76,10 +75,10 @@
 
                     <!-- Ikon -->
                     <div
-                        class="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-2xl text-orange-600 dark:text-orange-400 shrink-0"
+                        class="p-2.5 sm:p-3 bg-orange-50 dark:bg-orange-950/30 rounded-2xl text-orange-600 dark:text-orange-400 shrink-0"
                     >
                         <svg
-                            class="w-6 h-6"
+                            class="w-5 h-5 sm:w-6 sm:h-6"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -98,18 +97,18 @@
 
         <!-- Menu Available -->
         <div
-            class="bg-white dark:bg-gray-800 p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm"
+            class="bg-white dark:bg-gray-800 p-4 sm:p-5 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm"
         >
             <div>
                 <div class="flex items-start justify-between">
                     <div>
                         <p
-                            class="text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap"
+                            class="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap"
                         >
                             Menu Tersedia
                         </p>
                         <h3
-                            class="text-3xl font-bold text-gray-900 dark:text-white mt-2"
+                            class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1.5 sm:mt-2"
                         >
                             {{ number_format($menusAvailable ?? 0) }}
                         </h3>
@@ -117,10 +116,10 @@
 
                     <!-- Ikon -->
                     <div
-                        class="p-3 bg-orange-50 dark:bg-orange-950/30 rounded-2xl text-orange-600 dark:text-orange-400 shrink-0"
+                        class="p-2.5 sm:p-3 bg-orange-50 dark:bg-orange-950/30 rounded-2xl text-orange-600 dark:text-orange-400 shrink-0"
                     >
                         <svg
-                            class="w-6 h-6"
+                            class="w-5 h-5 sm:w-6 sm:h-6"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -138,14 +137,14 @@
     </div>
 
     <!-- Charts and Tables Row -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         <!-- Sales Statistics -->
         <div
-            class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6 flex flex-col justify-between"
+            class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 sm:p-6 flex flex-col justify-between"
         >
-            <div class="flex flex-wrap justify-between items-center gap-2 mb-4">
+            <div class="flex flex-wrap justify-between items-center gap-2 mb-4 sm:mb-6">
                 <div>
-                    <h2 class="text-lg font-bold text-gray-900 dark:text-white">
+                    <h2 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">
                         Statistik Penjualan
                     </h2>
                     <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
@@ -154,7 +153,7 @@
                 </div>
                 <a
                     href="/reports"
-                    class="text-sm font-semibold text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 inline-flex items-center gap-1 transition"
+                    class="text-xs sm:text-sm font-semibold text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 inline-flex items-center gap-1 transition"
                 >
                     <span>View Report</span>
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -164,7 +163,7 @@
             </div>
             <!-- Simple CSS Chart Representation -->
             <div
-                class="h-64 flex items-end justify-between space-x-2 pt-8 pb-1"
+                class="h-56 sm:h-64 flex items-end justify-between space-x-1.5 sm:space-x-2 pt-6 pb-1"
             >
                 @php
                     $maxTotal = count($weeklySales) > 0 ? max(array_column($weeklySales, 'total')) : 0;
@@ -180,7 +179,7 @@
                 <div class="w-full h-full flex flex-col justify-end items-center group relative">
                     <!-- Value Label Above Bar -->
                     @if($hasSales)
-                        <span class="text-[10px] font-bold text-gray-700 dark:text-gray-300 mb-1.5 transition-transform group-hover:scale-110 whitespace-nowrap">
+                        <span class="text-[9px] sm:text-[10px] font-bold text-gray-700 dark:text-gray-300 mb-1 transition-transform group-hover:scale-110 whitespace-nowrap">
                             {{ $sale['formatted'] }}
                         </span>
                     @endif
@@ -195,7 +194,7 @@
                             {{ $sale['day'] }}: {{ $sale['raw_formatted'] }}
                         </div>
                     </div>
-                    <span class="text-xs {{ $isToday ? 'font-bold text-orange-600 dark:text-orange-400' : 'text-gray-500 dark:text-gray-400' }} mt-2 select-none"
+                    <span class="text-[11px] sm:text-xs {{ $isToday ? 'font-bold text-orange-600 dark:text-orange-400' : 'text-gray-500 dark:text-gray-400' }} mt-2 select-none"
                         >{{ $sale['day'] }}</span
                     >
                 </div>
@@ -205,10 +204,10 @@
 
         <!-- Best Selling Menu -->
         <div
-            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6"
+            class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 sm:p-6"
         >
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-lg font-bold text-gray-900 dark:text-white">
+            <div class="flex justify-between items-center mb-4 sm:mb-6">
+                <h2 class="text-base sm:text-lg font-bold text-gray-900 dark:text-white">
                     Top 5 Menu Paling Laris
                 </h2>
                 <span class="text-xs font-semibold px-2.5 py-1 bg-orange-50 dark:bg-orange-950/40 text-orange-600 dark:text-orange-400 rounded-lg">Terlaris</span>
